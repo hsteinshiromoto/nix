@@ -117,4 +117,4 @@ if [ "$TMUX" = "" ]; then tmux; fi
 # Configuration: aliases
 # ---
 alias ls="exa"
-alias cat="bat"
+alias cat="batcat"
