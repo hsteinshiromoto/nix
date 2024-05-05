@@ -112,3 +112,9 @@ ZSH_TMUX_AUTOSTART=true
 #
 # Starts tmux with zsh [1]
 if [ "$TMUX" = "" ]; then tmux; fi
+
+# ---
+# Configuration: aliases
+# ---
+alias ls="exa"
+alias cat="bat"
