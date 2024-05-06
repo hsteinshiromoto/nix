@@ -121,6 +121,14 @@ ZSH_TMUX_AUTOSTART=true
 if [ "$TMUX" = "" ]; then tmux; fi
 
 # ---
+# Configuration: bat
+#
+# References:
+# 	[1] https://github.com/sharkdp/bat?tab=readme-ov-file#customization
+# ---
+export BAT_THEME="ansi"
+
+# ---
 # Configuration: aliases
 # ---
 alias ls="exa"
