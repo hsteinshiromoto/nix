@@ -143,3 +143,8 @@ alias cat="batcat"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# ---
+# Configuration: zoxide
+# ---
+eval "$(zoxide init --cmd cd zsh)"
