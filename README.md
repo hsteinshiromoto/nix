@@ -38,18 +38,18 @@ The structure of this repository must be the same as the structure as the config
 
 ### New dotfile
 
-- 1. Create an empty file in the correct location in the repository. For instance
-  ```bash
-  touch .file
-  ```
-- 2. Run 
-  ```bash
-  stow . --adopt
-  ```
-- 3. Add file to the version control
-  ```bash
-  add .file
-  ```
+1. Create an empty file in the correct location in the repository. For instance
+```bash
+touch .file
+```
+2. Run 
+```bash
+stow . --adopt
+```
+3. Add file to the version control
+```bash
+add .file
+```
 
 ### References
 
