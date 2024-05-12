@@ -33,6 +33,7 @@ The structure of this repository must be the same as the structure as the config
 
 - git
 - gnustow
+- fzf
 
 ## Workflow
 
