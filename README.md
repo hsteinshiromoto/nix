@@ -48,7 +48,7 @@ stow . --adopt
 ```
 3. Add file to the version control
 ```bash
-add .file
+git add .file
 ```
 
 ### References
