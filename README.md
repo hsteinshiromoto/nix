@@ -38,15 +38,15 @@ The structure of this repository must be the same as the structure as the config
 
 ### New dotfile
 
-- Create an empty file in the correct location in the repository. For instance
+- 1. Create an empty file in the correct location in the repository. For instance
   ```bash
   touch .file
   ```
-- Run 
+- 2. Run 
   ```bash
   stow . --adopt
   ```
-- Add file to the version control
+- 3. Add file to the version control
   ```bash
   add .file
   ```
