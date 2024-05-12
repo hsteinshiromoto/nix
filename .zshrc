@@ -146,5 +146,9 @@ eval "$(pyenv init -)"
 
 # ---
 # Configuration: zoxide
+#
+# Currently raising bugs
+# Fix using the comment from G. Frx
+# https://stackoverflow.com/questions/36668910/how-do-i-reload-zsh-config-files-without-replacing-the-current-shell
 # ---
-eval "$(zoxide init --cmd cd zsh)"
+# eval "$(zoxide init --cmd cd zsh)"
