@@ -39,9 +39,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
 Plug 'wellle/context.vim'
 Plug 'junegunn/gv.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 call plug#end()
-
 " ---
 "  Configuration: NerdTree
 " ---
@@ -67,3 +67,8 @@ nmap ga <Plug>(EasyAlign)
 " Configuration: undotree
 " ---
 nnoremap <F5> :UndotreeToggle<CR>
+
+" ---
+" Configuration: Set RainbowParentheses to autostart when VIm starts
+" ---
+autocmd VimEnter * :RainbowParentheses
