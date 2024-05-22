@@ -26,3 +26,9 @@ autocmd vimenter * ++nested colorscheme gruvbox
 let g:minimap_width = 10
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
+
+call plug#begin()
+
+Plug 'junegunn/fzf'
+
+call plug#end()
