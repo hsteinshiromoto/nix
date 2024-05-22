@@ -38,6 +38,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
 Plug 'wellle/context.vim'
+Plug 'junegunn/gv.vim'
 
 call plug#end()
 
