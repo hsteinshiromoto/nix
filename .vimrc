@@ -34,5 +34,18 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
 
 call plug#end()
+
+" ---
+"  Configuration: NerdTree
+" ---
+"nnoremap <leader>n :NERDTreeFocus<CR>
+"remap <C-n> :NERDTree<CR>
+"remap <C-t> :NERDTreeToggle<CR>
+"remap <C-f> :NERDTreeFind<CR>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
