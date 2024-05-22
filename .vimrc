@@ -36,6 +36,7 @@ Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'junegunn/vim-easy-align'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -59,3 +60,9 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" ---
+" Configuration: undotree
+" ---
+nnoremap <F5> :UndotreeToggle<CR>
+"
