@@ -30,5 +30,7 @@ let g:minimap_auto_start_win_enter = 1
 call plug#begin()
 
 Plug 'junegunn/fzf'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
