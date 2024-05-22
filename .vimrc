@@ -37,6 +37,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
+Plug 'wellle/context.vim'
 
 call plug#end()
 
@@ -65,4 +66,3 @@ nmap ga <Plug>(EasyAlign)
 " Configuration: undotree
 " ---
 nnoremap <F5> :UndotreeToggle<CR>
-"
