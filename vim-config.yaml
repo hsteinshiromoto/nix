@@ -33,5 +33,9 @@
         dest: "{{ vim_dir }}/autoload/pathgen.vim"
         url: https://tpo.pe/pathogen.vim
 
+    - name: Install plugins
+      ansible.builtin.shell: vim +'PlugInstall --sync' +qall &> /dev/null < /dev/tty
+
 # References:
 #   [1] https://www.redhat.com/sysadmin/ansible-configure-vim
+#   [2] https://github.com/junegunn/vim-plug/issues/730
