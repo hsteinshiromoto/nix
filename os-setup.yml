@@ -1,0 +1,15 @@
+- name: Bootstrap development environment
+  hosts: localhost
+  gather_facts: yes
+             
+  tasks:
+  - name: Install packages with apt
+    become: yes
+    ansible.builtin.apt:
+      name:
+        - fzf
+        - git
+        - stow
+        - tmux
+      state: present
+
