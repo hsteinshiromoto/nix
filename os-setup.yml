@@ -1,6 +1,9 @@
 - name: Bootstrap development environment
   hosts: localhost
   gather_facts: yes
+  vars:
+    dotfiles_git_repository: "git@github.com:hsteinshiromoto/dotfiles.linux.git"
+
              
   tasks:
   - name: Install packages with apt
@@ -12,4 +15,9 @@
         - stow
         - tmux
       state: present
+    when: ansible_distribution == "Ubuntu"
 
+  - name: Clone dotfiles to home directory
+    ansible.builtin.git:
+      repo: "{{ dotfiles_git_repository }}"
+      dest: "{{ ansible_env.HOME }}"
