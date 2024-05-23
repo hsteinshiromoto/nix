@@ -12,6 +12,7 @@
       ansible.builtin.apt:
         name:
           - git
+          - stow
           - tmux
           - fzf
         state: present
@@ -32,3 +33,5 @@
         dest: "{{ vim_dir }}/autoload/pathgen.vim"
         url: https://tpo.pe/pathogen.vim
 
+# References:
+#   [1] https://www.redhat.com/sysadmin/ansible-configure-vim
