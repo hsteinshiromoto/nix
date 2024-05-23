@@ -3,7 +3,7 @@
   gather_facts: yes
   vars:
     dotfiles_git_repository: "git@github.com:hsteinshiromoto/dotfiles.linux.git"
-
+    dotfiles_dir: "{{ ansible_env.HOME }}/dotfiles"
              
   tasks:
   - name: Install packages with apt
@@ -20,4 +20,8 @@
   - name: Clone dotfiles to home directory
     ansible.builtin.git:
       repo: "{{ dotfiles_git_repository }}"
-      dest: "{{ ansible_env.HOME }}"
+      dest: "{{ dotfiles_dir }}"
+
+  - name: Stow dotfiles 
+    ansible.builtin.shell:
+      cmd: "stow $HOME/dotfiles"
