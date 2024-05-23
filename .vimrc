@@ -73,3 +73,9 @@ nnoremap <F5> :UndotreeToggle<CR>
 " Configuration: Set RainbowParentheses to autostart when VIm starts
 " ---
 autocmd VimEnter * :RainbowParentheses
+
+" ---
+" Configuration: line number
+" ---
+set number
+set relativenumber
