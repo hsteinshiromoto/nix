@@ -5,7 +5,7 @@
   tasks:
   - name: Install packages with apt
     become: yes
-    ansible.builtin.apt:
+    ansible.builtin.package:
       name:
         - bat
         - fzf
@@ -13,8 +13,7 @@
         - stow
         - tmux
       state: present
-    when: ansible_distribution == "Ubuntu"
-
+    
   - name: Clone dotfiles to home directory
     ansible.builtin.git:
       repo: "https://github.com/hsteinshiromoto/dotfiles.linux.git"
@@ -22,4 +21,4 @@
 
   - name: Stow dotfiles 
     ansible.builtin.shell:
-      cmd: "cd $HOME/dotfiles && stow"
+      cmd: "cd $HOME/dotfiles && stow ."
