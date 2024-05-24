@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: yes
   vars:
-    dotfiles_git_repository: "git@github.com:hsteinshiromoto/dotfiles.linux.git"
+    dotfiles_git_repository: "https://github.com/hsteinshiromoto/dotfiles.linux.git"
     dotfiles_dir: "{{ ansible_env.HOME }}/dotfiles"
              
   tasks:
