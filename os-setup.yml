@@ -8,10 +8,14 @@
     ansible.builtin.package:
       name:
         - bat
+        - btop
         - fzf
         - git
+        - mc
         - stow
         - tmux
+        - vim
+        - zsh
       state: present
     
   - name: Clone dotfiles to home directory
