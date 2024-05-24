@@ -1,5 +1,5 @@
 alias gs='git status'
-alias gd='git diff'
+alias gd='git diff --name-only --relative --diff-filter=d | xargs batcat --diff'
 alias gc="git commit -m '.'"
 alias gm='git merge'
 alias gph='git push'
