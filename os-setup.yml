@@ -10,6 +10,7 @@
     become: yes
     ansible.builtin.apt:
       name:
+        - bat
         - fzf
         - git
         - stow
