@@ -22,4 +22,4 @@
 
   - name: Stow dotfiles 
     ansible.builtin.shell:
-      cmd: "stow $HOME/dotfiles"
+      cmd: "cd $HOME/dotfiles && stow"
