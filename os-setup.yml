@@ -11,6 +11,7 @@
         - btop
         - fzf
         - git
+        - git-flow
         - mc
         - stow
         - tmux
