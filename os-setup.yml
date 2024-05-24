@@ -3,7 +3,7 @@
   gather_facts: yes
             
   tasks:
-  - name: Install packages with apt
+  - name: Install OS packages
     become: yes
     ansible.builtin.package:
       name:
