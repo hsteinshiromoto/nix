@@ -7,16 +7,6 @@
     vimrc: "{{ ansible_env.HOME }}/.vimrc"
 
   tasks:
-    - name: Install Required Packages
-      become: yes
-      ansible.builtin.apt:
-        name:
-          - git
-          - stow
-          - tmux
-          - fzf
-        state: present
-
     - name: Ensure .vim/{autoload, bundle} directory exist
       loop:
         - "{{ vim_dir }}"
