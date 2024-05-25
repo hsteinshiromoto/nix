@@ -27,3 +27,6 @@
   - name: Stow dotfiles 
     ansible.builtin.shell:
       cmd: "cd $HOME/dotfiles && stow ."
+
+  - name: Import VIm Playbook
+    import_tasks: roles/vim.yml
