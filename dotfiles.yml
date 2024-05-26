@@ -1,0 +1,14 @@
+- name: Setup Dotfiles
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+  - name: Clone dotfiles to home directory
+    ansible.builtin.git:
+      repo: "https://github.com/hsteinshiromoto/dotfiles.linux.git"
+      dest: "{{ ansible_env.HOME }}/dotfiles"
+  
+  - name: Stow dotfiles
+    ansible.builtin.shell:
+      cmd: "cd $HOME/dotfiles && stow ." 
+  
