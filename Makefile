@@ -3,9 +3,24 @@ SHELL:=/bin/bash
 default: help
 
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
-INSTALL_PACKAGES=packages.yml 
+PLAYBOOK_PACKAGES=packages.yml
+PLAYBOOK_DOTFILES=dotfiles.yml
 
-.PHONY: clean help tree
+PLAYBOOKS := $(wildcard *.yml) 
+
+.PHONY: clean help tree playbook
+
+## Install OS Packages
+packages:
+	@echo "Running Playbook ${PLAYBOOK_PACKAGES}" 
+	ansible-playbook --ask-become-pass -C ${PLAYBOOK_PACKAGES} 
+
+## Setup Dotfiles
+dotfiles: packages
+	@echo "Running Playbook ${PLAYBOOK_DOTFILES}" 
+	ansible-playbook --ask-become-pass -C ${PLAYBOOK_DOTFILES} 
+
+
 
 ## Settings
 settings:
