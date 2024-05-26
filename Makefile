@@ -6,8 +6,6 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 PLAYBOOK_PACKAGES=packages.yml
 PLAYBOOK_DOTFILES=dotfiles.yml
 
-PLAYBOOKS := $(wildcard *.yml) 
-
 .PHONY: clean help tree playbook
 
 ## Install OS Packages
