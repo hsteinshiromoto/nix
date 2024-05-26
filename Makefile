@@ -18,17 +18,7 @@ packages:
 ## Setup Dotfiles
 dotfiles: packages
 	@echo "Running Playbook ${PLAYBOOK_DOTFILES}" 
-	ansible-playbook --ask-become-pass -C ${PLAYBOOK_DOTFILES} 
-
-
-
-## Settings
-settings:
-	 ansible-playbook --ask-become-pass ${INSTALL_PACKAGES} 
-
-## Dry run playbook install
-test:
-	 ansible-playbook --ask-become-pass -C ${INSTALL_PACKAGES} 
+	ansible-playbook --ask-become-pass -C ${PLAYBOOK_DOTFILES}  
 
 ## Print tree
 tree:
