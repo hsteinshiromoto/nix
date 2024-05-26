@@ -19,6 +19,8 @@
         - tmux
         - vim
         - zsh
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
       state: present
     
   - name: Clone dotfiles to home directory
@@ -31,8 +33,8 @@
         #cmd: "cd $HOME/dotfiles && stow ."
 
         #- name: Install LazyDocker
-    #ansbible.builtin.shell:
-    #  cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
+        #ansbible.builtin.shell:
+        #cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
 
   - name: Install LazyGit
     ansible.builtin.shell:
