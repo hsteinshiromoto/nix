@@ -22,19 +22,10 @@
         - zsh-autosuggestions
         - zsh-syntax-highlighting
       state: present
-    
-  - name: Clone dotfiles to home directory
-    ansible.builtin.git:
-      repo: "https://github.com/hsteinshiromoto/dotfiles.linux.git"
-      dest: "{{ ansible_env.HOME }}/dotfiles"
 
-        #- name: Stow dotfiles 
-        #ansible.builtin.shell:
-        #cmd: "cd $HOME/dotfiles && stow ."
-
-        #- name: Install LazyDocker
-        #ansbible.builtin.shell:
-        #cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
+  - name: Install LazyDocker
+    ansible.builtin.shell:
+      cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
 
   - name: Install LazyGit
     ansible.builtin.shell:
