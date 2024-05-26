@@ -9,9 +9,11 @@
       name:
         - bat
         - btop
+        - curl
         - fzf
         - git
         - git-flow
+        - gpg
         - mc
         - stow
         - tmux
@@ -24,9 +26,21 @@
       repo: "https://github.com/hsteinshiromoto/dotfiles.linux.git"
       dest: "{{ ansible_env.HOME }}/dotfiles"
 
-  - name: Stow dotfiles 
+        #- name: Stow dotfiles 
+        #ansible.builtin.shell:
+        #cmd: "cd $HOME/dotfiles && stow ."
+
+        #- name: Install LazyDocker
+    #ansbible.builtin.shell:
+    #  cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
+
+  - name: Install LazyGit
     ansible.builtin.shell:
-      cmd: "cd $HOME/dotfiles && stow ."
+      cmd: "bash bin/install_lazygit.sh"
+
+  - name: Install Eza
+    ansible.builtin.shell:
+      cmd: "bash bin/install_eza.sh"
 
   - name: Import VIm Playbook
     import_tasks: roles/vim.yml
