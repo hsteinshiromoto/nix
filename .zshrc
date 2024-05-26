@@ -152,7 +152,18 @@ eval "$(pyenv init -)"
 # https://stackoverflow.com/questions/36668910/how-do-i-reload-zsh-config-files-without-replacing-the-current-shell
 # ---
 # eval "$(zoxide init --cmd cd zsh)"
+#
 
+# ---
+# Configuratino: NeoVIm
+# ---
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ---
+# Configuration: Eza
+# ---
+
+alias ls='eza -lah --git'
+
