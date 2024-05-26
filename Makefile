@@ -3,17 +3,17 @@ SHELL:=/bin/bash
 default: help
 
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
-main_settings_file=os-setup.yml 
+INSTALL_PACKAGES=packages.yml 
 
 .PHONY: clean help tree
 
 ## Settings
 settings:
-	 ansible-playbook --ask-become-pass ${main_settings_file} 
+	 ansible-playbook --ask-become-pass ${INSTALL_PACKAGES} 
 
 ## Dry run playbook install
 test:
-	 ansible-playbook --ask-become-pass -C ${main_settings_file} 
+	 ansible-playbook --ask-become-pass -C ${INSTALL_PACKAGES} 
 
 ## Print tree
 tree:
