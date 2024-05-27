@@ -1,0 +1,12 @@
+- name: Install Homebrew
+  ansible.builtin.shell:
+    cmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+    when: ansible_distribution == "MacOSX"
+
+- name: Install MacOSX Packages
+  become: yes
+    community.general.homebrew:
+      - "espanso"
+      - "kitty"
+      - "zoxide"
+    when: ansible_distribution == "MacOSX"
