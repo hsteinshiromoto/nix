@@ -35,5 +35,5 @@
     ansible.builtin.shell:
       cmd: "bash bin/install_eza.sh"
 
-  - name: Import VIm Playbook
+  - name: Install VIm Plugins
     import_tasks: roles/vim.yml
