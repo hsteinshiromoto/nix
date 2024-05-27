@@ -167,3 +167,7 @@ export NVM_DIR="$HOME/.nvm"
 
 alias ls='eza -lah --git'
 
+# ---
+# Configuration: Lazydocker
+# ---
+alias ld='$HOME/.local/bin/lazydocker'
