@@ -6,34 +6,47 @@
             
   tasks:
     - name: Install Homebrew
-        when: ansible_facts['os_family'] == "Darwin"
-        ansible.builtin.shell:
-          cmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' 
+     when: ansible_facts['os_family'] == "Darwin"
+      ansible.builtin.shell:
+        cmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
-  - name: Install OS packages
-    become: "{{ should_be_root }}"
-    ansible.builtin.{{ package_manager_name }}:
-      name:
-        - {{ packages }}
-      state: present
+    - name: Install OS packages
+      become: "{{ should_be_root }}"
+      ansible.builtin.package:
+        name:
+          - bat
+          - btop
+          - curl
+          - fzf
+          - git
+          - git-flow
+          - gpg
+          - mc
+          - stow
+          - tmux
+          - vim
+          - zsh
+          - zsh-autosuggestions
+          - zsh-syntax-highlighting
+        state: present
 
-  - name: Install LazyDocker
-    ansible.builtin.shell:
-      cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
+    - name: Install LazyDocker
+      ansible.builtin.shell:
+        cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
 
-  - name: Install LazyGit
-    ansible.builtin.shell:
-      cmd: "bash bin/install_lazygit.sh"
+    - name: Install LazyGit
+      ansible.builtin.shell:
+        cmd: "bash bin/install_lazygit.sh"
 
-  - name: Install Eza
-    ansible.builtin.shell:
-      cmd: "bash bin/install_eza.sh"
+    - name: Install Eza
+      ansible.builtin.shell:
+        cmd: "bash bin/install_eza.sh"
 
-  - name: Install VIm Plugins
-    import_tasks: roles/vim.yml
+    - name: Install VIm Plugins
+      import_tasks: roles/vim.yml
 
-  - name: Install MacOS Packages
-    import_tasks: roles/macosx.yml
+    - name: Install MacOS Packages
+      import_tasks: roles/macosx.yml
    
 # References
 #
