@@ -1,0 +1,14 @@
+- bat
+- btop
+- curl
+- fzf
+- git
+- git-flow
+- gpg
+- mc
+- stow
+- tmux
+- vim
+- zsh
+- zsh-autosuggestions
+- zsh-syntax-highlighting
