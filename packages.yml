@@ -5,24 +5,16 @@
     should_be_root:  "{{ true if ansible_pkg_mgr != 'brew' else false }}"
             
   tasks:
+    - name: Install Homebrew
+        when: ansible_facts['os_family'] == "Darwin"
+        ansible.builtin.shell:
+          cmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' 
+
   - name: Install OS packages
     become: "{{ should_be_root }}"
-    ansible.builtin.package:
+    ansible.builtin.{{ package_manager_name }}:
       name:
-        - bat
-        - btop
-        - curl
-        - fzf
-        - git
-        - git-flow
-        - gpg
-        - mc
-        - stow
-        - tmux
-        - vim
-        - zsh
-        - zsh-autosuggestions
-        - zsh-syntax-highlighting
+        - {{ packages }}
       state: present
 
   - name: Install LazyDocker
