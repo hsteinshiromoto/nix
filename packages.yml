@@ -1,10 +1,12 @@
 - name: Bootstrap development environment
   hosts: localhost
   gather_facts: yes
+  vars:
+    should_be_root:  "{{ true if ansible_pkg_mgr != 'brew' else false }}"
             
   tasks:
   - name: Install OS packages
-    become: yes
+    become: "{{ should_be_root }}"
     ansible.builtin.package:
       name:
         - bat
@@ -40,4 +42,7 @@
 
   - name: Install MacOS Packages
     import_tasks: roles/macosx.yml
-    
+   
+# References
+#
+# [1] https://stackoverflow.com/questions/63242221/use-ansible-package-module-to-work-with-apt-and-homebrew 

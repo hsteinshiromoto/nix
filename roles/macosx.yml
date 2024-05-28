@@ -1,12 +1,18 @@
 - name: Install Homebrew
+  when: ansible_facts['os_family'] == "Darwin"
   ansible.builtin.shell:
     cmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-    when: ansible_distribution == "MacOSX"
-
+    
 - name: Install MacOSX Packages
   become: yes
-    community.general.homebrew:
+  community.general.homebrew:
+    name:
       - "espanso"
       - "kitty"
       - "zoxide"
-    when: ansible_distribution == "MacOSX"
+    state: present
+  when: ansible_pkg_mgr == "brew"
+
+# References
+#
+# [1] https://stackoverflow.com/questions/63242221/use-ansible-package-module-to-work-with-apt-and-homebrew
