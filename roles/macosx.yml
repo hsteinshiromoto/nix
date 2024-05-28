@@ -1,8 +1,3 @@
-- name: Install Homebrew
-  when: ansible_facts['os_family'] == "Darwin"
-  ansible.builtin.shell:
-    cmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-    
 - name: Install MacOSX Packages
   become: yes
   community.general.homebrew:
