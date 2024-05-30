@@ -106,6 +106,12 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# ---
+# Path
+# ---
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
 #
 # ---
 # Configuration: tmux
