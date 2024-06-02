@@ -34,9 +34,9 @@
       ansible.builtin.shell:
         cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
 
-    - name: Install LazyGit
-      ansible.builtin.shell:
-        cmd: "bash bin/install_lazygit.sh"
+    #- name: Install LazyGit
+      #ansible.builtin.shell:
+        #  cmd: "bash bin/install_lazygit.sh"
 
     - name: Install Eza
       ansible.builtin.shell:
