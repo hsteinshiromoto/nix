@@ -23,7 +23,10 @@
   ansible.builtin.shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   
 - name: Configure ZSH to use cargo
-  ansible.builtin.shell: . {{ ansible_env.HOME }}/.cargo/env
+  ansible.builtin.shell: |
+    . {{ ansible_env.HOME }}/.cargo/env
+    printf '#!/bin/sh\nexport CARGO_HOME=/opt/cargo\nexec /bin/sh "$@"\n' >/usr/local/bin/sh
+    chmod +x /usr/local/bin/sh
 
 - name: Install treesitter-cli using cargo
   ansible.builtin.shell: cargo install -y tree-sitter-cli
