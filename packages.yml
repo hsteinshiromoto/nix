@@ -42,8 +42,8 @@
       ansible.builtin.shell:
         cmd: "bash bin/install_eza.sh"
 
-    - name: Install VIm Plugins
-      import_tasks: roles/vim.yml
+    - name: Install NVIm
+      import_tasks: roles/nvim.yml
 
     - name: Install MacOS Packages
       import_tasks: roles/macosx.yml
