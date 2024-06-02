@@ -17,7 +17,23 @@ local plugins = {
       		dependencies = { 'nvim-lua/plenary.nvim' }
     	},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-	{ "sitiom/nvim-numbertoggle" }
+	{ "sitiom/nvim-numbertoggle" },
+	{ "lervag/vimtex",
+  		--init = function()
+    		-- VimTeX configuration goes here, e.g.
+    		-- vim.g.vimtex_view_method = "zathura"
+  		--end
+	},
+	{"NeogitOrg/neogit",
+  		dependencies = {"nvim-lua/plenary.nvim",         -- required
+    				"sindrets/diffview.nvim",        -- optional - Diff integration
+    				-- Only one of these is needed, not both.
+    				"nvim-telescope/telescope.nvim", -- optional
+    				-- "ibhagwan/fzf-lua",              -- optional
+  				},
+  		config = true
+	},
+	{ "lewis6991/gitsigns.nvim" }
 }
 local opts = {}
 
@@ -36,12 +52,9 @@ local config = require("nvim-treesitter.configs")
 config.setup({
 	ensure_installed = {"latex", "lua", "python", "toml", "vim", "vimdoc"},
 	auto_install = true,
-	highlight = {
-    		enable = true,
-	},
+	highlight = {enable = true },
 	indent = { enable = true}
-}
-)
+	})
 
 -- Setup relative and absolute numbers
 -- References:
@@ -50,4 +63,13 @@ config.setup({
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
+
+-- Setup Gitgitsigns
+require('gitsigns').setup({
+	signs = {
+		add 	= { text = '+' },
+		delete 	= { text = '-' },
+	},
+	}
+)
 
