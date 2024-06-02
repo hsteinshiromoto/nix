@@ -26,7 +26,7 @@
   ansible.builtin.shell: . {{ ansible_env.HOME }}/.cargo/env
 
 - name: Install treesitter-cli using cargo
-  ansible.builtin.shell: cargo install tree-sitter-cli
+  ansible.builtin.shell: cargo install -y tree-sitter-cli
 
 # References:
 #   [1] https://www.redhat.com/sysadmin/ansible-configure-vim
