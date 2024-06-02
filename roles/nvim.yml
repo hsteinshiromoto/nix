@@ -22,7 +22,7 @@
 - name: Install Rust
   ansible.builtin.shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   
-- name: Configure ZSH to use cargo
+- name: Configure to use cargo (for ZSH only the first line is needed)
   ansible.builtin.shell: |
     . {{ ansible_env.HOME }}/.cargo/env
     printf '#!/bin/sh\nexport CARGO_HOME=/opt/cargo\nexec /bin/sh "$@"\n' >/usr/local/bin/sh
