@@ -5,7 +5,7 @@
 
 - name: Ensure nvim config directory exist
   loop:
-    - "{{ vim_dir }}"
+    - "{{ nvim_dir }}"
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
