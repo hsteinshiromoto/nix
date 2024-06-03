@@ -41,7 +41,10 @@ local plugins = {
 			"MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     				}
-	}
+	},
+	{ 'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' }
+}
 }
 local opts = {}
 
@@ -91,4 +94,7 @@ require('gitsigns').setup({
 -- Setip Neotree
 vim.keymap.set("n", "<C-t>", ":Neotree filesystem reveal left<CR>")
 
-
+-- Setup Lualine
+require('lualine').setup({
+	options = { theme = 'gruvbox' },
+})
