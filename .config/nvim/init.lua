@@ -33,7 +33,15 @@ local plugins = {
   				},
   		config = true
 	},
-	{ "lewis6991/gitsigns.nvim" }
+	{ "lewis6991/gitsigns.nvim" },
+	{ "nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = { "nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    				}
+	}
 }
 local opts = {}
 
@@ -79,4 +87,8 @@ require('gitsigns').setup({
 	},
 	}
 )
+
+-- Setip Neotree
+vim.keymap.set("n", "<C-t>", ":Neotree filesystem reveal left<CR>")
+
 
