@@ -44,7 +44,8 @@ local plugins = {
 	},
 	{ 'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
-}
+	},
+	{ "mbbill/undotree" }
 }
 local opts = {}
 
@@ -98,3 +99,6 @@ vim.keymap.set("n", "<C-t>", ":Neotree filesystem reveal left<CR>")
 require('lualine').setup({
 	options = { theme = 'gruvbox' },
 })
+
+-- Setup Undotree
+vim.keymap.set('n', '<leader><F5>', vim.cmd.UndotreeToggle)
