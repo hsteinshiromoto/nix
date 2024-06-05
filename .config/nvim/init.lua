@@ -103,4 +103,4 @@ require('lualine').setup({
 })
 
 -- Setup Undotree
-vim.keymap.set('n', '<leader><F5>', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle)
