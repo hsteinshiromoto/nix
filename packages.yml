@@ -14,10 +14,12 @@
     - name: Install OS packages
       become: "{{ should_be_root }}"
       ansible.builtin.package:
+        update_cache: yes
         name:
           - bat
           - btop
           - curl
+          - exa
           - fzf
           - git
           - git-flow
@@ -38,11 +40,6 @@
     #- name: Install LazyGit
       #ansible.builtin.shell:
         #  cmd: "bash bin/install_lazygit.sh"
-
-    - name: Install Exa
-      become: "{{ should_be_root }}"
-      ansible.builtin.shell:
-        cmd: "bash {{ dotfiles_dir }}/bin/install_exa.sh"
 
     - name: Install NVIm
       import_tasks: roles/nvim.yml
