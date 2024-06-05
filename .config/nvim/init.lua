@@ -94,8 +94,8 @@ require('gitsigns').setup({
 	}
 )
 
--- Setip Neotree
-vim.keymap.set("n", "<C-t>", ":Neotree filesystem reveal left<CR>")
+-- Setup Neotree
+vim.keymap.set("n", "<C-t>", ":Neotree filesystem toggle left<CR>")
 
 -- Setup Lualine
 require('lualine').setup({
