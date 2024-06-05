@@ -3,6 +3,7 @@
   gather_facts: yes
   vars:
     should_be_root:  "{{ true if ansible_pkg_mgr != 'brew' else false }}"
+    dotfiles_dir: "{{ ansible_env.HOME }}/dotfiles"
             
   tasks:
     - name: Install Homebrew
@@ -41,7 +42,7 @@
     - name: Install Exa
       become: "{{ should_be_root }}"
       ansible.builtin.shell:
-        cmd: "bash bin/install_exa.sh"
+        cmd: "bash {{ dotfiles_dir }}/bin/install_exa.sh"
 
     - name: Install NVIm
       import_tasks: roles/nvim.yml
