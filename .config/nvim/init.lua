@@ -46,7 +46,8 @@ local plugins = {
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
 	{ "mbbill/undotree" },
-	{ 'jiangmiao/auto-pairs' }
+	{ 'jiangmiao/auto-pairs' },
+	{ "HiPhish/rainbow-delimiters.nvim" }
 }
 local opts = {}
 
