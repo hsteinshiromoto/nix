@@ -38,10 +38,10 @@
       #ansible.builtin.shell:
         #  cmd: "bash bin/install_lazygit.sh"
 
-    #- name: Install Eza
-      #become: "{{ should_be_root }}"
-      #ansible.builtin.shell:
-        #  cmd: "bash bin/install_eza.sh"
+    - name: Install Eza
+      become: "{{ should_be_root }}"
+      ansible.builtin.shell:
+        cmd: "bash bin/install_eza.sh"
 
     - name: Install NVIm
       import_tasks: roles/nvim.yml
