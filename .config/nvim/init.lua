@@ -71,7 +71,7 @@ vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 -- 	[2] https://www.rust-lang.org/tools/install
 local config = require("nvim-treesitter.configs")
 config.setup({
-	ensure_installed = {"latex", "lua", "python", "toml", "vim", "vimdoc"},
+	ensure_installed = {"dockerfile", "latex", "lua", "make", "python", "toml", "vim", "vimdoc"},
 	auto_install = true,
 	highlight = {enable = true },
 	indent = { enable = true}
