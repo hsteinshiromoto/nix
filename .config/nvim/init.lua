@@ -47,7 +47,8 @@ local plugins = {
 	},
 	{ "mbbill/undotree" },
 	{ 'jiangmiao/auto-pairs' },
-	{ "HiPhish/rainbow-delimiters.nvim" }
+	{ "HiPhish/rainbow-delimiters.nvim" },
+	{ "tpope/vim-commentary" }
 }
 local opts = {}
 
