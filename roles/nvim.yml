@@ -16,7 +16,6 @@
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
     sudo rm -rf /opt/nvim
     sudo tar -C /opt -xzf nvim-linux64.tar.gz
-    echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> {{ ansible_env.HOME }}/.zshrc
 
 - name: Install Rust
   ansible.builtin.shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
