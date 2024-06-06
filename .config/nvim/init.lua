@@ -99,7 +99,7 @@ require('gitsigns').setup({
 )
 
 -- Setup Neotree
-vim.keymap.set("n", "<C-t>", ":Neotree filesystem toggle left<CR>")
+vim.keymap.set("n", "<C-k>", ":Neotree filesystem toggle left<CR>")
 use_libuv_file_watcher=true
 -- Setup Lualine
 require('lualine').setup({
@@ -111,3 +111,7 @@ vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle)
 
 -- Setup Neogit
 vim.keymap.set('n', '<C-g>', ":Neogit<CR>")
+
+-- Setup Tab Commands
+vim.keymap.set('n', '<C-t>', ":tabnew<CR>")
+
