@@ -92,6 +92,8 @@ require('gitsigns').setup({
 		add 	= { text = 'M+' },
 		change	= { text = 'M' },
 		delete 	= { text = 'M-' },
+		topdelete = { text = '^' },
+    		changedelete = { text = '|<' },
 	},
 	}
 )
