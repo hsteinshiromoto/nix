@@ -89,15 +89,16 @@ vim.o.statuscolumn = "%s %l %r "
 -- Setup Gitgitsigns
 require('gitsigns').setup({
 	signs = {
-		add 	= { text = '+' },
-		delete 	= { text = '-' },
+		add 	= { text = 'M+' },
+		change	= { text = 'M' },
+		delete 	= { text = 'M-' },
 	},
 	}
 )
 
 -- Setup Neotree
 vim.keymap.set("n", "<C-t>", ":Neotree filesystem toggle left<CR>")
-
+use_libuv_file_watcher=true
 -- Setup Lualine
 require('lualine').setup({
 	options = { theme = 'gruvbox' },
