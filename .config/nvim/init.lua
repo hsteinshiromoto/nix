@@ -26,11 +26,6 @@ require('gitsigns').setup({
 	}
 )
 
--- Setup Lualine
-require('lualine').setup({
-	options = { theme = 'gruvbox' },
-})
-
 -- Setup Undotree
 vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle)
 

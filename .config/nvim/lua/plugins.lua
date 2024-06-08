@@ -16,9 +16,6 @@ return {
   		config = true
 	},
 	{ "lewis6991/gitsigns.nvim" },
-	{ 'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' }
-	},
 	{ "mbbill/undotree" },
 	{ 'jiangmiao/auto-pairs' },
 	{ "HiPhish/rainbow-delimiters.nvim" },
