@@ -13,15 +13,3 @@ vim.opt.rtp:prepend(lazypath)
 
 require("opt")
 require("lazy").setup("plugins")
-
--- Setup Gitgitsigns
-require('gitsigns').setup({
-	signs = {
-		add 	= { text = 'M+' },
-		change	= { text = 'M' },
-		delete 	= { text = 'M-' },
-		topdelete = { text = '^' },
-    		changedelete = { text = '|<' },
-	},
-	}
-)

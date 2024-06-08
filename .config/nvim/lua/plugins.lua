@@ -1,6 +1,5 @@
 return {
 	{ "sitiom/nvim-numbertoggle" },	
-	{ "lewis6991/gitsigns.nvim" },
 	{ 'jiangmiao/auto-pairs' },
 	{ "HiPhish/rainbow-delimiters.nvim" },
 	{ "tpope/vim-commentary" },	
