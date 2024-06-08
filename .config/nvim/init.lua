@@ -13,10 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
--- Install Telescope
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-
 -- Setup Treesitter
 -- In Linux, TreeSitter requires rust and tree-sitter-cli to be installed [1]. To do this:
 -- 	1. Install Rust using the instructions from [2].
