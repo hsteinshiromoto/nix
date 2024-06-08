@@ -1,5 +1,4 @@
 return {
-	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
 	{'nvim-telescope/telescope.nvim', tag = '0.1.6',
       		dependencies = { 'nvim-lua/plenary.nvim' }
     	},
@@ -64,6 +63,4 @@ return {
 		end
 	}
 }
-local opts = {}
-
 
