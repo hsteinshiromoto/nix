@@ -26,9 +26,6 @@ require('gitsigns').setup({
 	}
 )
 
--- Setup Undotree
-vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle)
-
 -- Setup Tab Commands
 vim.keymap.set('n', '<C-t>', ":tabnew<CR>")
 
