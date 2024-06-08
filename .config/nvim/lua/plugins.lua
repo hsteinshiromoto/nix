@@ -1,5 +1,4 @@
 return {
-		{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{ "sitiom/nvim-numbertoggle" },
 	{ "lervag/vimtex",
   		--init = function()
