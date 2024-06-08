@@ -29,9 +29,6 @@ require('gitsigns').setup({
 -- Setup Undotree
 vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle)
 
--- Setup Neogit
-vim.keymap.set('n', '<C-g>', ":Neogit<CR>")
-
 -- Setup Tab Commands
 vim.keymap.set('n', '<C-t>', ":tabnew<CR>")
 
