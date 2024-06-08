@@ -33,9 +33,6 @@ require('gitsigns').setup({
 	}
 )
 
--- Setup Neotree
-vim.keymap.set("n", "<C-k>", ":Neotree filesystem toggle left<CR>")
-use_libuv_file_watcher=true
 -- Setup Lualine
 require('lualine').setup({
 	options = { theme = 'gruvbox' },
