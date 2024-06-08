@@ -25,7 +25,3 @@ require('gitsigns').setup({
 	},
 	}
 )
-
--- Setup Tab Commands
-vim.keymap.set('n', '<C-t>', ":tabnew<CR>")
-
