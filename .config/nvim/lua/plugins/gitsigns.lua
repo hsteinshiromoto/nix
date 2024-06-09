@@ -1,5 +1,5 @@
 return { "lewis6991/gitsigns.nvim" 
-	config = function()
+	,config = function()
 		require('gitsigns').setup({
 			signs = { add 	= { text = 'M+' }
 				,change	= { text = 'M' }

@@ -9,5 +9,4 @@ return 	{ "NeogitOrg/neogit"
 		,config = function()
 			vim.keymap.set('n', '<C-g>', ":Neogit<CR>")
 		end
-	},
- 
+} 
