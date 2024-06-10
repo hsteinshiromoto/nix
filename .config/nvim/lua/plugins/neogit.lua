@@ -5,7 +5,6 @@ return 	{ "NeogitOrg/neogit"
     				,"nvim-telescope/telescope.nvim", -- optional
     				-- "ibhagwan/fzf-lua",              -- optional
 		}
-  		,config = true
 		,config = function()
 			vim.keymap.set('n', '<C-g>', ":Neogit<CR>")
 		end
