@@ -13,5 +13,5 @@ return {
 		})
 	end,
 
-	vim.keymap.set("n", "<C-g>", ":Neogit<CR>"),
+	vim.keymap.set("n", "<leader>g", ":Neogit<CR>"),
 }
