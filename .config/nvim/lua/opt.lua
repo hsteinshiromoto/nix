@@ -8,3 +8,9 @@ vim.g.maplocalleader = ","
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd("Neotree")
+	end,
+})
