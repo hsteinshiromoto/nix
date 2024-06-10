@@ -2,10 +2,10 @@ return { 'romgrk/barbar.nvim'
 	,dependencies = { 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
 		,'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
 		}
-	,init = function() 
-		vim.g.barbar_auto_setup = false
-	end
+	,event = "BufEnter"
 	,config = function()
+		require("barbar").setup({})
 		vim.keymap.set('n', '<C-t>', ":tabnew<CR>")
+		vim.g.barbar_auto_setup = false
 	end
 }
