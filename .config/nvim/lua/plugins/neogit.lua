@@ -8,7 +8,9 @@ return {
 	},
 	config = function()
 		local neogit = require("neogit")
-		neogit.setup({})
+		neogit.setup({
+			mappings = { status = { ["<space>"] = "Stage" } },
+		})
 	end,
 
 	vim.keymap.set("n", "<C-g>", ":Neogit<CR>"),
