@@ -5,7 +5,8 @@ return { "nvim-neo-tree/neo-tree.nvim"
       		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     			}
 	,config = function()
-		vim.keymap.set("n", "<C-k>", ":Neotree filesystem toggle left<CR>")
+		require("neo-tree").setup({})
+		vim.keymap.set("n", "<leader>t", ":Neotree filesystem toggle left<CR>")
 		use_libuv_file_watcher=true
 	end
 }
