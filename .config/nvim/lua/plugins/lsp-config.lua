@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls" },
+				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls", "markdown_oxide"},
 			})
 		end,
 	},
@@ -38,6 +38,7 @@ return {
 					"lua-language-server",
 					"stylua",
 					"shellcheck",
+					"markdownlint"
 				},
 
 				-- if set to true this will check each tool for updates. If updates
