@@ -67,7 +67,7 @@
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker tmux)
+# plugins=(git docker tmux)
 
 # source $ZSH/oh-my-zsh.sh
 
@@ -123,6 +123,18 @@ if [ "$TMUX" = "" ]; then tmux; fi
 # 	[1] https://github.com/sharkdp/bat?tab=readme-ov-file#customization
 # ---
 export BAT_THEME="ansi"
+
+# ---
+# Custom Functions
+# ---
+
+# FZF History
+#
+# References:
+# 	[1] https://armno.medium.com/til-using-fzf-to-search-in-command-history-bf6c3ecc465e
+hf() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height "50%" | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
 
 # ---
 # Configuration: aliases
