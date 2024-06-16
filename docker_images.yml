@@ -7,6 +7,6 @@
             
   tasks:
      - name: Install NVIm
-     import_tasks: roles/nvim.yml
+       import_tasks: roles/nvim.yml
 
    
