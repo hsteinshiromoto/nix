@@ -1,5 +1,6 @@
 - name: Bootstrap Docker Development Environment
   hosts: localhost
+  gather_facts: yes
   vars:
     should_be_root:  "{{ true if ansible_pkg_mgr != 'brew' else false }}"
     dotfiles_dir: "{{ ansible_env.HOME }}/dotfiles"
