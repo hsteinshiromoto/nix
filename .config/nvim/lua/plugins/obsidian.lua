@@ -30,4 +30,11 @@ return {
 
 		-- see below for full list of options 👇
 	},
+	keys = {
+		{ "<leader>obl", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian Backlinks" },
+	},
 }
+---
+--- Required OS packages
+--- 	ripgrep: https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation
+---	pngpaste (for MacOS), wl-clipboard (Wayland) (For Linux)
