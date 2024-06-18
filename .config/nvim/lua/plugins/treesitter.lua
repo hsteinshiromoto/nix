@@ -13,7 +13,7 @@ return { "nvim-treesitter/nvim-treesitter"
 		config.setup({	auto_install = true
 			,highlight = { enable = true }
 			,indent = { enable = true }
-			,ensure_installed = {"dockerfile", "latex", "lua", "make", "python", "toml", "vim", "vimdoc"}
+			,ensure_installed = {"dockerfile", "latex", "lua", "make", "markdown", "markdown_inline", "python", "toml", "vim", "vimdoc"}
 		})
 	end
 }
