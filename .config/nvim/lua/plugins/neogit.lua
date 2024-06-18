@@ -12,6 +12,7 @@ return {
 			mappings = { status = { ["<space>"] = "Stage" } },
 		})
 	end,
-
-	vim.keymap.set("n", "<leader>g", ":Neogit<CR>"),
+	keys = {
+		{ "<leader>git", ":Neogit<cr>", desc = "Neogit" },
+	},
 }
