@@ -32,6 +32,10 @@ return {
 	},
 	keys = {
 		{ "<leader>obl", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian Backlinks" },
+		{ "<leader>ofl", "<cmd>ObsidianFollowLink vsplit<cr>", desc = "Obsidian Follow Link" },
+	},
+	templates = {
+		folder = "_meta_/_templates_",
 	},
 }
 ---
