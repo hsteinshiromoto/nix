@@ -16,6 +16,10 @@ return {
 
 		-- see below for full list of optional dependencies 👇
 	},
+	keys = {
+		{ "<leader>obl", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian Backlinks" },
+		{ "<leader>ofl", "<cmd>ObsidianFollowLink vsplit<cr>", desc = "Obsidian Follow Link" },
+		},
 	config = function()
 		require("obsidian").setup({
 			disable_frontmatter = true,
@@ -30,10 +34,6 @@ return {
 			},
 
 			-- see below for full list of options 👇
-			},
-			keys = {
-				{ "<leader>obl", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian Backlinks" },
-				{ "<leader>ofl", "<cmd>ObsidianFollowLink vsplit<cr>", desc = "Obsidian Follow Link" },
 			},
 			templates = {
 				folder = "_meta_/_templates_",
