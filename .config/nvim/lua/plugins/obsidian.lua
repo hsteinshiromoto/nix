@@ -16,8 +16,10 @@ return {
 
 		-- see below for full list of optional dependencies 👇
 	},
-	opts = {
-		workspaces = {
+	config = function()
+		require("obsidian").setup({
+			disable_frontmatter = true,
+			workspaces = {
 			{
 				name = "Personal",
 				path = "~/Personal",
@@ -26,17 +28,18 @@ return {
 				name = "Zettelkasten",
 				path = "~/zettelkasten",
 			},
-		},
 
-		-- see below for full list of options 👇
-	},
-	keys = {
-		{ "<leader>obl", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian Backlinks" },
-		{ "<leader>ofl", "<cmd>ObsidianFollowLink vsplit<cr>", desc = "Obsidian Follow Link" },
-	},
-	templates = {
-		folder = "_meta_/_templates_",
-	},
+			-- see below for full list of options 👇
+			},
+			keys = {
+				{ "<leader>obl", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian Backlinks" },
+				{ "<leader>ofl", "<cmd>ObsidianFollowLink vsplit<cr>", desc = "Obsidian Follow Link" },
+			},
+			templates = {
+				folder = "_meta_/_templates_",
+			},
+		})
+	end
 }
 ---
 --- Required OS packages
