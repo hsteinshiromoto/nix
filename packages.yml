@@ -19,7 +19,7 @@
           - bat
           - btop
           - curl
-          - exa
+          # - exa # Not available for apt (Ubuntu)
           - fzf
           - git
           - git-flow
