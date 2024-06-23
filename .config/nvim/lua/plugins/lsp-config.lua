@@ -16,11 +16,11 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
@@ -29,7 +29,7 @@ return {
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
-	{
+	{	-- Run this auto install with :MasonToolsUpdate
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		config = function()
 			require("mason-tool-installer").setup({
@@ -39,10 +39,12 @@ return {
 				ensure_installed = {
 					-- you can turn off/on auto_update per tool
 					{ "bash-language-server", auto_update = true },
+					"black",
 					"lua-language-server",
 					"stylua",
 					"shellcheck",
 					"markdownlint",
+					"latexindent",
 				},
 
 				-- if set to true this will check each tool for updates. If updates
