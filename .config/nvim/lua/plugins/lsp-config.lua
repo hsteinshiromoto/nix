@@ -9,15 +9,19 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls", "markdown_oxide"},
+				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls", "markdown_oxide" },
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities
+			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
@@ -38,7 +42,7 @@ return {
 					"lua-language-server",
 					"stylua",
 					"shellcheck",
-					"markdownlint"
+					"markdownlint",
 				},
 
 				-- if set to true this will check each tool for updates. If updates
@@ -77,7 +81,7 @@ return {
 				integrations = {
 					["mason-lspconfig"] = true,
 					["mason-null-ls"] = true,
-				--	["mason-nvim-dap"] = true,
+					--	["mason-nvim-dap"] = true,
 				},
 			})
 		end,
