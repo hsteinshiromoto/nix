@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls", "markdown_oxide" },
+				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls", "markdown_oxide", "texlab" },
 			})
 		end,
 	},
