@@ -9,8 +9,12 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
 
+-- Setup Neotree to open when NeoVim starts
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		vim.cmd("Neotree")
 	end,
 })
+
+-- Setup NeoVim to yank to clipboard
+vim.opt.clipboard = "unnamedplus"
