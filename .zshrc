@@ -139,7 +139,7 @@ hf() {
 # ---
 # Configuration: aliases
 # ---
-alias ls="exa -lah"
+alias ls="eza --hyperlink -alh --icons=auto --git"
 alias cat="batcat"
 alias ld='$HOME/.local/bin/lazydocker'
 
