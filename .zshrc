@@ -142,6 +142,7 @@ hf() {
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias cat="batcat"
 alias ld='$HOME/.local/bin/lazydocker'
+alias ht='eval $(history | "fzf" +s | sed "s/ *[0-9]* *//")'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
