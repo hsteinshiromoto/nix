@@ -21,7 +21,7 @@
   ],
   "layers": [
     [
-      "KC_SPC",
+      "KC_ESC",
       "RGB_VAD",
       "RGB_VAI",
       "TG(2)",
