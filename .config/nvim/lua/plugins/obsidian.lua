@@ -21,7 +21,7 @@ return {
 		{ "<leader><enter>", "<cmd>ObsidianFollowLink vsplit<cr>", desc = "Obsidian Follow Link" },
 		},
 	open_notes_in = "vsplit",
-	vim.opt.conceallevel = 1,
+	vim.opt.conceallevel == 1,
 	config = function()
 		require("obsidian").setup({
 			disable_frontmatter = true,
