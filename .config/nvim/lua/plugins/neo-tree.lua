@@ -6,7 +6,7 @@ return { "nvim-neo-tree/neo-tree.nvim"
     			}
 	,config = function()
 		require("neo-tree").setup({})
-		vim.keymap.set("n", "<leader>t", ":Neotree filesystem toggle left<CR>")
+		vim.keymap.set("n", "<leader>tree", ":Neotree filesystem toggle left<CR>")
 		use_libuv_file_watcher=true
 	end
 }

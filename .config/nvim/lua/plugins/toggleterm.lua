@@ -3,5 +3,5 @@ return {
 	config = function()
 		require("toggleterm").setup({})
 	end,
-	vim.keymap.set("n", "<leader>sh", ":ToggleTerm<CR>"),
+	vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>"),
 }
