@@ -2,8 +2,8 @@
 -- References:
 --	[1] https://www.reddit.com/r/neovim/comments/14xxw1p/display_both_relative_and_absolute_line_numbers/
 
-vim.g.mapleader = ";"
-vim.g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = ";"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
