@@ -19,6 +19,8 @@ _darcs
 
 \.git
 \.gitignore
+\macos
+\ubuntu
 
 Makefile
 \#*.code-workspace
