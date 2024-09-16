@@ -4,7 +4,7 @@ shell_patterns=true
 auto_save_setup=true
 preallocate_space=false
 auto_menu=false
-use_internal_view=true
+use_internal_view=false
 use_internal_edit=false
 clear_before_exec=true
 confirm_delete=true
@@ -83,11 +83,13 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=modarin256
+skin=modarin256-defbg
+
+filepos_max_saved_entries=1024
 
 [Layout]
 output_lines=0
-left_panel_size=55
+left_panel_size=99
 top_panel_size=0
 message_visible=true
 keybar_visible=true
