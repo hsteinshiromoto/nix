@@ -141,7 +141,7 @@ hf() {
 # ---
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias cat="batcat"
-alias ld='$HOME/.local/bin/lazydocker'
+alias ld="lazydocker"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
