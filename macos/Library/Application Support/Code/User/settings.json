@@ -1,0 +1,53 @@
+{
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "debug.console.fontFamily": "JetBrains Mono",
+  "debug.terminal.clearBeforeReusing": true,
+  "editor.accessibilitySupport": "off",
+  "editor.codeLensFontFamily": "JetBrains Mono",
+  "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.inlayHints.fontFamily": "JetBrains Mono",
+  "editor.inlineSuggest.enabled": true,
+  "git.confirmSync": false,
+  "git.terminalGitEditor": true,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": false,
+    "scminput": false,
+    "yaml": true
+  },
+  "python.testing.pytestArgs": [
+    "--doctest-modules",
+    "--doctest-report",
+    "ndiff"
+  ],
+  "python.testing.pytestEnabled": true,
+  "redhat.telemetry.enabled": false,
+  "scm.inputFontFamily": "JetBrains Mono",
+  "terminal.external.osxExec": "kitty.app",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.smoothScrolling": true,
+  "workbench.colorTheme": "Gruvbox Dark Medium",
+  "workbench.startupEditor": "none",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "editor.defaultFormatter": "ms-python.black-formatter",
+  "remote.autoForwardPortsSource": "hybrid",
+  "terminal.integrated.profiles.osx": 
+  {
+    "tmux-shell": 
+    {
+      "path": "tmux",
+      "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "workbench.settings.applyToAllProfiles": [
+    "latex-workshop.latex.recipes"
+  ],
+}

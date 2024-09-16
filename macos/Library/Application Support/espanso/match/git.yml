@@ -1,0 +1,24 @@
+matches:
+  - trigger: ";ga"
+    replace: "git add "
+
+  - trigger: ";gc"
+    replace: "git commit -m \"\""
+
+  - trigger: ";gp"
+    replace: "git push"
+
+  - trigger: ";gt"
+    replace: "git tag -a -m \"\""
+
+  - trigger: ";gfr"
+    replace: "git flow release start "
+
+  - trigger: ";gff"
+    replace: "git flow feature start "
+
+  - trigger: ";gfh"
+    replace: "git flow hotfix start "
+
+  - trigger: ";gfb"
+    replace: "git flow bugfix start "
