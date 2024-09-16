@@ -122,7 +122,7 @@ if [ "$TMUX" = "" ]; then tmux; fi
 # References:
 # 	[1] https://github.com/sharkdp/bat?tab=readme-ov-file#customization
 # ---
-export BAT_THEME="gruvbox"
+export BAT_THEME="gruvbox-dark"
 
 # ---
 # Custom Functions
