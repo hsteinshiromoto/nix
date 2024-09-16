@@ -100,7 +100,10 @@ fi
 # ---
 # Path
 # ---
-export PATH="$PATH:/opt/nvim-linux64/bin"
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	export PATH="$PATH:/opt/nvim-linux64/bin"
+fi
+
 
 #
 # ---
