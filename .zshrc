@@ -99,6 +99,9 @@ fi
 
 # ---
 # Detects the OS
+#
+# References:
+# 	[1] https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 # ---
 
 unameOut="$(uname -s)"
