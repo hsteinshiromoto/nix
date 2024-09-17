@@ -128,13 +128,13 @@ fi
 # References:
 # 	[1] https://github.com/ohmyzsh/ohmyzsh/blob/fff073b55defed72a0a1aac4e853b165f208735b/plugins/tmux/tmux.plugin.zsh#L8
 # ---
-#
-# Automatically start tmux when zsh is started [1]
-ZSH_TMUX_AUTOSTART=true
-#
-# Starts tmux with zsh [1]
-if [ "$TMUX" = "" ]; then tmux; fi
-
+if [[ ${unameOut} == "Linux" ]]; then
+	# Automatically start tmux when zsh is started [1]
+	ZSH_TMUX_AUTOSTART=true
+	#
+	# Starts tmux with zsh [1]
+	if [ "$TMUX" = "" ]; then tmux; fi
+fi
 # ---
 # Configuration: bat
 #
