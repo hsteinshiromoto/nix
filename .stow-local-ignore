@@ -42,6 +42,6 @@ Makefile
 
 \#*.yml
 \#*.yaml
-\#*.json
+nuphy_air75_v2.layout.json
 \#*.swp
 .stow-local-ignore
