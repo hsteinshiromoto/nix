@@ -163,7 +163,7 @@ hf() {
 # ---
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias ld="lazydocker"
-alias lz="lazygit"
+alias lg="lazygit"
 if [[ ${unameOut} == "Linux" ]]; then
 	alias cat="batcat"
 elif [[ ${unameOut} == "Mac" ]]; then
