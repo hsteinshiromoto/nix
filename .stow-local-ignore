@@ -2,10 +2,10 @@
 
 # \.ssh/*
 # \.gnupg/*
-\.bin/*
 
-\.gitconfig
-
+# ---
+# Folders
+# ---
 RCS
 .+,v
 
@@ -19,8 +19,14 @@ _darcs
 
 \.git
 \.gitignore
+\bin
 \macos
+\roles
 \ubuntu
+
+# ---
+# Files
+# ---
 
 Makefile
 \#*.code-workspace
@@ -37,3 +43,4 @@ Makefile
 \#*.yml
 \#*.yaml
 \#*.swp
+.stow-local-ignore
