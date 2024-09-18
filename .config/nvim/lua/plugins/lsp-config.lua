@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ansiblels", "bashls", "dockerls", "lua_ls", "markdown_oxide", "texlab" },
+				ensure_installed = { "ansiblels", "bashls", "dockerls", "jsonls", "lua_ls", "markdown_oxide", "texlab", "yamlls"},
 			})
 		end,
 	},
@@ -40,11 +40,13 @@ return {
 					-- you can turn off/on auto_update per tool
 					{ "bash-language-server", auto_update = true },
 					"black",
+					"jsonls",
 					"lua-language-server",
 					"stylua",
 					"shellcheck",
 					"markdownlint",
 					"latexindent",
+					"yamlls"
 				},
 
 				-- if set to true this will check each tool for updates. If updates
