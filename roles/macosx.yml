@@ -2,6 +2,7 @@
   become: yes
   community.general.homebrew:
     name:
+      - "git-delta"
       - "espanso"
       - "eza"
       - "kitty"
