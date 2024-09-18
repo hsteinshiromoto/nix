@@ -42,5 +42,6 @@ Makefile
 
 \#*.yml
 \#*.yaml
+\#*.json
 \#*.swp
 .stow-local-ignore
