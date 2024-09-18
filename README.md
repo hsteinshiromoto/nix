@@ -52,6 +52,28 @@ stow . --adopt
 git add .file
 ```
 
+## Favorite Commands
+
+### Find
+
+Find a file in the current directory
+```bash
+find . -type f -name “<filename>”
+```
+
+Run grep on every file returned by find
+```bash
+find . -type f -name “<filename>” -exec grep -n “<string>” -i /dev/null —color=always {} ‘;’
+```
+
+### Delta
+
+Compare two files using delta and show the output side-by-side with line numbers
+```bash
+delta <file1> <file2> -sn
+
+```
+
 ### References
 
 [1] https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/
