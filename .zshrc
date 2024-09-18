@@ -162,8 +162,14 @@ hf() {
 # Configuration: aliases
 # ---
 alias ls="eza --hyperlink -alh --icons=auto --git"
-alias cat="batcat"
 alias ld="lazydocker"
+alias lz="lazygit"
+if [[ ${unameOut} == "Linux" ]]; then
+	alias cat="batcat"
+elif [[ ${unameOut} == "Mac" ]]; then
+	alias cat="bat"
+fi
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
