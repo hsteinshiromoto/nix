@@ -3,6 +3,7 @@
   community.general.homebrew:
     name:
       - "espanso"
+      - "eza"
       - "kitty"
       - "zoxide"
     state: present
