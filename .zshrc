@@ -180,6 +180,7 @@ alias ld="lazydocker"
 alias lg="lazygit"
 if [[ ${unameOut} == "Linux" ]]; then
 	alias cat="batcat"
+	alias bat="batcat"
 elif [[ ${unameOut} == "Darwin" ]]; then
 	alias cat="bat"
 fi
