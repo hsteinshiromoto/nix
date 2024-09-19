@@ -158,9 +158,23 @@ hf() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height "50%" | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
 
+# FZF git diff
+#
+# References:
+# 	[1] https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
+fd() {
+  preview="git diff $@ --color=always -- {-1}"
+  git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
+
 # ---
 # Configuration: aliases
 # ---
+# References for fzf with bat preview ([1] is the one adopted here):
+# 	[1] https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
+# 	[2] https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861 
+alias fzf="fzf --preview 'bat {-1} --color=always'"
+
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias ld="lazydocker"
 alias lg="lazygit"
@@ -169,6 +183,7 @@ if [[ ${unameOut} == "Linux" ]]; then
 elif [[ ${unameOut} == "Darwin" ]]; then
 	alias cat="bat"
 fi
+# The following fzf command should be kept below the cat alias
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
