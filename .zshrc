@@ -119,7 +119,7 @@ esac
 # ---
 if [[ ${unameOut} == "Linux" ]]; then
 	export PATH="$PATH:/opt/nvim-linux64/bin"
-elif [[ ${unameOut} == "Mac" ]]; then
+elif [[ ${unameOut} == "Darwin" ]]; then
 	export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware 
 fi
 
@@ -166,7 +166,7 @@ alias ld="lazydocker"
 alias lg="lazygit"
 if [[ ${unameOut} == "Linux" ]]; then
 	alias cat="batcat"
-elif [[ ${unameOut} == "Mac" ]]; then
+elif [[ ${unameOut} == "Darwin" ]]; then
 	alias cat="bat"
 fi
 
