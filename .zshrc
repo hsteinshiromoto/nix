@@ -173,7 +173,7 @@ fd() {
 # References for fzf with bat preview ([1] is the one adopted here):
 # 	[1] https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
 # 	[2] https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861 
-alias fzf="fzf --preview 'bat {-1} --color=always'"
+alias rf="fzf --preview 'bat {-1} --color=always'"
 
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias ld="lazydocker"
