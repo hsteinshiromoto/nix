@@ -18,3 +18,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- Setup NeoVim to yank to clipboard
 vim.opt.clipboard = "unnamedplus"
+
+-- update buffer content when file changes externally
+vim.opt.autoread = true
