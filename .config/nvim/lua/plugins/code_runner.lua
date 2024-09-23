@@ -4,7 +4,8 @@ return {
 		code_runner = require("code_runner")
 		code_runner.setup({
 			filetype = {
-				python = "python3 -u",
+				python = "python3 -u '$dir/$fileName'",
+				sh = "bash",
 			},
 		})
 	end,
