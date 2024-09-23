@@ -9,7 +9,16 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ansiblels", "bashls", "dockerls", "jsonls", "lua_ls", "markdown_oxide", "texlab", "yamlls"},
+				ensure_installed = {
+					"ansiblels",
+					"bashls",
+					"dockerls",
+					"jsonls",
+					"lua_ls",
+					"markdown_oxide",
+					"texlab",
+					"yamlls",
+				},
 			})
 		end,
 	},
@@ -23,13 +32,13 @@ return {
 				capabilities = capabilities,
 			})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Code Hover (LSP)" })
+			vim.keymap.set("n", "<localleader>cd", vim.lsp.buf.definition, { desc = "Code Definition (LSP)" })
+			vim.keymap.set("n", "<localleader>cr", vim.lsp.buf.references, { desc = "Code References (LSP)" })
+			vim.keymap.set("n", "<localleader>ca", vim.lsp.buf.code_action, { desc = "Code Action (LSP)" })
 		end,
 	},
-	{	-- Run this auto install with :MasonToolsUpdate
+	{ -- Run this auto install with :MasonToolsUpdate
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		config = function()
 			require("mason-tool-installer").setup({
@@ -46,7 +55,7 @@ return {
 					"shellcheck",
 					"markdownlint",
 					"latexindent",
-					"yamlls"
+					"yamlls",
 				},
 
 				-- if set to true this will check each tool for updates. If updates
