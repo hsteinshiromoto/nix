@@ -8,6 +8,6 @@ return {
 				null_ls.builtins.completion.spell,
 			},
 		})
-		vim.keymap.set("n", "F", vim.lsp.buf.format, {})
+		vim.keymap.set("n", "F", vim.lsp.buf.format, { desc = "Format File"})
 	end,
 }
