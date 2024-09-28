@@ -35,7 +35,7 @@
 
     - name: Install Starship
       ansible.builtin.shell:
-        cmd: curl -sS https://starship.rs/install.sh | bash
+        cmd: curl -sS https://starship.rs/install.sh | sh
 
     - name: Install LazyDocker
       ansible.builtin.shell:
