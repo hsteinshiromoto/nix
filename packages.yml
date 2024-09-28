@@ -33,6 +33,10 @@
           - zsh-syntax-highlighting
         state: present
 
+    - name: Install Starship
+      ansible.builtin.shell:
+        cmd: curl -sS https://starship.rs/install.sh | bash
+
     - name: Install LazyDocker
       ansible.builtin.shell:
         cmd: "curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash"
