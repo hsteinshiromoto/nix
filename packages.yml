@@ -49,7 +49,12 @@
       import_tasks: roles/nvim.yml
 
     - name: Install MacOS Packages
+      when: ansible_facts['os_family'] == "Darwin"
       import_tasks: roles/macosx.yml
+
+    - name: Install MacOS Packages
+      when: ansible_facts['distribution'] == "Ubuntu"
+      import_tasks: roles/linux.yml
    
 # References
 #
