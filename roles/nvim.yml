@@ -26,6 +26,9 @@
 - name: Install treesitter-cli using cargo
   ansible.builtin.shell: cargo install tree-sitter-cli | sh -s -- -y
 
+- name: Install Lazy Plugins 
+  ansible.builtin.shell: nvim --headless "+Lazy! sync" +qa
+
 # References:
 #   [1] https://www.redhat.com/sysadmin/ansible-configure-vim
 #   [2] https://github.com/junegunn/vim-plug/issues/730
