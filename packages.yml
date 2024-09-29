@@ -50,7 +50,7 @@
       import_tasks: roles/macosx.yml
 
     - name: Install Linux Packages
-      when: "{{ true if ansible_system == 'Linux' else false }}"
+      when: "true if ansible_system == 'Linux' else false"
       import_tasks: roles/linux.yml
 
     - name: Install NVIm
