@@ -1,12 +1,12 @@
 #!TODO: Update this file
 - name: Install Lazygit for Linux
   become: "{{ should_be_root }}"
-  ignore_errors: true
+  ignore_errors: false
   ansible.builtin.shell: |
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
     curl -Lo /usr/local/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf /usr/local/lazygit.tar.gz /usr/local/lazygit
-    install /usr/local/lazygit /usr/local/bin
+#    tar xf /usr/local/lazygit.tar.gz /usr/local/lazygit
+#    install /usr/local/lazygit /usr/local/bin
 
 - name: Install Eza for Linux
   become: "{{ should_be_root }}"
