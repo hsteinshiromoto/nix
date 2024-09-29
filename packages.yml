@@ -53,7 +53,7 @@
       import_tasks: roles/macosx.yml
 
     - name: Install Linux Packages
-      when: ansible_facts['system'] == "Linux"
+      when: "{{ true if ansible_system == 'Linux' else false }}"
       import_tasks: roles/linux.yml
    
 # References
