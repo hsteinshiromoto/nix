@@ -52,7 +52,7 @@
       when: ansible_facts['os_family'] == "Darwin"
       import_tasks: roles/macosx.yml
 
-    - name: Install MacOS Packages
+    - name: Install Linux Packages
       when: ansible_facts['distribution'] == "Ubuntu"
       import_tasks: roles/linux.yml
    
