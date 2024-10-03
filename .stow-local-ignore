@@ -10,8 +10,6 @@ RCS
 .+,v
 
 CVS
-\.\#.+       # CVS conflict files / emacs lock files
-\.cvsignore
 
 \.svn
 _darcs
@@ -20,9 +18,10 @@ _darcs
 \.git
 \.gitignore
 \bin
-\macos
-\roles
-\ubuntu
+# TODO: Investigate why the following dirs throw a regex error when run with stow . --adopt
+# \macos
+# \roles
+# \ubuntu
 
 # ---
 # Files
