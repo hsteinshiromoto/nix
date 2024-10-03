@@ -15,8 +15,9 @@ return {
 					hide_gitignored = false,
 				},
 				use_libuv_file_watcher = true,
+				view = { adaptive_size = true },
 			},
 		})
-		vim.keymap.set("n", "T", ":Neotree filesystem toggle left<CR>", { desc="Toggle Left File Tree"})
+		vim.keymap.set("n", "T", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Left File Tree" })
 	end,
 }
