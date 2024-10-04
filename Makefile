@@ -18,6 +18,15 @@ dotfiles: packages
 	@echo "Running Playbook ${PLAYBOOK_DOTFILES}" 
 	ansible-playbook --ask-become-pass -C ${PLAYBOOK_DOTFILES}  
 
+
+## Image
+build: 
+	docker build --no-cache -t test_ansible:latest .
+
+run:
+	docker run -it test_ansible:latest /bin/zsh
+
+
 ## Print tree
 tree:
 	tree -a -I .git -I .DS_Store -I .gitignore -I .github -I LICENSE -I README.md
