@@ -71,9 +71,6 @@ matches:
   - trigger: ";eps"
     replace: "\\varepsilon"
 
-	#  - trigger: ";r"
-		#    replace: "\\mathbb{R}"
-
   - trigger: ";n"
     replace: "\\mathbb{N}"
 
