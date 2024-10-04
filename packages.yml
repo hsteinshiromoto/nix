@@ -26,7 +26,7 @@
           - gpg
           - mc
           - stow
-          # - tmux
+          - tmux
           - vim
           - zsh
           - zsh-autosuggestions
