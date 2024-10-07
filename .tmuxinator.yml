@@ -1,7 +1,7 @@
 # ./.tmuxinator.yml
 
-name: dotfiles
-root: ~/
+name: Dotfiles
+root: ~/dotfiles
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,7 +45,6 @@ root: ~/
 # attach: false
 
 enable_pane_titles: true
-root: ~/dotfiles
 
 windows:
   - editor:
