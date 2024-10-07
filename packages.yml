@@ -56,7 +56,10 @@
     - name: Install NVIm
       import_tasks: roles/nvim.yml
 
-
+    - name: Install Tmuxinator
+      become: "{{ should_be_root }}"
+      ansible.builtin.shell:
+        cmd: 'gem install tmuxinator'
 # References
 #
 # [1] https://stackoverflow.com/questions/63242221/use-ansible-package-module-to-work-with-apt-and-homebrew 
