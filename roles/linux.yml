@@ -20,6 +20,13 @@
     apt update
     apt install -y eza
 
+- name: Install Linux packages
+  become: "{{ should_be_root }}"
+  ansible.builtin.package:
+    update_cache: yes
+    name:
+      - rubygems
+    state: present
 
 - name: Install Git delta for Linux
   ignore_errors: true
