@@ -28,6 +28,10 @@
       - rubygems
     state: present
 
+- name: Add zsh tmuxinator completions
+  ansible.builtin.shell:
+    cmd: wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/local/share/zsh/site-functions/_tmuxinator
+
 - name: Install Git delta for Linux
   ignore_errors: true
   ansible.builtin.shell: |
