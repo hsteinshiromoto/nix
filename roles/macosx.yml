@@ -10,6 +10,10 @@
     state: present
   when: ansible_pkg_mgr == "brew"
 
+- name: Add zsh tmuxinator completions
+  ansible.builtin.shell:
+    cmd: wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /opt/homebrew/share/zsh/site-functions/_tmuxinator
+
 # References
 #
 # [1] https://stackoverflow.com/questions/63242221/use-ansible-package-module-to-work-with-apt-and-homebrew
