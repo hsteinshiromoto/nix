@@ -48,6 +48,9 @@ The structure of this repository must be the same as the structure as the config
     3b. CD to this directory.
     3c. Run the command `nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"`.
     3d. Run the command `sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix`.
+4. Change the platform architecture.
+    4a. For MacOS: change the value in the variable `nixpkgs.hostplatform` to `"aarch64-darwin";`
+
 
 
 ### New dotfile
