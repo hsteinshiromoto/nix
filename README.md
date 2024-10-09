@@ -31,11 +31,18 @@ The structure of this repository must be the same as the structure as the config
 
 ### OS Packages
 
-- git
+- [nix package manager](https://nixos.org/download/)
 - gnustow
 - fzf
 
+
+
 ## Workflow
+
+### 1. Install Nix Package Manager
+
+1. Use the command available on the website.
+2. For MacOS, it might be necessary to add the folder `/nix/var/nix/profiles/default/bin` to `PATH` [1](https://stackoverflow.com/a/73799336)
 
 ### New dotfile
 
