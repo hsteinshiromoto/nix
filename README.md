@@ -43,6 +43,11 @@ The structure of this repository must be the same as the structure as the config
 
 1. Use the command available on the website.
 2. For MacOS, it might be necessary to add the folder `/nix/var/nix/profiles/default/bin` to `PATH` [1](https://stackoverflow.com/a/73799336)
+3. Install the nix-Darwin component following flakes from their websiste: https://github.com/LnL7/nix-darwin?tab=readme-ov-file#flakes
+    3a. Create a directory `mkdir -p ~/.config/nix-darwin`.
+    3b. CD to this directory.
+    3c. Run the command `nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"`.
+    3d. Run the command `sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix`
 
 ### New dotfile
 
