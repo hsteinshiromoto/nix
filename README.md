@@ -47,7 +47,8 @@ The structure of this repository must be the same as the structure as the config
     3a. Create a directory `mkdir -p ~/.config/nix-darwin`.
     3b. CD to this directory.
     3c. Run the command `nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"`.
-    3d. Run the command `sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix`
+    3d. Run the command `sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix`.
+
 
 ### New dotfile
 
