@@ -53,6 +53,9 @@ The structure of this repository must be the same as the structure as the config
     N.B.: This command may throw the following error: `access to absolute path '/Users' is forbidden in pure evaluation mode (use '--impure' to override)`. In this case just concatenate the previous command with the string `--impure`.
 6. Add the folder `/run/current-system/sw/bin` to the `PATH`
 
+#### 1.2. Creating a link to the flakes
+
+Note that creating a symbolic link to the flakes makes the command `darwin-rebuild switch --flake ~/.config/nix-darwin` fails. Instead use a 'hard link' with `ln <target> <link>`
 
 ### New dotfile
 
