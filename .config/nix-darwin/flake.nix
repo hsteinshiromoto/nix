@@ -16,6 +16,7 @@
       environment.systemPackages =
         [ 
 	pkgs.btop
+	pkgs.stow
 	pkgs.vim
 	pkgs.zoxide
         ];
