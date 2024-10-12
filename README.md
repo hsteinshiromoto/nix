@@ -57,6 +57,15 @@ The structure of this repository must be the same as the structure as the config
 
 Note that creating a symbolic link to the flakes makes the command `darwin-rebuild switch --flake ~/.config/nix-darwin` fails. Instead use a 'hard link' with `ln <target> <link>`
 
+### 2. Install Nix Package Manager for Linux
+ 
+1. Use the command available on the website.
+2. It might be necessary to add the folder `/nix/var/nix/profiles/default/bin` to `PATH` [1](https://stackoverflow.com/a/73799336). To verify if the nix package manager has been correctly installed, we can run the command `nix-shell -p neofetch --run neofetch`.
+3. Create a directory `mkdir -p ~/.config/nix-linux`
+4. `cd` to this directory
+5. Create a nix flake with the command `nix flake init`.
+6. Install packages by `cd` into the flake folder an run the command `nix run --extra-experimental-features "nix-command flakes"  ~/.config/nix-linux`
+
 ### New dotfile
 
 1. Create an empty file in the correct location in the repository. For instance
