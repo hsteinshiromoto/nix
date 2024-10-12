@@ -11,5 +11,11 @@
 
     packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
+    # replace 'joes-desktop' with your hostname here.
+    nixosConfigurations.servidor = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      # modules = [ ./configuration.nix ];
+    };
+
   };
 }
