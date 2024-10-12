@@ -14,7 +14,10 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
+        [ 
+	pkgs.btop
+	pkgs.stow
+	pkgs.vim
 	pkgs.zoxide
         ];
 
