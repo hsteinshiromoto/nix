@@ -23,6 +23,12 @@
 	pkgs.zoxide
         ];
 
+      # Supported systems for flake packages, shell, etc. [2]
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
@@ -93,4 +99,5 @@
 
 # Reference
 
-# https://davi.sh/blog/2024/02/nix-home-manager/
+# [1] https://davi.sh/blog/2024/02/nix-home-manager/
+# [2] https://github.com/DavSanchez/nix-dotfiles/blob/master/flake.nix
