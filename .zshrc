@@ -183,6 +183,7 @@ if [[ ${unameOut} == "Linux" ]]; then
 	alias bat="batcat"
 elif [[ ${unameOut} == "Darwin" ]]; then
 	alias cat="bat"
+	alias ns="darwin-rebuild build --flake ~/.config/nix-darwin"
 fi
 # The following fzf command should be kept below the cat alias
 
