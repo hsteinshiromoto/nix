@@ -44,6 +44,19 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
+    homeconfig = {pkgs, ...}: {
+            # this is internal compatibility configuration 
+            # for home-manager, don't change this!
+            # home.stateVersion = "23.05";
+            # Let home-manager install and manage itself.
+            programs.home-manager.enable = true;
+
+            home.packages = with pkgs; [];
+
+            home.sessionVariables = {
+                EDITOR = "nvim";
+            };
+        };
   in
   {
     # Build darwin flake using:
@@ -55,8 +68,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.hsteinshiromoto = import ./home.nix;
-
+	    home-manager.verbose = true;
+            home-manager.users.hsteinshiromoto = homeconfig;
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
