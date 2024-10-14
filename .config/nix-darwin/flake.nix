@@ -56,7 +56,17 @@
             home.sessionVariables = {
                 EDITOR = "nvim";
             };
-        };
+	programs.git = {
+	    enable = true;
+	    userName = "Humberto STEIN SHIROMOTO";
+	    userEmail = "hshiromoto@gmail.com";
+	    ignores = [ ".DS_Store" ];
+	    extraConfig = {
+		init.defaultBranch = "main";
+		push.autoSetupRemote = true;
+	    };
+	};
+    };
   in
   {
     # Build darwin flake using:
@@ -80,3 +90,7 @@
     darwinPackages = self.darwinConfigurations."MacBook-Pro-2023".pkgs;
   };
 }
+
+# Reference
+
+# https://davi.sh/blog/2024/02/nix-home-manager/
