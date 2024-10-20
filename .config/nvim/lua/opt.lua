@@ -21,3 +21,6 @@ vim.opt.clipboard = "unnamedplus"
 
 -- update buffer content when file changes externally
 vim.opt.autoread = true
+
+-- Autosave and quit
+vim.keymap.set("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
