@@ -47,4 +47,5 @@ root: ~/Projects/dotfiles.linux
 windows:
   - NeoVim: nvim
   - Git: lazygit
-  - Docker: lazydocker 
+  - Docker: lazydocker
+  - MidnightCommander: mc
