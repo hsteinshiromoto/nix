@@ -47,4 +47,5 @@ root: ~/Personal
 windows:
   - NeoVim: nvim
   - Git: lazygit
-  - MidnightCommander: mc 
+  - MidnightCommander: mc
+  - Servidor: zsh
