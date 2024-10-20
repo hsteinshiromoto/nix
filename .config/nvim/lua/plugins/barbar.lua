@@ -5,7 +5,7 @@ return { 'romgrk/barbar.nvim'
 	,event = "BufEnter"
 	,config = function()
 		require("barbar").setup({})
-		vim.keymap.set('n', '<C-t>', ":tabnew<CR>")
+		vim.keymap.set('n', '<C-t>', ":tabnew<CR>", { desc="Create new tab"} )
 		vim.g.barbar_auto_setup = false
 	end
 }
