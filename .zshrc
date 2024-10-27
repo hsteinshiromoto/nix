@@ -167,6 +167,18 @@ fd() {
   git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
+# Yazi
+#
+# References:
+# 	[1] https://yazi-rs.github.io/docs/quick-start
+function yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 # ---
 # Configuration: aliases
 # ---

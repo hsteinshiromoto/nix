@@ -5,7 +5,13 @@
       - "git-delta"
       - "espanso"
       - "eza"
+      - "ffmpegthumbnailer"
+      - "font-symbols-only-nerd-font"
+      - "imagemagick"
+      - "jq"
       - "kitty"
+      - "poppler"
+      - "sevenzip"
       - "zoxide"
     state: present
   when: ansible_pkg_mgr == "brew"

@@ -20,14 +20,17 @@
           - btop
           - curl
           # - exa # Not available for apt (Ubuntu)
+          - fd
           - fzf
           - git
           - git-flow
           - gpg
           - mc
+          - ripgrep
           - stow
           - tmux
           - vim
+          - yazi
           - zsh
           - zsh-autosuggestions
           - zsh-syntax-highlighting
