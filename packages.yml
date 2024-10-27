@@ -20,13 +20,13 @@
           - btop
           - curl
           # - exa # Not available for apt (Ubuntu)
-          - fd
-          - fzf
+          - fd                                  # Yazi dependency
+          - fzf                                 # Yazi dependency
           - git
           - git-flow
           - gpg
           - mc
-          - ripgrep
+          - ripgrep                             # Yazi dependency
           - stow
           - tmux
           - vim

@@ -5,14 +5,14 @@
       - "git-delta"
       - "espanso"
       - "eza"
-      - "ffmpegthumbnailer"
-      - "font-symbols-only-nerd-font"
-      - "imagemagick"
-      - "jq"
+      - "ffmpegthumbnailer"           # Yazi dependency
+      - "font-symbols-only-nerd-font" # Yazi dependency
+      - "imagemagick"                 # Yazi dependency
+      - "jq"                          # Yazi dependency
       - "kitty"
-      - "poppler"
-      - "sevenzip"
-      - "zoxide"
+      - "poppler"                     # Yazi dependency
+      - "sevenzip"                    # Yazi dependency
+      - "zoxide"                      # Yazi dependency
     state: present
   when: ansible_pkg_mgr == "brew"
 
