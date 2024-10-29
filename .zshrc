@@ -162,7 +162,7 @@ hf() {
 #
 # References:
 # 	[1] https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
-fd() {
+gd() {
   preview="git diff $@ --color=always -- {-1}"
   git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
