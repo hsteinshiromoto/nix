@@ -120,7 +120,7 @@ esac
 if [[ ${unameOut} == "Linux" ]]; then
 	export PATH="$PATH:/opt/nvim-linux64/bin:/nix/var/nix/profiles/default/bin"
 elif [[ ${unameOut} == "Darwin" ]]; then
-	export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin
+	export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin
 fi
 
 export PATH="$PATH:/nix/var/nix/profiles/default/bin"
