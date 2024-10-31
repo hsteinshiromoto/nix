@@ -24,3 +24,11 @@ vim.opt.autoread = true
 
 -- Autosave and quit
 vim.keymap.set("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
+
+-- Highlight on yank
+vim.cmd([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]])
