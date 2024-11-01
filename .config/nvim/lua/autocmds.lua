@@ -27,20 +27,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
 -- Go to last loc when opening a buffer [2]
-vim.api.nvim_create_autocmd("BufReadPre", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "<buffer>",
-      once = true,
-      callback = function()
-        vim.cmd(
-          [[if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]]
-        )
-      end,
-    })
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufReadPre", {
+--   pattern = "*",
+--   callback = function()
+--     vim.api.nvim_create_autocmd("FileType", {
+--       pattern = "<buffer>",
+--       once = true,
+--       callback = function()
+--         vim.cmd(
+--           [[if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]]
+--         )
+--       end,
+--     })
+--   end,
+-- })
 
 --- References:
 --- 	[1] https://www.dmsussman.org/resources/neovimsetup/
