@@ -11,6 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("opt")
-require("autocmds")
+require("opt")				-- Loads lua/opt.lua file
+require("autocmds")			-- Loads lua/autocmds.lua file
 require("lazy").setup("plugins")
