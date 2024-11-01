@@ -4,6 +4,23 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Command → Esc if alone",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_control" },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "MEH+WASD -> Browser Back/Forward Navigation",
                         "manipulators": [
                             {
@@ -35,7 +52,7 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock → Hyper Key (⌃⌥⇧⌘) (Caps Lock if alone)",
+                        "description": "Caps Lock → Hyper Key (⌃⌥⇧⌘) (Escape if alone)",
                         "manipulators": [
                             {
                                 "from": { "key_code": "caps_lock" },
@@ -45,7 +62,7 @@
                                         "modifiers": ["left_command", "left_control", "left_option"]
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "caps_lock" }],
+                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
@@ -85,33 +102,6 @@
                                         "modifiers": ["left_control"]
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Shift -> Esc (if alone)",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "left_shift" },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "right_shift" },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift",
-                                        "modifiers": ["right_shift"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
