@@ -23,5 +23,9 @@ keymap("n", "<A-k>", ":m .-2<CR>==", {desc='Move Lines'})
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", {desc='Move Lines'})
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", {desc='Move Lines'})
 
+-- Autosave and quit
+keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
+
+
 -- References
 -- 	[1] https://alpha2phi.medium.com/modern-neovim-init-lua-ab1220e3ecc1
