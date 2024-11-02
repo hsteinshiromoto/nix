@@ -143,3 +143,6 @@ return {
     },
   },
 }
+
+-- References
+-- 	[1] https://alpha2phi.medium.com/modern-neovim-lsp-and-remote-development-9b1250ee6aee
