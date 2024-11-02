@@ -12,16 +12,6 @@ return {
     end,
   },
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      local tokyonight = require "tokyonight"
-      tokyonight.setup { style = "storm" }
-      tokyonight.load()
-    end,
-  },
-  {
     "catppuccin/nvim",
     lazy = false,
     name = "catppuccin",
@@ -33,6 +23,8 @@ return {
     priority = 1000,
     config = function()
       require("gruvbox").setup()
+			vim.o.background = "dark" -- or "light" for light mode
+			vim.cmd([[colorscheme gruvbox]])
     end,
-  },
+		  },
 }
