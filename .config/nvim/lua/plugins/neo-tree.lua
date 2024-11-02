@@ -18,6 +18,17 @@ return {
 				use_libuv_file_watcher = true,
 				view = { adaptive_size = true },
 			},
+			event_handlers = {
+          {
+            event = "file_open_requested", -- Auto close NeoTree when a file is opened
+            handler = function()
+              -- auto close
+              -- vim.cmd("Neotree close")
+              -- OR
+              require("neo-tree.command").execute({ action = "close" })
+            end
+          },
+        }
 		})
 		vim.keymap.set("n", ".", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Left File Tree" })
 	end,
