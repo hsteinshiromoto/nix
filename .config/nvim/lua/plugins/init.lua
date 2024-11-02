@@ -49,7 +49,7 @@ return {
 				vim.keymap.set("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp, { desc = "Tmux Up" })
 				vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight, { desc = "Tmux Right" })
 				vim.keymap.set("n", "<C-g>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Tmux Previous Panel" })
-				vim.keymap.set("n", "<C-n>", nvim_tmux_nav.NvimTmuxNavigateNext)
+				vim.keymap.set("n", "<C-n>", nvim_tmux_nav.NvimTmuxNavigateNext, { desc = "Tmux Next Panel" })
 			end,
 	},
 }
