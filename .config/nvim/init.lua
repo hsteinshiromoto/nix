@@ -1,17 +1,11 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
+require("config.options")
+require("config.lazy")
 
-require("opt")				-- Loads lua/opt.lua file
-require("autocmds")			-- Loads lua/autocmds.lua file
-require("keymaps")
-require("lazy").setup("plugins")
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	callback = function()
+		require("config.autocmds")
+		require("config.keymaps")
+	end,
+})
+
