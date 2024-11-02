@@ -12,6 +12,9 @@ return {
 		config = true,
 	},
 	{
+		"sitiom/nvim-numbertoggle"
+	},
+	{
 		"rcarriga/nvim-notify",
 		event = "VeryLazy",
 		enabled = true,
@@ -51,5 +54,12 @@ return {
 				vim.keymap.set("n", "<C-g>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Tmux Previous Panel" })
 				vim.keymap.set("n", "<C-n>", nvim_tmux_nav.NvimTmuxNavigateNext, { desc = "Tmux Next Panel" })
 			end,
+	},
+	{ 
+		"mbbill/undotree"
+		,lazy = false
+		,config = function()
+			vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle, { desc="Toggle Undo Tree"})
+		end
 	},
 }
