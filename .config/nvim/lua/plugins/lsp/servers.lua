@@ -13,17 +13,6 @@ local servers = {
 			},
 		},
 	},
-	rust_analyzer = {
-		settings = {
-			["rust-analyzer"] = {
-				cargo = { allFeatures = true },
-				checkOnSave = {
-					command = "cargo clippy",
-					extraArgs = { "--no-deps" },
-				},
-			},
-		},
-	},
 	sumneko_lua = {
 		settings = {
 			Lua = {
@@ -71,12 +60,6 @@ function M.setup(_)
 			local opts = servers[server] or {}
 			opts.capabilities = lsp_capabilities()
 			require("lspconfig")[server].setup(opts)
-		end,
-		["rust_analyzer"] = function(server)
-			local rt = require("rust-tools")
-			local opts = servers[server] or {}
-			opts.capabilities = lsp_capabilities()
-			rt.setup({ server = opts })
 		end,
 	})
 end
