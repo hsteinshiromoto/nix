@@ -3,9 +3,9 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		dependencies = {
-			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-			{ "folke/neodev.nvim", config = true },
-			{ "j-hui/fidget.nvim", config = true },
+			{ "folke/neoconf.nvim",      cmd = "Neoconf", config = true },
+			{ "folke/neodev.nvim",       config = true },
+			{ "j-hui/fidget.nvim",       config = true },
 			{ "smjonas/inc-rename.nvim", config = true },
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -34,7 +34,6 @@ return {
 			"luaformatter",
 			"pydocstyle",
 			"stylua",
-			"ruff",
 			"texlab",
 			"yaml-language-server",
 		},
@@ -58,7 +57,6 @@ return {
 			nls.setup({
 				sources = {
 					nls.builtins.formatting.stylua,
-					nls.builtins.diagnostics.ruff.with({ extra_args = { "--max-line-length=180" } }),
 				},
 			})
 		end,
