@@ -21,8 +21,22 @@ return {
 		cmd = "Mason",
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
 		ensure_installed = {
+			"bash-debug-adapter",
+			"bash-language-server",
+			"bibtex-tidy",
+			"black",
+			"blackd-client",
+			"docformatter",
+			"dockerfile-language-server",
+			"isort",
+			"json-lsp",
+			"luacheck",
+			"luaformatter",
+			"pydocstyle",
 			"stylua",
 			"ruff",
+			"texlab",
+			"yaml-language-server",
 		},
 		config = function(plugin)
 			require("mason").setup()
