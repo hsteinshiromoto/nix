@@ -7,3 +7,6 @@ return {
 	},
 	config = true,
 }
+
+-- References:
+--	[1] https://alpha2phi.medium.com/modern-neovim-user-interface-and-pde-1605567b746e
