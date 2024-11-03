@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
-		-- { import = "plugins.extras.lang" },
+		-- { import = "plugins.extras.lang" }, -- This raises bug. Do not uncomment
 		{ import = "plugins.extras.ui" },
 	},
 	defaults = { lazy = true, version = nil },
