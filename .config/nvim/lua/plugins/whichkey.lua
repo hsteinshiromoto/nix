@@ -30,7 +30,7 @@ return {
 	{
 		"mrjones2014/legendary.nvim",
 		keys = {
-			{ "<C-S-p>", "<cmd>Legendary<cr>", desc = "Legendary" },
+			{ "<C-p>", "<cmd>Legendary<cr>", desc = "Legendary" },
 		},
 		opts = {
 			which_key = { auto_register = true },
