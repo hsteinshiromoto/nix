@@ -1,6 +1,8 @@
 local M = {}
 
 local servers = {
+	awk_ls = {},
+	bashls = {},
 	pyright = {
 		settings = {
 			python = {
@@ -14,6 +16,11 @@ local servers = {
 		},
 	},
 	dockerls = {},
+	lua_ls = {},
+	markdown_oxide = {},
+	texlab = {},
+	yamlls = {},
+	vimls = {},
 }
 
 local function lsp_attach(on_attach)
