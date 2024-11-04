@@ -26,6 +26,7 @@ return {
 			"bibtex-tidy",
 			"black",
 			"blackd-client",
+			"debugpy",
 			"docformatter",
 			"dockerfile-language-server",
 			"isort",
