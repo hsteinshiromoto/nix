@@ -12,7 +12,7 @@ return {
 		config = true,
 	},
 	{
-		"sitiom/nvim-numbertoggle"
+		"sitiom/nvim-numbertoggle",
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -43,23 +43,35 @@ return {
 		config = function()
 			local nvim_tmux_nav = require("nvim-tmux-navigation")
 
-				nvim_tmux_nav.setup({
-					disable_when_zoomed = false, -- defaults to false
-				})
+			nvim_tmux_nav.setup({
+				disable_when_zoomed = false, -- defaults to false
+			})
 
-				vim.keymap.set("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft, { desc = "Tmux Left" })
-				vim.keymap.set("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown, { desc = "Tmux Down" })
-				vim.keymap.set("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp, { desc = "Tmux Up" })
-				vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight, { desc = "Tmux Right" })
-				vim.keymap.set("n", "<C-g>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Tmux Previous Panel" })
-				vim.keymap.set("n", "<C-n>", nvim_tmux_nav.NvimTmuxNavigateNext, { desc = "Tmux Next Panel" })
-			end,
+			vim.keymap.set("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft, { desc = "Tmux Left" })
+			vim.keymap.set("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown, { desc = "Tmux Down" })
+			vim.keymap.set("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp, { desc = "Tmux Up" })
+			vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight, { desc = "Tmux Right" })
+			vim.keymap.set("n", "<C-g>", nvim_tmux_nav.NvimTmuxNavigateLastActive, { desc = "Tmux Previous Panel" })
+			vim.keymap.set("n", "<C-n>", nvim_tmux_nav.NvimTmuxNavigateNext, { desc = "Tmux Next Panel" })
+		end,
 	},
-	{ 
-		"mbbill/undotree"
-		,lazy = false
-		,config = function()
-			vim.keymap.set('n', '<C-u>', vim.cmd.UndotreeToggle, { desc="Toggle Undo Tree"})
-		end
+	{
+		"mbbill/undotree",
+		lazy = false,
+		config = function()
+			vim.keymap.set("n", "<C-u>", vim.cmd.UndotreeToggle, { desc = "Toggle Undo Tree" })
+		end,
+	},
+	-- session management
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
+  -- stylua: ignore
+  keys = {
+    { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+    { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+    { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+  },
 	},
 }
