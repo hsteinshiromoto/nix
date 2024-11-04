@@ -35,7 +35,7 @@ return {
 			"luaformatter",
 			"pydocstyle",
 			"stylua",
-			"texlab",
+			-- "texlab",
 			"yaml-language-server",
 		},
 		config = function(plugin)
