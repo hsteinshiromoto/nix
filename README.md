@@ -103,7 +103,14 @@ delta <file1> <file2> -sn
 
 ```
 
+## Using Remove NeoVim [3]
+
+1. The remove NeoVim is configured in the Dockerfile.
+2. Start the container with `docker-compose up`.
+3. Connect to the remote NeoVim server with `nvim --server <host name>:6666 --remote-ui`
+
 ### References
 
 [1] https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/
 [2] https://www.youtube.com/watch?v=Z8BL8mdzWHI
+[3] https://alpha2phi.medium.com/modern-neovim-lsp-and-remote-development-9b1250ee6aee
