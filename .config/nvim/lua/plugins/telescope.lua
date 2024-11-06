@@ -17,7 +17,7 @@ return {
 			{ "<leader>fr", "<cmd>Telescope file_browser<cr>", desc = "Browser" },
 			{ "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
 			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Search" },
-			{ "<leader>sw", "<cmd>Telescope live_grep<cr>", desc = "Workspace" },
+			{ "<leader>f/", "<cmd>Telescope live_grep<cr>", desc = "Workspace" },
 			{
 				"<leader>sb",
 				function()
