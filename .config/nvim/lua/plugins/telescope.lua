@@ -10,7 +10,7 @@ return {
 		},
 		cmd = "Telescope",
 		keys = {
-			{ "<leader><space>", require("utils").find_files, desc = "Find Files" },
+			-- { "<leader><space>", require("utils").find_files, desc = "Find Files" },
 			{ "<leader>ff", require("utils").find_files, desc = "Find Files" },
 			{ "<leader>fo", "<cmd>Telescope frecency theme=dropdown previewer=false<cr>", desc = "Recent" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
