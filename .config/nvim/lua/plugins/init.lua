@@ -74,4 +74,11 @@ return {
     { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
   },
 	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find ToDos" },
+		},
+	},
 }
