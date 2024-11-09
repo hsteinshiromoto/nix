@@ -18,7 +18,7 @@ _darcs
 \.git
 \.gitignore
 \bin
-# TODO: Investigate why the following dirs throw a regex error when run with stow . --adopt
+#!TODO: Investigate why the following dirs throw a regex error when run with stow . --adopt
 # \macos
 # \roles
 # \ubuntu
