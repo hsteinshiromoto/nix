@@ -12,8 +12,28 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
-		config = function(plugin)
-			require("plugins.lsp.servers").setup(plugin)
+		opts = {
+			servers = {
+				sumneko_lua = {
+					settings = {
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							completion = { callSnippet = "Replace" },
+							telemetry = { enable = false },
+							hint = {
+								enable = false,
+							},
+						},
+					},
+				},
+				dockerls = {},
+			},
+			setup = {},
+		},
+		config = function(plugin, opts)
+			require("plugins.lsp.servers").setup(plugin, opts)
 		end,
 	},
 	{
@@ -51,7 +71,7 @@ return {
 		end,
 	},
 	{
-		"nvimtools/none-ls.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
 		event = "BufReadPre",
 		dependencies = { "mason.nvim" },
 		config = function()
