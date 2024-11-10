@@ -34,6 +34,7 @@ return {
 			"luacheck",
 			"luaformatter",
 			"pydocstyle",
+			"pyright",
 			"stylua",
 			-- "texlab",
 			"yaml-language-server",
