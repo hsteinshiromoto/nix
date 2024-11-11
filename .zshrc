@@ -1,3 +1,11 @@
+# ---
+# The following command is to avoid freeze the terminal [1]
+#
+# References:
+# 	[1] https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
+# ---
+stty ixany
+stty ixoff -ixon
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
