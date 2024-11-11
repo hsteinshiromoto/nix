@@ -18,6 +18,9 @@ dotfiles: packages
 	@echo "Running Playbook ${PLAYBOOK_DOTFILES}" 
 	ansible-playbook --ask-become-pass -C ${PLAYBOOK_DOTFILES}  
 
+## Build NeoVim Docker Image
+nvim:
+	docker buildx build -f nvim.Dockerfile -t ghcr.io/hsteinshiromoto/dotfiles.linux/dotfiles.linux:nvim . 
 
 ## Image
 build: 
