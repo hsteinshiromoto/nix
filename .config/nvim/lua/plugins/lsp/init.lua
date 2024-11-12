@@ -53,8 +53,10 @@ return {
 			"json-lsp",
 			"luacheck",
 			"luaformatter",
+			"mypy",
 			"pydocstyle",
 			"pyright",
+			"ruff",
 			"stylua",
 			-- "texlab",
 			"yaml-language-server",
@@ -71,7 +73,7 @@ return {
 		end,
 	},
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		event = "BufReadPre",
 		dependencies = { "mason.nvim" },
 		config = function()
@@ -80,6 +82,8 @@ return {
 				sources = {
 					nls.builtins.formatting.stylua,
 					nls.builtins.formatting.black,
+					nls.builtins.diagnostics.mypy,
+					nls.builtins.diagnostics.ruff,
 				},
 			})
 		end,
