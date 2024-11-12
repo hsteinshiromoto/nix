@@ -23,6 +23,7 @@ keymap("n", "<A-k>", ":m .-2<CR>==", { desc = "Move Lines" })
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move Lines" })
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move Lines" })
 
+keymap({ "n", "v" }, "d", "_d", { desc = "Delete and not yank" })
 -- Autosave and quit
 keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
 
