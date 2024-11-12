@@ -25,8 +25,7 @@ keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move Lines" })
 
 keymap({ "n", "v" }, "d", "_d", { desc = "Delete and not yank" })
 -- Autosave and quit
-keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
-
+-- keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
 
 -- References
 -- 	[1] https://alpha2phi.medium.com/modern-neovim-init-lua-ab1220e3ecc1
