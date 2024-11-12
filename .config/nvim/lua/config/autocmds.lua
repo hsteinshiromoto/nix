@@ -26,6 +26,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Check if we need to reload the file when it changed [2]
 vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
+-- Show cursor line only in active window [2]
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+	callback = function()
+		local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
+		if ok and cl then
+			vim.wo.cursorline = true
+			vim.api.nvim_win_del_var(0, "auto-cursorline")
+		end
+	end,
+})
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+	callback = function()
+		local cl = vim.wo.cursorline
+		if cl then
+			vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
+			vim.wo.cursorline = false
+		end
+	end,
+})
+
 -- Go to last loc when opening a buffer [2]
 -- vim.api.nvim_create_autocmd("BufReadPre", {
 --   pattern = "*",
@@ -44,5 +64,4 @@ vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
 --- References:
 --- 	[1] https://www.dmsussman.org/resources/neovimsetup/
----	[2] https://alpha2phi.medium.com/modern-neovim-init-lua-ab1220e3ecc1
-
+---	  [2] https://alpha2phi.medium.com/modern-neovim-init-lua-ab1220e3ecc1
