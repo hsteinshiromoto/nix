@@ -46,6 +46,6 @@ return {
 			},
 		})
 		vim.keymap.set("n", ".", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Left File Tree" })
-		vim.keymap.set("n", ",", ":Neotree buffers toggle right<CR>", { desc = "Toggle Right Buffer Tree" })
+		vim.keymap.set("n", ",", ":Neotree buffers toggle float<CR>", { desc = "Toggle Right Buffer Tree" })
 	end,
 }
