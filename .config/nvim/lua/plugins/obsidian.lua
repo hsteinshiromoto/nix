@@ -28,12 +28,6 @@ return {
 				path = "~/vaults/work",
 			},
 		},
-
-		require("nvim-treesitter.configs").setup({
-			highlight = {
-				enable = true,
-			},
-		}),
 		vim.opt.conceallevel == 1,
 		templates = {
 			folder = "_meta_/_templates_",
