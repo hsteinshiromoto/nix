@@ -21,7 +21,7 @@ function M.on_attach(client, buffer)
 	local format = require("plugins.lsp.format").format
 	self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
 	self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
-	self:map("<leader>cr", M.rename, { expr = true, desc = "Rename", has = "rename" })
+	self:map("<leader>cn", M.rename, { expr = true, desc = "Rename", has = "rename" })
 
 	self:map("<leader>cs", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
 	self:map("<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
