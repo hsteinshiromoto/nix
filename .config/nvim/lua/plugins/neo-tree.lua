@@ -24,10 +24,10 @@ return {
 					handler = function()
 						-- auto close
 						-- vim.cmd("Neotree close")
-						-- Autoclose Neotree FileSystem, when a file is opened
-						-- require("neo-tree.command").execute({ action = "close", source = "filesystem" })
+						-- Autofocus when a file is opened
+						require("neo-tree.command").execute({ action = "focus" })
 						-- Autoopen Neotree Buffers, when a file is opened
-						require("neo-tree.command").execute({ action = "show", source = "buffers", position = "right" })
+						-- require("neo-tree.command").execute({ action = "show", source = "buffers", position = "right" })
 					end,
 				},
 			},
@@ -46,6 +46,6 @@ return {
 			},
 		})
 		vim.keymap.set("n", ".", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Left File Tree" })
-		vim.keymap.set("n", ",", ":Neotree buffers toggle float<CR>", { desc = "Toggle Right Buffer Tree" })
+		vim.keymap.set("n", ",", ":Neotree buffers toggle float<CR>", { desc = "Toggle Floating Buffer Tree" })
 	end,
 }
