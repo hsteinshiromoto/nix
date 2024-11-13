@@ -19,16 +19,18 @@ return {
 				view = { adaptive_size = true },
 			},
 			event_handlers = {
-          {
-            event = "file_open_requested", -- Auto close NeoTree when a file is opened
-            handler = function()
-              -- auto close
-              -- vim.cmd("Neotree close")
-              -- OR
-              require("neo-tree.command").execute({ action = "close" })
-            end
-          },
-        },
+				{
+					event = "file_open_requested",
+					handler = function()
+						-- auto close
+						-- vim.cmd("Neotree close")
+						-- Autoclose Neotree FileSystem, when a file is opened
+						-- require("neo-tree.command").execute({ action = "close", source = "filesystem" })
+						-- Autoopen Neotree Buffers, when a file is opened
+						require("neo-tree.command").execute({ action = "show", source = "buffers", position = "right" })
+					end,
+				},
+			},
 			window = {
 				mappings = { -- Switch between the following NetoTree modes
 					["f"] = function()
