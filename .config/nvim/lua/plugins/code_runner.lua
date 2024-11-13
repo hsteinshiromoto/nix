@@ -1,12 +1,13 @@
 return {
 	"CRAG666/code_runner.nvim",
+	event = "BufReadPre",
 	dependencies = { "preservim/vimux" },
 	config = function()
 		code_runner = require("code_runner")
 		code_runner.setup({
 			mode = "vimux",
 			filetype = {
-				python = "python3 -u '$dir/$fileName'",
+				python = "poetry run python -u '$dir/$fileName'",
 				sh = "bash",
 			},
 			-- vim.keymap.set("n", "<localleader>r", ":RunCode<CR>", { noremap = true, silent = false }),
