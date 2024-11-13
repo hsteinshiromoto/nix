@@ -31,12 +31,19 @@ return {
         },
 			window = {
 				mappings = { -- Switch between the following NetoTree modes
-					['f'] = function() vim.api.nvim_exec('Neotree focus filesystem left', true) end,
-					['b'] = function() vim.api.nvim_exec('Neotree focus buffers left', true) end,
-					['g'] = function() vim.api.nvim_exec('Neotree focus git_status left', true) end,
+					["f"] = function()
+						vim.api.nvim_exec("Neotree focus filesystem left", true)
+					end,
+					["b"] = function()
+						vim.api.nvim_exec("Neotree focus buffers left", true)
+					end,
+					["g"] = function()
+						vim.api.nvim_exec("Neotree focus git_status left", true)
+					end,
 				},
-  },
+			},
 		})
 		vim.keymap.set("n", ".", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Left File Tree" })
+		vim.keymap.set("n", ",", ":Neotree buffers toggle right<CR>", { desc = "Toggle Right Buffer Tree" })
 	end,
 }
