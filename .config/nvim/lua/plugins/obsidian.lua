@@ -14,7 +14,7 @@ return {
 	dependencies = {
 		-- Required.
 		"nvim-lua/plenary.nvim",
-
+		"nvim-treesitter/nvim-treesitter",
 		-- see below for full list of optional dependencies 👇
 	},
 	opts = {
