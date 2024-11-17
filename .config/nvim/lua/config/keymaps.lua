@@ -32,6 +32,8 @@ keymap({ "n", "v" }, "d", '"_d', { desc = "Delete and not yank" })
 -- Autosave and quit
 -- keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
 
+keymap({ "n", "v" }, "<leader>//", "<cmd>nohlsearch<cr>", { desc = "Stop Highlight" })
+
 -- Auto Indent the When Inserting New Empty Line[2]
 vim.keymap.set("n", "i", function()
 	if #vim.fn.getline(".") == 0 then
