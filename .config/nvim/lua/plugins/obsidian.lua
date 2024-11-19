@@ -17,6 +17,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		-- see below for full list of optional dependencies 👇
 	},
+	-- Add condition to only load plugin if directory .obsidian is present [1, 2]
 	cond = vim.fn.isdirectory(".obsidian") == 1,
 	opts = {
 		workspaces = {
@@ -39,3 +40,6 @@ return {
 		},
 	},
 }
+-- References:
+--   [1] https://stackoverflow.com/questions/67259998/neovim-lua-isdirectory-vim-function
+--   [2] https://github.com/LazyVim/LazyVim/discussions/2600#discussioncomment-8572894
