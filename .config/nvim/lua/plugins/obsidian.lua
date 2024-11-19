@@ -17,6 +17,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		-- see below for full list of optional dependencies 👇
 	},
+	cond = vim.fn.isdirectory(".obsidian") == 1,
 	opts = {
 		workspaces = {
 			{
