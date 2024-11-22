@@ -12,7 +12,7 @@ return {
 		keys = {
 			-- { "<leader><space>", require("utils").find_files, desc = "Find Files" },
 			{ "<leader>ff", require("utils").find_files, desc = "Find Files" },
-			{ "r", "<cmd>Telescope frecency<cr>", desc = "Recent" },
+			{ "<leader>fr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
 			{ ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
 			{ "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
 			{ "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
