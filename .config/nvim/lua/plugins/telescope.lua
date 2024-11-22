@@ -13,7 +13,7 @@ return {
 			-- { "<leader><space>", require("utils").find_files, desc = "Find Files" },
 			{ "<leader>ff", require("utils").find_files, desc = "Find Files" },
 			{ "<leader>fo", "<cmd>Telescope frecency theme=dropdown<cr>", desc = "Recent" },
-			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+			{ ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
 			{ "<leader>fr", "<cmd>Telescope file_browser<cr>", desc = "Browser" },
 			{ "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
 			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
