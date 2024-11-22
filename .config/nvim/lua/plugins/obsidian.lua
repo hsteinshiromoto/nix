@@ -19,6 +19,10 @@ return {
 	},
 	-- Add condition to only load plugin if directory .obsidian is present [1, 2]
 	cond = vim.fn.isdirectory(".obsidian") == 1,
+	keys = {
+
+		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
+	},
 	opts = {
 		workspaces = {
 			{
