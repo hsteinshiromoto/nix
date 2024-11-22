@@ -16,8 +16,8 @@ return {
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 			{ "<leader>fr", "<cmd>Telescope file_browser<cr>", desc = "Browser" },
 			{ "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
-			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Search" },
-			{ "<leader>f/", "<cmd>Telescope live_grep<cr>", desc = "Workspace" },
+			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
+			{ "<leader>f/", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
 			{
 				"<leader>/",
 				function()
