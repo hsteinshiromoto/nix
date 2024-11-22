@@ -57,6 +57,7 @@ return {
 						previewer = true,
 						hidden = true,
 						find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+						sorting_strategy = "ascending",
 					},
 					git_files = {
 						theme = "dropdown",
