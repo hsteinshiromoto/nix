@@ -25,7 +25,7 @@ return {
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find()
 				end,
-				desc = "Buffer",
+				desc = "Fuzzy Finder",
 			},
 			{ "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
 		},
