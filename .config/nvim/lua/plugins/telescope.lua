@@ -50,6 +50,16 @@ return {
 					border = {},
 					borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 					color_devicons = true,
+					vimgrep_arguments = {
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						"--hidden",
+					},
 				},
 				pickers = {
 					find_files = {
@@ -64,6 +74,12 @@ return {
 					},
 					buffers = {
 						previewer = true,
+					},
+					live_grep = {
+						file_ignore_patterns = { "node_modules", ".git", ".venv" },
+						additional_args = function(_)
+							return { "--hidden" }
+						end,
 					},
 				},
 				extensions = {
