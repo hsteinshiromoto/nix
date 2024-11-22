@@ -72,6 +72,7 @@ return {
 						theme = "dropdown",
 						previewer = true,
 						hijack_netrw = true,
+						hidden = true,
 						mappings = mappings,
 					},
 					project = {
