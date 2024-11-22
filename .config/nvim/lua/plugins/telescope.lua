@@ -54,23 +54,23 @@ return {
 				pickers = {
 					find_files = {
 						theme = "dropdown",
-						previewer = false,
+						previewer = true,
 						hidden = true,
 						find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
 					},
 					git_files = {
 						theme = "dropdown",
-						previewer = false,
+						previewer = true,
 					},
 					buffers = {
 						theme = "dropdown",
-						previewer = false,
+						previewer = true,
 					},
 				},
 				extensions = {
 					file_browser = {
 						theme = "dropdown",
-						previewer = false,
+						previewer = true,
 						hijack_netrw = true,
 						mappings = mappings,
 					},
