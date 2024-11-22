@@ -53,19 +53,16 @@ return {
 				},
 				pickers = {
 					find_files = {
-						theme = "dropdown",
 						previewer = true,
 						hidden = true,
 						find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
 						sorting_strategy = "ascending",
 					},
 					git_files = {
-						theme = "dropdown",
 						previewer = true,
 						hidden = true,
 					},
 					buffers = {
-						theme = "dropdown",
 						previewer = true,
 					},
 				},
