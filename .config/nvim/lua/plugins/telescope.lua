@@ -19,7 +19,7 @@ return {
 			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Search" },
 			{ "<leader>f/", "<cmd>Telescope live_grep<cr>", desc = "Workspace" },
 			{
-				"<leader>sb",
+				"<leader>/",
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find()
 				end,
