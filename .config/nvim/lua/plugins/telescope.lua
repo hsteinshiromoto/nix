@@ -84,7 +84,6 @@ return {
 				},
 				extensions = {
 					file_browser = {
-						theme = "dropdown",
 						previewer = true,
 						hijack_netrw = true,
 						hidden = true,
@@ -92,7 +91,6 @@ return {
 					},
 					project = {
 						hidden_files = false,
-						theme = "dropdown",
 					},
 				},
 			}
