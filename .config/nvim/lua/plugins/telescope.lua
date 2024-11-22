@@ -62,6 +62,7 @@ return {
 					git_files = {
 						theme = "dropdown",
 						previewer = true,
+						hidden = true,
 					},
 					buffers = {
 						theme = "dropdown",
