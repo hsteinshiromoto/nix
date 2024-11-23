@@ -22,7 +22,7 @@ return {
 					always_divide_middle = true,
 					globalstatus = true,
 				},
-				tabline = {
+				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { components.git_repo, { "branch", icon = "" } },
 					lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
