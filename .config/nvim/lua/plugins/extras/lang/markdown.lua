@@ -8,5 +8,10 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
+		config = function()
+			require("render-markdown").setup({
+				heading = { position = "inline" },
+			})
+		end,
 	},
 }
