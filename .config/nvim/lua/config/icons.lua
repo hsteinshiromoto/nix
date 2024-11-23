@@ -116,6 +116,7 @@ return {
 		Search = "",
 		SignIn = "",
 		SignOut = "",
+		Space = "󱁐",
 		Tab = "󰌒",
 		Table = "",
 		Target = "",
