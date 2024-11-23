@@ -23,6 +23,7 @@ return {
 	keys = {
 
 		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
+		{ "<localleader>bl", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
 	},
 	opts = {
 		workspaces = {
