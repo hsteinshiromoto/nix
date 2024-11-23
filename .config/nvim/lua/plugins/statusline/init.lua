@@ -25,7 +25,7 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { components.git_repo, "branch" },
+					lualine_b = { components.git_repo, { "branch", icon = "" } },
 					lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
 					lualine_x = { "filename", components.spaces, "encoding", "fileformat", "filetype", "progress" },
 					lualine_y = {},
