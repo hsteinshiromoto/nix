@@ -10,7 +10,10 @@ return {
 		opts = {},
 		config = function()
 			require("render-markdown").setup({
-				heading = { position = "inline" },
+				heading = {
+					icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+					signs = { "H1", "H2", "H3", "H4", "H5", "H6" },
+				},
 			})
 		end,
 	},
