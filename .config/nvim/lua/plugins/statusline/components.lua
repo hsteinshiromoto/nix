@@ -4,7 +4,7 @@ return {
 	spaces = {
 		function()
 			local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
-			return icons.ui.Tab .. " = " .. shiftwidth .. icons.ui.Space
+			return shiftwidth .. icons.ui.Space
 		end,
 		padding = 1,
 	},
