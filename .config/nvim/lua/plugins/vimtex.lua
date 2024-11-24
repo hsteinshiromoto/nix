@@ -5,7 +5,7 @@ return {
 		opts = {
 			servers = {
 				texlab = {},
-				ltex = {},
+				-- ltex = {},
 			},
 		},
 	},
