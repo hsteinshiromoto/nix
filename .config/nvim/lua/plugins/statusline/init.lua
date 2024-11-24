@@ -10,7 +10,7 @@ return {
 					icons_enabled = true,
 					theme = "gruvbox-material",
 					component_separators = {},
-					section_separators = {},
+					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
 						statusline = { "alpha", "lazy" },
 						winbar = {
