@@ -34,6 +34,9 @@ keymap({ "n", "v" }, "d", '"_d', { desc = "Delete and not yank" })
 
 keymap({ "n", "v" }, "<leader><BS>", "<cmd>nohlsearch<cr>", { desc = "Stop Highlight" })
 
+keymap({ "n", "v" }, "<leader>p", ":pu<CR>", { desc = "Past below line" })
+keymap({ "n", "v" }, "<leader>P", ":pu!<CR>", { desc = "Past above line" })
+
 -- Auto Indent the When Inserting New Empty Line[2]
 vim.keymap.set("n", "i", function()
 	if #vim.fn.getline(".") == 0 then
