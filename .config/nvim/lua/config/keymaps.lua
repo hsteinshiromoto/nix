@@ -29,6 +29,8 @@ keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move Lines" })
 
 -- Delete without yanking
 keymap({ "n", "v" }, "d", '"_d', { desc = "Delete and not yank" })
+keymap({ "n", "v" }, "<del>", '"_d', { desc = "Delete and not yank" })
+
 -- Autosave and quit
 -- keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
 
