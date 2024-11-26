@@ -94,6 +94,10 @@ return {
 					project = {
 						hidden_files = false,
 					},
+					aerial = {
+						filter_kind = false,
+						-- python = { "lsp" },
+					},
 				},
 			}
 			telescope.setup(opts)
