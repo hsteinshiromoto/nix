@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 return {
 	"lewis6991/gitsigns.nvim",
 	lazy = false,
@@ -5,7 +7,7 @@ return {
 		require("gitsigns").setup({
 			signs = {
 				add = { text = "┃+" },
-				change = { text = "┃M" },
+				change = { text = "┃" },
 				delete = { text = "┃-" },
 				topdelete = { text = "┃^" },
 				changedelete = { text = "┃~" },
@@ -13,7 +15,7 @@ return {
 			},
 			signs_staged = {
 				add = { text = "┃+" },
-				change = { text = "┃M" },
+				change = { text = "┃" },
 				delete = { text = "┃-" },
 				topdelete = { text = "┃^" },
 				changedelete = { text = "┃~" },
