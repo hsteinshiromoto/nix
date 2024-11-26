@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -9,8 +11,8 @@ return {
 				options = {
 					icons_enabled = true,
 					theme = "gruvbox-material",
-					component_separators = {},
-					section_separators = { left = "", right = "" },
+					component_separators = { right = icons.ui.DividerLeft },
+					section_separators = { left = icons.ui.BoldDividerRight, right = icons.ui.BoldDividerLeft },
 					disabled_filetypes = {
 						statusline = { "alpha", "lazy" },
 						winbar = {
