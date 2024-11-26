@@ -52,10 +52,4 @@ return {
 			}
 		end,
 	},
-	{
-		"conornewton/vim-latex-preview",
-		lazy = true,
-		ft = { "tex" },
-		opts = { patterns = { "*.tex" } },
-	},
 }
