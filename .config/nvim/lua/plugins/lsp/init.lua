@@ -56,7 +56,7 @@ return {
 			"mypy",
 			"pydocstyle",
 			"pyright",
-			"ruff",
+			-- "ruff",
 			"stylua",
 			-- "texlab",
 			"yaml-language-server",
@@ -83,7 +83,7 @@ return {
 					nls.builtins.formatting.stylua,
 					nls.builtins.formatting.black,
 					nls.builtins.diagnostics.mypy,
-					nls.builtins.diagnostics.ruff,
+					-- nls.builtins.diagnostics.ruff,
 				},
 			})
 		end,
