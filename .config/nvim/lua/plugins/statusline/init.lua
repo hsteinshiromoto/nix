@@ -11,7 +11,7 @@ return {
 				options = {
 					icons_enabled = true,
 					theme = "gruvbox-material",
-					component_separators = { right = icons.ui.DividerLeft },
+					component_separators = { left = icons.ui.DividerRight, right = icons.ui.DividerLeft },
 					section_separators = { left = icons.ui.BoldDividerRight, right = icons.ui.BoldDividerLeft },
 					disabled_filetypes = {
 						statusline = { "alpha", "lazy" },
@@ -26,8 +26,8 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
 					lualine_b = { { "branch", icon = icons.git.Branch }, components.git_repo, components.diff },
+					lualine_c = { components.diagnostics, components.lsp_client },
 					lualine_x = {
 						components.separator,
 						"filename",
