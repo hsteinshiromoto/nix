@@ -110,9 +110,9 @@ return {
 			local cwd = vim.fn.getcwd()
 			local home = vim.env.HOME
 			if cwd:sub(1, #home) == home then
-				return "~" .. cwd:sub(#home + 1)
+				return icons.ui.FolderOpen .. "~" .. cwd:sub(#home + 1)
 			else
-				return cwd
+				return icons.ui.FolderOpen .. cwd
 			end
 		end,
 	},
