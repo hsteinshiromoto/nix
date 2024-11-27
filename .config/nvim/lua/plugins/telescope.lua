@@ -27,7 +27,7 @@ return {
 				end,
 				desc = "Fuzzy Finder",
 			},
-			{ "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
+			-- { "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
 		},
 		config = function(_, _)
 			local telescope = require("telescope")
