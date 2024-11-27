@@ -105,6 +105,17 @@ return {
 			end
 		end,
 	},
+	workspace = {
+		function()
+			local cwd = vim.fn.getcwd()
+			local home = vim.env.HOME
+			if cwd:sub(1, #home) == home then
+				return "~" .. cwd:sub(#home + 1)
+			else
+				return cwd
+			end
+		end,
+	},
 }
 
 -- References
