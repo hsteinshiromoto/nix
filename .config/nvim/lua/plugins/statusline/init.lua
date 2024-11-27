@@ -29,6 +29,7 @@ return {
 					lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
 					lualine_b = { { "branch", icon = icons.git.Branch }, components.git_repo, components.diff },
 					lualine_x = {
+						components.separator,
 						"filename",
 						components.spaces,
 						"encoding",
