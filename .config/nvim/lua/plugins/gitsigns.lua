@@ -21,6 +21,8 @@ return {
 				changedelete = { text = "┃~" },
 				untracked = { text = "┆" },
 			},
+			-- Highlight also the line number
+			numhl = true,
 		})
 	end,
 }
