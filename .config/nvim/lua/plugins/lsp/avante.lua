@@ -1,4 +1,4 @@
--- TODO: Find a way to make this plugin to work
+-- !TODO: Find a way to make this plugin to work
 
 return {
 	{
