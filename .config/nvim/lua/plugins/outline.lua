@@ -1,6 +1,7 @@
 return {
 	"hedyhli/outline.nvim",
-	lazy = false,
+	lazy = true,
+	cmd = { "Outline", "OutlineOpen" },
 	config = function()
 		-- Example mapping to toggle outline
 		vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
@@ -13,7 +14,7 @@ return {
 			symbols = {
 				filter = {
 					default = { "String", exclude = true },
-					python = { "Function", "Class" },
+					python = { "Function", "Class", "Variable" },
 				},
 			},
 		})
