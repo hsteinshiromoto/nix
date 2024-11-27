@@ -108,12 +108,9 @@ return {
 	workspace = {
 		function()
 			local cwd = vim.fn.getcwd()
-			local home = vim.env.HOME
-			if cwd:sub(1, #home) == home then
-				return icons.ui.LargeOpenFolder .. " " .. "~" .. cwd:sub(#home + 1)
-			else
-				return icons.ui.LargeOpenFolder .. " " .. cwd
-			end
+			local parent_folder = vim.fn.fnamemodify(cwd, ":t")
+			local current_file = vim.fn.expand("%:t")
+			return icons.ui.LargeOpenFolder .. " " .. parent_folder .. "/" .. current_file
 		end,
 	},
 }

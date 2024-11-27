@@ -35,7 +35,6 @@ return {
 					lualine_c = { components.diagnostics, components.lsp_client },
 					lualine_x = {
 						components.separator,
-						"filename",
 						components.spaces,
 						"encoding",
 						"fileformat",
