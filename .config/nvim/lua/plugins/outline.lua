@@ -14,7 +14,6 @@ return {
 			symbols = {
 				filter = {
 					default = { "String", exclude = true },
-					python = { "Function", "Class", "Variable" },
 				},
 			},
 		})
