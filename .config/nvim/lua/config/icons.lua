@@ -102,6 +102,7 @@ return {
 		Forward = "",
 		Gear = "",
 		History = "",
+		LargeOpenFolder = "",
 		Lightbulb = "",
 		LineLeft = "▏",
 		LineMiddle = "│",
