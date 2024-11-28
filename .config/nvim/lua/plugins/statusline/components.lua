@@ -4,7 +4,7 @@ return {
 	spaces = {
 		function()
 			local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
-			return icons.ui.Tab .. " " .. shiftwidth
+			return shiftwidth .. " " .. icons.ui.Space
 		end,
 		padding = 1,
 	},
@@ -26,7 +26,7 @@ return {
 	},
 	diff = {
 		"diff",
-		colored = false,
+		colored = true,
 	},
 	diagnostics = {
 		"diagnostics",
@@ -93,6 +93,24 @@ return {
 		colored = true,
 		on_click = function()
 			vim.cmd([[LspInfo]])
+		end,
+	},
+	word_count = {
+		function()
+			-- the third string here is the string for visual-block mode (^V)
+			if vim.fn.mode() == "v" or vim.fn.mode() == "V" or vim.fn.mode() == "" then
+				return vim.fn.wordcount().visual_words .. " words"
+			else
+				return vim.fn.wordcount().words .. " words"
+			end
+		end,
+	},
+	workspace = {
+		function()
+			local cwd = vim.fn.getcwd()
+			local parent_folder = vim.fn.fnamemodify(cwd, ":t")
+			local current_file = vim.fn.expand("%:t")
+			return icons.ui.LargeOpenFolder .. " " .. parent_folder .. "/" .. current_file
 		end,
 	},
 }

@@ -29,8 +29,20 @@ keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move Lines" })
 
 -- Delete without yanking
 keymap({ "n", "v" }, "d", '"_d', { desc = "Delete and not yank" })
+keymap({ "n", "v" }, "<del>", '"_d', { desc = "Delete and not yank" })
+
 -- Autosave and quit
 -- keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
+
+-- Map <leader>backspace to stop Highlight
+keymap({ "n", "v" }, "<leader><BS>", "<cmd>nohlsearch<cr>", { desc = "Stop Highlight" })
+
+-- Map paste above and below current line.
+keymap({ "n", "v" }, "<leader>p", ":pu<CR>", { desc = "Past below line" })
+keymap({ "n", "v" }, "<leader>P", ":pu!<CR>", { desc = "Past above line" })
+
+-- Remove q as Macro
+keymap("n", "q", "<nop>", { noremap = true })
 
 -- Auto Indent the When Inserting New Empty Line[2]
 vim.keymap.set("n", "i", function()

@@ -12,20 +12,22 @@ return {
 		keys = {
 			-- { "<leader><space>", require("utils").find_files, desc = "Find Files" },
 			{ "<leader>ff", require("utils").find_files, desc = "Find Files" },
-			{ "<leader>fo", "<cmd>Telescope frecency theme=dropdown previewer=false<cr>", desc = "Recent" },
-			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-			{ "<leader>fr", "<cmd>Telescope file_browser<cr>", desc = "Browser" },
-			{ "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
-			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Search" },
-			{ "<leader>f/", "<cmd>Telescope live_grep<cr>", desc = "Workspace" },
+			{ "<leader>fr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
+			{ "r", "<cmd>Telescope registers<cr>", desc = "Registers" },
+			{ ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
+			{ "<leader>k", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
+			{ "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
+			-- { "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
+			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
+			{ "<leader>f/", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
 			{
-				"<leader>sb",
+				"<leader>/",
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find()
 				end,
-				desc = "Buffer",
+				desc = "Fuzzy Finder",
 			},
-			{ "<leader>vo", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
+			-- { "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
 		},
 		config = function(_, _)
 			local telescope = require("telescope")
@@ -50,33 +52,51 @@ return {
 					border = {},
 					borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 					color_devicons = true,
+					vimgrep_arguments = {
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						"--hidden",
+					},
 				},
 				pickers = {
 					find_files = {
-						theme = "dropdown",
-						previewer = false,
+						previewer = true,
 						hidden = true,
 						find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+						sorting_strategy = "ascending",
 					},
 					git_files = {
-						theme = "dropdown",
-						previewer = false,
+						previewer = true,
+						hidden = true,
 					},
 					buffers = {
-						theme = "dropdown",
-						previewer = false,
+						previewer = true,
+					},
+					live_grep = {
+						file_ignore_patterns = { "node_modules", ".git", ".venv" },
+						additional_args = function(_)
+							return { "--hidden" }
+						end,
 					},
 				},
 				extensions = {
 					file_browser = {
-						theme = "dropdown",
-						previewer = false,
+						previewer = true,
 						hijack_netrw = true,
+						hidden = true,
 						mappings = mappings,
 					},
 					project = {
 						hidden_files = false,
-						theme = "dropdown",
+					},
+					aerial = {
+						filter_kind = false,
+						-- python = { "lsp" },
 					},
 				},
 			}
@@ -92,6 +112,11 @@ return {
 	},
 	{
 		"stevearc/aerial.nvim",
+		lazy = false,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
 		config = true,
 	},
 }

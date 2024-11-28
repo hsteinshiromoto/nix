@@ -5,7 +5,7 @@ return {
 		opts = {
 			servers = {
 				texlab = {},
-				ltex = {},
+				-- ltex = {},
 			},
 		},
 	},
@@ -33,7 +33,7 @@ return {
 					"-synctex=1",
 				},
 			}
-			vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_view_method = "preview"
 			vim.g.vimtex_fold_enabled = true
 			vim.g.vimtex_syntax_conceal = {
 				accents = 1,

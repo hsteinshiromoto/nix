@@ -38,6 +38,7 @@ return {
 		end,
 	},
 	{
+		-- TODO: Fix issue with NeoVim and Poetry for Nvim and Tmux motions
 		"alexghergh/nvim-tmux-navigation",
 		lazy = false,
 		config = function()

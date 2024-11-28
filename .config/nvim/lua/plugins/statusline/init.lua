@@ -1,17 +1,18 @@
+local icons = require("config.icons")
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy",
-
 		config = function()
 			local components = require("plugins.statusline.components")
-
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "auto",
-					component_separators = {},
-					section_separators = {},
+					theme = "gruvbox-material",
+					component_separators = { left = icons.ui.DividerRight, right = icons.ui.DividerLeft },
+					section_separators = { left = icons.ui.BoldDividerRight, right = icons.ui.BoldDividerLeft },
 					disabled_filetypes = {
 						statusline = { "alpha", "lazy" },
 						winbar = {
@@ -25,9 +26,22 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { components.git_repo, "branch" },
-					lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
-					lualine_x = { "filename", components.spaces, "encoding", "fileformat", "filetype", "progress" },
+					lualine_b = {
+						components.workspace,
+						{ "branch", icon = icons.git.Branch },
+						components.git_repo,
+						components.diff,
+					},
+					lualine_c = { components.diagnostics, components.lsp_client },
+					lualine_x = {
+						components.separator,
+						components.spaces,
+						"encoding",
+						"fileformat",
+						"filetype",
+						components.word_count,
+						"progress",
+					},
 					lualine_y = {},
 					lualine_z = { "location" },
 				},

@@ -14,6 +14,11 @@ return {
 					visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
 					hide_dotfiles = false,
 					hide_gitignored = false,
+					hide_by_name = {
+						".git",
+						".DS_Store",
+						"thumbs.db",
+					},
 				},
 				use_libuv_file_watcher = true,
 				view = { adaptive_size = true },
@@ -46,6 +51,6 @@ return {
 			},
 		})
 		vim.keymap.set("n", ".", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Left File Tree" })
-		vim.keymap.set("n", ",", ":Neotree buffers toggle float<CR>", { desc = "Toggle Floating Buffer Tree" })
+		-- vim.keymap.set("n", ",", ":Neotree buffers toggle float<CR>", { desc = "Toggle Floating Buffer Tree" })
 	end,
 }
