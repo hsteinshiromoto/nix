@@ -32,7 +32,7 @@ run:
 
 ## Print tree
 tree:
-	tree -a -I .git -I .DS_Store -I .gitignore -I .github -I LICENSE -I README.md
+	tree -ad -I .git -I .*cache
 
 ## Remove log flies
 clean:
