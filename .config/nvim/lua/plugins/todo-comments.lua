@@ -1,6 +1,7 @@
 return {
 	{
 		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = "BufReadPost",
 		config = true,
@@ -11,5 +12,8 @@ return {
       { "<leader>bt", "<cmd>TodoTrouble<cr>", desc = "ToDo (Trouble)" },
       { "<leader>bT", "<cmd>TodoTelescope<cr>", desc = "ToDo" },
     },
+		opts = {
+			signs = true,
+		},
 	},
 }
