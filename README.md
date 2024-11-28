@@ -8,23 +8,63 @@ The structure of this repository must be the same as the structure as the config
 
 ```
 .
-├── bin
-│   └── install.sh
 ├── .config
 │   ├── bat
-│   │   └── config
 │   ├── btop
-│   │   └── btop.conf
 │   ├── code-server
-│   │   └── config.yaml
-│   └── mc
-│       ├── ini
-│       └── panels.ini
-├── .gitconfig
-├── Makefile
-├── .p10k.zsh
-├── .tmux.conf
-└── .zshrc
+│   ├── karabiner
+│   ├── kitty
+│   ├── mc
+│   ├── neofetch
+│   ├── nix-darwin
+│   ├── nvim
+│   │   └── lua
+│   │       ├── config
+│   │       ├── plugins
+│   │       │   ├── colorscheme
+│   │       │   ├── completion
+│   │       │   ├── dap
+│   │       │   ├── dashboard
+│   │       │   ├── extras
+│   │       │   │   ├── lang
+│   │       │   │   ├── pde
+│   │       │   │   │   └── notes
+│   │       │   │   └── ui
+│   │       │   ├── lsp
+│   │       │   ├── statusline
+│   │       │   └── test
+│   │       └── utils
+│   └── tmuxinator
+├── .local
+│   └── share
+│       ├── code-server
+│       │   └── User
+│       └── mc
+│           └── skins
+├── .vscode
+│   └── extensions
+├── bin
+├── etc
+├── keyboards
+│   ├── BNR1
+│   ├── bridge75
+│   ├── epomaker
+│   ├── melgeek
+│   │   └── mojo84
+│   ├── monsgeek
+│   └── nuphy
+├── macos
+│   └── Library
+│       ├── Application Support
+│       │   ├── Code
+│       │   │   └── User
+│       │   └── espanso
+│       │       ├── config
+│       │       ├── match
+│       │       │   └── packages
+│       │       └── user
+│       └── KeyBindings
+└── roles
 ```
 
 ## Requirements
