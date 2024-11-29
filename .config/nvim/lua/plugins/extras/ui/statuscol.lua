@@ -22,7 +22,11 @@ return {
 				},
 				-- Relative line number
 				{
-					text = { builtin.lnumfunc },
+					text = {
+						function(args)
+							return builtin.lnumfunc(args) .. " " -- Added space after relative number
+						end,
+					},
 					click = "v:lua.ScLa",
 				},
 
