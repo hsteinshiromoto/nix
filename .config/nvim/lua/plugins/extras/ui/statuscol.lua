@@ -9,6 +9,7 @@ return {
 			local builtin = require("statuscol.builtin")
 
 			require("statuscol").setup({
+				ft_ignore = { "neo-tree", "alpha", "Outline" },
 				segments = {
 					relculright = true,
 
