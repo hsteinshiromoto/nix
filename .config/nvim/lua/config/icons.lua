@@ -128,6 +128,7 @@ return {
 		Table = "",
 		Target = "",
 		Telescope = "",
+		ThickLeftLine = "▌",
 		Text = "",
 		Tree = "",
 		Triangle = "契",
