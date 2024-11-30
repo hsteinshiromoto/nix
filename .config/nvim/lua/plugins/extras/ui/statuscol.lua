@@ -62,4 +62,10 @@ return {
 			end,
 		},
 	},
+	event = "BufReadPost",
+	opts = {
+		provider_selector = function()
+			return { "treesitter", "indent" }
+		end,
+	},
 }
