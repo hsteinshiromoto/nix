@@ -71,5 +71,5 @@ return {
 			end,
 		},
 	},
-	{ "anuvyklack/fold-preview.nvim", dependencies = "anuvyklack/keymap-amend.nvim", config = true },
+	{ "anuvyklack/fold-preview.nvim", dependencies = "anuvyklack/keymap-amend.nvim", config = true, lazy = false },
 }
