@@ -6,11 +6,11 @@ return {
 	config = function()
 		require("gitsigns").setup({
 			signs = {
-				add = { text = icons.ui.BoldLineLeft .. "+" },
-				change = { text = icons.ui.BoldLineLeft .. icons.ui.PlusMinus },
-				delete = { text = icons.ui.BoldLineLeft .. "-" },
-				topdelete = { text = icons.ui.BoldLineLeft .. icons.ui.ChevronUp },
-				changedelete = { text = icons.ui.BoldLineLeft .. icons.ui.Delete },
+				add = { text = icons.ui.BoldLineLeft },
+				change = { text = icons.ui.BoldLineLeft },
+				delete = { text = icons.ui.BoldLineLeft },
+				topdelete = { text = icons.ui.BoldLineLeft },
+				changedelete = { text = icons.ui.BoldLineLeft },
 				untracked = { text = "┆" },
 			},
 			signs_staged = {
