@@ -40,13 +40,13 @@ return {
 						sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
 						click = "v:lua.ScSa",
 					},
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
 					{
 						text = {
 							'%{%foldclosed(v:lnum)==v:lnum?"%#Italic#%#DiagnosticVirtualTextWarn#":""%}',
 							-- builtin.lnumfunc,
 						},
 					},
-					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
 				},
 			})
 		end,
