@@ -64,7 +64,6 @@ return {
 				end,
 			},
 		},
-		event = "BufReadPost",
 		init = function()
 			vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 			vim.o.foldcolumn = "auto:1" -- '0' is not bad [1]
