@@ -9,6 +9,8 @@ return {
 			"kevinhwang91/promise-async",
 			"neovim/nvim-lspconfig",
 			{
+				-- FIX This plugin is rainins the error message: E36: Not enought room.
+				--
 				-- TODO: It looks like gitsigns has a priority over this plygin, as it does not highlight lines highlighted by gitsigns. Investigate how it can highlight the line number column.
 				--
 				-- TODO Change pallete to Gruvbox
