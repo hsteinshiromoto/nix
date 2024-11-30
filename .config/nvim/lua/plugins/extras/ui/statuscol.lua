@@ -1,54 +1,26 @@
 return {
-	{
-		"luukvbaal/statuscol.nvim",
-		lazy = false,
-		config = function()
-			vim.o.number = true
-			vim.o.relativenumber = true
-
-			local builtin = require("statuscol.builtin")
-
-			require("statuscol").setup({
-				ft_ignore = { "neo-tree", "alpha", "Outline" },
-				segments = {
+	"kevinhwang91/nvim-ufo",
+	lazy = false,
+	dependencies = {
+		"kevinhwang91/promise-async",
+		"neovim/nvim-lspconfig",
+		{
+			"luukvbaal/statuscol.nvim",
+			lazy = false,
+			config = function()
+				vim.opt.number = true
+				vim.opt.relativenumber = true
+				local builtin = require("statuscol.builtin")
+				require("statuscol").setup({
 					relculright = true,
-
-					-- Absolute line number
-					{
-						text = {
-							function(args)
-								return string.format("%4d ", args.lnum) -- Added space after absolute number
-							end,
-						},
-						click = "v:lua.ScLa",
+					segments = {
+						{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+						{ text = { "%s", " " }, click = "v:lua.ScSa" }, -- git signs
+						{ text = { "%=", "%l " }, click = "v:lua.ScLa" }, -- Absolute line numbers
+						{ text = { "%r " }, click = "v:lua.ScLa" }, -- Relative line numbers
 					},
-					-- Relative line number
-					{
-						text = {
-							function(args)
-								return builtin.lnumfunc(args) .. " " -- Added space after relative number
-							end,
-						},
-						click = "v:lua.ScLa",
-					},
-
-					{
-						sign = { namespace = { "gitsigns" }, name = { ".*" }, maxwidth = 1, colwidth = 2, auto = false },
-						click = "v:lua.ScSa",
-					},
-					{
-						sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-						click = "v:lua.ScSa",
-					},
-					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-					{
-						text = {
-							'%{%foldclosed(v:lnum)==v:lnum?"%#Italic#%#DiagnosticVirtualTextWarn#":""%}',
-							-- builtin.lnumfunc,
-						},
-					},
-				},
-			})
-		end,
+				})
+			end,
+		},
 	},
 }
