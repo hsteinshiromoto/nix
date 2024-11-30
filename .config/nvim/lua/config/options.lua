@@ -23,3 +23,5 @@ vim.opt.clipboard = "unnamedplus"
 
 -- update buffer content when file changes externally
 vim.opt.autoread = true
+
+vim.opt.cursorline = true
