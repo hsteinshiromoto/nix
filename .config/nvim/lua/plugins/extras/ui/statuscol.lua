@@ -9,7 +9,7 @@ return {
 			lazy = false,
 			config = function()
 				vim.opt.number = true
-				vim.opt.relativenumber = true
+				-- vim.opt.relativenumber = true
 				local builtin = require("statuscol.builtin")
 				require("statuscol").setup({
 					relculright = true,
@@ -17,7 +17,7 @@ return {
 						{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
 						{ text = { "%s", " " }, colwidth = 1, maxwidth = 1, auto = false, click = "v:lua.ScSa" }, -- git signs
 						{ text = { "%=", "%l " }, click = "v:lua.ScLa" }, -- Absolute line numbers
-						{ text = { "%r " }, click = "v:lua.ScLa" }, -- Relative line numbers
+						-- { text = { "%r " }, click = "v:lua.ScLa" }, -- Relative line numbers
 					},
 				})
 			end,
