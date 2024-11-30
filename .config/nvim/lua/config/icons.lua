@@ -84,6 +84,7 @@ return {
 		CloudDownload = "",
 		Code = "",
 		Comment = "",
+		Cross = "",
 		Delete = "",
 		Dashboard = "",
 		DividerLeft = "",

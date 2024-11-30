@@ -10,7 +10,7 @@ return {
 				change = { text = icons.ui.BoldLineLeft .. icons.ui.PlusMinus },
 				delete = { text = icons.ui.BoldLineLeft .. "-" },
 				topdelete = { text = icons.ui.BoldLineLeft .. icons.ui.ChevronUp },
-				changedelete = { text = icons.ui.BoldLineLeft .. icons.ui.Delete },
+				changedelete = { text = icons.ui.BoldLineLeft .. icons.ui.Cross },
 				untracked = { text = "┆" },
 			},
 			signs_staged = {
@@ -18,7 +18,7 @@ return {
 				change = { text = icons.ui.BoldLineLeft .. icons.ui.PlusMinus },
 				delete = { text = icons.ui.BoldLineLeft .. "-" },
 				topdelete = { text = icons.ui.BoldLineLeft .. icons.ui.ChevronUp },
-				changedelete = { text = icons.ui.BoldLineLeft .. icons.ui.Delete },
+				changedelete = { text = icons.ui.BoldLineLeft .. icons.ui.Cross },
 				untracked = { text = "┆" },
 			},
 			-- Highlight also the line number
