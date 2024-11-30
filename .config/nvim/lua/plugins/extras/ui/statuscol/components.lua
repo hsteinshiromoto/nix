@@ -103,3 +103,5 @@ _G.get_statuscol = function()
 
 	return table.concat(str_table)
 end
+-- References:
+-- 	[1] https://www.reddit.com/r/neovim/comments/10fpqbp/gist_statuscolumn_separate_diagnostics_and/
