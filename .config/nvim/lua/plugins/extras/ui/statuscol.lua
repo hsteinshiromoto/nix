@@ -3,6 +3,7 @@ local icons = require("config.icons")
 return {
 	"kevinhwang91/nvim-ufo",
 	lazy = false,
+	ft_ignore = { "neo-tree", "alpha", "Outline" },
 	dependencies = {
 		"kevinhwang91/promise-async",
 		"neovim/nvim-lspconfig",
