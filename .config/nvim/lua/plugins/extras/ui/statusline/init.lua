@@ -6,7 +6,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy",
 		config = function()
-			local components = require("plugins.statusline.components")
+			local components = require("plugins.extras.ui.statusline.components")
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,

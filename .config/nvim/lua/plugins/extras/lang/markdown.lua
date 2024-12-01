@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -16,6 +18,45 @@ return {
 				heading = {
 					icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
 					signs = { "H1", "H2", "H3", "H4", "H5", "H6" },
+				},
+				checkbox = {
+					custom = {
+						cancelled = {
+							raw = "[x]",
+							rendered = icons.ui.CloseBox .. " ",
+							highlight = "RenderMarkdownChecked",
+							scope_highlight = "@markup.strikethrough",
+						},
+						done = {
+							raw = "[v]",
+							rendered = icons.ui.BoxChecked2 .. " ",
+							highlight = "RenderMarkdownChecked",
+							scope_highlight = "@markup.strikethrough",
+						},
+						important = {
+							raw = "[!]",
+							rendered = icons.ui.AlertTriangle .. " ",
+							highlight = "DiagnosticWarn",
+						},
+						meeting = {
+							raw = "[<]",
+							rendered = icons.ui.Calendar2 .. " ",
+							highlight = "RenderMarkdownTodo",
+							scope_highlight = nil,
+						},
+						todo = {
+							raw = "[ ]",
+							rendered = icons.ui.CheckBox .. " ",
+							highlight = "RenderMarkdownTodo",
+							scope_highlight = nil,
+						},
+						incomplete = {
+							raw = "[/]",
+							rendered = icons.ui.MinusSquare .. " ",
+							highlight = "DiagnosticWarn",
+							scope_highlight = nil,
+						},
+					},
 				},
 			})
 		end,
