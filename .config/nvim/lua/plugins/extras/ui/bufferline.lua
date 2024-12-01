@@ -16,7 +16,7 @@ return {
 						filetype = "neo-tree",
 						text = icons.ui.FolderTree .. " " .. "File Explorer",
 						text_align = "center",
-						separator = true,
+						separator = false,
 					},
 					{
 						filetype = "Outline",
@@ -24,6 +24,7 @@ return {
 						text_align = "center",
 						separator = false,
 					},
+
 					show_buffer_icons = true, -- disable filetype icons for buffers
 					show_buffer_close_icons = true,
 					show_close_icon = true,
