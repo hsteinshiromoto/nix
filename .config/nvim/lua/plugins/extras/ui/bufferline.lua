@@ -11,6 +11,10 @@ return {
 		bufferline.setup({
 			options = {
 				mode = "tabs",
+				style_preset = {
+					bufferline.style_preset.no_italic,
+					bufferline.style_preset.no_bold,
+				},
 				offsets = {
 					{
 						filetype = "neo-tree",
