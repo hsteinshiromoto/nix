@@ -21,12 +21,41 @@ return {
 				},
 				checkbox = {
 					custom = {
+						cancelled = {
+							raw = "[x]",
+							rendered = icons.ui.CloseBox .. " ",
+							highlight = "RenderMarkdownChecked",
+							scope_highlight = "@markup.strikethrough",
+						},
+						done = {
+							raw = "[v]",
+							rendered = icons.ui.BoxChecked2 .. " ",
+							highlight = "RenderMarkdownChecked",
+							scope_highlight = "@markup.strikethrough",
+						},
 						important = {
 							raw = "[!]",
 							rendered = icons.ui.AlertTriangle .. " ",
 							highlight = "DiagnosticWarn",
 						},
-						meeting = { raw = "[<]", rendered = icons.ui.Calendar2 .. " " },
+						meeting = {
+							raw = "[<]",
+							rendered = icons.ui.Calendar2 .. " ",
+							highlight = "RenderMarkdownTodo",
+							scope_highlight = nil,
+						},
+						todo = {
+							raw = "[ ]",
+							rendered = icons.ui.CheckBox .. " ",
+							highlight = "RenderMarkdownTodo",
+							scope_highlight = nil,
+						},
+						incomplete = {
+							raw = "[/]",
+							rendered = icons.ui.MinusSquare .. " ",
+							highlight = "DiagnosticWarn",
+							scope_highlight = nil,
+						},
 					},
 				},
 			})
