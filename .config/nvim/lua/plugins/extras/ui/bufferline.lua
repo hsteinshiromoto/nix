@@ -18,6 +18,12 @@ return {
 						text_align = "center",
 						separator = true,
 					},
+					{
+						filetype = "Outline",
+						text = icons.ui.Code .. " " .. "Code Outline",
+						text_align = "center",
+						separator = false,
+					},
 					show_buffer_icons = true, -- disable filetype icons for buffers
 					show_buffer_close_icons = true,
 					show_close_icon = true,
