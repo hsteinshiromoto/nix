@@ -52,6 +52,7 @@ return {
 		Branch = "",
 	},
 	ui = {
+		AlertTriangle = "",
 		ArrowCircleDown = "",
 		ArrowCircleLeft = "",
 		ArrowCircleRight = "",
@@ -72,6 +73,7 @@ return {
 		Watches = "",
 		DebugConsole = "",
 		Calendar = "",
+		Calendar2 = "",
 		Check = "",
 		ChevronRight = ">",
 		ChevronUp = "",

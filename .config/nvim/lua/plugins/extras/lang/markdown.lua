@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -16,6 +18,16 @@ return {
 				heading = {
 					icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
 					signs = { "H1", "H2", "H3", "H4", "H5", "H6" },
+				},
+				checkbox = {
+					custom = {
+						important = {
+							raw = "[!]",
+							rendered = icons.ui.AlertTriangle .. " ",
+							highlight = "DiagnosticWarn",
+						},
+						meeting = { raw = "[<]", rendered = icons.ui.Calendar2 .. " " },
+					},
 				},
 			})
 		end,
