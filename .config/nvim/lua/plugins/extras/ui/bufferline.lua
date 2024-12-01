@@ -28,12 +28,15 @@ return {
 						text_align = "center",
 						separator = false,
 					},
-
+					indicator = {
+						style = "underline",
+					},
 					show_buffer_icons = true, -- disable filetype icons for buffers
 					show_buffer_close_icons = true,
 					show_close_icon = true,
 					show_tab_indicators = true,
 					show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
+					separator_style = "thick",
 				},
 			},
 		})
