@@ -9,6 +9,13 @@ return {
 		vim.opt.termguicolors = true
 		local bufferline = require("bufferline")
 		bufferline.setup({
+			vim.keymap.set({ "n", "v" }, "<leader>]", "<cmd>BufferLineCycleNext<cr>", { desc = "Buffer Cycle Next" }),
+			vim.keymap.set(
+				{ "n", "v" },
+				"<leader>[",
+				"<cmd>BufferLineCyclePrev<cr>",
+				{ desc = "Buffer Cycle Previous" }
+			),
 			options = {
 				mode = "tabs",
 				style_preset = {
