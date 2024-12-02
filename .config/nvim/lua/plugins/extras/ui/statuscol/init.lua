@@ -15,6 +15,7 @@ return {
 			-- 	-- TODO: It looks like gitsigns has a priority over this plygin, as it does not highlight lines highlighted by gitsigns. Investigate how it can highlight the line number column.
 			-- 	--
 			-- 	-- TODO: Change pallete to Gruvbox
+			--
 			-- 	"sethen/line-number-change-mode.nvim",
 			-- 	lazy = false,
 			-- 	config = function()
