@@ -15,7 +15,7 @@ return {
 			{ "<leader>fr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
 			{ "<leader>r", "<cmd>Telescope registers<cr>", desc = "Registers" },
 			{ ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
-			{ "<leader>k", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
+			{ "<leader>km", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
 			{ "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
 			-- { "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
 			{ "<leader>hs", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
