@@ -8,17 +8,18 @@ return {
 		end,
 		padding = 1,
 	},
-	git_repo = {
-		function()
-			if
-				#vim.api.nvim_list_tabpages() > 1
-				and vim.fn.trim(vim.fn.system("git rev-parse --is-inside-work-tree")) == "true"
-			then
-				return vim.fn.trim(vim.fn.system("basename `git rev-parse --show-toplevel`"))
-			end
-			return ""
-		end,
-	},
+	-- FIX: components.git_repo is making the cursor to flicker: The flickering issue might be due to the repeated execution of the vim.fn.system calls, which can be resource-intensive and cause performance issues. To fix this, you can cache the result of the Git repository name and only update it when necessary.
+	-- git_repo = {
+	-- 	function()
+	-- 		if
+	-- 			#vim.api.nvim_list_tabpages() > 1
+	-- 			and vim.fn.trim(vim.fn.system("git rev-parse --is-inside-work-tree")) == "true"
+	-- 		then
+	-- 			return vim.fn.trim(vim.fn.system("basename `git rev-parse --show-toplevel`"))
+	-- 		end
+	-- 		return ""
+	-- 	end,
+	-- },
 	separator = {
 		function()
 			return "%="
