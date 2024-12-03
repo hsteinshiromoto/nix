@@ -74,7 +74,7 @@ return {
 						relculright = true,
 						segments = {
 							{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-							{ text = { "%s", " " }, colwidth = 1, maxwidth = 1, auto = false, click = "v:lua.ScSa" }, -- git signs
+							{ text = { "%s", " " }, click = "v:lua.ScSa" }, -- git signs
 							{ text = { "%=", "%l " }, click = "v:lua.ScLa" }, -- Absolute line numbers
 
 							-- { text = { "%r " }, click = "v:lua.ScLa" }, -- Relative line numbers
