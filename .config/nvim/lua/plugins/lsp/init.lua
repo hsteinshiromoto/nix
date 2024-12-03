@@ -98,23 +98,6 @@ return {
 		},
 		config = true,
 	},
-	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "VeryLazy", -- Or `LspAttach`
-		priority = 1000, -- needs to be loaded in first
-		vim.diagnostic.config({ virtual_text = false }),
-		config = function()
-			require("tiny-inline-diagnostic").setup({
-				preset = "classic",
-				options = {
-					-- Show the source of the diagnostic.
-					show_source = true,
-					-- Enable diagnostic message on all lines.
-					multilines = true,
-				},
-			})
-		end,
-	},
 }
 
 -- References:
