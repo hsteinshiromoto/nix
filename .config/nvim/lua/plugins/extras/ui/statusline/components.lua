@@ -39,6 +39,9 @@ return {
 			hint = "DiagnosticHint",
 		},
 		colored = true,
+		on_click = function()
+			vim.diagnostic.setloclist()
+		end,
 	},
 	lsp_client = {
 		function(msg)
