@@ -8,58 +8,60 @@ return {
 		dependencies = {
 			"kevinhwang91/promise-async",
 			"neovim/nvim-lspconfig",
-			{
-				-- FIX: This plugin is rainins the error message: E36: Not enought room.
-				--
-				-- TODO: It looks like gitsigns has a priority over this plygin, as it does not highlight lines highlighted by gitsigns. Investigate how it can highlight the line number column.
-				--
-				-- TODO: Change pallete to Gruvbox
-				"sethen/line-number-change-mode.nvim",
-				lazy = false,
-				config = function()
-					require("catppuccin").setup({
-						flavour = "mocha",
-					})
-					local palette = require("catppuccin.palettes").get_palette("mocha")
-
-					if palette == nil then
-						return nil
-					end
-
-					require("line-number-change-mode").setup({
-						number = true,
-						relativenumber = false,
-						trigger_events = { "InsertEnter", "InsertLeave" },
-						mode = {
-							i = {
-								bg = palette.green,
-								fg = palette.mantle,
-								bold = true,
-							},
-							n = {
-								bg = palette.blue,
-								fg = palette.mantle,
-								bold = true,
-							},
-							R = {
-								bg = palette.maroon,
-								fg = palette.mantle,
-								bold = true,
-							},
-							v = {
-								bg = palette.mauve,
-								fg = palette.mantle,
-								bold = true,
-							},
-							V = {
-								bg = palette.mauve,
-								fg = palette.mantle,
-								bold = true,
-							},
-						},
-					})
-				end,
-			},
+			-- {
+			-- 	-- INFO: This plugin is rainins the error message: E36: Not enought room.
+			-- 	-- INFO: Do not use this plugin as colors are a bit unpredictable.
+			-- 	--
+			-- 	-- TODO: It looks like gitsigns has a priority over this plygin, as it does not highlight lines highlighted by gitsigns. Investigate how it can highlight the line number column.
+			-- 	--
+			-- 	-- TODO: Change pallete to Gruvbox
+			--
+			-- 	"sethen/line-number-change-mode.nvim",
+			-- 	lazy = false,
+			-- 	config = function()
+			-- 		require("catppuccin").setup({
+			-- 			flavour = "mocha",
+			-- 		})
+			-- 		local palette = require("catppuccin.palettes").get_palette("mocha")
+			--
+			-- 		if palette == nil then
+			-- 			return nil
+			-- 		end
+			--
+			-- 		require("line-number-change-mode").setup({
+			-- 			number = true,
+			-- 			relativenumber = false,
+			-- 			trigger_events = { "InsertEnter", "InsertLeave" },
+			-- 			mode = {
+			-- 				i = {
+			-- 					bg = palette.green,
+			-- 					fg = palette.mantle,
+			-- 					bold = true,
+			-- 				},
+			-- 				n = {
+			-- 					bg = palette.blue,
+			-- 					fg = palette.mantle,
+			-- 					bold = true,
+			-- 				},
+			-- 				R = {
+			-- 					bg = palette.maroon,
+			-- 					fg = palette.mantle,
+			-- 					bold = true,
+			-- 				},
+			-- 				v = {
+			-- 					bg = palette.mauve,
+			-- 					fg = palette.mantle,
+			-- 					bold = true,
+			-- 				},
+			-- 				V = {
+			-- 					bg = palette.mauve,
+			-- 					fg = palette.mantle,
+			-- 					bold = true,
+			-- 				},
+			-- 			},
+			-- 		})
+			-- 	end,
+			-- },
 			{
 				"luukvbaal/statuscol.nvim",
 				lazy = false,
@@ -72,7 +74,7 @@ return {
 						relculright = true,
 						segments = {
 							{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-							{ text = { "%s", " " }, colwidth = 1, maxwidth = 1, auto = false, click = "v:lua.ScSa" }, -- git signs
+							{ text = { "%s", " " }, click = "v:lua.ScSa" }, -- git signs
 							{ text = { "%=", "%l " }, click = "v:lua.ScLa" }, -- Absolute line numbers
 
 							-- { text = { "%r " }, click = "v:lua.ScLa" }, -- Relative line numbers

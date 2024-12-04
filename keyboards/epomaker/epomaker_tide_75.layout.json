@@ -202,7 +202,7 @@
       "KC_F11",
       "KC_F12",
       "KC_DEL",
-      "KC_MPLY",
+      "G(KC_M)",
       "KC_GRV",
       "KC_1",
       "KC_2",
@@ -280,7 +280,7 @@
       "KC_RGHT"
     ],
     [
-      "KC_TRNS",
+      "C(G(KC_Q))",
       "KC_BRID",
       "KC_BRIU",
       "KC_F3",
@@ -468,7 +468,7 @@
     [
       ["KC_VOLD", "KC_VOLU"],
       ["KC_VOLD", "KC_VOLU"],
-      ["KC_VOLD", "KC_VOLU"],
+      ["KC_U", "KC_R"],
       ["KC_VOLD", "KC_VOLU"],
       ["KC_VOLD", "KC_VOLU"]
     ]

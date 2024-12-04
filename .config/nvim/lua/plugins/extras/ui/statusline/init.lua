@@ -19,6 +19,12 @@ return {
 							"help",
 							"alpha",
 							"lazy",
+							"dap-repl",
+							"dapui_console",
+							"dapui_watches",
+							"dapui_stacks",
+							"dapui_breakpoints",
+							"dapui_scopes",
 						},
 					},
 					always_divide_middle = true,
@@ -29,7 +35,8 @@ return {
 					lualine_b = {
 						components.workspace,
 						{ "branch", icon = icons.git.Branch },
-						components.git_repo,
+						-- FIX: components.git_repo is making the cursor to flicker
+						-- components.git_repo,
 						components.diff,
 					},
 					lualine_c = { components.diagnostics, components.lsp_client },
