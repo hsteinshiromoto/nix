@@ -21,7 +21,7 @@ return {
 			{ "<leader>ft", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
 			{
-				"<leader>/",
+				"<leader>t/",
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find()
 				end,
