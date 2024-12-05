@@ -25,3 +25,4 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.autoread = true
 
 vim.opt.cursorline = true
+vim.opt.conceallevel = 2
