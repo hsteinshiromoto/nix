@@ -144,7 +144,7 @@ if [[ ${unameOut} == "Linux" ]]; then
 	ZSH_TMUX_AUTOSTART=true
 	#
 	# Starts tmux with zsh [1]
-	if [ "$TMUX" = "" ]; then tmux; fi
+	if [ "$TMUX" = "" ]; then tmux attach || tmux; fi
 fi
 # ---
 # Configuration: bat
