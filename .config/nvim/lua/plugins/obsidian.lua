@@ -31,12 +31,7 @@ return {
 				name = "personal",
 				path = "~/Personal",
 			},
-			{
-				name = "work",
-				path = "~/vaults/work",
-			},
 		},
-		vim.opt.conceallevel == 1,
 		templates = {
 			folder = "_meta_/_templates_",
 			date_format = "%Y-%m-%d",
