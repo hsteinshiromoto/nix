@@ -31,6 +31,10 @@ return {
 				name = "personal",
 				path = "~/Personal",
 			},
+			{
+				name = "LOR",
+				path = "~/Work/LOR",
+			},
 		},
 		templates = {
 			folder = "_meta_/_templates_",
