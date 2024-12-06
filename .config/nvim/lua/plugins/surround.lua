@@ -8,3 +8,10 @@ return {
 		})
 	end,
 }
+-- NOTE: Use :h nvim-surround.usage to check how to apply this plugin
+-- Example:
+--    Old text                    Command         New text ~
+--    local str = *               <C-g>s"         local str = "*"
+--    local tab = *               <C-g>s}         local str = {*}
+--    local str = |some text|     S]              local str = [some text]
+--    |div id="test"|</div>       S>              <div id="test"></div>
