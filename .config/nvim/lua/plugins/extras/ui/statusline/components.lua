@@ -114,7 +114,7 @@ return {
 			local cwd = vim.fn.getcwd()
 			local parent_folder = vim.fn.fnamemodify(cwd, ":t")
 			local current_file = vim.fn.expand("%:t")
-			return icons.ui.LargeOpenFolder .. " " .. parent_folder .. "/" .. current_file
+			return icons.ui.LargeOpenFolder .. " " .. parent_folder -- .. "/" .. current_file
 		end,
 	},
 }
