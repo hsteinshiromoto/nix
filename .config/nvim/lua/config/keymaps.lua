@@ -1,6 +1,7 @@
 local keymap = vim.keymap.set
 
 keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+keymap("n", "<F7>", "<cmd>pu=strftime('%Y-%m-%d')<cr>", { desc = "Insert Today's Date" })
 
 -- Remap for dealing with word wrap [1]
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
