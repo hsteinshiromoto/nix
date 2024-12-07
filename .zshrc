@@ -239,6 +239,17 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 # ---
+# Secrets
+#
+# Dependencies:
+# 	[D1] pass: https://www.passwordstore.org/, https://search.nixos.org/packages?channel=24.11&show=pass&from=0&size=50&sort=relevance&type=packages&query=pass
+#
+# References:
+# 	[1] https://medium.com/@hitechluddite/ditch-cleartext-secrets-how-to-safeguard-api-keys-in-zsh-and-bash-with-pass-77f694b9ff64
+# ---
+export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
+
+# ---
 # FZF history
 # ---
 source <(fzf --zsh)
