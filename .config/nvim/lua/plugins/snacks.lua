@@ -36,6 +36,13 @@ return {
 			desc = "Lazygit Current File History",
 		},
 		{
+			"gl",
+			function()
+				Snacks.lazygit.log()
+			end,
+			desc = "Lazygit Log (cwd)",
+		},
+		{
 			"<leader>rf",
 			function()
 				Snacks.rename.rename_file()
