@@ -13,6 +13,7 @@ return {
 			file_types = { "markdown", "Avante" },
 		},
 		ft = { "markdown", "Avante" },
+		cond = vim.fn.isdirectory(".obsidian") == 0,
 		config = function()
 			require("render-markdown").setup({
 				heading = {
