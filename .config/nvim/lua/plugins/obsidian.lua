@@ -23,8 +23,9 @@ return {
 	keys = {
 
 		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
-		{ "<localleader>bl", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+		{ "<localleader>l", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
 	},
+	new_notes_location = "notes_subdir",
 	opts = {
 		workspaces = {
 			{
