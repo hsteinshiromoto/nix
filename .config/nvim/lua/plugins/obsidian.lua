@@ -1,3 +1,5 @@
+local icons = require("config.icons")
+
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
@@ -19,7 +21,6 @@ return {
 	},
 	-- Add condition to only load plugin if directory .obsidian is present [1, 2]
 	cond = vim.fn.isdirectory(".obsidian") == 1,
-	ui = { enable = false },
 	keys = {
 
 		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
@@ -27,6 +28,19 @@ return {
 	},
 	new_notes_location = "notes_subdir",
 	opts = {
+		ui = {
+			enable = true,
+			checkboxes = {
+				["<"] = { char = icons.ui.Calendar2, hl_group = "ObsidianDone" },
+				["/"] = { chat = icons.ui.MinusSquare, hl_group = "ObsidianImportant" },
+				[" "] = { char = icons.ui.CheckBox, hl_group = "ObsidianTodo" },
+				["x"] = { char = icons.ui.BoxChecked2, hl_group = "ObsidianDone" },
+				[">"] = { char = "", hl_group = "ObsidianRightArrow" },
+				["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+				["!"] = { char = icons.ui.AlertTriangle, hl_group = "ObsidianImportant" },
+				["i"] = { char = icons.diagnostics.Information, hl_group = "ObsidianDone" },
+			},
+		},
 		workspaces = {
 			{
 				name = "personal",
