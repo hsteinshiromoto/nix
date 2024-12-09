@@ -29,7 +29,7 @@ return {
 			desc = "Lazygit",
 		},
 		{
-			"<leader>gf",
+			"gf",
 			function()
 				Snacks.lazygit.log_file()
 			end,
