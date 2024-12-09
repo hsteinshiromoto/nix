@@ -15,7 +15,12 @@ return {
 	},
 	keys = {
 		{
-			"gl",
+			"<leader>n",
+			function()
+				Snacks.notifier.show_history()
+			end,
+			desc = "Notification History",
+		},
 		{
 			"gg",
 			function()
