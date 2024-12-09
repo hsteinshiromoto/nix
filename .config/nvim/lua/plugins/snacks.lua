@@ -16,6 +16,8 @@ return {
 	keys = {
 		{
 			"gl",
+		{
+			"gg",
 			function()
 				Snacks.lazygit()
 			end,
