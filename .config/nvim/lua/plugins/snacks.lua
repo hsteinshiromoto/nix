@@ -27,7 +27,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"gg",
+			"<leader>gg",
 			function()
 				Snacks.lazygit()
 			end,
@@ -35,7 +35,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"gf",
+			"<leader>gf",
 			function()
 				Snacks.lazygit.log_file()
 			end,
@@ -43,7 +43,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"gl",
+			"<snacks>gl",
 			function()
 				Snacks.lazygit.log()
 			end,
