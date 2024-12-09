@@ -10,7 +10,11 @@ return {
 		lazygit = { enabled = true },
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
-		statuscolumn = { enabled = true },
+		-- TODO: Find a way for statuscolumn column to work
+		statuscolumn = {
+			enabled = true,
+		},
+		win = { enabled = true },
 		words = { enabled = true },
 	},
 	keys = {
