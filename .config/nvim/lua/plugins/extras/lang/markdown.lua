@@ -22,7 +22,7 @@ return {
 				},
 				bullet = {
 					enabled = true,
-					icons = { "", "", ">", ">>" },
+					icons = { "•", ">", ">>", ">>>" },
 					ordered_icons = {},
 					left_pad = 0,
 					right_pad = 1,
