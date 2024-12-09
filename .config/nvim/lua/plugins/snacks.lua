@@ -20,6 +20,7 @@ return {
 				Snacks.notifier.show_history()
 			end,
 			desc = "Notification History",
+			mode = { "n" },
 		},
 		{
 			"gg",
@@ -27,6 +28,7 @@ return {
 				Snacks.lazygit()
 			end,
 			desc = "Lazygit",
+			mode = { "n" },
 		},
 		{
 			"gf",
@@ -34,6 +36,7 @@ return {
 				Snacks.lazygit.log_file()
 			end,
 			desc = "Lazygit Current File History",
+			mode = { "n" },
 		},
 		{
 			"gl",
@@ -41,6 +44,7 @@ return {
 				Snacks.lazygit.log()
 			end,
 			desc = "Lazygit Log (cwd)",
+			mode = { "n" },
 		},
 		{
 			"<leader>rf",
@@ -48,6 +52,7 @@ return {
 				Snacks.rename.rename_file()
 			end,
 			desc = "Rename File",
+			mode = { "n" },
 		},
 	},
 }
