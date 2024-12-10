@@ -1,4 +1,7 @@
 local icons = require("config.icons")
+local function tchelper(first, rest)
+	return first:upper() .. rest:lower()
+end
 
 return {
 	"epwalsh/obsidian.nvim",
@@ -68,7 +71,7 @@ return {
 			local suffix = ""
 			if title ~= nil then
 				-- If title is given, transform it into valid file name.
-				suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+				suffix = title:gsub(" ", "_"):gsub("[^A-Za-z0-9-]", ""):gsub("(%a)([%w_']*)", tchelper)
 			else
 				-- If title is nil, just add 4 random uppercase letters to the suffix.
 				for _ = 1, 4 do
