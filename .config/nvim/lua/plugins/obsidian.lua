@@ -27,6 +27,7 @@ return {
 	keys = {
 
 		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
+		{ "<localleader>d", "<cmd>ObsidianToday<cr>", desc = "Obsidial Daily Note" },
 		{ "<localleader>l", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
 	},
 	new_notes_location = "notes_subdir",
