@@ -71,14 +71,18 @@ return {
 			local suffix = ""
 			if title ~= nil then
 				-- If title is given, transform it into valid file name.
-				suffix = title:gsub(" ", "_"):gsub("[^A-Za-z0-9-]", ""):gsub("(%a)([%w_']*)", tchelper)
+				suffix = title
+					:gsub(" ", "_")
+					:gsub("[^A-Za-z0-9-]", " ")
+					:gsub("(%a)([%w_']*)", tchelper)
+					:gsub("[^A-Za-z0-9-]", "_")
 			else
 				-- If title is nil, just add 4 random uppercase letters to the suffix.
 				for _ = 1, 4 do
 					suffix = suffix .. string.char(math.random(65, 90))
 				end
 			end
-			return tostring(os.date("%Y-%m-%d")) .. " " .. suffix
+			return tostring(os.date("%Y-%m-%d")) .. "_" .. suffix
 		end,
 	},
 }
