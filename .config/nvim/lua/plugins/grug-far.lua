@@ -2,7 +2,7 @@ return {
 	"MagicDuck/grug-far.nvim",
 	lazy = false,
 	keys = {
-		{ "<leader>gf", "<cmd>GrugFar<cr>", desc = "GrugFar" },
+		-- { "<leader>gf", "<cmd>GrugFar<cr>", desc = "GrugFar" },
 	},
 	config = function()
 		require("grug-far").setup({

@@ -11,15 +11,15 @@ return {
 		cmd = "Telescope",
 		keys = {
 			-- { "<leader><space>", require("utils").find_files, desc = "Find Files" },
-			{ "<leader>ff", require("utils").find_files, desc = "Find Files" },
-			{ "<leader>fr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
+			{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+			{ "<leader>sr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
 			{ "<leader>r", "<cmd>Telescope registers<cr>", desc = "Registers" },
 			{ ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
-			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
-			{ "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
+			-- { "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
 			-- { "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
-			{ "<leader>ft", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
+			{ "<leader>st", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
+			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
 			{
 				"<leader>/",
 				function()
