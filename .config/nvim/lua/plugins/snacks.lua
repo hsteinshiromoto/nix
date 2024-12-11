@@ -7,7 +7,12 @@ return {
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
-		lazygit = { enabled = true },
+		lazygit = {
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+			},
+			enabled = true,
+		},
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
 		-- TODO: Find a way for statuscolumn column to work
