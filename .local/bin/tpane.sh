@@ -8,3 +8,6 @@ else
      P=$(tmux splitw -PF'#{pane_id}')
      tmux set -w @myspecialpane "$P"
 fi
+
+# References:
+# 	[1] https://superuser.com/questions/1456540/toggle-a-pane-in-tmux
