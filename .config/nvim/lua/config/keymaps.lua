@@ -4,7 +4,7 @@ keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
 keymap("n", "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
 
 -- Remaps for Tmux Panes
-keymap("n", "<leader>`", "<cmd>!tmux split-window<CR>", { desc = "Open Tmux bottom pane" })
+keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" })
 
 -- Remaps for selection
 keymap({ "n", "v" }, "$$", "v$h", { desc = "Select until end of line" })
