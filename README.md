@@ -21,6 +21,7 @@ The structure of this repository must be the same as the structure as the config
 │   │   └── lua
 │   │       ├── config
 │   │       ├── plugins
+│   │       │   ├── ai
 │   │       │   ├── colorscheme
 │   │       │   ├── completion
 │   │       │   ├── dap
@@ -30,12 +31,14 @@ The structure of this repository must be the same as the structure as the config
 │   │       │   │   ├── pde
 │   │       │   │   │   └── notes
 │   │       │   │   └── ui
+│   │       │   │       ├── statuscol
+│   │       │   │       └── statusline
 │   │       │   ├── lsp
-│   │       │   ├── statusline
 │   │       │   └── test
 │   │       └── utils
 │   └── tmuxinator
 ├── .local
+│   ├── bin
 │   └── share
 │       ├── code-server
 │       │   └── User
@@ -64,7 +67,10 @@ The structure of this repository must be the same as the structure as the config
 │       │       │   └── packages
 │       │       └── user
 │       └── KeyBindings
-└── roles
+├── roles
+└── utils
+    └── prompts
+
 ```
 
 ## Requirements
