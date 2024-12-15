@@ -1,6 +1,17 @@
 local keymap = vim.keymap.set
 
 keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+keymap("n", "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
+
+-- Remaps for Tmux Panes: The following comment depends on the tpane file located in .local/bin
+keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" })
+
+-- Remaps for selection
+keymap({ "n", "v" }, "$$", "v$h", { desc = "Select until end of line" })
+keymap({ "n", "v" }, "00", "v0", { desc = "Select until start of line" })
+
+-- Remaps for quitting
+keymap("n", "qq", "<cmd>q!<cr>", { desc = "Quit without save" })
 
 -- Remap for dealing with word wrap [1]
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })

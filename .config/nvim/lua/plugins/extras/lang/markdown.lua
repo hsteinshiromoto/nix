@@ -13,11 +13,20 @@ return {
 			file_types = { "markdown", "Avante" },
 		},
 		ft = { "markdown", "Avante" },
+		cond = vim.fn.isdirectory(".obsidian") == 0,
 		config = function()
 			require("render-markdown").setup({
 				heading = {
 					icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
 					signs = { "H1", "H2", "H3", "H4", "H5", "H6" },
+				},
+				bullet = {
+					enabled = true,
+					icons = { "•", ">", ">>", ">>>" },
+					ordered_icons = {},
+					left_pad = 0,
+					right_pad = 1,
+					highlight = "RenderMarkdownBullet",
 				},
 				checkbox = {
 					custom = {

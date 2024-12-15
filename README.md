@@ -21,6 +21,7 @@ The structure of this repository must be the same as the structure as the config
 │   │   └── lua
 │   │       ├── config
 │   │       ├── plugins
+│   │       │   ├── ai
 │   │       │   ├── colorscheme
 │   │       │   ├── completion
 │   │       │   ├── dap
@@ -30,12 +31,14 @@ The structure of this repository must be the same as the structure as the config
 │   │       │   │   ├── pde
 │   │       │   │   │   └── notes
 │   │       │   │   └── ui
+│   │       │   │       ├── statuscol
+│   │       │   │       └── statusline
 │   │       │   ├── lsp
-│   │       │   ├── statusline
 │   │       │   └── test
 │   │       └── utils
 │   └── tmuxinator
 ├── .local
+│   ├── bin
 │   └── share
 │       ├── code-server
 │       │   └── User
@@ -64,7 +67,10 @@ The structure of this repository must be the same as the structure as the config
 │       │       │   └── packages
 │       │       └── user
 │       └── KeyBindings
-└── roles
+├── roles
+└── utils
+    └── prompts
+
 ```
 
 ## Requirements
@@ -143,9 +149,9 @@ delta <file1> <file2> -sn
 
 ```
 
-## Using Remove NeoVim [3]
+## Using Remote NeoVim [3]
 
-1. The remove NeoVim is configured in the Dockerfile.
+1. The remote NeoVim is configured in the Dockerfile.
 2. Start the container with `docker-compose up`.
 3. Connect to the remote NeoVim server with `nvim --server <host name>:6666 --remote-ui`
 

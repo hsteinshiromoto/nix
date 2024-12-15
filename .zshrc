@@ -126,7 +126,7 @@ esac
 # Path
 # ---
 if [[ ${unameOut} == "Linux" ]]; then
-	export PATH="$PATH:/opt/nvim-linux64/bin:/nix/var/nix/profiles/default/bin"
+	export PATH="$PATH:/opt/nvim-linux64/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin"
 elif [[ ${unameOut} == "Darwin" ]]; then
 	export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin
 fi
@@ -144,7 +144,7 @@ if [[ ${unameOut} == "Linux" ]]; then
 	ZSH_TMUX_AUTOSTART=true
 	#
 	# Starts tmux with zsh [1]
-	if [ "$TMUX" = "" ]; then tmux; fi
+	if [ "$TMUX" = "" ]; then tmux attach || tmux; fi
 fi
 # ---
 # Configuration: bat
@@ -237,6 +237,17 @@ export NVM_DIR="$HOME/.nvm"
 
 export EDITOR=nvim
 export VISUAL=nvim
+
+# ---
+# Secrets
+#
+# Dependencies:
+# 	[D1] pass: https://www.passwordstore.org/, https://search.nixos.org/packages?channel=24.11&show=pass&from=0&size=50&sort=relevance&type=packages&query=pass
+#
+# References:
+# 	[1] https://medium.com/@hitechluddite/ditch-cleartext-secrets-how-to-safeguard-api-keys-in-zsh-and-bash-with-pass-77f694b9ff64
+# ---
+export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
 
 # ---
 # FZF history

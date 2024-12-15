@@ -1,3 +1,8 @@
+local icons = require("config.icons")
+local function tchelper(first, rest)
+	return first:upper() .. rest:lower()
+end
+
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
@@ -19,24 +24,38 @@ return {
 	},
 	-- Add condition to only load plugin if directory .obsidian is present [1, 2]
 	cond = vim.fn.isdirectory(".obsidian") == 1,
-	ui = { enable = false },
 	keys = {
 
 		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
-		{ "<localleader>bl", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+		{ "<localleader>n", "<cmd>ObsidianNewFromTemplate<cr>", desc = "New Note From Template" },
+		{ "<localleader>d", "<cmd>ObsidianToday<cr>", desc = "Obsidian Daily Note" },
+		{ "<localleader>l", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
 	},
+	new_notes_location = "notes_subdir",
 	opts = {
+		ui = {
+			enable = true,
+			checkboxes = {
+				["<"] = { char = icons.ui.Calendar2, hl_group = "ObsidianDone" },
+				["/"] = { char = icons.ui.MinusSquare, hl_group = "ObsidianImportant" },
+				[" "] = { char = icons.ui.CheckBox, hl_group = "ObsidianTodo" },
+				["x"] = { char = icons.ui.BoxChecked2, hl_group = "ObsidianDone" },
+				[">"] = { char = "", hl_group = "ObsidianRightArrow" },
+				["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+				["!"] = { char = icons.ui.AlertTriangle, hl_group = "ObsidianImportant" },
+				["i"] = { char = icons.diagnostics.Information, hl_group = "ObsidianDone" },
+			},
+		},
 		workspaces = {
 			{
 				name = "personal",
 				path = "~/Personal",
 			},
 			{
-				name = "work",
-				path = "~/vaults/work",
+				name = "LOR",
+				path = "~/Work/LOR",
 			},
 		},
-		vim.opt.conceallevel == 1,
 		templates = {
 			folder = "_meta_/_templates_",
 			date_format = "%Y-%m-%d",
@@ -44,6 +63,29 @@ return {
 			-- A map for custom variables, the key should be the variable and the value a function
 			substitutions = {},
 		},
+		-- Optional, customize how note IDs are generated given an optional title.
+		---@param title string|?
+		---@return string
+		note_id_func = function(title)
+			-- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+			-- In this case a note with the title 'My new note' will be given an ID that looks
+			-- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+			local suffix = ""
+			if title ~= nil then
+				-- If title is given, transform it into valid file name.
+				suffix = title
+					:gsub(" ", "_")
+					:gsub("[^A-Za-z0-9-]", " ")
+					:gsub("(%a)([%w_']*)", tchelper)
+					:gsub("[^A-Za-z0-9-]", "_")
+			else
+				-- If title is nil, just add 4 random uppercase letters to the suffix.
+				for _ = 1, 4 do
+					suffix = suffix .. string.char(math.random(65, 90))
+				end
+			end
+			return tostring(os.date("%Y-%m-%d")) .. "_" .. suffix
+		end,
 	},
 }
 -- References:
