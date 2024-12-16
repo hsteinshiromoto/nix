@@ -2,6 +2,13 @@ local icons = require("config.icons")
 local function tchelper(first, rest)
 	return first:upper() .. rest:lower()
 end
+local function make_id()
+	local suffix = ""
+	for _ = 1, 4 do
+		suffix = suffix .. string.char(math.random(65, 90))
+	end
+	return tostring(os.date("%Y-%m-%d")) .. "_" .. suffix
+end
 
 return {
 	"epwalsh/obsidian.nvim",
@@ -81,11 +88,17 @@ return {
 					:gsub("[^A-Za-z0-9-]", "_")
 			else
 				-- If title is nil, just add 4 random uppercase letters to the suffix.
-				for _ = 1, 4 do
-					suffix = suffix .. string.char(math.random(65, 90))
-				end
+				suffix = make_id()
 			end
 			return tostring(os.date("%Y-%m-%d")) .. "_" .. suffix
+		end,
+		-- Optional, customize how note file names are generated given the ID, target directory, and title.
+		---@param spec { id: string, dir: obsidian.Path, title: string|? }
+		---@return string|obsidian.Path The full path to the new note.
+		note_path_func = function(spec)
+			-- This is equivalent to the default behavior.
+			local path = spec.dir / tostring(spec.id)
+			return path:with_suffix(".md")
 		end,
 	},
 }
