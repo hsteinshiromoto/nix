@@ -104,15 +104,17 @@ return {
 		-- Optional, alternatively you can customize the frontmatter data.
 		---@return table
 		note_frontmatter_func = function(note)
+			local date_created = tostring(os.date("%Y-%m-%d"))
 			-- Add the title of the note as an alias.
 			if note.title then
-				note:add_alias(note.title)
+				note:add_alias(date_created .. " " .. note.title)
 			end
+			-- Add the note id as an alias
 			if note.id then
 				note:add_alias(note.id)
 			end
 
-			local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+			local out = { id = note.id, aliases = note.aliases, tags = note.tags, date_created = date_created }
 
 			-- `note.metadata` contains any manually added fields in the frontmatter.
 			-- So here we just make sure those fields are kept in the frontmatter.
