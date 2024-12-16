@@ -39,6 +39,7 @@ return {
 				["<"] = { char = icons.ui.Calendar2, hl_group = "ObsidianDone" },
 				["/"] = { char = icons.ui.MinusSquare, hl_group = "ObsidianImportant" },
 				[" "] = { char = icons.ui.CheckBox, hl_group = "ObsidianTodo" },
+				["-"] = { char = icons.ui.MinusSquare, hl_group = "ObsidianDone" },
 				["x"] = { char = icons.ui.BoxChecked2, hl_group = "ObsidianDone" },
 				[">"] = { char = "", hl_group = "ObsidianRightArrow" },
 				["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
