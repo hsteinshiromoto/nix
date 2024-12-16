@@ -107,7 +107,9 @@ return {
 			local date_created = tostring(os.date("%Y-%m-%d"))
 			-- Add the title of the note as an alias.
 			if note.title then
-				note:add_alias(date_created .. " " .. note.title)
+				if note.title ~= date_created then
+					note:add_alias(date_created .. " " .. note.title)
+				end
 			end
 			-- Add the note id as an alias
 			if note.id then
