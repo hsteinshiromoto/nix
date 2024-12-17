@@ -9,6 +9,7 @@ keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" }
 -- Remaps for selection
 keymap("n", "$$", "v$h", { noremap = true, silent = true, desc = "Select until end of line" })
 keymap("n", "00", "v0", { noremap = true, silent = true, desc = "Select until start of line" })
+keymap("n", "S", [[:normal! ^v/\k<CR>$h]], { noremap = true, silent = true })
 
 -- Remaps for quitting
 keymap("n", "qq", "<cmd>q!<cr>", { desc = "Quit without save" })
