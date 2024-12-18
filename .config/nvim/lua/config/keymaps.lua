@@ -9,14 +9,14 @@ keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" }
 -- Remaps for selection
 keymap("n", "$$", "v$h", { noremap = true, silent = true, desc = "Select until end of line" })
 keymap("n", "00", "v0", { noremap = true, silent = true, desc = "Select until start of line" })
-keymap("n", "S", "^v$h", { noremap = true, silent = true, desc = "Select whole line excluding start whitespace" })
-keymap("n", "<leader>_", function()
+keymap("n", "S", function()
 	local ln = vim.api.nvim_win_get_cursor(0)[1]
 	local i = (vim.api.nvim_buf_get_lines(0, ln - 1, ln, false)[1]):find("%a")
 	if i then
 		vim.api.nvim_win_set_cursor(0, { ln, i - 1 })
+		vim.cmd("normal! v$h")
 	end
-end)
+end, { noremap = true, silent = true, desc = "Select whole line excluding start whitespace" })
 -- Remaps for quitting
 keymap("n", "qq", "<cmd>q!<cr>", { desc = "Quit without save" })
 
