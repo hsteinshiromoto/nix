@@ -35,6 +35,8 @@ keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
 -- Better indent [1]
 keymap("v", "<", "<gv", { desc = "Indent Left" })
 keymap("v", ">", ">gv", { desc = "Indent Right" })
+keymap("n", "<", "v<gv", { desc = "Indent Left" })
+keymap("n", ">", "v>gv", { desc = "Indent Right" })
 
 -- Paste over currently selected text without yanking it [1]
 keymap("v", "p", '"_dP', { desc = "Paste over currently selected text without yanking it" })
