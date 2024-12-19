@@ -20,6 +20,9 @@ end, { noremap = true, silent = true, desc = "Select whole line excluding start 
 -- Remaps for quitting
 keymap("n", "qq", "<cmd>q!<cr>", { desc = "Quit without save" })
 
+-- Remaps for copying
+keymap("n", "cc", "cc<esc>", { desc = "Cut and go into normal mode" })
+
 -- Remap for dealing with word wrap [1]
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
