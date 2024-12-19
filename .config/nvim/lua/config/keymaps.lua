@@ -1,6 +1,16 @@
 local keymap = vim.keymap.set
 
 keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+keymap("n", "<F8>", function()
+	local tomorrow = os.time() + (24 * 60 * 60) -- add 24 hours in seconds
+	local date_str = os.date("%Y-%m-%d", tomorrow)
+	vim.api.nvim_put({ date_str }, "c", true, true)
+end, { desc = "Insert Tomorrow's Date" })
+keymap("n", "<F6>", function()
+	local yesterday = os.time() - (24 * 60 * 60) -- subtract 24 hours in seconds
+	local date_str = os.date("%Y-%m-%d", yesterday)
+	vim.api.nvim_put({ date_str }, "c", true, true)
+end, { desc = "Insert Yesterday's Date" })
 keymap("n", "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
 
 -- Remaps for Tmux Panes: The following comment depends on the tpane file located in .local/bin
