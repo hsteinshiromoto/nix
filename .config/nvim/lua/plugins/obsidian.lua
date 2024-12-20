@@ -107,6 +107,7 @@ return {
 			local date_created = tostring(os.date("%Y-%m-%d"))
 			-- Add the title of the note as an alias.
 			if note.title then
+				note:add_alias(note.title)
 				if note.title ~= date_created then
 					note:add_alias(date_created .. " " .. note.title)
 				end
@@ -135,7 +136,7 @@ return {
 			return out
 		end,
 		-- Keep the following setting for wiki links for Obsidian app to find the linked files
-		wiki_link_func = "prepend_note_path",
+		wiki_link_func = "use_alias_only",
 	},
 }
 -- References:
