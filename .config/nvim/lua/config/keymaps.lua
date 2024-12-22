@@ -1,17 +1,37 @@
 local keymap = vim.keymap.set
 
 keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
-keymap("n", "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
+keymap({ "n", "v" }, "<F8>", function()
+	local tomorrow = os.time() + (24 * 60 * 60) -- add 24 hours in seconds
+	local date_str = os.date("%Y-%m-%d", tomorrow)
+	vim.api.nvim_put({ date_str }, "c", true, true)
+end, { desc = "Insert Tomorrow's Date" })
+keymap({ "n", "v" }, "<F6>", function()
+	local yesterday = os.time() - (24 * 60 * 60) -- subtract 24 hours in seconds
+	local date_str = os.date("%Y-%m-%d", yesterday)
+	vim.api.nvim_put({ date_str }, "c", true, true)
+end, { desc = "Insert Yesterday's Date" })
+keymap({ "n", "v" }, "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
 
 -- Remaps for Tmux Panes: The following comment depends on the tpane file located in .local/bin
 keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" })
 
 -- Remaps for selection
-keymap({ "n", "v" }, "$$", "v$h", { desc = "Select until end of line" })
-keymap({ "n", "v" }, "00", "v0", { desc = "Select until start of line" })
-
+keymap("n", "$$", "v$h", { noremap = true, silent = true, desc = "Select until end of line" })
+keymap("n", "00", "v0", { noremap = true, silent = true, desc = "Select until start of line" })
+keymap("n", "SS", function()
+	local ln = vim.api.nvim_win_get_cursor(0)[1]
+	local i = (vim.api.nvim_buf_get_lines(0, ln - 1, ln, false)[1]):find("%a")
+	if i then
+		vim.api.nvim_win_set_cursor(0, { ln, i - 1 })
+		vim.cmd("normal! v$h")
+	end
+end, { noremap = true, silent = true, desc = "Select whole line excluding start whitespace" })
 -- Remaps for quitting
 keymap("n", "qq", "<cmd>q!<cr>", { desc = "Quit without save" })
+
+-- Remaps for copying
+keymap("n", "cc", "cc<esc>", { desc = "Cut and go into normal mode" })
 
 -- Remap for dealing with word wrap [1]
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -28,6 +48,8 @@ keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
 -- Better indent [1]
 keymap("v", "<", "<gv", { desc = "Indent Left" })
 keymap("v", ">", ">gv", { desc = "Indent Right" })
+keymap("n", "<", "v<gv", { desc = "Indent Left" })
+keymap("n", ">", "v>gv", { desc = "Indent Right" })
 
 -- Paste over currently selected text without yanking it [1]
 keymap("v", "p", '"_dP', { desc = "Paste over currently selected text without yanking it" })
