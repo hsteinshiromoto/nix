@@ -13,10 +13,10 @@ return {
 		-- Some colours might look better more dark, so set a higher value
 		-- will result in a darker shade.
 		blends = {
-			normal = 0.2,
+			normal = 0.5,
 			insert = 0.2,
-			visual = 0.25,
-			command = 0.2,
+			visual = 0.5,
+			command = 0.5,
 			operator = 0.2,
 			replace = 0.2,
 			select = 0.2,
@@ -28,10 +28,10 @@ return {
 		-- set them up with highlight groups. Any highlight group set takes
 		-- precedence over any colours defined here.
 		colors = {
-			normal = "#00BFFF",
+			normal = "#978871",
 			insert = "#70CF67",
-			visual = "#AD6FF7",
-			command = "#EB788B",
+			visual = "#e15250",
+			command = "#6b9f91",
 			operator = "#FF8F40",
 			replace = "#E66767",
 			select = "#AD6FF7",
