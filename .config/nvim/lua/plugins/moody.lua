@@ -40,7 +40,7 @@ return {
 		},
 		-- disable filetypes here. Add for example "TelescopePrompt" to
 		-- not have any coloured cursorline for the telescope prompt.
-		disabled_filetypes = { "TelescopePrompt" },
+		disabled_filetypes = { "TelescopePrompt", "neo-tree", "alpha", "Outline" },
 		-- disabled buftypes here
 		disabled_buftypes = {},
 		-- you can turn on or off bold characters for the line numbers
