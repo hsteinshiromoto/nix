@@ -14,7 +14,7 @@ return {
 		-- will result in a darker shade.
 		blends = {
 			normal = 0.5,
-			insert = 0.2,
+			insert = 0.5,
 			visual = 0.5,
 			command = 0.5,
 			operator = 0.2,
@@ -29,7 +29,7 @@ return {
 		-- precedence over any colours defined here.
 		colors = {
 			normal = "#978871",
-			insert = "#70CF67",
+			insert = "#98ab53",
 			visual = "#e15250",
 			command = "#6b9f91",
 			operator = "#FF8F40",
