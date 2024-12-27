@@ -136,7 +136,7 @@ return {
 			return out
 		end,
 		-- Keep the following setting for wiki links for Obsidian app to find the linked files
-		wiki_link_func = "use_alias_only",
+		wiki_link_func = "prepend_note_path",
 	},
 }
 -- References:
