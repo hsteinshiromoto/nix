@@ -66,7 +66,6 @@ return {
 				"luukvbaal/statuscol.nvim",
 				lazy = false,
 				config = function()
-					vim.opt.number = true
 					-- vim.opt.relativenumber = true
 					local builtin = require("statuscol.builtin")
 
