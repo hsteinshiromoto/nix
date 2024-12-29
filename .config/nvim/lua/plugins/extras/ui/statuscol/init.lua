@@ -1,9 +1,4 @@
 local icons = require("config.icons")
-local statuscolumn = {}
-statuscolumn.border = function()
-	-- See how the characters is larger then the rest? That's how we make the border look like a single line
-	return "│"
-end
 
 return {
 	"luukvbaal/statuscol.nvim",
@@ -21,14 +16,23 @@ return {
 					click = "v:lua.ScLa",
 				}, -- Absolute line numbers
 				{ text = { "%s" }, click = "v:lua.ScSa", condition = { true, builtin.not_empty } }, -- git signs
-				{
-					text = { builtin.foldfunc, " " },
-					condition = { true, builtin.not_empty },
-					click = "v:lua.ScFa",
-				},
+				{ text = { "%C" }, click = "v:lua.ScFa" },
 				{
 					text = { icons.ui.ThickLeftLine, " " }, -- Status col border
 				},
+			},
+			clickmod = "c", -- modifier used for certain actions in the builtin clickhandlers:
+			-- "a" for Alt, "c" for Ctrl and "m" for Meta.
+			clickhandlers = { -- builtin click handlers, keys are pattern matched
+				Lnum = builtin.lnum_click,
+				FoldClose = builtin.foldclose_click,
+				FoldOpen = builtin.foldopen_click,
+				FoldOther = builtin.foldother_click,
+				DapBreakpointRejected = builtin.toggle_breakpoint,
+				DapBreakpoint = builtin.toggle_breakpoint,
+				DapBreakpointCondition = builtin.toggle_breakpoint,
+				["diagnostic/signs"] = builtin.diagnostic_click,
+				gitsigns = builtin.gitsigns_click,
 			},
 		})
 	end,
