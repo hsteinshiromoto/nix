@@ -1,3 +1,5 @@
+-- This file is deprecated.
+
 local gitsigns_hl_pool = {
 	GitSignsAdd = "DiagnosticOk",
 	GitSignsChange = "DiagnosticWarn",
