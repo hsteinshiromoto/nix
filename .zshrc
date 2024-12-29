@@ -205,6 +205,15 @@ elif [[ ${unameOut} == "Darwin" ]]; then
 	alias cat="bat"
 	alias ns="darwin-rebuild build --flake ~/.config/nix-darwin"
 fi
+
+# Docker aliases
+alias dpl='docker pull'
+alias dph='docker push'
+alias dk='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
+alias drm='docker rm $(docker ps -a | fzf | awk "{ print $1 }")'
+alias ds='docker stop $(docker ps -a | fzf | awk "{ print $1 }")'
+alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
+
 # The following fzf command should be kept below the cat alias
 
 
