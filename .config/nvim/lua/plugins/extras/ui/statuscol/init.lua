@@ -21,7 +21,6 @@ return {
 					condition = { true, builtin.not_empty },
 					click = "v:lua.ScLa",
 				}, -- Absolute line numbers
-				-- Absolute line numbers
 				{ text = { "%s" }, click = "v:lua.ScSa", condition = { true } }, -- git signs
 				{
 					text = { icons.ui.ThickLeftLine, " " }, -- Status col border
@@ -43,3 +42,5 @@ return {
 		})
 	end,
 }
+-- References:
+--   [1] https://neovimcraft.com/plugin/luukvbaal/statuscol.nvim/
