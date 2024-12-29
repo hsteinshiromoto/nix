@@ -28,3 +28,4 @@ vim.opt.cursorline = true
 vim.opt.conceallevel = 2
 vim.g.have_nerd_font = true
 vim.opt.number = true
+vim.o.foldenable = true
