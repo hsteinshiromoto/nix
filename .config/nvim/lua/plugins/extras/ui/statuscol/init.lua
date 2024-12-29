@@ -11,12 +11,18 @@ return {
 			relculright = true,
 			segments = {
 				{
+					text = { builtin.foldfunc }, -- Add fold function to segments
+					condition = { true, builtin.not_empty },
+					click = "v:lua.ScFa",
+				},
+				{
 					text = { builtin.lnumfunc, " " },
 					condition = { true, builtin.not_empty },
 					click = "v:lua.ScLa",
 				}, -- Absolute line numbers
+				-- Absolute line numbers
 				{ text = { "%s" }, click = "v:lua.ScSa", condition = { true, builtin.not_empty } }, -- git signs
-				{ text = { "%C" }, click = "v:lua.ScFa" },
+				-- { text = { "%C" }, click = "v:lua.ScFa" },
 				{
 					text = { icons.ui.ThickLeftLine, " " }, -- Status col border
 				},
