@@ -2,7 +2,8 @@ local icons = require("config.icons")
 
 return {
 	"luukvbaal/statuscol.nvim",
-	lazy = false,
+	event = "VeryLazy",
+	ft_ignore = { "neo-tree", "alpha", "Outline" },
 	config = function()
 		-- vim.opt.relativenumber = true
 		local builtin = require("statuscol.builtin")
@@ -12,7 +13,7 @@ return {
 			segments = {
 				{
 					text = { builtin.foldfunc }, -- Add fold function to segments
-					condition = { true, builtin.not_empty },
+					condition = { true },
 					click = "v:lua.ScFa",
 				},
 				{
@@ -21,8 +22,7 @@ return {
 					click = "v:lua.ScLa",
 				}, -- Absolute line numbers
 				-- Absolute line numbers
-				{ text = { "%s" }, click = "v:lua.ScSa", condition = { true, builtin.not_empty } }, -- git signs
-				-- { text = { "%C" }, click = "v:lua.ScFa" },
+				{ text = { "%s" }, click = "v:lua.ScSa", condition = { true } }, -- git signs
 				{
 					text = { icons.ui.ThickLeftLine, " " }, -- Status col border
 				},
