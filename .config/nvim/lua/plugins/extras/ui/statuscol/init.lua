@@ -27,7 +27,7 @@ return {
 					click = "v:lua.ScFa",
 				},
 				{
-					text = { "│" },
+					text = { icons.ui.ThickLeftLine, " " }, -- Status col border
 				},
 			},
 		})
