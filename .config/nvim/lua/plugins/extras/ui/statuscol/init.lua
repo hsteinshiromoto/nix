@@ -1,4 +1,9 @@
 local icons = require("config.icons")
+local statuscolumn = {}
+statuscolumn.border = function()
+	-- See how the characters is larger then the rest? That's how we make the border look like a single line
+	return "│"
+end
 
 return {
 	"luukvbaal/statuscol.nvim",
@@ -20,6 +25,9 @@ return {
 					text = { builtin.foldfunc, " " },
 					condition = { true, builtin.not_empty },
 					click = "v:lua.ScFa",
+				},
+				{
+					text = { "│" },
 				},
 			},
 		})
