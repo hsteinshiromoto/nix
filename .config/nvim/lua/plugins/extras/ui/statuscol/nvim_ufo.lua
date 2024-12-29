@@ -1,3 +1,5 @@
+-- This file is deprecated.
+
 return {
 	{
 		"kevinhwang91/nvim-ufo",
