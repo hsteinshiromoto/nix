@@ -1,6 +1,10 @@
+local keymap = vim.keymap.set
+
 return {
 	"arnarg/todotxt.nvim",
 	event = "VeryLazy",
+	keymap("n", "<leader>ta", "<CMD>ToDoTxtCapture<CR>", { desc = "Add ToDoTxT Task" }),
+	keymap("n", "<leader>tg", "<CMD>ToDoTxtTasksToggle<CR>", { desc = "Toggle ToDoTxT Panel" }),
 	config = function()
 		require("todotxt-nvim").setup({
 			todo_file = "todo.txt",
