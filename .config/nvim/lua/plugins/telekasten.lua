@@ -21,9 +21,9 @@ return {
 		require("telekasten").setup({
 			home = vim.fn.expand("~/zettelkasten"),
 			vaults = {
-				zettelkasten = vim.fn.expand("~/zettelkasten"),
-				lor = vim.fn.expand("~/Work/lor"),
-				personal = vim.fn.expand("~/Personal"),
+				zettelkasten = { home = vim.fn.expand("~/zettelkasten") },
+				lor = { home = vim.fn.expand("~/Work/lor") },
+				personal = { home = vim.fn.expand("~/Personal") },
 			},
 		})
 	end,
