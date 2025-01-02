@@ -3,6 +3,7 @@ local keymap = vim.keymap.set
 return {
 	"arnarg/todotxt.nvim",
 	event = "VeryLazy",
+	cond = vim.fn.filereadable("todo.txt") == 1,
 	keymap("n", "<leader>ta", "<CMD>ToDoTxtCapture<CR>", { desc = "Add ToDoTxT Task" }),
 	keymap("n", "<leader>tg", "<CMD>ToDoTxtTasksToggle<CR>", { desc = "Toggle ToDoTxT Panel" }),
 	config = function()
