@@ -19,6 +19,7 @@ return {
 	-- vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>"),
 	config = function()
 		require("telekasten").setup({
+			home = vim.fn.expand("~/zettelkasten"),
 			vaults = {
 				zettelkasten = vim.fn.expand("~/zettelkasten"),
 				lor = vim.fn.expand("~/Work/lor"),
