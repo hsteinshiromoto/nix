@@ -48,11 +48,12 @@ return {
 			},
 			{
 				title = function()
-					local buf_name = vim.api.nvim_buf_get_name(0) or "[No Name]"
+					local buf_name = vim.api.nvim_buf_get_name(0) or "Outline"
 					return vim.fn.fnamemodify(buf_name, ":t")
 				end,
 				ft = "Outline",
 				pinned = true,
+				collapsed = false, -- show window as closed/collapsed on start
 				open = "Outline",
 			},
 			-- {
