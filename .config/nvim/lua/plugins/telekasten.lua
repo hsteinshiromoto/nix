@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	dependencies = { "nvim-telescope/telescope.nvim", "nvim-telekasten/calendar-vim" },
 	-- Launch panel if nothing is typed after <leader>z
-	vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>"),
+	vim.keymap.set("n", "<leader>zp", "<cmd>Telekasten panel<CR>"),
 
 	-- Most used functions
 	vim.keymap.set("n", "<leader>zf", "<cmd>Telekasten find_notes<CR>"),
@@ -16,7 +16,7 @@ return {
 	vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>"),
 
 	-- Call insert link automatically when we start typing a link
-	vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>"),
+	-- vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>"),
 	config = function()
 		require("telekasten").setup({
 			vaults = {
