@@ -1,4 +1,5 @@
 {
+  "LazyDo": { "branch": "main", "commit": "a2bd7ff6974dae6204b064232abe06569014f0d5" },
   "LuaSnip": { "branch": "master", "commit": "33b06d72d220aa56a7ce80a0dd6f06c70cd82b9d" },
   "aerial.nvim": { "branch": "master", "commit": "1160fb7a15a34b03b7381d95d45560712b5f19d0" },
   "alpha-nvim": { "branch": "main", "commit": "de72250e054e5e691b9736ee30db72c65d560771" },
