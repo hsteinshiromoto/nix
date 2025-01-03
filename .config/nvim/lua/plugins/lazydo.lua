@@ -1,9 +1,8 @@
 return {
 	"Dan7h3x/LazyDo",
-	events = "VeryLazy",
-	opts = {
-		-- your config here
-	},
+	branch = "main",
+	lazy = false,
+	opts = {},
 	config = function(_, opts)
 		require("lazydo").setup(opts)
 	end,
