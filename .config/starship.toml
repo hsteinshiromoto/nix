@@ -85,6 +85,11 @@ truncation_symbol = "…/"
 "Pictures" = " "
 "Developer" = "󰲋 "
 
+[shell]
+disabled = false
+bash_indicator = ""
+zsh_indicator = "Z_"
+
 [git_branch]
 symbol = ""
 style = "bg:color_aqua"

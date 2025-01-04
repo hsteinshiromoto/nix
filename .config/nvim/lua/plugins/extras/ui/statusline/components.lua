@@ -117,6 +117,14 @@ return {
 			return icons.ui.LargeOpenFolder .. " " .. parent_folder -- .. "/" .. current_file
 		end,
 	},
+	tasks = {
+		function()
+			return require("lazydo").get_lualine_stats()
+		end,
+		function()
+			return require("lazydo")._initialized
+		end,
+	},
 }
 
 -- References

@@ -28,7 +28,7 @@ keymap("n", "SS", function()
 	end
 end, { noremap = true, silent = true, desc = "Select whole line excluding start whitespace" })
 -- Remaps for quitting
-keymap("n", "qq", "<cmd>q!<cr>", { desc = "Quit without save" })
+keymap("n", "qq", "<cmd>qa!<cr>", { desc = "Quit without save" })
 
 -- Remaps for copying
 keymap("n", "cc", "cc<esc>", { desc = "Cut and go into normal mode" })
