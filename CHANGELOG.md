@@ -1,6 +1,13 @@
-
-
 # Changelog
+
+## v2.5.1
+
+See link: https://github.com/hsteinshiromoto/dotfiles.linux/pull/4#issuecomment-2571546170
+
+## v2.5.0
+
+See link: https://github.com/hsteinshiromoto/dotfiles.linux/pull/3#issuecomment-2570734306
+
 
 ## v2.1.0
 

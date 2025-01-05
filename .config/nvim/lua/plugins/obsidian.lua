@@ -73,7 +73,7 @@ return {
 		workspaces = {
 			{
 				name = "personal",
-				path = "~/Personal",
+				path = "~/Personal/content/",
 			},
 			{
 				name = "LOR",
