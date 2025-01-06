@@ -7,6 +7,7 @@ return {
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
+		bufdelete = { enabled = true },
 		lazygit = {
 			dependencies = {
 				"nvim-lua/plenary.nvim",
@@ -62,6 +63,13 @@ return {
 			end,
 			desc = "Rename File",
 			mode = { "n" },
+		},
+		{
+			"<leader>bd",
+			function()
+				Snacks.bufdelete()
+			end,
+			desc = "Delete Buffer",
 		},
 	},
 	init = function()
