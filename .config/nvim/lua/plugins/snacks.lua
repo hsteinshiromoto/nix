@@ -6,6 +6,7 @@ return {
 		-- your configuration comes here
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
+		dim = { enabled = true },
 		bigfile = { enabled = true },
 		bufdelete = { enabled = true },
 		lazygit = {
@@ -98,6 +99,7 @@ return {
 					.option("background", { off = "light", on = "dark", name = "Dark Background" })
 					:map("<leader>ub")
 				Snacks.toggle.inlay_hints():map("<leader>uh")
+				Snacks.toggle.dim():map("<leader>uD")
 			end,
 		})
 	end,
