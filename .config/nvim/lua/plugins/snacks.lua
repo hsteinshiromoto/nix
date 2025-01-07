@@ -53,6 +53,7 @@ return {
 		statuscolumn = {
 			enabled = true,
 		},
+		toggle = { enabled = true, which_key = true },
 		win = { enabled = true },
 		words = { enabled = true },
 	},
