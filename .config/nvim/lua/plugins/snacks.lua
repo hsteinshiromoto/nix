@@ -48,6 +48,7 @@ return {
 		},
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
+		scroll = { enabled = true },
 		-- TODO: Find a way for statuscolumn column to work
 		statuscolumn = {
 			enabled = true,
