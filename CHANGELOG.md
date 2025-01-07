@@ -11,7 +11,7 @@ See link: https://github.com/hsteinshiromoto/dotfiles.linux/pull/3#issuecomment-
 
 ## v2.1.0
 
-## Added
+### Added
 
 Plugin Integrations:
 - Added nvim-ufo for enhanced folding capabilities with dependencies on `promise-async` and `nvim-lspconfig`.
@@ -24,7 +24,7 @@ Plugin Integrations:
 - Integrated `neogen` for code documentation generation.
 - Added `knap` for previewing markdown and LaTeX documents.
 
-## Changed
+### Changed
 
 Configuration Enhancements:
 - Updated `statuscol.nvim` configuration to include segments for fold functions, git signs, and absolute line numbers.
@@ -32,18 +32,18 @@ Configuration Enhancements:
 - Updated `nvim-ufo` settings for fold column and level management.
 - Enhanced `lualine.nvim` setup with custom components and icons.
 
-## Fixed
+### Fixed
 
 Bug Fixes:
 - Addressed issues with `statuscol.nvim` related to diagnostic signs.
 - Resolved flickering issue with `lualine.nvim` when using components.git_repo.
 
-## Removed
+### Removed
 
 Deprecated Plugins:
 - Commented out the use of `line-number-change-mode.nvim` due to error messages and color unpredictability.
 
-## Notes
+### Notes
 
 Documentation:
 - Added references and comments for better understanding and future improvements.
