@@ -8,6 +8,6 @@ return {
 		-- "all": Show line numbers in all windows
 		-- "none": Hide line numbers in all synchronized windows
 		-- "others": Hide line numbers in all but the focused window
-		overlap_lines = 3, -- Number of lines to overlap between adjacent windows
+		overlap_lines = 2, -- Number of lines to overlap between adjacent windows
 	},
 }
