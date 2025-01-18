@@ -90,6 +90,47 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Restore cursor to file position in previous editing session [3]
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = function(args)
+		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+		local line_count = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] > 0 and mark[1] <= line_count then
+			vim.cmd('normal! g`"zz')
+		end
+	end,
+})
+
+-- removes trailing whitespace on save [3]
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function()
+		local save_cursor = vim.fn.getpos(".")
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.setpos(".", save_cursor)
+	end,
+})
+
+-- Show cursorline only on active windows [4]
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+	callback = function()
+		if vim.w.auto_cursorline then
+			vim.wo.cursorline = true
+			vim.w.auto_cursorline = false
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+	callback = function()
+		if vim.wo.cursorline then
+			vim.w.auto_cursorline = true
+			vim.wo.cursorline = false
+		end
+	end,
+})
+
 --- References:
 --- 	[1] https://www.dmsussman.org/resources/neovimsetup/
 ---	  [2] https://alpha2phi.medium.com/modern-neovim-init-lua-ab1220e3ecc1
+---	  [3] https://www.reddit.com/r/neovim/comments/1i2xw2m/share_your_favorite_autocmds/?share_id=7RpU15MN3D3myJirWPo1x&utm_content=2&utm_medium=ios_app&utm_name=iossmf&utm_source=share&utm_term=22
+---	  [4] https://github.com/folke/dot/blob/master/nvim/lua/config/autocmds.lua
