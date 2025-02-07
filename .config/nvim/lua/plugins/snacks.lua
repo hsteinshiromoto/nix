@@ -47,6 +47,7 @@ return {
 			enabled = true,
 		},
 		notifier = { enabled = true },
+		picker = { enabled = true },
 		quickfile = { enabled = true },
 		scroll = { enabled = true },
 		-- TODO: Find a way for statuscolumn column to work
@@ -58,6 +59,13 @@ return {
 		words = { enabled = true },
 	},
 	keys = {
+		{
+			"<leader>sng",
+			function()
+				Snacks.picker.grep()
+			end,
+			desc = "Grep",
+		},
 		{
 			"<leader>n",
 			function()
