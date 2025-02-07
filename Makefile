@@ -8,6 +8,10 @@ PLAYBOOK_DOTFILES=dotfiles.yml
 
 .PHONY: clean help tree playbook
 
+## Changelog
+changelog:
+	git cliff --unreleased --prepend CHANGELOG.md
+
 ## Install OS Packages
 packages:
 	@echo "Running Playbook ${PLAYBOOK_PACKAGES}" 
