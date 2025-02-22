@@ -77,7 +77,11 @@ return {
 			},
 			{
 				name = "LOR",
-				path = "~/Work/LOR",
+				path = "~/Work/LOR/Notes",
+			},
+			{
+				name = "recipes",
+				path = "~/Projects/recipes/content/",
 			},
 		},
 		templates = {
