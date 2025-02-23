@@ -114,6 +114,13 @@ return {
 			end,
 			desc = "Delete Buffer",
 		},
+		{
+			"<leader>cR",
+			function()
+				Snacks.rename.rename_file()
+			end,
+			desc = "Rename File",
+		},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
