@@ -148,6 +148,10 @@ return {
       { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
 	},
+	{
+		"Gelio/cmp-natdat",
+		config = true,
+	},
 }
 
 -- References
