@@ -108,7 +108,7 @@ return {
 		-- Optional, alternatively you can customize the frontmatter data.
 		---@return table
 		note_frontmatter_func = function(note)
-			local date_created = tostring(os.date("%Y-%m-%d"))
+			local date_created = note.metadata and note.metadata.date_created or tostring(os.date("%Y-%m-%d"))
 			-- Add the title of the note as an alias.
 			if note.title then
 				note:add_alias(note.title)
