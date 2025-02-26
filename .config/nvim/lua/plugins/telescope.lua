@@ -11,22 +11,22 @@ return {
 		cmd = "Telescope",
 		keys = {
 			-- { "<leader><space>", require("utils").find_files, desc = "Find Files" },
-			{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-			{ "<leader>sr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
-			{ "<leader>r", "<cmd>Telescope registers<cr>", desc = "Registers" },
-			{ ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
+			-- { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+			-- { "<leader>sr", "<cmd>Telescope frecency<cr>", desc = "Recent" },
+			-- { "<leader>r", "<cmd>Telescope registers<cr>", desc = "Registers" },
+			-- { ",", "<cmd>Telescope buffers<cr>", desc = "Telescope List Buffers" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
 			-- { "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
 			-- { "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
 			{ "<leader>st", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
-			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
-			{
-				"<leader>/",
-				function()
-					require("telescope.builtin").current_buffer_fuzzy_find()
-				end,
-				desc = "Fuzzy Finder",
-			},
+			-- { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
+			-- {
+			-- 	"<leader>/",
+			-- 	function()
+			-- 		require("telescope.builtin").current_buffer_fuzzy_find()
+			-- 	end,
+			-- 	desc = "Fuzzy Finder",
+			-- },
 			-- { "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
 		},
 		config = function(_, _)
