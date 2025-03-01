@@ -49,7 +49,7 @@ return {
 			enabled = true,
 		},
 		notifier = { enabled = true },
-		picker = { enabled = true },
+		picker = { enabled = true, hidden = true },
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
@@ -133,7 +133,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				Snacks.picker.files()
+				Snacks.picker.files({ hidden = true })
 			end,
 			desc = "Find Files",
 		},
