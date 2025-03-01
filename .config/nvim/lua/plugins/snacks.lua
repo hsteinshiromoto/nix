@@ -280,6 +280,7 @@ return {
 		},
 		{
 			"<leader>sa",
+			mode = { "n" },
 			function()
 				Snacks.picker.autocmds()
 			end,
@@ -308,6 +309,7 @@ return {
 		},
 		{
 			"<leader>sd",
+			mode = { "n" },
 			function()
 				Snacks.picker.diagnostics()
 			end,
@@ -320,13 +322,13 @@ return {
 			end,
 			desc = "Buffer Diagnostics",
 		},
-		{
-			"<leader>sh",
-			function()
-				Snacks.picker.help()
-			end,
-			desc = "Help Pages",
-		},
+		-- {
+		-- 	"<leader>sh",
+		-- 	function()
+		-- 		Snacks.picker.help()
+		-- 	end,
+		-- 	desc = "Help Pages",
+		-- },
 		{
 			"<leader>sH",
 			function()
