@@ -39,10 +39,10 @@ return {
 		left = {
 			-- Neo-tree filesystem always takes half the screen height
 			{
-				title = "Neo-Tree",
-				ft = "neo-tree",
-				filter = function(buf)
-					return vim.b[buf].neo_tree_source == "filesystem"
+				title = "Explorer",
+				ft = "snacks.picker.list",
+				filter = function()
+					Snacks.explorer()
 				end,
 				size = { height = 0.5 },
 			},
@@ -66,19 +66,19 @@ return {
 			-- 	collapsed = true, -- show window as closed/collapsed on start
 			-- 	open = "Neotree position=right git_status",
 			-- },
-			{
-				title = "Neo-Tree Buffers",
-				ft = "neo-tree",
-				filter = function(buf)
-					return vim.b[buf].neo_tree_source == "buffers"
-				end,
-				pinned = true,
-				collapsed = true, -- show window as closed/collapsed on start
-				open = "Neotree position=top buffers",
-			},
+			-- {
+			-- 	title = "Neo-Tree Buffers",
+			-- 	ft = "neo-tree",
+			-- 	filter = function(buf)
+			-- 		return vim.b[buf].neo_tree_source == "buffers"
+			-- 	end,
+			-- 	pinned = true,
+			-- 	collapsed = true, -- show window as closed/collapsed on start
+			-- 	open = "Neotree position=top buffers",
+			-- },
 
 			-- any other neo-tree windows
-			"neo-tree",
+			-- "neo-tree",
 		},
 	},
 }
