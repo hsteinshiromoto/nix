@@ -18,7 +18,7 @@ return {
 			-- { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Telescope List Keymaps" },
 			-- { "<leader>.", "<cmd>Telescope file_browser<cr>", desc = "Telescope File Browser" },
 			-- { "<leader>ps", "<cmd>Telescope repo list<cr>", desc = "Search" },
-			{ "<leader>st", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
+			-- { "<leader>st", "<cmd>Telescope help_tags<cr>", desc = "Telescope Tags" },
 			-- { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Telescode Live Grep" },
 			-- {
 			-- 	"<leader>/",
