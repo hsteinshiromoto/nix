@@ -6,6 +6,7 @@
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "calendar-vim": { "branch": "master", "commit": "a7e73e02c92566bf427b2a1d6a61a8f23542cc21" },
   "catppuccin": { "branch": "main", "commit": "7ab1a6ec70a664ecb95d84669efc20aaf4f4ed1b" },
+  "claude-code.nvim": { "branch": "main", "commit": "f3526ade4bf30d252d5e73b690755536f7e862f6" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
   "cmp-natdat": { "branch": "main", "commit": "0fcbd9aac5f15104b2c08fc43d856ac15778500a" },
