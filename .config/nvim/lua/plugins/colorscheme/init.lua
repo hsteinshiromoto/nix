@@ -1,11 +1,12 @@
 return {
 	{
 		"folke/styler.nvim",
+		-- dependencies = "ellisonleao/gruvbox",
 		event = "VeryLazy",
 		config = function()
 			require("styler").setup({
 				themes = {
-					markdown = { colorscheme = "gruvbox" },
+					-- markdown = { colorscheme = "gruvbox" },
 				},
 			})
 		end,
