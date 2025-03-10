@@ -12,6 +12,8 @@ return {
       { "<leader>bt", "<cmd>TodoTrouble<cr>", desc = "ToDo (Trouble)" },
       { "<leader>bT", "<cmd>TodoTelescope<cr>", desc = "ToDo" },
       { "<leader>td", "<cmd>TodoLocList<cr>", desc = "ToDo Location List" },
+{ "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo" },
+    { "<leader>sT", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
     },
 		opts = {
 			signs = true,
