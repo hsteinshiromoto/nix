@@ -88,6 +88,79 @@ vim.keymap.set("n", "i", function()
 	end
 end, { expr = true })
 
+-- ---
+-- The following code move the cursor to the end of a surrounding.
+-- ---
+function move_to_surrounded_word_end()
+	local line = vim.fn.getline(".")
+	local col = vim.fn.col(".")
+	local char_under_cursor = string.sub(line, col, col)
+
+	-- Define pairs of surrounding characters
+	local pairs = {
+		["("] = ")",
+		["["] = "]",
+		["{"] = "}",
+		["'"] = "'",
+		['"'] = '"',
+		["<"] = ">",
+	}
+
+	-- Find the end of the surrounded text
+	local depth = 1
+	local matching_char = pairs[char_under_cursor]
+	local i = col + 1
+
+	-- If we're not on an opening character, search backward first to find one
+	if not matching_char then
+		local matching_char_pos = math.huge -- Initialize with a very large value
+
+		for open_char, close_char in pairs(pairs) do
+			local open_pos = string.find(string.sub(line, 1, col), open_char .. ".*$")
+			if open_pos then
+				local close_pos = string.find(line, close_char, col)
+				if close_pos and (close_pos < matching_char_pos) then
+					matching_char = close_char
+					matching_char_pos = close_pos
+					i = open_pos + 1
+					char_under_cursor = open_char
+				end
+			end
+		end
+	end
+
+	if matching_char then
+		while i <= #line do
+			local curr_char = string.sub(line, i, i)
+
+			if curr_char == char_under_cursor then
+				depth = depth + 1
+			elseif curr_char == matching_char then
+				depth = depth - 1
+				if depth == 0 then
+					-- Move to one position before the closing character
+					vim.fn.cursor(vim.fn.line("."), i - 1)
+					return
+				end
+			end
+
+			i = i + 1
+		end
+	end
+end
+
+-- Map it to a key combination, for example <leader>e
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>se",
+	"<cmd>lua move_to_surrounded_word_end()<CR>",
+	{ noremap = true, silent = true }
+)
+
+-- ---
+-- End
+-- ---
+
 -- References
 -- 	[1] https://alpha2phi.medium.com/modern-neovim-init-lua-ab1220e3ecc1
 -- 	[2] https://alpha2phi.medium.com/modern-neovim-configuration-hacks-93b13283969f
