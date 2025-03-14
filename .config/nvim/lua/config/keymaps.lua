@@ -154,7 +154,7 @@ vim.api.nvim_set_keymap(
 	"n",
 	"<leader>se",
 	"<cmd>lua move_to_surrounded_word_end()<CR>",
-	{ noremap = true, silent = true }
+	{ noremap = true, silent = true, desc = "Move cursor to the end of a surround" }
 )
 
 -- ---
