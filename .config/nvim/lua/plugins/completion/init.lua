@@ -8,12 +8,14 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			{ "Gelio/cmp-natdat", config = true },
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local icons = require("config.icons")
 			local neogen = require("neogen")
+			local natdat = require("natdat")
 
 			local has_words_before = function()
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -75,6 +77,7 @@ return {
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{ name = "natdat" },
 				}),
 				formatting = {
 					fields = { "kind", "abbr", "menu" },

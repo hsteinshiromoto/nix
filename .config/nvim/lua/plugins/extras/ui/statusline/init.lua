@@ -10,7 +10,8 @@ return {
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "gruvbox-material",
+					-- theme = "gruvbox-material",
+					theme = "catppuccin",
 					component_separators = { left = icons.ui.DividerRight, right = icons.ui.DividerLeft },
 					section_separators = { left = icons.ui.BoldDividerRight, right = icons.ui.BoldDividerLeft },
 					disabled_filetypes = {

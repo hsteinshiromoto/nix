@@ -41,6 +41,17 @@ local M = {
 		require("nvim-dap-virtual-text").setup({
 			commented = true,
 		})
+		-- ----
+		-- Start of catppuccin settings
+		-- ----
+		local sign = vim.fn.sign_define
+
+		sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+		sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+		sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+		-- ----
+		-- End of catppuccin settings
+		-- ----
 
 		local dap, dapui = require("dap"), require("dapui")
 		dapui.setup({})
