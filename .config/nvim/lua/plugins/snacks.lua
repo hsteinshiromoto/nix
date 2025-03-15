@@ -408,6 +408,13 @@ return {
 			desc = "Undo History",
 		},
 		{
+			"<localleader>T",
+			function()
+				Snacks.picker.grep({ search = "\\[ \\] TODO:", sorter = { reverse = true } })
+			end,
+			desc = "Search Incomplete TODOs",
+		},
+		{
 			"<leader>uC",
 			function()
 				Snacks.picker.colorschemes()
