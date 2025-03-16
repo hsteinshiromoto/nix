@@ -410,7 +410,7 @@ return {
 		{
 			"<localleader>T",
 			function()
-				Snacks.picker.grep({ search = "\\[ \\] TODO:", sorter = { reverse = true } })
+				Snacks.picker.grep({ search = "\\[ \\]", sorter = { reverse = true } })
 			end,
 			desc = "Search Incomplete TODOs",
 		},
