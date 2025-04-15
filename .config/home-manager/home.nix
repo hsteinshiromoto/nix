@@ -20,6 +20,7 @@
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
+		pkgs.eza
     pkgs.hello
 		pkgs.tmux
 		pkgs.lazygit
