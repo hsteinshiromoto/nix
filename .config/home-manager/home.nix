@@ -30,6 +30,7 @@
     pkgs.hello
 		pkgs.lazygit
 		pkgs.nerd-fonts.jetbrains-mono
+		pkgs.ripgrep
 		pkgs.tmux
     pkgs.zoxide
 		pkgs.zsh
