@@ -25,6 +25,7 @@
 		pkgs.eza
 		pkgs.fd
     pkgs.fzf
+		pkgs.gitflow
     pkgs.hello
 		pkgs.lazygit
 		pkgs.nerd-fonts.jetbrains-mono
