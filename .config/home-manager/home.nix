@@ -21,6 +21,7 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
 		pkgs.bat
+		pkgs.btop
 		pkgs.eza
     pkgs.fzf
     pkgs.hello
