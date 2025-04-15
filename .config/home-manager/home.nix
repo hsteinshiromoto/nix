@@ -31,6 +31,7 @@
 		pkgs.lazygit
 		pkgs.nerd-fonts.jetbrains-mono
 		pkgs.ripgrep
+		pkgs.starship
 		pkgs.tmux
 		pkgs.yazi
     pkgs.zoxide
