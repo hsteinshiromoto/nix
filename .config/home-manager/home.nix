@@ -22,6 +22,7 @@
     # # "Hello, world!" when run.
 		pkgs.bat
 		pkgs.btop
+		pkgs.cargo
 		pkgs.eza
 		pkgs.fd
     pkgs.fzf
