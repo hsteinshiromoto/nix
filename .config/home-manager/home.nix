@@ -34,6 +34,7 @@
 		pkgs.starship
 		pkgs.tmux
 		pkgs.tmuxinator
+		pkgs.uv
 		pkgs.yazi
     pkgs.zoxide
 		pkgs.zsh
