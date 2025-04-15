@@ -33,6 +33,7 @@
 		pkgs.ripgrep
 		pkgs.starship
 		pkgs.tmux
+		pkgs.tmuxinator
 		pkgs.yazi
     pkgs.zoxide
 		pkgs.zsh
