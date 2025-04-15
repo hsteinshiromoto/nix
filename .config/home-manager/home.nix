@@ -23,6 +23,7 @@
 		pkgs.bat
 		pkgs.btop
 		pkgs.eza
+		pkgs.fd
     pkgs.fzf
     pkgs.hello
 		pkgs.lazygit
