@@ -32,6 +32,7 @@
 		pkgs.nerd-fonts.jetbrains-mono
 		pkgs.ripgrep
 		pkgs.tmux
+		pkgs.yazi
     pkgs.zoxide
 		pkgs.zsh
     # # It is sometimes useful to fine-tune packages, for example, by applying
