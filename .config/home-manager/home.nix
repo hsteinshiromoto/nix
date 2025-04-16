@@ -95,6 +95,10 @@
   #
   #  /etc/profiles/per-user/hsteinshiromoto/etc/profile.d/hm-session-vars.sh
   #
+	home.sessionPath = [
+		"$HOME/.nix-profile/bin"
+		"/opt/nvim-linux-x86_64/bin"
+	];
   home.sessionVariables = {
     EDITOR = "nvim";
   };
