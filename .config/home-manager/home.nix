@@ -71,9 +71,9 @@
 		# References:
 		#   [1] https://github.com/omerxx/dotfiles/blob/master/nix-darwin/home.nix
 		# ---
-		".zshrc".source = ~/dotfiles/.zshrc;
-		".config/starship.toml".source = ~/dotfiles/.config/starship.toml;
-		".tmux.conf".source = ~/dotfiles/.tmux.conf;
+		".zshrc".source = "${config.home.homeDirectory}/dotfiles/.zshrc";
+		".config/starship.toml".source = "${config.home.homeDirectory}/dotfiles/.config/starship.toml";
+		".tmux.conf".source = "${config.home.homeDirectory}/dotfiles/.tmux.conf";
 		".config/nvim" = {
 			source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
   };
