@@ -79,6 +79,7 @@
   };
 
   };
+
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -103,6 +104,18 @@
     EDITOR = "nvim";
   };
 
-  # Let Home Manager install and manage itself.
+   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.bash.enable = true;
+  programs.zsh ={
+			enable = true;
+    initExtra = ''
+      # Add any additional configurations here
+      export PATH=/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
+    '';
+	};
+
 }
