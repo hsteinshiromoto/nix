@@ -67,6 +67,10 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+		# ---
+		# References:
+		#   [1] https://github.com/omerxx/dotfiles/blob/master/nix-darwin/home.nix
+		# ---
 		".zshrc".source = ~/dotfiles/.zshrc;
 		".config/nvim" = {
 			source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
