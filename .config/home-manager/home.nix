@@ -86,7 +86,7 @@
   #  /etc/profiles/per-user/hsteinshiromoto/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
