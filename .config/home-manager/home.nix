@@ -67,8 +67,12 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+		".zshrc".source = ~/dotfiles/.zshrc;
+		".config/nvim" = {
+			source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
   };
 
+  };
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -89,11 +93,6 @@
     EDITOR = "nvim";
   };
 
-  home.file = {
-  ".config/nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
-  };
-  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
