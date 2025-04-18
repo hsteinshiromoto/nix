@@ -134,7 +134,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				Snacks.picker.files({ hidden = true })
+				Snacks.picker.files({ hidden = true, ignored = false })
 			end,
 			desc = "Find Files",
 		},
@@ -410,9 +410,28 @@ return {
 		{
 			"<localleader>T",
 			function()
-				Snacks.picker.grep({ search = "\\[ \\] TODO:", sorter = { reverse = true } })
+				Snacks.picker.grep({
+					search = "- \\[ \\]",
+					sorter = { reverse = true },
+					-- To search only in specific directories:
+					search_dirs = {
+						"01_Atlas/",
+						"02_Calendar/",
+						"03_Cards/",
+						"04_Encounters/",
+						"05_Spaces/",
+						"06_Sources/",
+						"_attachments_/",
+					},
+					-- To exclude certain directories/files:
+					file_ignore_patterns = { "**.obsidian/*", "%.git/", "_data_/", "_logs_/", "_src_/", "data/" },
+					-- Limit search to markdown files only:
+					-- glob_pattern = "*.md",
+					-- Alternatively, you could use type_filter:
+					type_filter = "md",
+				})
 			end,
-			desc = "Search Incomplete TODOs",
+			desc = "Search Incomplete TODOs in Markdown",
 		},
 		{
 			"<leader>uC",
