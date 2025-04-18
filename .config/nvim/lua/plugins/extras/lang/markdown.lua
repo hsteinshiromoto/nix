@@ -70,4 +70,29 @@ return {
 			})
 		end,
 	},
+	{
+		"hsteinshiromoto/markdown_mover.nvim", -- For GitHub hosted plugin
+		-- or local plugin in your config
+		-- dir = "~/path/to/markdown-mover.nvim",
+		-- dev = true, -- For local development
+		lazy = false,
+		ft = "markdown",
+		config = function()
+			require("markdown_mover").setup({
+				tag_field = "tags", -- The name of the frontmatter field containing tags
+				tag_rules = {},
+				default_path = nil, -- Default path if no matching tag (nil to disable)
+				auto_move = false, -- Move files automatically on save
+				verbose = true, -- Show notifications
+				keymap = "<leader>mm", -- Keymap for manual moving (empty to disable)
+				ignore_dirs = { -- Directories to ignore (can be patterns)
+					".*/meta/.*", -- Ignore meta directories
+					".*/logs/.*", -- Ignore log directories
+					".*/src/.*", -- Ignore source code directories
+					".*/notebooks/.*", -- Ignore notebook directories
+					"~/Documents/archive/.*", -- Additional custom ignore patterns
+				},
+			})
+		end,
+	},
 }

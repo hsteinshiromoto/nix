@@ -77,7 +77,11 @@ return {
 			},
 			{
 				name = "LOR",
-				path = "~/Work/LOR",
+				path = "~/Work/LOR/Notes",
+			},
+			{
+				name = "recipes",
+				path = "~/Projects/recipes/content/",
 			},
 		},
 		templates = {
@@ -104,11 +108,11 @@ return {
 		-- Optional, alternatively you can customize the frontmatter data.
 		---@return table
 		note_frontmatter_func = function(note)
-			local date_created = tostring(os.date("%Y-%m-%d"))
+			local date_created = note.metadata and note.metadata.date_created or tostring(os.date("%Y-%m-%d"))
 			-- Add the title of the note as an alias.
 			if note.title then
 				note:add_alias(note.title)
-				if note.title ~= date_created then
+				if not string.find(note.title, tostring(date_created), 1, true) then
 					note:add_alias(date_created .. " " .. note.title)
 				end
 			end
@@ -136,7 +140,7 @@ return {
 			return out
 		end,
 		-- Keep the following setting for wiki links for Obsidian app to find the linked files
-		wiki_link_func = "prepend_note_path",
+		wiki_link_func = "prepend_note_id",
 	},
 }
 -- References:
