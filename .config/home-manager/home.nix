@@ -122,8 +122,5 @@
 		enable = true;
 		userName = "Humberto STEIN SHIROMOTO";
 		userEmail = "hsteinshiromoto@gmail.com";
-		includes = [
-			{ path = "~/.gitconfig.local"; }
-		];
 	};
 }
