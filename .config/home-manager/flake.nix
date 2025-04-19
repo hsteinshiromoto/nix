@@ -74,3 +74,8 @@
 			};
     };
 }
+# ---
+# References:
+# ---
+#   [1] https://github.com/Misterio77/nix-starter-configs/tree/main
+#   [2] https://github.com/omerxx/dotfiles/blob/master/nix-darwin/flake.nix
