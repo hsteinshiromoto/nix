@@ -26,6 +26,7 @@
 		pkgs.eza
 		pkgs.fd
     pkgs.fzf
+		pkgs.git
 		pkgs.gitflow
 		pkgs.gnupg
     pkgs.hello
