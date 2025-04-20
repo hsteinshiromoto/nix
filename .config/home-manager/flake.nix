@@ -76,6 +76,12 @@
 					# Optionally use extraSpecialArgs
 					# to pass through arguments to home.nix
 				};
+
+				"hsteinshiromoto@MacBook-Pro-2023.local" = home-manager.lib.homeManagerConfiguration {
+					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
+					extraSpecialArgs = {inherit inputs outputs;};
+				};
+
 			};
     };
 }
