@@ -73,7 +73,17 @@
 							username = host.username;
 							homeDirectory = host.homeDirectory;
 						};
-						modules = [ ./home.nix ];
+						modules =
+							let
+								systemSpecificModule =
+									if nixpkgs.lib.strings.hasSuffix "darwin" host.system then
+										./home-darwin.nix
+									else if nixpkgs.lib.strings.hasSuffix "linux" host.system then
+										./home-linux.nix
+									else
+										throw "Unsupported system: ${host.system}";
+							in
+							[ ./home-common.nix systemSpecificModule ];
 					};
 			}) hosts);
     };
