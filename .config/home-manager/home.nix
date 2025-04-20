@@ -1,9 +1,9 @@
-{ config, pkgs, homeDirectory, ... }:
+{ config, pkgs, homeDirectory, username, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "hsteinshiromoto";
+  home.username = username;
   home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
