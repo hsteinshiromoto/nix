@@ -28,8 +28,8 @@
 			forAllSystems = nixpkgs.lib.genAttrs systems;
 
 			hosts = [
-				{name = "MacBook-Pro-2023.local";}
-				{name = "servidor";}
+				{ name = "MacBook-Pro-2023.local"; system = "aarch64-darwin"; username = "hsteinshiromoto"; homeDirectory = "/Users/hsteinshiromoto"; }
+				{ name = "servidor"; system = "x86_64-linux"; username = "hsteinshiromoto"; homeDirectory = "/home/hsteinshiromoto"; }
 			];
 		in {
 			# Your custom packages
@@ -64,26 +64,18 @@
 
 			# Standalone home-manager configuration entrypoint
 			# Available through 'home-manager --flake .#your-username@your-hostname'
-			homeConfigurations = {
-        "hsteinshiromoto@servidor" = home-manager.lib.homeManagerConfiguration {
-					pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-					extraSpecialArgs = {inherit inputs outputs; homeDirectory = "/home/hsteinshiromoto"; username = "hsteinshiromoto";};
-
-					# Specify your home configuration modules here, for example,
-					# the path to your home.nix.
-					modules = [ ./home.nix ];
-
-					# Optionally use extraSpecialArgs
-					# to pass through arguments to home.nix
-				};
-
-				"hsteinshiromoto@MacBook-Pro-2023.local" = home-manager.lib.homeManagerConfiguration {
-					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
-					extraSpecialArgs = {inherit inputs outputs; homeDirectory = "/Users/hsteinshiromoto"; username = "hsteinshiromoto";};
-					modules = [ ./home.nix ];
-				};
-
-			};
+			homeConfigurations = nixpkgs.lib.listToAttrs (nixpkgs.lib.map (host: {
+					name = "${host.username}@${host.name}";
+					value = home-manager.lib.homeManagerConfiguration {
+						pkgs = nixpkgs.legacyPackages.${host.system};
+						extraSpecialArgs = {
+							inherit inputs outputs;
+							username = host.username;
+							homeDirectory = host.homeDirectory;
+						};
+						modules = [ ./home.nix ];
+					};
+			}) hosts);
     };
 }
 # ---
