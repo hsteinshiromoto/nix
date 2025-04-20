@@ -26,6 +26,11 @@
 			# This is a function that generates an attribute by calling a function you
 			# pass to it, with each system as an argument
 			forAllSystems = nixpkgs.lib.genAttrs systems;
+
+			hosts = [
+				{name = "MacBook-Pro-2023.local";}
+				{name = "servidor";}
+			];
 		in {
 			# Your custom packages
 			# Accessible through 'nix build', 'nix shell', etc
