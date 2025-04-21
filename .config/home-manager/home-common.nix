@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, homeDirectory, username, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "hsteinshiromoto";
-  home.homeDirectory = "/home/hsteinshiromoto";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -26,6 +26,7 @@
 		pkgs.eza
 		pkgs.fd
     pkgs.fzf
+		pkgs.git
 		pkgs.gitflow
 		pkgs.gnupg
     pkgs.hello
@@ -115,14 +116,12 @@
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
+			builtins.readFile ./zshrc;
     '';
 	};
 	programs.git = {
 		enable = true;
 		userName = "Humberto STEIN SHIROMOTO";
 		userEmail = "hsteinshiromoto@gmail.com";
-		includes = [
-			{ path = "~/.gitconfig.local"; }
-		];
 	};
 }
