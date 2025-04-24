@@ -63,7 +63,7 @@ in
   };
 
   # home-manager.users.hsteinshiromoto = import /home/hsteinshiromoto/.config/home-manager/home-common.nix;
-  home-manager.users.hsteinshiromoto = { pkgs, ... }: {
+  home-manager.users.hsteinshiromoto = { config, pkgs, homeDirectory, username, ... }: {
 	  # Set the home-manager version to match your NixOS version
 	  home.stateVersion = "23.11";
 	  
