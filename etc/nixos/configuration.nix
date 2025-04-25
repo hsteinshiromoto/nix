@@ -1,6 +1,6 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# and in the NixOS manual (accessible by running 'nixos-help').
 
 { config, pkgs, ... }:
 let
@@ -16,6 +16,8 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+	security.sudo.enable = true;
 
   networking.hostName = "servidor"; # Define your hostname.
   networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
@@ -53,7 +55,7 @@ in
     xkbVariant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.hsteinshiromoto = {
     isNormalUser = true;
     description = "Humberto STEIN SHIROMOTO";
@@ -62,17 +64,17 @@ in
     shell = pkgs.zsh;
   };
 
-  # home-manager.users.hsteinshiromoto = import /home/hsteinshiromoto/.config/home-manager/home-common.nix;
-  home-manager.users.hsteinshiromoto = { config, pkgs, homeDirectory, username, ... }: {
+  home-manager.users.hsteinshiromoto = /home/hsteinshiromoto/.config/home-manager/home-common.nix;
+  # home-manager.users.hsteinshiromoto = { config, pkgs, homeDirectory, username, ... }: {
 	  # Set the home-manager version to match your NixOS version
-	  home.stateVersion = "23.11";
-	  
+	  # home.stateVersion = "23.11";
+
 	  # Enable home-manager itself
-	  programs.home-manager.enable = true;
-	  
+	  # programs.home-manager.enable = true;
+
 	  # Enable home-manager's systemd user service
-	  systemd.user.startServices = "sd-switch";
-	  
+	  # systemd.user.startServices = "sd-switch";
+
 	  # Add your home-manager configurations here
 	  # For example:
 	  # programs.git = {
@@ -80,8 +82,8 @@ in
 	  #   userName = "Your Name";
 	  #   userEmail = "your.email@example.com";
 	  # };
-   };
- 
+   # };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -106,7 +108,7 @@ in
 	neovim
 	ripgrep
 	starship
-	tmux	
+	tmux
 	tmuxinator
 	vim
 	wget
@@ -156,7 +158,7 @@ in
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
