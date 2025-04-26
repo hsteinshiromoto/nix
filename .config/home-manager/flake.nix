@@ -55,7 +55,18 @@
 			nixosConfigurations = {
 				servidor = nixpkgs.lib.nixosSystem {
 					specialArgs = {inherit inputs outputs;};
-					# modules = [
+					modules =
+						let
+								configuration =
+									if nixpkgs.lib.strings.hasSuffix "servidor" host.name then
+										/etc/nixos/configuration.nix
+									else
+										(pkgs.writeShellScriptBin "my-hello" ''
+									    echo "Not running servidor"
+    								'')
+							in
+							[ configuration ];
+						# [
 					# 	# > Our main nixos configuration file <
 					# 	./nixos/configuration.nix
 					# ];
