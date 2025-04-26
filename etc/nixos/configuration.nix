@@ -78,6 +78,7 @@ in
     neovim
     ripgrep
     starship
+    stow
     tmux
     tmuxinator
     yazi
