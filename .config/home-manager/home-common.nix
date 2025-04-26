@@ -20,29 +20,29 @@
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-		pkgs.awscli
-		pkgs.bat
-		pkgs.btop
-		pkgs.cargo
-		pkgs.eza
-		pkgs.fd
-    pkgs.fzf
-		pkgs.git
-		pkgs.gitflow
-		pkgs.gnupg
-    pkgs.hello
-		pkgs.lazygit
-		pkgs.nerd-fonts.jetbrains-mono
-		pkgs.ripgrep
-		pkgs.starship
-		pkgs.tmux
-		pkgs.tmuxinator
-		pkgs.uv
-		pkgs.yazi
-    pkgs.zoxide
-		pkgs.zsh
-		pkgs.zsh-autosuggestions
-		pkgs.zsh-syntax-highlighting
+		# pkgs.awscli
+		# pkgs.bat
+		# pkgs.btop
+		# pkgs.cargo
+		# pkgs.eza
+		# pkgs.fd
+		#   pkgs.fzf
+		# pkgs.git
+		# pkgs.gitflow
+		# pkgs.gnupg
+		#   pkgs.hello
+		# pkgs.lazygit
+		# pkgs.nerd-fonts.jetbrains-mono
+		# pkgs.ripgrep
+		# pkgs.starship
+		# pkgs.tmux
+		# pkgs.tmuxinator
+		# pkgs.uv
+		# pkgs.yazi
+		#   pkgs.zoxide
+		# pkgs.zsh
+		# pkgs.zsh-autosuggestions
+		# pkgs.zsh-syntax-highlighting
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
