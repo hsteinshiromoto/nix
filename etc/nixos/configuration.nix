@@ -65,9 +65,23 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bat
+    btop
+    cargo
+    eza
+    fd
+    fzf
     git
+    gitflow
+    jetbrains-mono
     lazygit
     neovim
+    ripgrep
+    starship
+    tmux
+    tmuxinator
+    yazi
+    zoxide
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
