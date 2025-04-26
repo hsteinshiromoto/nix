@@ -55,7 +55,7 @@ in
   users.users.hsteinshiromoto = {
     isNormalUser = true;
     description = "Humberto STEIN SHIROMOTO";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
   };
 
@@ -77,6 +77,23 @@ in
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  programs = {
+	zsh = {
+		enable = true;
+		interactiveShellInit = ''
+			export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+		'';
+	};
+  };
+
+
+  virtualisation.docker = {
+	enable = true;
+	rootless = {
+  		enable = true;
+  		setSocketVariable = true;
+	};
+  };
 
   # List services that you want to enable:
 
