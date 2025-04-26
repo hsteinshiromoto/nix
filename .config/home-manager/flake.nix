@@ -63,13 +63,9 @@
 									else
 										(pkgs.writeShellScriptBin "my-hello" ''
 									    echo "Not running servidor"
-    								'')
-							in
+    								'');
+						in
 							[ configuration ];
-						# [
-					# 	# > Our main nixos configuration file <
-					# 	./nixos/configuration.nix
-					# ];
 				};
 			};
 
