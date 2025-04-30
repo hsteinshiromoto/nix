@@ -31,6 +31,7 @@
 		pkgs.tmuxinator
 		pkgs.uv
 		pkgs.yazi
+		pkgs.yq
 		pkgs.zoxide
         ];
 
@@ -47,6 +48,7 @@
 			"ghostty"
 			"microsoft-teams"
 			"obsidian"
+			"spotify"
 			"the-unarchiver"
 			"visual-studio-code"
 		];
