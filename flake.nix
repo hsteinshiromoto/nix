@@ -17,6 +17,7 @@
         [
 		pkgs.bat
 		pkgs.btop
+		pkgs.claude-code
 		pkgs.eza
 		pkgs.fzf
 		pkgs.git
@@ -44,6 +45,7 @@
 			"neovim"
 		];
 		casks = [
+			"cursor"
 			"docker"
 			"firefox"
 			"ghostty"
@@ -72,6 +74,8 @@
       fonts.packages = [
 	pkgs.nerd-fonts.jetbrains-mono
       ];
+
+			nixpkgs.config.allowUnfree = true;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
