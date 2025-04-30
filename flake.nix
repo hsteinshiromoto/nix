@@ -14,15 +14,18 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ 
+        [
 		pkgs.bat
 		pkgs.btop
 		pkgs.eza
+		pkgs.fzf
 		pkgs.git
 		pkgs.gitflow
 		pkgs.gnupg
 		pkgs.lazygit
 		pkgs.mkalias
+		pkgs.nodejs_23
+		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
 		pkgs.tmuxinator
@@ -31,7 +34,7 @@
 		pkgs.zoxide
         ];
 
-	     
+
       homebrew = {
 		enable = true;
 		brews = [
@@ -59,7 +62,7 @@
 			"Microsoft Word" = 462054704;
 			"OneDrive" = 823766827;
 			"Windows App" = 1295203466;
-			
+
 	        };
 
 	};
