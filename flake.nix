@@ -26,6 +26,7 @@
 		pkgs.lazygit
 		pkgs.mkalias
 		pkgs.nodejs_23
+		pkgs.ollama
 		pkgs.pass
 		pkgs.starship
 		pkgs.stow
