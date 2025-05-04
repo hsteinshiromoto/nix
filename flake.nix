@@ -54,6 +54,7 @@
 			"ghostty"
 			"microsoft-teams"
 			"obsidian"
+			"popclip"
 			"spotify"
 			"the-unarchiver"
 			"visual-studio-code"
