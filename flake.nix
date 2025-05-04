@@ -52,6 +52,7 @@
 			"docker"
 			"firefox"
 			"ghostty"
+			"hiddenbar"
 			"microsoft-teams"
 			"obsidian"
 			"popclip"
