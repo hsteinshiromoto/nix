@@ -16,32 +16,36 @@ _darcs
 \.hg
 
 \.git
-\.gitignore
-\bin
-\usr
-#!TODO: Investigate why the following dirs throw a regex error when run with stow . --adopt
-# \macos
-# \roles
-# \ubuntu
+
+bin
+keyboards
+macos
+roles
+usr
+utils
 
 # ---
 # Files
 # ---
-
+\.gitignore
+\.gitconfig
+\.stow-local-ignore
+CHANGELOG\.md
+CLAUDE\.md
+LICENSE\.md
 Makefile
-\#*.code-workspace
+nvim\.Dockerfile
+README\.md
+todo\.txt
 
-\#*.DS_Store
+.*\.code-workspace
+
+.*\.DS_Store
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files
 
-^/README.*
-^/LICENSE.*
-^/COPYING
-
-\#*.yml
-\#*.yaml
-nuphy_air75_v2.layout.json
-\#*.swp
-.stow-local-ignore
+.*\.yml
+.*\.yaml
+nuphy_air75_v2\.layout\.json
+.*\.swp
