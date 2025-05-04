@@ -65,6 +65,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    autoconf		# Build essential
+    automake		# Build essential
     bat
     btop
     cargo
@@ -74,11 +76,16 @@ in
     fzf
     git
     gitflow
+    gcc 		# Build essential
+    gnumake		# Build essential
     jetbrains-mono
     lazygit
+    libiconv		# Build essential
+    libtool		# Build essential
     neovim
     nodejs
     pass
+    pkg-config # Build essential
     ripgrep
     starship
     stow
