@@ -77,6 +77,7 @@ in
     jetbrains-mono
     lazygit
     neovim
+    nodejs
     pass
     ripgrep
     starship
