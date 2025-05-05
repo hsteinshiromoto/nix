@@ -50,6 +50,7 @@
 		casks = [
 			"cursor"
 			"docker"
+			"espanso"
 			"firefox"
 			"ghostty"
 			"hiddenbar"
