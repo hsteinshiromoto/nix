@@ -20,6 +20,7 @@
 		pkgs.btop
 		pkgs.claude-code
 		pkgs.eza
+		pkgs.fd
 		pkgs.fzf
 		pkgs.git
 		pkgs.gitflow
@@ -30,6 +31,7 @@
 		pkgs.nodejs_23
 		pkgs.ollama
 		pkgs.pass
+		pkgs.ripgrep
 		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
