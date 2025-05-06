@@ -137,12 +137,17 @@ in
 	tailscale = {
 		enable = true;
 	};
+	syncthing = {
+		enable = true;
+		openDefaultPorts = true;
+		guiAddress = "0.0.0.0:8384";
+	};
   };
 
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 8384 22000 ];
+  networking.firewall.allowedUDPPorts = [ 21027 22000 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
