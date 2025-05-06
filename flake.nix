@@ -55,6 +55,7 @@
 			"espanso"
 			"firefox"
 			"ghostty"
+			"google-chrome"
 			"hiddenbar"
 			"microsoft-teams"
 			"obsidian"
