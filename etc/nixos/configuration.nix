@@ -119,12 +119,16 @@ in
   #   enableSSHSupport = true;
   # };
   programs = {
-	zsh = {
-		enable = true;
-		interactiveShellInit = ''
-			export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-		'';
-	};
+		zsh = {
+			enable = true;
+			interactiveShellInit = ''
+				export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+			'';
+		};
+		neovim = {
+			 enable = true;
+			 defaultEditor = true;
+		};
   };
 
 
