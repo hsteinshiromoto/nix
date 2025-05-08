@@ -58,6 +58,7 @@ in
 			description = "Humberto STEIN SHIROMOTO";
 			extraGroups = [ "networkmanager" "wheel" "docker" ];
 			packages = with pkgs; [];
+      # openssh.authorizedKeys.keyFiles = [ "/path/to/keys.pub" ];
   	};
 		users.git = {
     isNormalUser = true;
