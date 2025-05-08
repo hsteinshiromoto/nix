@@ -161,7 +161,7 @@ in
 
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 8384 22000 ];
+  networking.firewall.allowedTCPPorts = [ 22 8384 22000 55666 ];
   networking.firewall.allowedUDPPorts = [ 21027 22000 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
