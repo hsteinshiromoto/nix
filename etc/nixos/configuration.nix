@@ -5,6 +5,9 @@
 { config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz;
+	unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
+			config = config.nixpkgs.config;
+	};
 in
 {
   imports =
@@ -94,7 +97,7 @@ in
     lazygit
     libiconv		# Build essential
     libtool		# Build essential
-    neovim
+    unstable.neovim
     nodejs
     pass
     pkg-config # Build essential
