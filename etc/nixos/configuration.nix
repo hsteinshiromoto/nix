@@ -52,12 +52,23 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.hsteinshiromoto = {
+  users = {
+		users.hsteinshiromoto = {
+			isNormalUser = true;
+			description = "Humberto STEIN SHIROMOTO";
+			extraGroups = [ "networkmanager" "wheel" "docker" ];
+			packages = with pkgs; [];
+  	};
+		users.git = {
     isNormalUser = true;
-    description = "Humberto STEIN SHIROMOTO";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [];
+    home = "/home/git";
+    description = "Git user";
+    shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
+    # openssh.authorizedKeys.keys = [
+    #  "ssh-rsa AAAA..." # Add your SSH public key here
+    #];
   };
+	};
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
