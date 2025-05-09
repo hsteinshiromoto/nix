@@ -1,9 +1,0 @@
-- name: Setup Dotfiles
-  hosts: localhost
-  gather_facts: yes
-
-  tasks:
-  - name: Stow dotfiles
-    ansible.builtin.shell:
-      cmd: "cd $HOME/dotfiles && stow . --adopt && git restore ." 
-  
