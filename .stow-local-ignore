@@ -1,0 +1,51 @@
+# Comments and blank lines are allowed.
+
+# \.ssh/*
+# \.gnupg/*
+
+# ---
+# Folders
+# ---
+RCS
+.+,v
+
+CVS
+
+\.svn
+_darcs
+\.hg
+
+\.git
+
+bin
+keyboards
+macos
+roles
+usr
+utils
+
+# ---
+# Files
+# ---
+\.gitignore
+\.gitconfig
+\.stow-local-ignore
+CHANGELOG\.md
+CLAUDE\.md
+LICENSE\.md
+Makefile
+nvim\.Dockerfile
+README\.md
+todo\.txt
+
+.*\.code-workspace
+
+.*\.DS_Store
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+.*\.yml
+.*\.yaml
+nuphy_air75_v2\.layout\.json
+.*\.swp
