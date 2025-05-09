@@ -61,16 +61,16 @@ in
 			description = "Humberto STEIN SHIROMOTO";
 			extraGroups = [ "networkmanager" "wheel" "docker" ];
 			packages = with pkgs; [];
-      # openssh.authorizedKeys.keyFiles = [ "/path/to/keys.pub" ];
+      openssh.authorizedKeys.keyFiles = [ "/home/hsteinshiromoto/.ssh/authorized_keys" ];
   	};
 		users.git = {
-    isNormalUser = true;
-    home = "/home/git";
-    description = "Git user";
-    shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
-    # openssh.authorizedKeys.keys = [
-    #  "ssh-rsa AAAA..." # Add your SSH public key here
-    #];
+			isNormalUser = true;
+			home = "/home/git";
+			description = "Git user";
+			shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
+			# openssh.authorizedKeys.keys = [
+			#  "ssh-rsa AAAA..." # Add your SSH public key here
+			#];
   };
 	};
 
@@ -147,24 +147,25 @@ in
 
   # Enable the OpenSSH daemon.
   services = {
-	openssh = {
-		enable = true;
-		settings = {
-  	  		PasswordAuthentication = true;
+		openssh = {
+			enable = true;
+			ports = [ 22 ];
+			settings = {
+						PasswordAuthentication = true;
+			};
 		};
-  	};
-	tailscale = {
-		enable = true;
-	};
-	syncthing = {
-		enable = true;
-		openDefaultPorts = true;
-		guiAddress = "0.0.0.0:8384";
-		settings.gui = {
-			https = true;
-		#	user = "hsteinshiromoto";
+		tailscale = {
+			enable = true;
 		};
-	};
+		syncthing = {
+			enable = true;
+			openDefaultPorts = true;
+			guiAddress = "0.0.0.0:8384";
+			settings.gui = {
+				https = true;
+			#	user = "hsteinshiromoto";
+			};
+		};
   };
 
 
