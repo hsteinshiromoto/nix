@@ -52,6 +52,7 @@
 		casks = [
 			"cursor"
 			"docker"
+			"drawio"
 			"espanso"
 			"firefox"
 			"ghostty"
