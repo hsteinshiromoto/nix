@@ -1,3 +1,0 @@
-bind-addr: <ip>:<port>
-auth: none
-cert: false
