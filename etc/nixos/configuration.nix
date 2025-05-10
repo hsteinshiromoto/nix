@@ -56,12 +56,6 @@ in
     LC_TIME = "en_AU.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
 		users.hsteinshiromoto = {
@@ -174,6 +168,10 @@ in
 			#	user = "hsteinshiromoto";
 			};
 		};
+		xserver.xkb = {
+			layout = "us";
+			variant = "";
+			};
   };
 
   # This value determines the NixOS release from which the default
