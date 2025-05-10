@@ -23,6 +23,14 @@ in
   networking = {
 		hostName = "servidor";
 		networkmanager.enable = true;
+
+		# Open ports in the firewall.
+		firewall = {
+			enable = true;
+			allowedTCPPorts = [ 22 8384 22000 55666 ];
+			allowedUDPPorts = [ 21027 22000 ];
+		};
+
 	}; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -167,13 +175,6 @@ in
 			};
 		};
   };
-
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 8384 22000 55666 ];
-  networking.firewall.allowedUDPPorts = [ 21027 22000 ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
