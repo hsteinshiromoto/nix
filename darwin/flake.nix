@@ -78,6 +78,7 @@
 			"Microsoft Word" = 462054704;
 			"OneDrive" = 823766827;
 			"Windows App" = 1295203466;
+			"TextSniper - OCR, Copy & Paste" = 1528890965;
 
 	        };
 
