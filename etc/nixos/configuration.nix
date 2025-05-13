@@ -99,6 +99,8 @@ in
     lazygit
     libiconv		# Build essential
     libtool		# Build essential
+		networkmanager
+		networkmanagerapplet  # GUI for NetworkManager
     unstable.neovim
     nodejs
     pass
