@@ -8,14 +8,12 @@ let
 	unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
 			config = config.nixpkgs.config;
 	};
-	agenix = builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz";
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       (import "${home-manager}/nixos")
-			(import "${agenix}/modules/age.nix")
     ];
 
   # Bootloader.
@@ -117,7 +115,7 @@ in
     wget
     zoxide
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-		(import "${agenix}/pkgs/agenix.nix" { inherit pkgs; })
+  #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
