@@ -3,7 +3,7 @@
 ## Build Nix ISO with
 
 ```bash
- nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom-iso.nix
+ nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
 ```
 
 ## Darwin
