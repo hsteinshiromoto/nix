@@ -15,6 +15,12 @@ in
       /etc/nixos/hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
+	nix = {
+    package = pkgs.nixVersions.stable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
