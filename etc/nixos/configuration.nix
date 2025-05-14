@@ -110,6 +110,7 @@ in
     stow
     tmux
     tmuxinator
+		uv
     yazi
     yq
     wget
