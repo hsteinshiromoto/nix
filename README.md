@@ -15,10 +15,12 @@
 sudo nix flake update --flake . --impure
 ```
 
-3. Rebuild with from the folder `/etc/nixos/`
+3. Rebuild with from the project root folder
 ```bash
-sudo nixos-rebuild switch --flake .#servidor
+sudo nixos-rebuild test --flake .#servidor
 ```
+
+To swtich to a new build, replace the `test` with `switch`
 
 ## Darwin
 
