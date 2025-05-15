@@ -1,1 +1,0 @@
-/Users/hsteinshiromoto/.config/nix/darwin/flake.nix
