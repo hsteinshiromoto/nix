@@ -27,3 +27,4 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `darwin/` - macOS configuration using nix-darwin
 - `servo/` - NixOS configuration for a server
 - Root directory contains shared configuration like custom ISO settings
+
