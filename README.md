@@ -20,7 +20,7 @@ sudo nix flake update --flake . --impure
 sudo nixos-rebuild test --flake .#servidor
 ```
 
-To swtich to a new build, replace the `test` with `switch`
+To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
