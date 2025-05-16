@@ -11,6 +11,11 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+		disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
@@ -52,6 +57,9 @@
             # Define your home-manager configurations here, or import them
             # home-manager.users.hsteinshiromoto = import ./home.nix;
           }
+
+					disko.nixosModules.disko
+					# ./disko-config.nix
         ];
       };
     };
