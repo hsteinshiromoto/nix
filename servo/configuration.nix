@@ -94,6 +94,7 @@
     bat
     btop
     cargo
+		cryptsetup			# Necessary for partition encryption
     curl
 		exfat
     eza
