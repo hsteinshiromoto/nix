@@ -24,8 +24,17 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+		loader = {
+			systemd-boot.enable = true;
+			efi.canTouchEfiVariables = true;
+		};
+		initrd.luks.devices."ssd" = {
+			device = "/dev/disk/by-uuid/5b0db878-3280-406d-bddc-2bd35b2f0b55";
+			preLVM = false;
+			allowDiscards = true;  # For SSDs, enables TRIM
+};
+	};
 
   networking = {
     hostName = "servidor";
@@ -151,7 +160,7 @@
   };
 
 	fileSystems."/mnt/ssd" = {
-		device = "/dev/disk/by-uuid/ba5f78f1-0a27-426c-b7ef-d90c13028eb8";
+		device = "/dev/mapper/ssd";
 		fsType = "ext4";
 		options = [ "defaults" "nofail" "noatime" ];
 	};
