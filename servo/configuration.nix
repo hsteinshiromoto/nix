@@ -95,6 +95,7 @@
     btop
     cargo
     curl
+		exfat
     eza
     fd
     fzf
@@ -102,6 +103,7 @@
     gitflow
     gcc         # Build essential
     gnumake     # Build essential
+		gparted
     jetbrains-mono
     lazygit
     libiconv    # Build essential
@@ -110,6 +112,7 @@
     networkmanagerapplet  # GUI for NetworkManager
     pkgsUnstable.neovim
     nodejs
+		ntfs3g
     pass
     pkg-config # Build essential
     ripgrep
