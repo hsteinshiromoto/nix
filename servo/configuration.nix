@@ -152,6 +152,7 @@
 	fileSystems."/mnt/ssd" = {
 		device = "/dev/disk/by-uuid/ba5f78f1-0a27-426c-b7ef-d90c13028eb8";
 		fsType = "ext4";
+		options = [ "defaults" "nofail" "noatime" ];
 	};
 
 
