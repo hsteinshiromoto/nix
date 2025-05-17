@@ -103,7 +103,7 @@
     gitflow
     gcc         # Build essential
     gnumake     # Build essential
-		gparted
+		parted
     jetbrains-mono
     lazygit
     libiconv    # Build essential
@@ -148,6 +148,12 @@
        defaultEditor = true;
     };
   };
+
+	fileSystems."/mnt/ssd" = {
+		device = "/dev/disk/by-uuid/ba5f78f1-0a27-426c-b7ef-d90c13028eb8";
+		fsType = "ext4";
+	};
+
 
 
   virtualisation.docker = {
