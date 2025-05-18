@@ -18,7 +18,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 

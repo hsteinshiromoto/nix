@@ -103,7 +103,7 @@
     gitflow
     gcc         # Build essential
     gnumake     # Build essential
-		gparted
+		parted
     jetbrains-mono
     lazygit
     libiconv    # Build essential
