@@ -91,7 +91,7 @@
 	fileSystems."/mnt/ssd" = {
 		device = "/dev/sdb1";
 		fsType = "ext4";
-		options = [ "defaults" "noatime" ];
+		options = [ "defaults" "nofail" "noatime" ];
 	};
 
   # List packages installed in system profile. To search, run:
