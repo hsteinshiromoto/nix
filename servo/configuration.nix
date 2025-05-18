@@ -5,7 +5,6 @@
 { config, pkgs, pkgsUnstable, ... }:
 
 {
-	system.tmpfs = false; # Prevent wiping root on every boot
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
