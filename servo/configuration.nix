@@ -87,15 +87,11 @@
   # Allow unfree packages
   nixpkgs.config = {
 		allowUnfree = true;
-		hardware = {
-			device = {
-				root = {
-					device = "/dev/sda2";
-					fsType = "ext4";
-					mountPoint = "/";
-				};
-			};
-		};
+	};
+
+	fileSystems."/" = {
+		device = "/dev/sda2";
+		fsType = "ext4";
 	};
 
   # List packages installed in system profile. To search, run:
