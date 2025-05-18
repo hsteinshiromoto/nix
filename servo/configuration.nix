@@ -5,6 +5,7 @@
 { config, pkgs, pkgsUnstable, ... }:
 
 {
+	system.tmpfs = false; # Prevent wiping root on every boot
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
@@ -84,7 +85,18 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {
+		allowUnfree = true;
+		hardware = {
+			device = {
+				root = {
+					device = "/dev/sda2";
+					fsType = "ext4";
+					mountPoint = "/";
+				};
+			};
+		};
+	};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
