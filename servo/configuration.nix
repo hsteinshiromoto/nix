@@ -84,7 +84,15 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+		allowUnfree = true;
+	};
+
+	fileSystems."/mnt/ssd" = {
+		device = "/dev/sdb1";
+		fsType = "ext4";
+		options = [ "defaults" "nofail" "noatime" ];
+	};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
