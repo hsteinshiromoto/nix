@@ -37,6 +37,7 @@
 		pkgs.ollama
 		pkgs.pass
 		pkgs.ripgrep
+		pkgs.ruff
 		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
