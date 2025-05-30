@@ -15,6 +15,12 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+		gc = {
+			automatic = true;
+			dates = "weekly";
+			options = "--delete-older-than +5";
+		};
   };
 
   # Bootloader.
@@ -78,7 +84,15 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+		allowUnfree = true;
+	};
+
+	fileSystems."/mnt/ssd" = {
+		device = "/dev/sdb1";
+		fsType = "ext4";
+		options = [ "defaults" "nofail" "noatime" ];
+	};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -89,6 +103,7 @@
     btop
     cargo
     curl
+		exfat
     eza
     fd
     fzf
@@ -96,6 +111,7 @@
     gitflow
     gcc         # Build essential
     gnumake     # Build essential
+		parted
     jetbrains-mono
     lazygit
     libiconv    # Build essential
@@ -104,6 +120,7 @@
     networkmanagerapplet  # GUI for NetworkManager
     pkgsUnstable.neovim
     nodejs
+		ntfs3g
     pass
     pkg-config # Build essential
     ripgrep

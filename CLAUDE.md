@@ -3,28 +3,28 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Build Commands
-- Format code: `nix fmt` or `nixpkgs-fmt <file.nix>`
-- Build Darwin configuration: `darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2025`
-- Update Darwin flake: `nix flake update --flake ~/.config/nix/darwin`
-- Test Darwin build: `darwin-rebuild build --flake ~/.config/nix/darwin#MBP2025`
-- Build NixOS server: `sudo nixos-rebuild test --flake .#servidor` (use `switch` instead of `test` to apply)
-- Update server flake: `nix flake update --flake ~/.config/nix/servo`
 - Build custom ISO: `nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix`
+- Update Nix flake: `nix flake update --flake . --impure`
+- Rebuild NixOS: `nixos-rebuild switch --flake .#servidor`
+- Build without switching: `nixos-rebuild build --flake .#servidor`
+- Print build plan: `nixos-rebuild build --flake .#servidor --show-trace`
+- Darwin rebuild: `darwin-rebuild switch --flake .#MBP2025`
+- Build Darwin flake: `darwin-rebuild build --flake .#MBP2025`
 
-## Troubleshooting
-- If you encounter dependency errors or missing packages, update the flake first
-- For "substituteAll is deprecated" warnings, these are from upstream and can be ignored
-- When building with `darwin-rebuild`, you may need to run with `sudo` for system changes
-- If you encounter nodejs version errors, check for available versions in the latest nixpkgs
-- For homebrew issues, ensure the user specified in nix-homebrew.user exists
+## Code Style Guidelines
+- Use camelCase for variable/attribute names
+- Group related configuration settings together
+- Document complex configuration with comments
+- Separate hardware-specific configuration
+- Organize flakes with clear inputs and outputs structure
+- Use descriptive hostnames and system identifiers
+- Place system-specific configurations in dedicated directories
+- Reference official documentation in comments for non-obvious settings
+- For imports, place all imports at the top of files
+- Prefer stable packages unless unstable is explicitly needed
 
-## Code Style
-- Use 2-space indentation for all Nix files
-- Group related attributes together in logical sections
-- Follow nixpkgs attribute naming conventions (camelCase)
-- For input declarations, use clear descriptions of channels and dependencies
-- Organize flake inputs with "Core channels" first, followed by specialized inputs
-- Prefer explicit version pinning in input URLs (e.g., nixos-24.11)
-- Use descriptive variable names that indicate purpose or content
-- For system configurations, include informative comments on configuration blocks
-- Keep configuration modular with imports when appropriate
+## Repository Structure
+- `darwin/` - macOS configuration using nix-darwin
+- `servo/` - NixOS configuration for a server
+- Root directory contains shared configuration like custom ISO settings
+

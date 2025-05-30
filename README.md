@@ -1,6 +1,26 @@
 # Nix Flakes
 
-## Build Nix ISO with
+## Repository Structure
+
+```
+.
+├── CLAUDE.md
+├── custom_iso.nix              <- NixOS image configuration
+├── darwin                      <- MacOS flake with Nix-Darwin
+│   ├── flake.lock
+│   └── flake.nix
+├── flake.lock
+├── flake.nix                   <- Main flake file
+├── LICENSE
+├── README.md
+└── servo                       <- Server settings
+    ├── configuration.nix
+    ├── flake.lock
+    └── flake.nix
+
+```
+
+## Build Nix ISO based on the flake settings
 
 ```bash
  nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
@@ -20,7 +40,7 @@ sudo nix flake update --flake . --impure
 sudo nixos-rebuild test --flake .#servidor
 ```
 
-To swtich to a new build, replace the `test` with `switch`
+To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
