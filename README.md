@@ -37,7 +37,7 @@ sudo nix flake update --flake . --impure
 
 3. Rebuild with from the project root folder
 ```bash
-sudo nixos-rebuild test --flake .#servidor
+sudo nixos-rebuild test --flake .#servidor --impure
 ```
 
 To switch to a new build, replace the `test` with `switch`.
