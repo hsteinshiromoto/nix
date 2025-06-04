@@ -62,5 +62,21 @@
 					# ./disko-config.nix
         ];
       };
+
+		# ADD THIS NEW CONFIGURATION for the ISO:
+    nixosConfigurations.custom-iso = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+				specialArgs = {
+        inherit pkgsUnstable;
+        inherit inputs;  # if you need other inputs
+      };
+
+      modules = [
+        ./custom_iso.nix
+        # If your custom_iso.nix imports servo/configuration.nix,
+        # pkgsUnstable will now be available to it
+      ];
+			};
     };
 }
