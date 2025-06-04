@@ -102,6 +102,7 @@
     bat
     btop
     cargo
+		pkgsUnstable.claude-code
     curl
 		exfat
     eza
