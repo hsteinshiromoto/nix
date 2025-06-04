@@ -3,7 +3,7 @@
 {
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
-    etc/nixos/configuration.nix
+    servo/configuration.nix
   ];
 
 	# Explicitly override any wireless settings from other modules
