@@ -21,6 +21,7 @@
       environment.systemPackages =
         [
 		pkgs.awscli2
+		pkgs.atuin
 		pkgs.bat
 		pkgs.btop
 		pkgs.claude-code
