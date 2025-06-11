@@ -53,12 +53,12 @@
       homebrew = {
 		enable = true;
 		brews = [
-			"devutils"
 			"mas"
 			"neovim"
 		];
 		casks = [
 			"cursor"
+			"devutils"
 			"docker"
 			"drawio"
 			"espanso"
