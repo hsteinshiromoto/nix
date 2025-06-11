@@ -58,7 +58,6 @@
 		];
 		casks = [
 			"cursor"
-			"devutils"
 			"docker"
 			"drawio"
 			"espanso"
@@ -77,6 +76,7 @@
 		onActivation.autoUpdate = true;
 		onActivation.upgrade = true;
 		masApps = {
+			"devutils-app" = 1533756032;
 			"Magnet" = 441258766;
 			"Microsoft 365" = 1450038993;
 			"Microsoft Excel" = 462058435;
