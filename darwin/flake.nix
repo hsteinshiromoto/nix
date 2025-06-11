@@ -53,6 +53,7 @@
       homebrew = {
 		enable = true;
 		brews = [
+			"devutils"
 			"mas"
 			"neovim"
 		];
