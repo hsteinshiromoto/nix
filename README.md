@@ -24,13 +24,23 @@
 
 ### Building the Custom ISO
 
-In the root folder of this git repository, run the following command:
+You have two options to build the ISO:
+
+#### Option 1: Using nix-build (traditional method)
 
 ```bash
 nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
 ```
 
 The ISO will be created in `./result/iso/`.
+
+#### Option 2: Using nixos-generators
+
+```bash
+nix run github:nix-community/nixos-generators -- --format iso --configuration ./custom_iso.nix --system x86_64-linux
+```
+
+The ISO will be created in the `result` directory.
 
 ### Automated Installation Process
 
