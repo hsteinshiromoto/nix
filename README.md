@@ -22,6 +22,8 @@
 
 ## Build Nix ISO based on the flake settings
 
+In the root folder of this git repository, run the following command:
+
 ```bash
  nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
 ```
