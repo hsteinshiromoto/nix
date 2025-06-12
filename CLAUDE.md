@@ -7,9 +7,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Update Nix flake: `nix flake update --flake . --impure`
 - Rebuild NixOS: `nixos-rebuild switch --flake .#servidor`
 - Build without switching: `nixos-rebuild build --flake .#servidor`
+- Test configuration without switching: `nixos-rebuild test --flake .#servidor --impure`
 - Print build plan: `nixos-rebuild build --flake .#servidor --show-trace`
 - Darwin rebuild: `darwin-rebuild switch --flake .#MBP2025`
 - Build Darwin flake: `darwin-rebuild build --flake .#MBP2025`
+
+## Important Notes
+- `nixos-rebuild test/switch/build` commands do NOT repartition disks on existing systems
+- Disk partitioning configurations (like disko) only apply during fresh NixOS installation
+- To apply partition changes, generate new ISO and reinstall system
 
 ## Code Style Guidelines
 - Use camelCase for variable/attribute names
