@@ -5,7 +5,9 @@
 ```
 .
 ├── CLAUDE.md
-├── custom_iso.nix              <- NixOS image configuration
+├── custom_iso.nix              <- NixOS ISO configuration with embedded flake
+├── build-iso.sh                <- Quick ISO build script for x86_64
+├── build-iso-monitor.sh        <- ISO build with progress monitoring
 ├── darwin                      <- MacOS flake with Nix-Darwin
 │   ├── flake.lock
 │   └── flake.nix
@@ -13,7 +15,7 @@
 ├── flake.nix                   <- Main flake file
 ├── LICENSE
 ├── README.md
-└── servo                       <- Server settings
+└── servo                       <- Server NixOS configuration
     ├── configuration.nix
     ├── flake.lock
     └── flake.nix
@@ -24,23 +26,34 @@
 
 ### Building the Custom ISO
 
-You have two options to build the ISO:
+#### Building on macOS (ARM64)
 
-#### Option 1: Using nix-build (traditional method)
+For macOS users, we provide Docker-based build scripts that handle x86_64 ISO generation using QEMU emulation:
+
+1. **Quick build:**
+   ```bash
+   ./build-iso.sh
+   ```
+
+2. **Build with progress monitoring (recommended):**
+   ```bash
+   ./build-iso-monitor.sh
+   ```
+   This script shows build progress and automatically copies the ISO to your current directory.
+
+The ISO will be created as `nixos-minimal-25.05pre-git-x86_64-linux.iso` (approximately 1.6GB).
+
+**Note:** Building x86_64 ISOs on ARM64 Macs uses QEMU emulation and may take 5-10 minutes.
+
+#### Building on Linux
+
+If you're on a Linux system, you can build directly:
 
 ```bash
 nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
 ```
 
 The ISO will be created in `./result/iso/`.
-
-#### Option 2: Using nixos-generators
-
-```bash
-nix run github:nix-community/nixos-generators -- --format iso --configuration ./custom_iso.nix --system x86_64-linux
-```
-
-The ISO will be created in the `result` directory.
 
 ### Automated Installation Process
 
@@ -56,10 +69,10 @@ This custom ISO includes an automated installer that will:
 1. **Burn the ISO to a USB drive:**
    ```bash
    # On macOS
-   sudo dd if=result/iso/nixos-*.iso of=/dev/rdiskN bs=1m
+   sudo dd if=nixos-minimal-25.05pre-git-x86_64-linux.iso of=/dev/rdiskN bs=1m
    
    # On Linux
-   sudo dd if=result/iso/nixos-*.iso of=/dev/sdX bs=4M status=progress
+   sudo dd if=nixos-minimal-25.05pre-git-x86_64-linux.iso of=/dev/sdX bs=4M status=progress
    ```
 
 2. **Boot from the USB drive**

@@ -3,12 +3,20 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Build Commands
-- Build custom ISO: `nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix`
+
+### Building ISOs on macOS
+- Build x86_64 ISO: `./build-iso.sh` (quick build)
+- Build x86_64 ISO with monitoring: `./build-iso-monitor.sh` (shows progress and auto-copies ISO)
+- Note: Building x86_64 ISOs on ARM64 Macs uses QEMU emulation via Docker
+
+### NixOS Commands
 - Update Nix flake: `nix flake update --flake . --impure`
 - Rebuild NixOS: `nixos-rebuild switch --flake .#servidor`
 - Build without switching: `nixos-rebuild build --flake .#servidor`
 - Test configuration without switching: `nixos-rebuild test --flake .#servidor --impure`
 - Print build plan: `nixos-rebuild build --flake .#servidor --show-trace`
+
+### Darwin Commands
 - Darwin rebuild: `darwin-rebuild switch --flake .#MBP2025`
 - Build Darwin flake: `darwin-rebuild build --flake .#MBP2025`
 
@@ -32,5 +40,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Repository Structure
 - `darwin/` - macOS configuration using nix-darwin
 - `servo/` - NixOS configuration for a server
-- Root directory contains shared configuration like custom ISO settings
+- `custom_iso.nix` - ISO builder configuration that embeds the servo configuration
+- `build-iso.sh` - Quick ISO build script for x86_64
+- `build-iso-monitor.sh` - ISO build script with progress monitoring and auto-copy
+- Root directory contains shared configuration and build scripts
 
