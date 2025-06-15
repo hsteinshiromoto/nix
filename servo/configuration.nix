@@ -88,10 +88,69 @@
 		allowUnfree = true;
 	};
 
-	fileSystems."/mnt/ssd" = {
-		device = "/dev/sdb1";
-		fsType = "ext4";
-		options = [ "defaults" "nofail" "noatime" ];
+	# Filesystem configuration for NixOS image
+	fileSystems = {
+		"/" = {
+			device = "/dev/disk/by-label/nixos";
+			fsType = "ext4";
+			options = [ "defaults" ];
+		};
+
+		"/home" = {
+			device = "/dev/disk/by-label/home";
+			fsType = "ext4";
+			options = [ "defaults" ];
+		};
+
+		"/mnt/ssd" = {
+			device = "/dev/sdb1";
+			fsType = "ext4";
+			options = [ "defaults" "nofail" "noatime" ];
+		};
+	};
+
+	# Disk partitioning layout for 75% /home allocation
+	# This configuration assumes a single disk installation
+	# EFI boot partition: 512MB
+	# Root partition: ~20% of remaining space
+	# Home partition: ~75% of remaining space (after boot + root)
+	disko.devices = {
+		disk = {
+			main = {
+				type = "disk";
+				device = "/dev/sda";  # Adjust device as needed
+				content = {
+					type = "gpt";
+					partitions = {
+						ESP = {
+							size = "512M";
+							type = "EF00";
+							content = {
+								type = "filesystem";
+								format = "vfat";
+								mountpoint = "/boot";
+							};
+						};
+						root = {
+							size = "20%";  # Root gets 20% of disk space
+							content = {
+								type = "filesystem";
+								format = "ext4";
+								mountpoint = "/";
+							};
+						};
+						home = {
+							size = "100%";  # Home gets remaining space (~75% after boot and root)
+							content = {
+								type = "filesystem";
+								format = "ext4";
+								mountpoint = "/home";
+							};
+						};
+					};
+				};
+			};
+		};
 	};
 
   # List packages installed in system profile. To search, run:
