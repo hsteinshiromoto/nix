@@ -53,3 +53,23 @@ Uptate Darwin with
 ```bash
 darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2025
 ```
+
+## Building the ISO
+
+To build the NixOS ISO from this configuration, you will need to have Nix installed and flakes enabled. Due to the target architecture (`x86_64-linux`) being different from the host architecture (`aarch64-darwin`), you need to configure a remote builder or use emulation.
+
+1.  **Configure Nix for remote building:**
+
+    You can use the provided `nix.conf` file to configure your Nix environment. You can either copy its contents to your `~/.config/nix/nix.conf` or use it directly with the `nix` command.
+
+2.  **Build the ISO:**
+
+    Run the following command from the root of the repository:
+
+    ```bash
+    nix build .#nixosConfigurations.custom-iso.config.system.build.isoImage --extra-experimental-features "nix-command flakes" --option extra-experimental-features "nix-command flakes" --config-file ./nix.conf
+    ```
+    
+    This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
+
+The resulting ISO image will be in the `result/` directory.

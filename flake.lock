@@ -17,27 +17,24 @@
         "type": "github"
       }
     },
-    "darwin-config": {
+    "disko": {
       "inputs": {
-        "nix-darwin": [
-          "nix-darwin"
-        ],
-        "nix-homebrew": [
-          "nix-homebrew"
-        ],
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-89dG01GQkA/veCcmwZr5jVtk8qyZrHDGU+FFb58Gxaw=",
-        "path": "./darwin",
-        "type": "path"
+        "lastModified": 1749436314,
+        "narHash": "sha256-CqmqU5FRg5AadtIkxwu8ulDSOSoIisUMZRLlcED3Q5w=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "dfa4d1b9c39c0342ef133795127a3af14598017a",
+        "type": "github"
       },
       "original": {
-        "path": "./darwin",
-        "type": "path"
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
       }
     },
     "home-manager": {
@@ -183,36 +180,12 @@
     },
     "root": {
       "inputs": {
-        "darwin-config": "darwin-config",
+        "disko": "disko",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "servo-config": "servo-config"
-      }
-    },
-    "servo-config": {
-      "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-unstable": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-T2keeNByBDUFQ1r9/Qd7pxZvXkNPX+Q61NEdG+REiPQ=",
-        "path": "./servo",
-        "type": "path"
-      },
-      "original": {
-        "path": "./servo",
-        "type": "path"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },

@@ -19,31 +19,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Local flakes
-    darwin-config.url = "path:./darwin";
-    darwin-config.inputs = {
-      nixpkgs.follows = "nixpkgs-unstable";
-      nix-darwin.follows = "nix-darwin";
-      nix-homebrew.follows = "nix-homebrew";
-    };
-
-    servo-config.url = "path:./servo";
-    servo-config.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      nixpkgs-unstable.follows = "nixpkgs-unstable";
-      home-manager.follows = "home-manager";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, darwin-config, servo-config, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, home-manager, disko, ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
+
+    servo-flake = import ./servo/flake.nix;
+    servo-outputs = servo-flake.outputs inputs;
   in
   {
     # Re-export the configurations from each system flake
-    darwinConfigurations = darwin-config.darwinConfigurations;
-    nixosConfigurations = servo-config.nixosConfigurations;
+    nixosConfigurations = servo-outputs.nixosConfigurations;
     
     # Add formatter for convenience
     formatter = {

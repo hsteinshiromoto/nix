@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, pkgsUnstable, ... }:
+{ config, pkgs, pkgsUnstable, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
 	nix = {
@@ -70,7 +70,9 @@
       description = "Humberto STEIN SHIROMOTO";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       packages = with pkgs; [];
-      openssh.authorizedKeys.keyFiles = [ "/home/hsteinshiromoto/.ssh/authorized_keys" ];
+      openssh.authorizedKeys.keys =
+        lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
+          [ (builtins.readFile ./.ssh/authorized_keys) ];
     };
     users.git = {
       isNormalUser = true;
