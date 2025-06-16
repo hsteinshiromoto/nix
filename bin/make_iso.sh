@@ -57,34 +57,34 @@ build_with_docker() {
 # Build using Lima
 build_with_lima() {
   check_command limactl
-  local vm_name="nixos-iso-builder"
+  local vm_name="default"
 
-  if ! limactl list "$vm_name" --json | grep '"status":"Running"'; then
+  if ! limactl list "$vm_name" --json | grep -q '"status":"Running"'; then
     echo "Lima VM '$vm_name' is not running."
     echo "You can create and start one with:"
-    echo "limactl start --name=$vm_name --arch=x86_64 ubuntu"
+    echo "limactl start --arch=x86_64 --name=$vm_name"
     exit 1
   fi
 
   echo "## Installing Nix in Lima VM (if not present)..."
-  lima --name "$vm_name" -- sh -c '
+  limactl shell "$vm_name" sh -c '
     if ! command -v nix &>/dev/null; then
       echo "Nix not found. Installing..."
-      curl -L https://nixos.org/nix/install | sh
+      curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
     fi
     # Source nix for the current session
-    . /home/lima/.nix-profile/etc/profile.d/nix.sh
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
     
     # Ensure nix.conf is in place
-    mkdir -p ~/.config/nix
-    cp "$(pwd)/nix.conf" ~/.config/nix/nix.conf
+    mkdir -p "$HOME/.config/nix"
+    cp "$(pwd)/nix.conf" "$HOME/.config/nix/nix.conf"
 
     echo "## Building ISO image with Lima..."
-    nix build "path:$(pwd)#nixosConfigurations.custom-iso.config.system.build.isoImage" --impure
+    nix build "path:$(pwd)#nixosConfigurations.custom-iso.config.system.build.isoImage" --impure --extra-experimental-features "nix-command flakes"
   '
   
   echo "## Copying ISO from Lima VM..."
-  lima --name "$vm_name" -- cp -L /home/lima/result "$(pwd)/nixos-x86_64.iso"
+  limactl shell "$vm_name" cp -L "$HOME/result" "$(pwd)/nixos-x86_64.iso"
 }
 
 # --- Main Logic ---
