@@ -80,11 +80,11 @@ build_with_lima() {
     cp "$(pwd)/nix.conf" "$HOME/.config/nix/nix.conf"
 
     echo "## Building ISO image with Lima..."
-    nix build "path:$(pwd)#nixosConfigurations.custom-iso.config.system.build.isoImage" --impure --extra-experimental-features "nix-command flakes"
+    ISO_PATH=$(nix path-info .#nixosConfigurations.custom-iso.config.system.build.isoImage --impure --extra-experimental-features "nix-command flakes")
   '
   
   echo "## Copying ISO from Lima VM..."
-  limactl shell "$vm_name" cp -L "$HOME/result" "$(pwd)/nixos-x86_64.iso"
+  limactl shell "$vm_name" cp -L "$ISO_PATH" "$(pwd)/nixos-x86_64.iso"
 }
 
 # --- Main Logic ---
