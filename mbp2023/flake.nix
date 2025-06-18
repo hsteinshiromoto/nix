@@ -53,6 +53,7 @@
 							enable = true;
 							enableRosetta = true;
 							user = "hsteinshiromoto";
+							autoMigrate = true;
 						 };
 					}
 				];
