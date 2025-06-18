@@ -54,6 +54,8 @@ To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
+1. Install [nix-darwin using the command of step 2](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#step-2-installing-nix-darwin).
+
 Two flakes divided into two folders:
 
 ```
