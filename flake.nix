@@ -25,17 +25,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
 
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs inputs;
+    
+    mbp2023-flake = import ./mbp2023/flake.nix;
+    mbp2023-outputs = mbp2023-flake.outputs {
+      inherit self nix-darwin nix-homebrew;
+      nixpkgs = nixpkgs-unstable;
+    };
   in
   {
     # Re-export the configurations from each system flake
     nixosConfigurations = servo-outputs.nixosConfigurations;
+    darwinConfigurations = mbp2023-outputs.darwinConfigurations;
     
     # Add formatter for convenience
     formatter = {

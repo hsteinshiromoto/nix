@@ -4,19 +4,27 @@
 
 ```
 .
+├── bin
+│   ├── docker-nix.conf
+│   └── make_iso.sh
 ├── CLAUDE.md
-├── custom_iso.nix              <- NixOS image configuration
-├── darwin                      <- MacOS flake with Nix-Darwin
+├── custom_iso.nix
+├── darwin
 │   ├── flake.lock
 │   └── flake.nix
 ├── flake.lock
-├── flake.nix                   <- Main flake file
+├── flake.nix
 ├── LICENSE
+├── Makefile
+├── mbp2023
+│   └── flake.nix
+├── nix.conf
 ├── README.md
-└── servo                       <- Server settings
+└── servo
     ├── configuration.nix
     ├── flake.lock
-    └── flake.nix
+    ├── flake.nix
+    └── hardware-configuration.nix
 
 ```
 
@@ -46,13 +54,27 @@ To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
-`darwin/flake.nix`
+Two flakes divided into two folders:
 
-Uptate Darwin with
+```
+.
+├── darwin              <- MBP2025 flake file
+│   ├── flake.lock
+│   └── flake.nix
+├── mbp2023             <- MBP2023 flake file
+│   └── flake.nix
+```
+
+Update each computer with the corresponding command:
 
 ```bash
 darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2025
 ```
+or
+```bash
+darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2023
+```
+
 
 ## Building the ISO
 
@@ -69,7 +91,7 @@ To build the NixOS ISO from this configuration, you will need to have Nix instal
     ```bash
     nix build .#nixosConfigurations.custom-iso.config.system.build.isoImage --extra-experimental-features "nix-command flakes" --option extra-experimental-features "nix-command flakes" --config-file ./nix.conf
     ```
-    
+
     This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
 
 The resulting ISO image will be in the `result/` directory.
