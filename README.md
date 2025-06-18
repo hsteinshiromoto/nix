@@ -6,9 +6,9 @@
 .
 ├── CLAUDE.md
 ├── custom_iso.nix              <- NixOS image configuration
-├── darwin                      <- MacOS flake with Nix-Darwin
-│   ├── flake.lock
-│   └── flake.nix
+├── mbp2025                     <- MacOS flake with Nix-Darwin
+│   ├── flake.lock
+│   └── flake.nix
 ├── flake.lock
 ├── flake.nix                   <- Main flake file
 ├── LICENSE
@@ -46,10 +46,10 @@ To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
-`darwin/flake.nix`
+`mbp2025/flake.nix`
 
 Uptate Darwin with
 
 ```bash
-darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2025
+darwin-rebuild switch --flake ./mbp2025#MBP2025
 ```

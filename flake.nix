@@ -20,7 +20,7 @@
     };
 
     # Local flakes
-    darwin-config.url = "path:./darwin";
+    darwin-config.url = "path:./mbp2025";
     darwin-config.inputs = {
       nixpkgs.follows = "nixpkgs-unstable";
       nix-darwin.follows = "nix-darwin";
