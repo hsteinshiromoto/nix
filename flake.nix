@@ -32,7 +32,7 @@
 
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs inputs;
-    
+
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
       inherit self nix-darwin nix-homebrew;
@@ -43,7 +43,7 @@
     # Re-export the configurations from each system flake
     nixosConfigurations = servo-outputs.nixosConfigurations;
     darwinConfigurations = mbp2023-outputs.darwinConfigurations;
-    
+
     # Add formatter for convenience
     formatter = {
       "${darwinSystem}" = nixpkgs-unstable.legacyPackages.${darwinSystem}.nixpkgs-fmt;
