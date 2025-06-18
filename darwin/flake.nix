@@ -32,6 +32,7 @@
 		pkgs.gitflow
 		pkgs.gnupg
 		pkgs.lazygit
+		pkgs.lnav
 		pkgs.maccy
 		pkgs.mkalias
 		pkgs.nodejs_24
