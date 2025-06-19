@@ -73,7 +73,8 @@
       };
 
       modules = [
-        ./custom_iso.nix
+        ../custom_iso.nix
+        disko.nixosModules.disko
         # If your custom_iso.nix imports servo/configuration.nix,
         # pkgsUnstable will now be available to it
       ];

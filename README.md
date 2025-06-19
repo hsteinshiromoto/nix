@@ -4,19 +4,27 @@
 
 ```
 .
+├── bin
+│   ├── docker-nix.conf
+│   └── make_iso.sh
 ├── CLAUDE.md
 ├── custom_iso.nix              <- NixOS image configuration
 ├── mbp2025                     <- MacOS flake with Nix-Darwin
 │   ├── flake.lock
 │   └── flake.nix
 ├── flake.lock
-├── flake.nix                   <- Main flake file
+├── flake.nix
 ├── LICENSE
+├── Makefile
+├── mbp2023
+│   └── flake.nix
+├── nix.conf
 ├── README.md
-└── servo                       <- Server settings
+└── servo
     ├── configuration.nix
     ├── flake.lock
-    └── flake.nix
+    ├── flake.nix
+    └── hardware-configuration.nix
 
 ```
 
@@ -46,10 +54,46 @@ To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
-`mbp2025/flake.nix`
+1. Install [nix-darwin](https://github.com/nix-darwin/nix-darwin) running the command `sudo nix run nix-darwin -- switch --flake .#MBP2023` in the project root of this repository.
 
-Uptate Darwin with
+Two flakes divided into two folders:
+
+```
+.
+├── mbp2025             <- MBP2025 flake file
+│   ├── flake.lock
+│   └── flake.nix
+├── mbp2023             <- MBP2023 flake file
+│   └── flake.nix
+```
+
+Update each computer with the corresponding command:
 
 ```bash
-darwin-rebuild switch --flake ./mbp2025#MBP2025
+darwin-rebuild switch --flake ~/.config/nix/mbp2025#MBP2025
 ```
+or
+```bash
+darwin-rebuild switch --flake ~/.config/nix/mbp2023#MBP2023
+```
+
+
+## Building the ISO
+
+To build the NixOS ISO from this configuration, you will need to have Nix installed and flakes enabled. Due to the target architecture (`x86_64-linux`) being different from the host architecture (`aarch64-darwin`), you need to configure a remote builder or use emulation.
+
+1.  **Configure Nix for remote building:**
+
+    You can use the provided `nix.conf` file to configure your Nix environment. You can either copy its contents to your `~/.config/nix/nix.conf` or use it directly with the `nix` command.
+
+2.  **Build the ISO:**
+
+    Run the following command from the root of the repository:
+
+    ```bash
+    nix build .#nixosConfigurations.custom-iso.config.system.build.isoImage --extra-experimental-features "nix-command flakes" --option extra-experimental-features "nix-command flakes" --config-file ./nix.conf
+    ```
+
+    This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
+
+The resulting ISO image will be in the `result/` directory.

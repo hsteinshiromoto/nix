@@ -9,7 +9,7 @@
 
     # Include channel information
     (modulesPath + "/installer/cd-dvd/channel.nix")
-    # servo/configuration.nix
+    ./servo/configuration.nix
   ];
 
 	# Explicitly override any wireless settings from other modules
