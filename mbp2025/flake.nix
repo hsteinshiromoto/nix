@@ -32,6 +32,7 @@
 		pkgs.gitflow
 		pkgs.gnupg
 		pkgs.lazygit
+		pkgs.lnav
 		pkgs.maccy
 		pkgs.mkalias
 		pkgs.nodejs_24
@@ -76,7 +77,6 @@
 		onActivation.autoUpdate = true;
 		onActivation.upgrade = true;
 		masApps = {
-			"devutils-app" = 1533756032;
 			"Magnet" = 441258766;
 			"Microsoft 365" = 1450038993;
 			"Microsoft Excel" = 462058435;
@@ -87,6 +87,7 @@
 			"OneDrive" = 823766827;
 			"Windows App" = 1295203466;
 			"TextSniper - OCR, Copy & Paste" = 1528890965;
+			"Theine" = 955848755;
 
 	        };
 

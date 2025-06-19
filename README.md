@@ -5,19 +5,19 @@
 ```
 .
 ├── bin
-│   ├── docker-nix.conf
-│   └── make_iso.sh
+│   ├── docker-nix.conf
+│   └── make_iso.sh
 ├── CLAUDE.md
-├── custom_iso.nix
-├── darwin
-│   ├── flake.lock
-│   └── flake.nix
+├── custom_iso.nix              <- NixOS image configuration
+├── mbp2025                     <- MacOS flake with Nix-Darwin
+│   ├── flake.lock
+│   └── flake.nix
 ├── flake.lock
 ├── flake.nix
 ├── LICENSE
 ├── Makefile
 ├── mbp2023
-│   └── flake.nix
+│   └── flake.nix
 ├── nix.conf
 ├── README.md
 └── servo
@@ -60,21 +60,21 @@ Two flakes divided into two folders:
 
 ```
 .
-├── darwin              <- MBP2025 flake file
-│   ├── flake.lock
-│   └── flake.nix
+├── mbp2025             <- MBP2025 flake file
+│   ├── flake.lock
+│   └── flake.nix
 ├── mbp2023             <- MBP2023 flake file
-│   └── flake.nix
+│   └── flake.nix
 ```
 
 Update each computer with the corresponding command:
 
 ```bash
-darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2025
+darwin-rebuild switch --flake ~/.config/nix/mbp2025#MBP2025
 ```
 or
 ```bash
-darwin-rebuild switch --flake ~/.config/nix/darwin#MBP2023
+darwin-rebuild switch --flake ~/.config/nix/mbp2023#MBP2023
 ```
 
 

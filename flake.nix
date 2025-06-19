@@ -38,6 +38,14 @@
       inherit self nix-darwin nix-homebrew;
       nixpkgs = nixpkgs-unstable;
     };
+
+		mbp2025-config.url = "path:./mbp2025";
+    mbp2025-config.inputs = {
+      nixpkgs.follows = "nixpkgs-unstable";
+      nix-darwin.follows = "nix-darwin";
+      nix-homebrew.follows = "nix-homebrew";
+    };
+
   in
   {
     # Re-export the configurations from each system flake
