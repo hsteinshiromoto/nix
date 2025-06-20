@@ -56,6 +56,8 @@
 				"mas"
 			];
 			casks = [
+				"firefox"
+				"gpg-suite"
 				"the-unarchiver"
 				"utm"
 				"visual-studio-code"
