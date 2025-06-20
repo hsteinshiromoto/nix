@@ -61,6 +61,7 @@
 				"the-unarchiver"
 				"utm"
 				"visual-studio-code"
+				"waterfox"
 			];
 			onActivation.cleanup = "zap";
 			onActivation.autoUpdate = true;
