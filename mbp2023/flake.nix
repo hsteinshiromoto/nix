@@ -19,8 +19,66 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
+        [
+					pkgs.atuin
+					pkgs.bat
+					pkgs.btop
+					pkgs.claude-code
+					pkgs.eza
+					pkgs.fd
+					pkgs.fzf
+					pkgs.git
+					pkgs.gitflow
+					pkgs.gnupg
+					pkgs.lazygit
+					pkgs.lnav
+					pkgs.maccy
+					pkgs.mkalias
+					pkgs.nodejs_24
+					pkgs.ollama
+					pkgs.neovim
+					pkgs.pass
+					pkgs.ripgrep
+					pkgs.ruff
+					pkgs.starship
+					pkgs.stow
+					pkgs.tmux
+					pkgs.tmuxinator
+					pkgs.uv
+					pkgs.yazi
+					pkgs.yq
+					pkgs.zoxide
         ];
+
+		homebrew = {
+			enable = true;
+			brews = [
+				"mas"
+			];
+			casks = [
+				"the-unarchiver"
+				"utm"
+				"visual-studio-code"
+			];
+			onActivation.cleanup = "zap";
+			onActivation.autoUpdate = true;
+			onActivation.upgrade = true;
+			# masApps = {
+			# 	"Magnet" = 441258766;
+			# 	"Microsoft 365" = 1450038993;
+			# 	"Microsoft Excel" = 462058435;
+			# 	"Microsoft OneNote" = 784801555;
+			# 	"Microsoft Outlook" = 985367838;
+			# 	"Microsoft Powerpoint" = 462062816;
+			# 	"Microsoft Word" = 462054704;
+			# 	"OneDrive" = 823766827;
+			# 	"Windows App" = 1295203466;
+			# 	"TextSniper - OCR, Copy & Paste" = 1528890965;
+			# 	"Theine" = 955848755;
+			#
+			#        };
+
+		};
 
 			nixpkgs.config.allowUnfree = true;
 
@@ -33,6 +91,7 @@
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
+			system.primaryUser = "hsteinshiromoto";
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
