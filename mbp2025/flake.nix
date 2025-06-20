@@ -114,6 +114,41 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # Required after nix-darwin 2024-05 migration: designate the primary
+      # user that runs darwin-rebuild so user-scoped options (homebrew, etc.)
+      # are applied correctly.
+      system.primaryUser = "hsteinshiromoto";
+
+      # Configure a lightweight on-demand NixOS VM that acts as a local
+      # Linux build host. This accelerates Linux-only builds while keeping
+      # the developer workflow on macOS.
+      nix.linux-builder = {
+        enable     = true;
+        ephemeral  = true;     # Recreate the VM for every evaluation.
+        maxJobs    = 4;        # Parallel build jobs inside the VM.
+        config = {
+          virtualisation.cores       = 4;
+          virtualisation.memorySize  = pkgs.lib.mkForce 8192;   # 8 GiB RAM
+          virtualisation.diskSize    = pkgs.lib.mkForce 30720;  # 30 GiB disk
+        };
+      };
+
+      # Let the Nix daemon know we can build remotely (locally, via the VM).
+      nix.distributedBuilds = true;
+      nix.buildMachines = [{
+        hostName = "localhost";
+        system   = "x86_64-linux";
+        maxJobs  = 4;
+        supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        sshUser = "builder";
+        sshKey  = "/etc/nix/builder_ed25519";
+      }];
+
+      programs.ssh.extraConfig = ''
+        Host localhost
+          Port 31022
+      '';
     };
   in
   {
