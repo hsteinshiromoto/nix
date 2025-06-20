@@ -39,18 +39,18 @@
       nixpkgs = nixpkgs-unstable;
     };
 
-		mbp2025-config.url = "path:./mbp2025";
-    mbp2025-config.inputs = {
-      nixpkgs.follows = "nixpkgs-unstable";
-      nix-darwin.follows = "nix-darwin";
-      nix-homebrew.follows = "nix-homebrew";
+    # MacBook Pro 2025 system (darwin)
+    mbp2025-flake = import ./mbp2025/flake.nix;
+    mbp2025-outputs = mbp2025-flake.outputs {
+      inherit self nix-darwin nix-homebrew;
+      nixpkgs = nixpkgs-unstable;
     };
 
   in
   {
     # Re-export the configurations from each system flake
     nixosConfigurations = servo-outputs.nixosConfigurations;
-    darwinConfigurations = mbp2023-outputs.darwinConfigurations;
+    darwinConfigurations = mbp2023-outputs.darwinConfigurations // mbp2025-outputs.darwinConfigurations;
 
     # Add formatter for convenience
     formatter = {
