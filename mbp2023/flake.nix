@@ -62,6 +62,7 @@
 				"utm"
 				"visual-studio-code"
 				"waterfox"
+				"yubico-authenticator"
 			];
 			onActivation.cleanup = "zap";
 			onActivation.autoUpdate = true;
