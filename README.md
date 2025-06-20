@@ -28,12 +28,35 @@
 
 ```
 
-## Build Nix ISO based on the flake settings
+## Building a custom NixOS ISO (servo)
 
-In the root folder of this git repository, run the following command:
+The repository already contains everything required to create an install-ISO that embeds `servo/configuration.nix`.
 
+* `servo/flake.nix` exports **`nixosConfigurations.custom-iso`**.
+* `custom_iso.nix` imports the standard installer modules and your server configuration.
+
+When you run the command below on macOS Apple Silicon the build is transparently off-loaded to the Linux-builder VM defined in `mbp2025/flake.nix`.
+
+### 1. Make sure the Linux-builder VM is active
+Apply the `MBP2025` nix-darwin configuration once (`darwin-rebuild switch --flake ~/.config/nix/mbp2025#MBP2025`).
+This sets up a lightweight x86_64 NixOS VM that Nix will automatically use for Linux builds.
+
+### 2. Build the ISO
 ```bash
- nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
+nix build --system x86_64-linux \
+  .#nixosConfigurations.custom-iso.config.system.build.isoImage
+```
+
+### 3. Locate the image
+You will find the finished image at:
+```
+result/iso/nixos-<date>-custom-iso-x86_64-linux.iso
+```
+
+### 4. Test it quickly with QEMU
+```bash
+nix shell nixpkgs#qemu --command \
+  qemu-system-x86_64 -enable-kvm -m 2048 -cdrom result/iso/*.iso
 ```
 
 ## Servidor
