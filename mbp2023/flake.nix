@@ -41,6 +41,7 @@
 					pkgs.ruff
 					pkgs.starship
 					pkgs.stow
+					pkgs.syncthing
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.uv
@@ -81,6 +82,7 @@
 			onActivation.autoUpdate = true;
 			onActivation.upgrade = true;
 			masApps = {
+				"Bitwarden" = 1352778147;
 				"Kindle" = 302584613;
 				"Magnet" = 441258766;
 				"Microsoft 365" = 1450038993;
@@ -91,6 +93,7 @@
 				"Microsoft Word" = 462054704;
 				"OneDrive" = 823766827;
 				"Parcel - Delivery Tracking" = 639968404;
+				"SimpleLogin - Email alias" = 1494359858;
 				"Windows App" = 1295203466;
 				"TextSniper - OCR, Copy & Paste" = 1528890965;
 				"Theine" = 955848755;
