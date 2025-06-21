@@ -69,6 +69,7 @@
 				"obsidian"
 				"microsoft-teams"
 				"popclip"
+				"proton-drive"
 				"reader"
 				"spotify"
 				"the-unarchiver"
