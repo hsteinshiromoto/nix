@@ -56,32 +56,40 @@
 				"mas"
 			];
 			casks = [
+				"docker"
+				"espanso"
 				"firefox"
 				"gpg-suite"
 				"ghostty"
+				"google-chrome"
+				"obsidian"
+				"microsoft-teams"
+				"popclip"
 				"the-unarchiver"
 				"utm"
 				"visual-studio-code"
 				"waterfox"
+				"whatsapp"
 				"yubico-authenticator"
 			];
 			onActivation.cleanup = "zap";
 			onActivation.autoUpdate = true;
 			onActivation.upgrade = true;
-			# masApps = {
-			# 	"Magnet" = 441258766;
-			# 	"Microsoft 365" = 1450038993;
-			# 	"Microsoft Excel" = 462058435;
-			# 	"Microsoft OneNote" = 784801555;
-			# 	"Microsoft Outlook" = 985367838;
-			# 	"Microsoft Powerpoint" = 462062816;
-			# 	"Microsoft Word" = 462054704;
-			# 	"OneDrive" = 823766827;
-			# 	"Windows App" = 1295203466;
-			# 	"TextSniper - OCR, Copy & Paste" = 1528890965;
+			masApps = {
+				"Kindle" = 302584613;
+				"Magnet" = 441258766;
+				"Microsoft 365" = 1450038993;
+				"Microsoft Excel" = 462058435;
+				"Microsoft OneNote" = 784801555;
+				"Microsoft Outlook" = 985367838;
+				"Microsoft Powerpoint" = 462062816;
+				"Microsoft Word" = 462054704;
+				"OneDrive" = 823766827;
+				"Windows App" = 1295203466;
+				"TextSniper - OCR, Copy & Paste" = 1528890965;
 			# 	"Theine" = 955848755;
 			#
-			#        };
+			       };
 
 		};
 
