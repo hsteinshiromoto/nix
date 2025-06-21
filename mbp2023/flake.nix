@@ -41,7 +41,6 @@
 					pkgs.ruff
 					pkgs.starship
 					pkgs.stow
-					pkgs.syncthing
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.uv
@@ -75,6 +74,7 @@
 				"proton-pass"
 				"reader"
 				"spotify"
+				"syncthing"
 				"the-unarchiver"
 				"utm"
 				"visual-studio-code"
