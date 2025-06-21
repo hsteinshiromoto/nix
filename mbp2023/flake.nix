@@ -32,7 +32,6 @@
 					pkgs.gnupg
 					pkgs.lazygit
 					pkgs.lnav
-					pkgs.maccy
 					pkgs.mkalias
 					pkgs.nodejs_24
 					pkgs.ollama
@@ -62,9 +61,11 @@
 				"gpg-suite"
 				"ghostty"
 				"google-chrome"
+				"maccy"
 				"obsidian"
 				"microsoft-teams"
 				"popclip"
+				"spotify"
 				"the-unarchiver"
 				"utm"
 				"visual-studio-code"
