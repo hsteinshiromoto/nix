@@ -58,6 +58,7 @@
 			casks = [
 				"firefox"
 				"gpg-suite"
+				"ghostty"
 				"the-unarchiver"
 				"utm"
 				"visual-studio-code"
