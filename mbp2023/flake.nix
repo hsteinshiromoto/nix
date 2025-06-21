@@ -57,7 +57,9 @@
 				"mas"
 			];
 			casks = [
+				"balenaetcher"
 				"bartender"
+				"discord"
 				"docker"
 				"espanso"
 				"firefox"
@@ -70,6 +72,7 @@
 				"microsoft-teams"
 				"popclip"
 				"proton-drive"
+				"proton-pass"
 				"reader"
 				"spotify"
 				"the-unarchiver"
