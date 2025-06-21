@@ -44,6 +44,7 @@
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.uv
+					pkgs.vagrant
 					pkgs.yazi
 					pkgs.yq
 					pkgs.zoxide
@@ -55,16 +56,19 @@
 				"mas"
 			];
 			casks = [
+				"bartender"
 				"docker"
 				"espanso"
 				"firefox"
 				"gpg-suite"
 				"ghostty"
 				"google-chrome"
+				"istat-menus"
 				"maccy"
 				"obsidian"
 				"microsoft-teams"
 				"popclip"
+				"reader"
 				"spotify"
 				"the-unarchiver"
 				"utm"
@@ -86,9 +90,10 @@
 				"Microsoft Powerpoint" = 462062816;
 				"Microsoft Word" = 462054704;
 				"OneDrive" = 823766827;
+				"Parcel - Delivery Tracking" = 639968404;
 				"Windows App" = 1295203466;
 				"TextSniper - OCR, Copy & Paste" = 1528890965;
-			# 	"Theine" = 955848755;
+				"Theine" = 955848755;
 			#
 			       };
 
