@@ -44,7 +44,7 @@
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.uv
-					pkgs.vagrant
+					# pkgs.vagrant
 					pkgs.yazi
 					pkgs.yq
 					pkgs.zoxide
