@@ -72,6 +72,7 @@
 				"popclip"
 				"proton-drive"
 				"proton-pass"
+				"protonvpn"
 				"reader"
 				"spotify"
 				"syncthing"
