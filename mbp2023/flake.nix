@@ -58,6 +58,7 @@
 			casks = [
 				"balenaetcher"
 				"bartender"
+				"cursor"
 				"discord"
 				"docker"
 				"espanso"
