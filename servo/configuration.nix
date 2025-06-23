@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, pkgsUnstable, ... }:
+{ config, pkgs, pkgsUnstable, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
 	nix = {
@@ -15,6 +15,12 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+		gc = {
+			automatic = true;
+			dates = "weekly";
+			options = "--delete-older-than +5";
+		};
   };
 
   # Bootloader.
@@ -64,7 +70,9 @@
       description = "Humberto STEIN SHIROMOTO";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       packages = with pkgs; [];
-      openssh.authorizedKeys.keyFiles = [ "/home/hsteinshiromoto/.ssh/authorized_keys" ];
+      openssh.authorizedKeys.keys =
+        lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
+          [ (builtins.readFile ./.ssh/authorized_keys) ];
     };
     users.git = {
       isNormalUser = true;
@@ -78,17 +86,87 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+		allowUnfree = true;
+	};
+
+	# Filesystem configuration for NixOS image
+	fileSystems = {
+		"/" = {
+			device = "/dev/disk/by-label/nixos";
+			fsType = "ext4";
+			options = [ "defaults" ];
+		};
+
+		"/home" = {
+			device = "/dev/disk/by-label/home";
+			fsType = "ext4";
+			options = [ "defaults" ];
+		};
+
+		"/mnt/ssd" = {
+			device = "/dev/sdb1";
+			fsType = "ext4";
+			options = [ "defaults" "nofail" "noatime" ];
+		};
+	};
+
+	# Disk partitioning layout for 75% /home allocation
+	# This configuration assumes a single disk installation
+	# EFI boot partition: 512MB
+	# Root partition: ~20% of remaining space
+	# Home partition: ~75% of remaining space (after boot + root)
+	disko.devices = {
+		disk = {
+			main = {
+				type = "disk";
+				device = "/dev/sda";  # Adjust device as needed
+				content = {
+					type = "gpt";
+					partitions = {
+						ESP = {
+							size = "512M";
+							type = "EF00";
+							content = {
+								type = "filesystem";
+								format = "vfat";
+								mountpoint = "/boot";
+							};
+						};
+						root = {
+							size = "20%";  # Root gets 20% of disk space
+							content = {
+								type = "filesystem";
+								format = "ext4";
+								mountpoint = "/";
+							};
+						};
+						home = {
+							size = "100%";  # Home gets remaining space (~75% after boot and root)
+							content = {
+								type = "filesystem";
+								format = "ext4";
+								mountpoint = "/home";
+							};
+						};
+					};
+				};
+			};
+		};
+	};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+		atuin
     autoconf        # Build essential
     automake        # Build essential
     bat
     btop
     cargo
+		pkgsUnstable.claude-code
     curl
+		exfat
     eza
     fd
     fzf
@@ -96,6 +174,7 @@
     gitflow
     gcc         # Build essential
     gnumake     # Build essential
+		parted
     jetbrains-mono
     lazygit
     libiconv    # Build essential
@@ -104,6 +183,7 @@
     networkmanagerapplet  # GUI for NetworkManager
     pkgsUnstable.neovim
     nodejs
+		ntfs3g
     pass
     pkg-config # Build essential
     ripgrep

@@ -21,6 +21,7 @@
       environment.systemPackages =
         [
 		pkgs.awscli2
+		pkgs.atuin
 		pkgs.bat
 		pkgs.btop
 		pkgs.claude-code
@@ -31,12 +32,14 @@
 		pkgs.gitflow
 		pkgs.gnupg
 		pkgs.lazygit
+		pkgs.lnav
 		pkgs.maccy
 		pkgs.mkalias
 		pkgs.nodejs_24
 		pkgs.ollama
 		pkgs.pass
 		pkgs.ripgrep
+		pkgs.ruff
 		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
@@ -84,6 +87,7 @@
 			"OneDrive" = 823766827;
 			"Windows App" = 1295203466;
 			"TextSniper - OCR, Copy & Paste" = 1528890965;
+			"Theine" = 955848755;
 
 	        };
 

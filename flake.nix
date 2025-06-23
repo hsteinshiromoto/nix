@@ -19,32 +19,47 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Local flakes
-    darwin-config.url = "path:./darwin";
-    darwin-config.inputs = {
-      nixpkgs.follows = "nixpkgs-unstable";
-      nix-darwin.follows = "nix-darwin";
-      nix-homebrew.follows = "nix-homebrew";
-    };
-
-    servo-config.url = "path:./servo";
-    servo-config.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      nixpkgs-unstable.follows = "nixpkgs-unstable";
-      home-manager.follows = "home-manager";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, darwin-config, servo-config, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
+
+    servo-flake = import ./servo/flake.nix;
+    servo-outputs = servo-flake.outputs inputs;
+
+    mbp2023-flake = import ./mbp2023/flake.nix;
+    mbp2023-outputs = mbp2023-flake.outputs {
+      inherit self nix-darwin nix-homebrew;
+      nixpkgs = nixpkgs-unstable;
+    };
+
+    mba2022-flake = import ./mba2022/flake.nix;
+    mba2022-outputs = mba2022-flake.outputs {
+      inherit self nix-darwin nix-homebrew;
+      nixpkgs = nixpkgs-unstable;
+    };
+
+    mbp2025-flake = import ./mbp2025/flake.nix;
+    mbp2025-outputs = mbp2025-flake.outputs {
+      inherit self nix-darwin nix-homebrew;
+      nixpkgs = nixpkgs-unstable;
+    };
+
   in
   {
     # Re-export the configurations from each system flake
-    darwinConfigurations = darwin-config.darwinConfigurations;
-    nixosConfigurations = servo-config.nixosConfigurations;
-    
+    nixosConfigurations = servo-outputs.nixosConfigurations;
+    darwinConfigurations = 
+      mbp2023-outputs.darwinConfigurations // 
+      mba2022-outputs.darwinConfigurations //
+      mbp2025-outputs.darwinConfigurations;
+
     # Add formatter for convenience
     formatter = {
       "${darwinSystem}" = nixpkgs-unstable.legacyPackages.${darwinSystem}.nixpkgs-fmt;

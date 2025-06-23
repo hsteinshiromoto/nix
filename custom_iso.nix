@@ -1,9 +1,15 @@
 # custom-iso.nix
-{ config, pkgs, ... }:
+{ config, pkgs, pkgsUnstable, lib, modulesPath, ... }:
 {
   imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
-    etc/nixos/configuration.nix
+		# Use modulesPath to access installer modules
+    (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
+    # Or for a graphical installer:
+    # (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix")
+
+    # Include channel information
+    (modulesPath + "/installer/cd-dvd/channel.nix")
+    ./servo/configuration.nix
   ];
 
 	# Explicitly override any wireless settings from other modules
@@ -11,4 +17,9 @@
 
   # Ensure NetworkManager is enabled (though this is already in your configuration.nix)
   networking.networkmanager.enable = true;
+
+	# Enable flakes in the ISO
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 }
