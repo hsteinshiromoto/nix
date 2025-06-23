@@ -54,6 +54,8 @@ To switch to a new build, replace the `test` with `switch`.
 
 ## Darwin
 
+1. Create a folder `~/.config/nix`.
+
 1. Install [nix-darwin](https://github.com/nix-darwin/nix-darwin) running the command `sudo nix run nix-darwin -- switch --flake .#MBP2023` in the project root of this repository.
 
 Two flakes divided into two folders:
