@@ -124,7 +124,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."MBP2023" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."MBA2022" = nix-darwin.lib.darwinSystem {
       modules = [
 					configuration
 					nix-homebrew.darwinModules.nix-homebrew {
