@@ -1,5 +1,5 @@
 {
-  description = "Nix-darwin MBP2023 System Flake";
+  description = "Nix-darwin MBA2022 System Flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -56,10 +56,8 @@
 				"mas"
 			];
 			casks = [
-				"balenaetcher"
 				"bartender"
 				"discord"
-				"docker"
 				"espanso"
 				"firefox"
 				"gpg-suite"
@@ -71,7 +69,6 @@
 				"obsidian"
 				"microsoft-teams"
 				"popclip"
-				"proton-drive"
 				"proton-pass"
 				"protonvpn"
 				"reader"
@@ -79,9 +76,7 @@
 				"syncthing"
 				"the-unarchiver"
 				"utm"
-				"visual-studio-code"
 				"waterfox"
-				"whatsapp"
 				"yubico-authenticator"
 			];
 			onActivation.cleanup = "zap";
@@ -89,7 +84,6 @@
 			onActivation.upgrade = true;
 			masApps = {
 				"Bitwarden" = 1352778147;
-				"Kindle" = 302584613;
 				"Magnet" = 441258766;
 				"Microsoft 365" = 1450038993;
 				"Microsoft Excel" = 462058435;
@@ -98,9 +92,6 @@
 				"Microsoft Powerpoint" = 462062816;
 				"Microsoft Word" = 462054704;
 				"OneDrive" = 823766827;
-				"Parcel - Delivery Tracking" = 639968404;
-				"SimpleLogin - Email alias" = 1494359858;
-				"Windows App" = 1295203466;
 				"Tailscale" = 1475387142;
 				"TextSniper - OCR, Copy & Paste" = 1528890965;
 				"Theine" = 955848755;
@@ -133,7 +124,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."MBP2023" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."MBA2022" = nix-darwin.lib.darwinSystem {
       modules = [
 					configuration
 					nix-homebrew.darwinModules.nix-homebrew {
