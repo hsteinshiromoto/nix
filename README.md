@@ -84,18 +84,18 @@ darwin-rebuild switch --flake $(pwd)/mbp2023#MBP2023
 
 To build the NixOS ISO from this configuration, you will need to have Nix installed and flakes enabled. Due to the target architecture (`x86_64-linux`) being different from the host architecture (`aarch64-darwin`), you need to configure a remote builder or use emulation.
 
-1.  **Configure Nix for remote building:**
+1. **Configure Nix for remote building:**
 
-    You can use the provided `nix.conf` file to configure your Nix environment. You can either copy its contents to your `~/.config/nix/nix.conf` or use it directly with the `nix` command.
+You can use the provided `nix.conf` file to configure your Nix environment. You can either copy its contents to your `~/.config/nix/nix.conf` or use it directly with the `nix` command.
 
-2.  **Build the ISO:**
+2. **Build the ISO:**
 
-    Run the following command from the root of the repository:
+Run the following command from the root of the repository:
 
-    ```bash
-    nix build .#nixosConfigurations.custom-iso.config.system.build.isoImage --extra-experimental-features "nix-command flakes" --option extra-experimental-features "nix-command flakes" --config-file ./nix.conf
-    ```
+```bash
+nix build --extra-experimental-features "nix-command flakes" .HnixosConfigurations.custom-iso.config.system.build.isolmage
+```
 
-    This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
+This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
 
 The resulting ISO image will be in the `result/` directory.
