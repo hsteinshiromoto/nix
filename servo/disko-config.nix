@@ -19,7 +19,7 @@
               };
             };
             root = {
-              size = 20%;  # Root gets 20G of disk space
+              size = "64G";  # Root gets 20G of disk space
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -27,7 +27,7 @@
               };
             };
             home = {
-              size = "100%";  # Home gets remaining space (~75% after boot and root)
+              size = "64G";  # Home gets remaining space (~75% after boot and root)
               content = {
                 type = "filesystem";
                 format = "ext4";
