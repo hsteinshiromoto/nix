@@ -28,14 +28,6 @@
 
 ```
 
-## Build Nix ISO based on the flake settings
-
-In the root folder of this git repository, run the following command:
-
-```bash
- nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=./custom_iso.nix
-```
-
 ## Servidor
 
 1. Create the symbolic links of the files in `servo/` folder to `/etc/nixos`.
@@ -93,7 +85,7 @@ You can use the provided `nix.conf` file to configure your Nix environment. You 
 Run the following command from the root of the repository:
 
 ```bash
-nix build --extra-experimental-features "nix-command flakes" .HnixosConfigurations.custom-iso.config.system.build.isolmage
+nix build --extra-experimental-features "nix-command flakes" .#nixosConfigurations.custom-iso.config.system.build.isolmage
 ```
 
 This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
