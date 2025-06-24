@@ -19,7 +19,7 @@
               };
             };
             root = {
-              size = "20%";  # Root gets 20% of disk space
+              size = 20%;  # Root gets 20G of disk space
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -39,4 +39,4 @@
       };
     };
   };
-} 
+}
