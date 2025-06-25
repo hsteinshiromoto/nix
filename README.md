@@ -140,3 +140,49 @@ sudo nixos-install --flake /mnt/path/to/flake#servidor
 ```
 
 The key is that your `custom_iso.nix` already imports your servo configuration, so the ISO is pre-configured with your settings.
+
+### 4. Disk Partitioning with Disko
+
+The servo configuration includes a disko setup that defines disk partitioning. However, disko will NOT automatically partition disks during installation for safety reasons. You must manually apply the partitioning.
+
+#### Disko Configuration Overview
+
+The `servo/disko-config.nix` defines:
+- **Boot partition (ESP)**: 512MB FAT32 at `/boot`
+- **Root partition**: 64GB ext4 at `/`
+- **Home partition**: 64GB ext4 at `/home`
+
+#### Applying Disko Configuration
+
+After booting from the ISO, you have two options:
+
+**Option 1: Direct Disko Application**
+```bash
+# Download the disko configuration
+curl -O https://raw.githubusercontent.com/yourusername/yourrepo/main/servo/disko-config.nix
+
+# Apply disko (WARNING: This will destroy all data on the target disk!)
+sudo nix run github:nix-community/disko -- --mode zap_create_mount ./disko-config.nix
+
+# After disko completes, generate hardware configuration
+sudo nixos-generate-config --root /mnt
+
+# Install NixOS with your flake
+sudo nixos-install --flake github:yourusername/yourrepo#servidor
+```
+
+**Option 2: Using the Installation Script**
+```bash
+# Download and run the installation script
+curl -O https://raw.githubusercontent.com/yourusername/yourrepo/main/bin/install.sh
+chmod +x install.sh
+sudo ./install.sh
+```
+
+The installation script provides safety checks and guides you through the process.
+
+**Important Notes:**
+- Modify `/dev/sda` in `disko-config.nix` if your disk has a different name
+- This process will **destroy all data** on the target disk
+- Always backup important data before proceeding
+- The remaining disk space after the defined partitions will be unallocated
