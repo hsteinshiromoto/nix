@@ -68,7 +68,7 @@ darwin-rebuild switch --flake ~/.config/nix/mbp2025#MBP2025
 ```
 or
 ```bash
-darwin-rebuild switch --flake $(pwd)/mbp2023#MBP2023
+sudo darwin-rebuild switch --flake $(pwd)/mbp2023#MBP2023
 ```
 
 
