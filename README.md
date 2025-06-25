@@ -74,12 +74,6 @@ sudo darwin-rebuild switch --flake $(pwd)/mbp2023#MBP2023
 
 ## Building the ISO
 
-
-### Prerequisites on MacOS
-
-1. Install [Lima](https://github.com/lima-vm/lima)
-
-
 ### Instructions for Cross Generation: Build on aarch64-darwin deploy on x86_64
 
 To build the NixOS ISO from this configuration, you will need to have Nix installed and flakes enabled. Due to the target architecture (`x86_64-linux`) being different from the host architecture (`aarch64-darwin`), you need to configure a remote builder or use emulation.
@@ -100,9 +94,13 @@ This command tells Nix to use the local `nix.conf` file, which enables the use o
 
 The resulting ISO image will be in the `result/` directory.
 
-### Instructions for Generation on x86_64 VM
+### Instructions for Generation on an x86_64 VM
+
+1. Install [Lima](https://github.com/lima-vm/lima)
+2. Get the NixOS lima image from [github](https://github.com/kasuboski/nixos-lima) and run it.
+3. Within the lima shell (using the `lima`) command, run the following command
 
 ```bash
-nix run nixpkgs#nixos-generators -- --format iso --flake .#nixosConfigurations -o result
+nix run nixpkgs#nixos-generators -- --format iso --flake .#custom_iso -o result
 
 ```
