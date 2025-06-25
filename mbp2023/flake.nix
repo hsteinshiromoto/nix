@@ -60,7 +60,7 @@
 				"bartender"
 				"cursor"
 				"discord"
-				"docker"
+				"docker-desktop"
 				"espanso"
 				"firefox"
 				"gpg-suite"
