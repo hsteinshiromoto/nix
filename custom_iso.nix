@@ -2,7 +2,12 @@
 { config, pkgs, pkgsUnstable, lib, modulesPath, ... }:
 {
   imports = [
-		# Use modulesPath to access installer modules
+    # Disable manual generation to avoid the optionsDocBook error
+    ({ config, ... }: {
+      documentation.enable = false;
+      documentation.nixos.enable = false;
+    })
+    # Use modulesPath to access installer modules
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
     # Or for a graphical installer:
     # (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix")

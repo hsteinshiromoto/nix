@@ -1,2 +1,3 @@
 iso:
-	bash bin/make_iso.sh
+	nix build --extra-experimental-features "nix-command flakes" .#nixosConfigurations.custom-iso.config.system.build.isoimage
+
