@@ -60,9 +60,6 @@
       mba2022-outputs.darwinConfigurations //
       mbp2025-outputs.darwinConfigurations;
 
-    # Add disko configurations
-    diskoConfigurations = servo-outputs.diskoConfigurations;
-
     # Add formatter for convenience
     formatter = {
       "${darwinSystem}" = nixpkgs-unstable.legacyPackages.${darwinSystem}.nixpkgs-fmt;

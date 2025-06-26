@@ -127,6 +127,8 @@ Boot from the USB drive on your x86_64 machine. The ISO already includes your se
 
 The servo configuration includes a disko setup that defines disk partitioning. However, disko will NOT automatically partition disks during installation for safety reasons. You must manually apply the partitioning.
 
+**Important**: The disko commands below should be run on the target Linux system (after booting from the ISO), not on macOS.
+
 #### Disko Configuration Overview
 
 The `servo/disko-config.nix` defines:
@@ -136,12 +138,15 @@ The `servo/disko-config.nix` defines:
 
 #### Applying Disko Configuration
 
-After booting from the ISO, you have two options:
+After booting from the ISO on your target x86_64 machine, you have two options:
 
 **Option 1 (Recommended): Direct Disko Application**
 ```bash
-# Apply disko using the disko configuration (WARNING: This will destroy all data on the target disk!)
-sudo nix run github:nix-community/disko -- --mode zap_create_mount github:hsteinshiromoto/nix#diskoConfigurations.servidor
+# 1. Download the disko configuration
+curl -O https://raw.githubusercontent.com/hsteinshiromoto/nix/main/servo/disko-config.nix
+
+# 2. Apply disko (WARNING: This will destroy all data on the target disk!)
+sudo nix run github:nix-community/disko -- --mode zap_create_mount ./disko-config.nix
 
 # 3. After disko completes, generate hardware configuration
 sudo nixos-generate-config --root /mnt
