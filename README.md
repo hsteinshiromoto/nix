@@ -5,23 +5,28 @@
 ```
 .
 ├── bin
-│   ├── docker-nix.conf
-│   └── make_iso.sh
+│   ├── docker-nix.conf
+│   ├── install.sh
+│   └── make_iso.sh
 ├── CLAUDE.md
-├── custom_iso.nix              <- NixOS image configuration
-├── mbp2025                     <- MacOS flake with Nix-Darwin
-│   ├── flake.lock
-│   └── flake.nix
+├── custom_iso.nix
 ├── flake.lock
 ├── flake.nix
 ├── LICENSE
 ├── Makefile
+├── mba2022
+│   └── flake.nix
 ├── mbp2023
-│   └── flake.nix
+│   ├── flake.lock
+│   └── flake.nix
+├── mbp2025
+│   ├── flake.lock
+│   └── flake.nix
 ├── nix.conf
 ├── README.md
 └── servo
     ├── configuration.nix
+    ├── disko-config.nix
     ├── flake.lock
     ├── flake.nix
     └── hardware-configuration.nix
@@ -54,11 +59,13 @@ Two flakes divided into two folders:
 
 ```
 .
+├── mba2022
+│   └── flake.nix       <- MBA2022 flake file
 ├── mbp2025             <- MBP2025 flake file
 │   ├── flake.lock
 │   └── flake.nix
-├── mbp2023             <- MBP2023 flake file
-│   └── flake.nix
+└── mbp2023             <- MBP2023 flake file
+    └── flake.nix
 ```
 
 Update each computer with the corresponding command:
