@@ -134,7 +134,7 @@ Since your ISO imports `servo/configuration.nix`, the installed system will auto
 
 ```bash
 # After booting from ISO
-sudo nixos-install --flake github:yourusername/yourrepo#servidor
+sudo nixos-install --flake github:hsteinshiromoto/nix#servidor
 # OR if installing from local flake
 sudo nixos-install --flake /mnt/path/to/flake#servidor
 ```
