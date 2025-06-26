@@ -12,13 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-		disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 
@@ -58,8 +52,6 @@
             # home-manager.users.hsteinshiromoto = import ./home.nix;
           }
 
-					disko.nixosModules.disko
-					# ./disko-config.nix
         ];
       };
 
@@ -74,7 +66,6 @@
 
         modules = [
           ../custom_iso.nix
-          disko.nixosModules.disko
           # If your custom_iso.nix imports servo/configuration.nix,
           # pkgsUnstable will now be available to it
         ];
