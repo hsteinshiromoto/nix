@@ -175,8 +175,9 @@ Since your ISO imports `servo/configuration.nix`, the installed system will auto
 **Option 1 (Recommended): Install by downloading the flake from github**
 ```bash
 # After booting from ISO
-sudo nixos-install --flake github:hsteinshiromoto/nix#servidor
+sudo nixos-install --flake github:hsteinshiromoto/nix/<branch>#servidor,
 ```
+where `<branch>` can be erased, in case of using the `main` branch.
 
 ** Option 2: From local flake**
 ```bash
