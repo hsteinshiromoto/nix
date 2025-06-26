@@ -72,29 +72,9 @@ sudo darwin-rebuild switch --flake $(pwd)/mbp2023#MBP2023
 ```
 
 
-## Building the ISO
+## Building the Custom ISO
 
-### Instructions for Cross Generation: Build on aarch64-darwin deploy on x86_64
-
-To build the NixOS ISO from this configuration, you will need to have Nix installed and flakes enabled. Due to the target architecture (`x86_64-linux`) being different from the host architecture (`aarch64-darwin`), you need to configure a remote builder or use emulation.
-
-1. **Configure Nix for remote building:**
-
-You can use the provided `nix.conf` file to configure your Nix environment. You can either copy its contents to your `~/.config/nix/nix.conf` or use it directly with the `nix` command.
-
-2. **Build the ISO:**
-
-Run the following command from the root of the repository:
-
-```bash
-nix build --extra-experimental-features "nix-command flakes" .#nixosConfigurations.custom-iso.config.system.build.isolmage
-```
-
-This command tells Nix to use the local `nix.conf` file, which enables the use of a Linux builder.
-
-The resulting ISO image will be in the `result/` directory.
-
-### Instructions for Generation on an x86_64 VM
+### 1. Generate the image on an x86_64 VM
 
 1. Install [Lima](https://github.com/lima-vm/lima)
 2. Get the NixOS lima image from [github](https://github.com/kasuboski/nixos-lima) and run it.
@@ -102,46 +82,42 @@ The resulting ISO image will be in the `result/` directory.
 
 ```bash
 nix run nixpkgs#nixos-generators -- --format iso --flake .#custom_iso -o result
-
 ```
 
-## Installing NixOS from the ISO
+### 2. Burn the ISO image to a USB Drive
 
-Once you have built the ISO image, follow these steps to install NixOS on an x86_64 machine:
-
-### 1. Write ISO to USB Drive
+1. Find your USB device (be careful to select the correct one!)
 
 ```bash
-# Find your USB device (be careful to select the correct one!)
 diskutil list  # on macOS
-lsblk          # on Linux
+```
 
-# Write ISO to USB (replace /dev/diskX with your USB device)
+
+```bash
+lsblk          # on Linux
+```
+
+2. Write ISO to USB (replace `/dev/diskX` with your USB device)
+
+```bash
 sudo dd if=result of=/dev/rdiskX bs=4m status=progress  # macOS
+```
+
+```bash
 sudo dd if=result of=/dev/sdX bs=4M status=progress     # Linux
 ```
 
-### 2. Boot and Install
+
+## Installing NixOS from the Customized ISO
+
+### 1. Boot and Install
 
 Boot from the USB drive on your x86_64 machine. The ISO already includes your servo configuration, so after installation, your system will have:
 - Your defined users and packages
 - Services (SSH, Syncthing, Tailscale, Docker)
 - Network configuration
 
-### 3. Installation Process
-
-Since your ISO imports `servo/configuration.nix`, the installed system will automatically have your configuration. During installation:
-
-```bash
-# After booting from ISO
-sudo nixos-install --flake github:hsteinshiromoto/nix#servidor
-# OR if installing from local flake
-sudo nixos-install --flake /mnt/path/to/flake#servidor
-```
-
-The key is that your `custom_iso.nix` already imports your servo configuration, so the ISO is pre-configured with your settings.
-
-### 4. Disk Partitioning with Disko
+### 2. Disk Partitioning with Disko
 
 The servo configuration includes a disko setup that defines disk partitioning. However, disko will NOT automatically partition disks during installation for safety reasons. You must manually apply the partitioning.
 
@@ -156,19 +132,16 @@ The `servo/disko-config.nix` defines:
 
 After booting from the ISO, you have two options:
 
-**Option 1: Direct Disko Application**
+**Option 1 (Recommended): Direct Disko Application**
 ```bash
-# Download the disko configuration
-curl -O https://raw.githubusercontent.com/yourusername/yourrepo/main/servo/disko-config.nix
+# 1. Download the disko configuration
+curl -O https://raw.githubusercontent.com/hsteinshiromoto/nix/main/servo/disko-config.nix
 
-# Apply disko (WARNING: This will destroy all data on the target disk!)
+# 2. Apply disko (WARNING: This will destroy all data on the target disk!)
 sudo nix run github:nix-community/disko -- --mode zap_create_mount ./disko-config.nix
 
-# After disko completes, generate hardware configuration
+# 3. After disko completes, generate hardware configuration
 sudo nixos-generate-config --root /mnt
-
-# Install NixOS with your flake
-sudo nixos-install --flake github:yourusername/yourrepo#servidor
 ```
 
 **Option 2: Using the Installation Script**
@@ -186,3 +159,20 @@ The installation script provides safety checks and guides you through the proces
 - This process will **destroy all data** on the target disk
 - Always backup important data before proceeding
 - The remaining disk space after the defined partitions will be unallocated
+
+### 3. Installation Process
+
+Since your ISO imports `servo/configuration.nix`, the installed system will automatically have your configuration. During installation:
+
+**Option 1 (Recommended): Install by downloading the flake from github**
+```bash
+# After booting from ISO
+sudo nixos-install --flake github:hsteinshiromoto/nix#servidor
+```
+
+** Option 2: From local flake**
+```bash
+sudo nixos-install --flake /mnt/path/to/flake#servidor
+```
+
+The key is that your `custom_iso.nix` already imports your servo configuration, so the ISO is pre-configured with your settings.
