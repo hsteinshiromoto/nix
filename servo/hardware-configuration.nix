@@ -13,10 +13,8 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
-      fsType = "ext4";
-    };
+  # File systems are managed by disko, so we don't define them here
+  # to avoid conflicts with disko-config.nix
 
   swapDevices = [ ];
 
