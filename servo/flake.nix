@@ -79,5 +79,11 @@
         # pkgsUnstable will now be available to it
       ];
 			};
+
+      # Add disko configuration output
+      diskoConfigurations.servidor = disko.lib.mkDiskoConfiguration {
+        inherit system;
+        modules = [ ./disko-config.nix ];
+      };
     };
 }

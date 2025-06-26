@@ -140,11 +140,8 @@ After booting from the ISO, you have two options:
 
 **Option 1 (Recommended): Direct Disko Application**
 ```bash
-# 1. Download the disko configuration
-curl -O https://raw.githubusercontent.com/hsteinshiromoto/nix/main/servo/disko-config.nix
-
-# 2. Apply disko (WARNING: This will destroy all data on the target disk!)
-sudo nix run github:nix-community/disko -- --mode zap_create_mount ./disko-config.nix
+# Apply disko using the disko configuration (WARNING: This will destroy all data on the target disk!)
+sudo nix run github:nix-community/disko -- --mode zap_create_mount github:hsteinshiromoto/nix#diskoConfigurations.servidor
 
 # 3. After disko completes, generate hardware configuration
 sudo nixos-generate-config --root /mnt
@@ -153,7 +150,7 @@ sudo nixos-generate-config --root /mnt
 **Option 2: Using the Installation Script**
 ```bash
 # Download and run the installation script
-curl -O https://raw.githubusercontent.com/yourusername/yourrepo/main/bin/install.sh
+curl -O https://raw.githubusercontent.com/hsteinshiromoto/nix/main/bin/install.sh
 chmod +x install.sh
 sudo ./install.sh
 ```
