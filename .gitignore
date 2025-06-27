@@ -695,5 +695,33 @@ tags
 .history
 .ionide
 
+# SSH and sensitive files
+.ssh/
+*.pub
+id_rsa*
+id_ed25519*
+id_ecdsa*
+authorized_keys
+known_hosts
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex,linux,python,jupyternotebooks,visualstudiocode,vim,pycharm
 
