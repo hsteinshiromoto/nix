@@ -27,4 +27,8 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  # Ensure proper bootloader configuration for manual installation
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 }
