@@ -11,6 +11,7 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+  };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
@@ -56,7 +57,7 @@
       };
 
 		# ADD THIS NEW CONFIGURATION for the ISO:
-      nixosConfigurations.custom-iso = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.custom_iso = nixpkgs.lib.nixosSystem {
         inherit system;
 
 				specialArgs = {
@@ -69,6 +70,6 @@
           # If your custom_iso.nix imports servo/configuration.nix,
           # pkgsUnstable will now be available to it
         ];
-			};
+      };
     };
 }
