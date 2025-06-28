@@ -27,6 +27,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+	system.autoUpgrade = {
+		enable = true;
+		allowReboot = true;
+		channel = "https://channels.nixos.org/nixos-25.05";
+	};
+
   networking = {
     hostName = "servidor";
     networkmanager.enable = true;
