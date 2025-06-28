@@ -14,7 +14,7 @@
 
     # Include channel information
     (modulesPath + "/installer/cd-dvd/channel.nix")
-    ./servo/configuration.nix
+    ./configuration.nix
   ];
 
 	# Explicitly override any wireless settings from other modules
@@ -27,4 +27,8 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  # Ensure proper bootloader configuration for manual installation
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 }

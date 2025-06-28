@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./disko-config.nix
     ];
 
 	nix = {
@@ -92,7 +91,7 @@
 	};
 
 	# Enable disko for installation
-	disko.enableConfig = true;
+	# disko.enableConfig = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -11,14 +11,9 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-		disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 
@@ -58,13 +53,11 @@
             # home-manager.users.hsteinshiromoto = import ./home.nix;
           }
 
-					disko.nixosModules.disko
-					# ./disko-config.nix
         ];
       };
 
 		# ADD THIS NEW CONFIGURATION for the ISO:
-      nixosConfigurations.custom-iso = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.custom_iso = nixpkgs.lib.nixosSystem {
         inherit system;
 
 				specialArgs = {
@@ -73,11 +66,10 @@
         };
 
         modules = [
-          ../custom_iso.nix
-          disko.nixosModules.disko
+          ./custom_iso.nix
           # If your custom_iso.nix imports servo/configuration.nix,
           # pkgsUnstable will now be available to it
         ];
-			};
+      };
     };
 }

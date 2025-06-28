@@ -31,7 +31,9 @@
     linuxSystem = "x86_64-linux";
 
     servo-flake = import ./servo/flake.nix;
-    servo-outputs = servo-flake.outputs inputs;
+    servo-outputs = servo-flake.outputs {
+      inherit self nixpkgs nixpkgs-unstable home-manager;
+    };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
