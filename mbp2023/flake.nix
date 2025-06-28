@@ -43,6 +43,7 @@
 					pkgs.stow
 					pkgs.tmux
 					pkgs.tmuxinator
+					pkgs.tree
 					pkgs.uv
 					# pkgs.vagrant
 					pkgs.yazi
