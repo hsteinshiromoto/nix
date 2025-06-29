@@ -97,3 +97,9 @@ nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 ```
 
 14. Reboot with `# reboot`.
+
+## Upgrade with the command
+
+```bash
+# nixos-rebuild switch --flake .#servidor --upgrade
+```
