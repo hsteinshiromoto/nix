@@ -27,6 +27,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+	system.autoUpgrade = {
+		enable = true;
+		allowReboot = true;
+		channel = "https://channels.nixos.org/nixos-25.05";
+	};
+
   networking = {
     hostName = "servidor";
     networkmanager.enable = true;
@@ -68,7 +74,7 @@
     users.hsteinshiromoto = {
       isNormalUser = true;
       description = "Humberto STEIN SHIROMOTO";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
       packages = with pkgs; [];
       openssh.authorizedKeys.keys =
         lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
@@ -202,6 +208,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
