@@ -74,7 +74,7 @@
     users.hsteinshiromoto = {
       isNormalUser = true;
       description = "Humberto STEIN SHIROMOTO";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
       packages = with pkgs; [];
       openssh.authorizedKeys.keys =
         lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
