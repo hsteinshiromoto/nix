@@ -6,5 +6,5 @@ iso:
 servo:
 	sudo nixos-rebuild test --flake .#servidor --impure
 
-25:
-	darwin-rebuild switch --flake .#MBP2025
+%:
+	sudo darwin-rebuild switch --flake .#MBP20$@
