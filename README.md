@@ -70,7 +70,7 @@ Two flakes divided into two folders:
 Update each computer with the corresponding command:
 
 ```bash
-make 25
+make 25 # or 23 for each mbp.
 ```
 
 
