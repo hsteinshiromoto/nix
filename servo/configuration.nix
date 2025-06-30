@@ -76,7 +76,12 @@
 			shell = pkgs.zsh;
       description = "Humberto STEIN SHIROMOTO";
       extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
-      packages = with pkgs; [];
+      packages = with pkgs; [
+						atuin
+						pkgsUnstable.claude-code
+						stow
+						tmuxinator
+			];
       openssh.authorizedKeys.keys =
         lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
           [ (builtins.readFile ./.ssh/authorized_keys) ];
@@ -103,13 +108,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-		atuin
     autoconf        # Build essential
     automake        # Build essential
     bat
     btop
     cargo
-		pkgsUnstable.claude-code
     curl
 		disko
 		exfat
@@ -134,9 +137,7 @@
     pkg-config # Build essential
     ripgrep
     starship
-    stow
     tmux
-    tmuxinator
     uv
     yazi
     yq
