@@ -1,5 +1,5 @@
 {
-  description = "Nix-darwin system flake";
+  description = "Nix-darwin MBP2025 system flake";
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
