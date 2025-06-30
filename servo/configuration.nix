@@ -111,6 +111,7 @@
     cargo
 		pkgsUnstable.claude-code
     curl
+		disko
 		exfat
     eza
     fd
