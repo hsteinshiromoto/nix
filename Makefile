@@ -7,4 +7,4 @@ servo:
 	sudo nixos-rebuild test --flake .#servidor --impure
 
 25:
-	darwin-rebuild switch --flake ~/.config/nix/mbp2025#MBP2025
+	darwin-rebuild switch --flake .#MBP2025
