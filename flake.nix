@@ -26,7 +26,7 @@
 
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs {
-      inherit self nixpkgs nixpkgs-unstable home-manager;
+      inherit self nixpkgs nixpkgs-unstable home-manager disko;
     };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
