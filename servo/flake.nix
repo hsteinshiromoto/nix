@@ -32,7 +32,7 @@
           # Include your main configuration
           ./configuration.nix
 					disko.nixosModules.disko
-					# ./disko-config.nix
+					# ./disko-config.nix # Do not enable with ./hardware-configuration.nix import in configuration.nix
         ];
       };
 
