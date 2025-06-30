@@ -70,11 +70,7 @@ Two flakes divided into two folders:
 Update each computer with the corresponding command:
 
 ```bash
-darwin-rebuild switch --flake ~/.config/nix/mbp2025#MBP2025
-```
-or
-```bash
-sudo darwin-rebuild switch --flake $(pwd)/mbp2023#MBP2023
+make 25
 ```
 
 

@@ -1,17 +1,5 @@
 {
-  description = "Nix-darwin system flake";
-
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.nix-darwin.follows = "nix-darwin";
-    };
-  };
+  description = "Nix-darwin MBP2025 system flake";
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
@@ -107,6 +95,9 @@
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      # Set primary user for homebrew and other user-specific options
+      system.primaryUser = "hsteinshiromoto";
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
