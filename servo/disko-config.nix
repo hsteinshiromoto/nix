@@ -10,7 +10,7 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -19,22 +19,21 @@
               };
             };
             root = {
-              size = "64G";  # Root gets 20G of disk space
+							end = "-8G";
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
             };
-            home = {
-              size = "64G";  # Home gets remaining space (~75% after boot and root)
+						swap = {
+              size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/home";
+                type = "swap";
+                randomEncryption = true;
               };
             };
-          };
+					};
         };
       };
     };

@@ -1,18 +1,6 @@
 {
   description = "NixOS configuration for servidor";
 
-  inputs = {
-    # Core channels
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # Home Manager
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
@@ -43,15 +31,6 @@
 
           # Include your main configuration
           ./configuration.nix
-
-          # Include Home Manager
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            # Define your home-manager configurations here, or import them
-            # home-manager.users.hsteinshiromoto = import ./home.nix;
-          }
 
         ];
       };
