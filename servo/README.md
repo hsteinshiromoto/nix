@@ -6,6 +6,32 @@
 2. Burn the iso into a usb stick.
 3. Boot the usb into the server.
 4. When boot, set connection with `nmtui`.
+
+## Partition the Disk
+
+### Method 1: Using disko directly (Recommended)
+
+1. Clone the repository (if not already avaible):
+```bash
+git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
+cd ~/.config/nix
+```
+
+2. Use disko to create the partitions:
+```bash
+nix run github:nix-community/disko -- --mode zap_create_mount ~/.config/nix/servo/disko-config.nix
+```
+his command will:
+- Zap (wipe) the target disk
+- Create the partitions according to your disko config
+- Mount them at `/mnt` and `/mnt/boot`
+
+3. Install NixOS using your flake:
+```bash
+nixos-install --flake '~/.config/nix#servidor
+```
+
+### Using Parted
 5. Set the partition UEFI (GPT)
     a. Create a GPT partition table.
     ```bash
