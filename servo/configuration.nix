@@ -73,6 +73,7 @@
   users = {
     users.hsteinshiromoto = {
       isNormalUser = true;
+			shell = pkgs.zsh;
       description = "Humberto STEIN SHIROMOTO";
       extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
       packages = with pkgs; [];
