@@ -1,19 +1,7 @@
 {
   description = "Nix-darwin MBA2022 System Flake";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-		nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.nix-darwin.follows = "nix-darwin";
-    };
-  };
-
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+	outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
