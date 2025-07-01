@@ -11,7 +11,7 @@
 
 ### Method 1: Using disko directly (Recommended)
 
-1. Clone the repository (if not already avaible):
+1. Clone the repository (if not already available):
 ```bash
 git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 cd ~/.config/nix
@@ -83,14 +83,14 @@ his command will:
 
 ## Install NixOS
 
-### From Flake
+### Method 1. From Flake (Recommended)
 
 Install NixOS using your flake:
 ```bash
 sudo nixos-install --flake '~/.config/nix#servidor
 ```
 
-### From Scratch
+### Method 2. From Scratch
 
 1. If using the generated configuration to start. You have to enable network manager **before** installing NixOS. In the `configuration.nix`, make that the following line is left uncommented:
 
@@ -100,7 +100,7 @@ networking.networkmanager.enable = true;
 
 2. Do the installation:
 ```bash
-# nixos-install
+sudo nixos-install
 ```
 
 3. Clone the this repository as follows:
@@ -111,7 +111,7 @@ $ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 
 4. Do the installation:
 ```bash
-# nixos-install --flake '~/.config/nix#servidor'
+sudo nixos-install --flake '~/.config/nix#servidor'
 ```
 
 ## Finalizing
@@ -125,13 +125,53 @@ Retype new password: ***
 
 2. If you have a user account declared in your configuration.nix and plan to log in using this user, set a password before rebooting, e.g. for the `hsteinshiromoto` user:
 ```bash
-nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
+sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 ```
 
 3. Reboot with `# reboot`.
+
+4. Applicable if installed from flake: clone the repository again and create a symbolic link for the `servo/configuration.nix` file:
+```bash
+sudo ln -s /home/hsteinshiromoto/.config/nix/servo/configuration.nix /etc/nixos/
+```
 
 ## Upgrade with the command
 
 ```bash
 # nixos-rebuild switch --flake .#servidor --upgrade
 ```
+
+## Create Custom ISO Image
+
+### 1. Generate iso image
+
+1. Use the command using Makefile as `make iso` or the following cli
+```bash
+nix run nixpkgs#nixos-generators -- --format iso --flake .#custom_iso -o result
+```
+
+2. Copy the iso image to the current folder
+
+### 2. Burn the ISO image to a USB Drive
+
+1. Find your USB device (be careful to select the correct one!)
+
+```bash
+diskutil list  # on macOS
+```
+
+
+```bash
+lsblk          # on Linux
+```
+
+2. Write ISO to USB (replace `/dev/diskX` with your USB device)
+
+```bash
+sudo dd if=result of=/dev/rdiskX bs=4m status=progress  # macOS
+```
+
+```bash
+sudo dd if=result of=/dev/sdX bs=4M status=progress     # Linux
+```
+
