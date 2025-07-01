@@ -19,7 +19,7 @@ cd ~/.config/nix
 
 2. Use disko to create the partitions:
 ```bash
-sudo nix run github:nix-community/disko -- --mode zap_create_mount ~/.config/nix/servo/disko-config.nix
+sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
 ```
 his command will:
 - Zap (wipe) the target disk
