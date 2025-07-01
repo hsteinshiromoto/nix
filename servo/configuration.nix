@@ -27,6 +27,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+	system.autoUpgrade = {
+		enable = true;
+		allowReboot = true;
+		channel = "https://channels.nixos.org/nixos-25.05";
+	};
+
   networking = {
     hostName = "servidor";
     networkmanager.enable = true;
@@ -67,9 +73,15 @@
   users = {
     users.hsteinshiromoto = {
       isNormalUser = true;
+			shell = pkgs.zsh;
       description = "Humberto STEIN SHIROMOTO";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
-      packages = with pkgs; [];
+      extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
+      packages = with pkgs; [
+						atuin
+						pkgsUnstable.claude-code
+						stow
+						tmuxinator
+			];
       openssh.authorizedKeys.keys =
         lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
           [ (builtins.readFile ./.ssh/authorized_keys) ];
@@ -96,14 +108,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-		atuin
     autoconf        # Build essential
     automake        # Build essential
     bat
     btop
     cargo
-		pkgsUnstable.claude-code
     curl
+		disko
 		exfat
     eza
     fd
@@ -126,9 +137,7 @@
     pkg-config # Build essential
     ripgrep
     starship
-    stow
     tmux
-    tmuxinator
     uv
     yazi
     yq
@@ -175,7 +184,8 @@
       enable = true;
       ports = [ 22 ];
       settings = {
-            PasswordAuthentication = true;
+				PasswordAuthentication = false;
+				AcceptEnv = "$TMUX";
       };
     };
     tailscale = {
@@ -202,6 +212,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }

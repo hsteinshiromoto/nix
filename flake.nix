@@ -3,7 +3,7 @@
 
   inputs = {
     # Core channels
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Darwin inputs
@@ -12,12 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-
-    # Home Manager
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     disko = {
       url = "github:nix-community/disko";
@@ -32,7 +26,7 @@
 
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs {
-      inherit self nixpkgs nixpkgs-unstable home-manager;
+      inherit self nixpkgs nixpkgs-unstable home-manager disko;
     };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
