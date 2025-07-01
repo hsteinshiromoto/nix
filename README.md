@@ -1,4 +1,6 @@
-# Nix Flakes
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hsteinshiromoto/nix?style=flat)
+![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+# Nix Flakes Repository
 
 ## Repository Structure
 
