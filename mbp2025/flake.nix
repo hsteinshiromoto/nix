@@ -111,15 +111,20 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#MBP2025
     darwinConfigurations."MBP2025" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration
-	nix-homebrew.darwinModules.nix-homebrew
-	{
-		nix-homebrew = {
-			 enable = true;
-			enableRosetta = true;
-			user = "hsteinshiromoto";
-		 };
-	}
+      modules = [
+				configuration
+				nix-homebrew.darwinModules.nix-homebrew {
+					nix-homebrew = {
+					  enable = true;
+						enableRosetta = true;
+						user = "hsteinshiromoto";
+					 };
+				}
+				home-manager.darwinModules.home-manager {
+					home-manager.useGlobalPkgs = true;
+					home-manager.useUserPackages = true;
+					home-manager.users.hsteinshiromoto = ./home.nix;
+				};
       ];
     };
   };
