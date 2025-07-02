@@ -47,7 +47,7 @@
 		];
 		casks = [
 			"cursor"
-			"docker"
+			"docker-desktop"
 			"drawio"
 			"espanso"
 			"firefox"
