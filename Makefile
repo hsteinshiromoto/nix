@@ -51,6 +51,10 @@ nixos_rebuild: flake.nix flake.lock servo/flake.nix servo/flake.lock servo/hardw
 nixos_iso: flake.nix flake.lock servo/custom_iso.nix
 	nix build --extra-experimental-features "nix-command flakes" .#nixosConfigurations.custom_iso.config.system.build.isoImage
 
+## Check whether the configuration and disko-config are valid
+nixos_anywhere:
+	nix run github:nix-community/nixos-anywhere -- --flake .#servidor --vm-test
+
 # ---
 # Self Documenting Commands
 # ---
