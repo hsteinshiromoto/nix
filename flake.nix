@@ -21,7 +21,7 @@
 		home-manager = {
 			url =  "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-		}
+		};
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, ... }@inputs:
