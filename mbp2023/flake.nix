@@ -116,6 +116,12 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
+			# The following user definition is required by home-manager
+			users.users.hsteinshiromoto = {
+				name = "hsteinshiromoto";
+				home = "/Users/hsteinshiromoto";
+			};
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
@@ -124,6 +130,7 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."MBP2023" = nix-darwin.lib.darwinSystem {
+
       modules = [
 					configuration
 					nix-homebrew.darwinModules.nix-homebrew {
