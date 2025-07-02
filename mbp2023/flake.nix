@@ -1,7 +1,7 @@
 {
   description = "Nix-darwin MBP2023 System Flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -134,6 +134,11 @@
 							autoMigrate = true;
 						 };
 					}
+					home-manager.darwinModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.hsteinshiromoto = ./home.nix;
+          }
 				];
     };
   };

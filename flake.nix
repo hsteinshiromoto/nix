@@ -36,7 +36,7 @@
 
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
-      inherit self nix-darwin nix-homebrew;
+      inherit self nix-darwin nix-homebrew home-manager;
       nixpkgs = nixpkgs-unstable;
     };
 
