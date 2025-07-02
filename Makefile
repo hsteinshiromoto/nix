@@ -17,7 +17,7 @@ darwin_2022: flake.nix flake.lock mba2022/flake.nix mba2022/flake.lock
 darwin_2023: flake.nix flake.lock mbp2023/flake.nix mbp2023/flake.lock
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
-	sudo darwin-rebuild $(DARWIN_FLAGS) --flake .#MBP2023
+	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023
 
 ## Rebuild nix-darwin mbp2025 flake
 darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
