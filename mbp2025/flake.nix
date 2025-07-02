@@ -103,6 +103,14 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
+			# The following user definition is required by home-manager [1]
+			# [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
+			users.users.hsteinshiromoto = {
+				name = "hsteinshiromoto";
+				home = "/Users/hsteinshiromoto";
+			};
+
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
