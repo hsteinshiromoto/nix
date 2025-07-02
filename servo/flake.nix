@@ -51,5 +51,8 @@
           # pkgsUnstable will now be available to it
         ];
       };
+
+      # Expose the installTest for nixos-anywhere VM testing
+      checks.${system}.servidor = self.nixosConfigurations.servidor.config.system.build.installTest;
     };
 }
