@@ -17,6 +17,11 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+		home-manager = {
+			url =  "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+		};
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, ... }@inputs:
@@ -31,7 +36,7 @@
 
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
-      inherit self nix-darwin nix-homebrew;
+      inherit self nix-darwin nix-homebrew home-manager;
       nixpkgs = nixpkgs-unstable;
     };
 
@@ -43,7 +48,7 @@
 
     mbp2025-flake = import ./mbp2025/flake.nix;
     mbp2025-outputs = mbp2025-flake.outputs {
-      inherit self nix-darwin nix-homebrew;
+      inherit self nix-darwin nix-homebrew home-manager;
       nixpkgs = nixpkgs-unstable;
     };
 
