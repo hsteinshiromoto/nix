@@ -11,6 +11,13 @@
         config.allowUnfree = true;
       };
 
+			# The following user definition is required by home-manager [1]
+			# [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
+			users.users.hsteinshiromoto = {
+				name = "hsteinshiromoto";
+				home = "/home/hsteinshiromoto";
+			};
+
       # Import your main configuration with appropriate overlays
       lib = nixpkgs.lib;
     in {
@@ -33,6 +40,12 @@
           ./configuration.nix
 					disko.nixosModules.disko
 					./disko-config.nix # Do not enable with ./hardware-configuration.nix import in configuration.nix
+					home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.hsteinshiromoto = ./home.nix;
+					}
         ];
       };
 
