@@ -33,7 +33,6 @@
 					pkgs.tmuxinator
 					pkgs.tree
 					pkgs.uv
-					# pkgs.vagrant
 					pkgs.yazi
 					pkgs.yq
 					pkgs.zoxide
