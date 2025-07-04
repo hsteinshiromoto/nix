@@ -98,6 +98,8 @@
 			#		2. Add the `authorized_keys` file to `/var/lib/git-server/.ssh`.
 			#   3. In the server, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`
 			#		4. Set the local repo `origin` with the command `git remote add origin git@<ip>:<repo_slug>.git`
+			# References:
+			# 	[1] https://nixos.wiki/wiki/Git#Serve_Git_repos_via_SSH
       openssh.authorizedKeys.keys =
 				lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
           [ (builtins.readFile ./.ssh/authorized_keys) ];
