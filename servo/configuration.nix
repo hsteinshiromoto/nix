@@ -91,10 +91,9 @@
       home = "/home/git";
       description = "Git user";
       shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
-      openssh.authorizedKeys.keys = [
+      openssh.authorizedKeys.keys =
 				lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
           [ (builtins.readFile ./.ssh/authorized_keys) ];
-      ];
     };
   };
 
