@@ -86,9 +86,11 @@
         lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
           [ (builtins.readFile ./.ssh/authorized_keys) ];
     };
+		groups.git = {};
     users.git = {
       isNormalUser = true;
-      home = "/home/git";
+			group = "git";
+			home = "/var/lib/git-server";
       description = "Git user";
       shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
       openssh.authorizedKeys.keys =
@@ -98,7 +100,7 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config = {
+		nixpkgs.config = {
 		allowUnfree = true;
 	};
 
@@ -187,6 +189,14 @@
 				PasswordAuthentication = false;
 				AcceptEnv = "$TMUX";
       };
+			extraConfig = ''
+      Match user git
+        AllowTcpForwarding no
+        AllowAgentForwarding no
+        PasswordAuthentication no
+        PermitTTY no
+        X11Forwarding no
+    '';
     };
     tailscale = {
       enable = true;
