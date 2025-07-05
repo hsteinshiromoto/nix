@@ -124,6 +124,7 @@
     cargo
     curl
 		disko
+		docker-compose
 		exfat
     eza
     fd
