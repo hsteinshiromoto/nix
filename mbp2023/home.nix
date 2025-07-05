@@ -6,10 +6,11 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
-	home.file."${HOME}/.zgenom".source = builtins.fetchGitIfNotAlreadyPresent {
-		url = "https://https://github.com/jandamm/zgenom";
-		ref = "main"; # Or your desired branch/commit
-		leaveDotGit = true;
+	home.file = {
+			"/Users/hsteinshiromoto/.zgenom".source = builtins.fetchGit {
+				url = "https://github.com/jandamm/zgenom";
+				ref = "main"; # Or your desired branch/commit
+		};
 	};
 
   # This value determines the Home Manager release that your
