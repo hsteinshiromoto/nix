@@ -90,7 +90,7 @@
     users.git = {
       isNormalUser = true;
 			group = "git";
-			home = "/var/lib/git-server";
+			home = "/home/git";
       description = "Git user";
       shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
 			# To use `authorized_keys` file:
@@ -124,6 +124,7 @@
     cargo
     curl
 		disko
+		docker-compose
 		exfat
     eza
     fd
