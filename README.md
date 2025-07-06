@@ -45,7 +45,7 @@ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 
 #### NixOS
 
-Follow the instructions in this [README.md](<README#Server Instructions.>).
+Follow the instructions in this [README.md](servo/README.md).
 
 #### Nix Package Manager
 
