@@ -17,7 +17,7 @@ darwin_2022: flake.nix flake.lock mba2022/flake.nix mba2022/flake.lock
 darwin_2023: flake.nix flake.lock mbp2023/flake.nix mbp2023/flake.lock
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
-	sudo darwin-rebuild $(DARWIN_FLAGS) --flake .#MBP2023
+	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
 darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
@@ -27,13 +27,9 @@ darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
 
 ## Run partition the disk using disko
 partition: flake.nix flake.lock servo/disko-config.nix
-	@echo "Partitioning disk with disko"
-
-	@echo "Clonning repository into the folder ~/.config/nix ..."
-	git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
-
-	@echo "Start partitioning with disko"
+	@echo "Partitioning disk with disko ..."
 	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
+	@echo "Done"
 
 ## Install NixOS from flake
 nixos_install:
@@ -50,6 +46,10 @@ nixos_rebuild: flake.nix flake.lock servo/flake.nix servo/flake.lock servo/hardw
 ## Generate ISO image from NixOS
 nixos_iso: flake.nix flake.lock servo/custom_iso.nix
 	nix build --extra-experimental-features "nix-command flakes" .#nixosConfigurations.custom_iso.config.system.build.isoImage
+
+## Check whether the configuration and disko-config are valid
+nixos_anywhere:
+	nix run github:nix-community/nixos-anywhere -- --flake .#servidor --vm-test
 
 # ---
 # Self Documenting Commands

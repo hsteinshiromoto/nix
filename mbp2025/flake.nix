@@ -1,7 +1,7 @@
 {
   description = "Nix-darwin MBP2025 system flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -47,7 +47,7 @@
 		];
 		casks = [
 			"cursor"
-			"docker"
+			"docker-desktop"
 			"drawio"
 			"espanso"
 			"firefox"
@@ -103,6 +103,14 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
+			# The following user definition is required by home-manager [1]
+			# [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
+			users.users.hsteinshiromoto = {
+				name = "hsteinshiromoto";
+				home = "/Users/hsteinshiromoto";
+			};
+
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
@@ -111,15 +119,20 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#MBP2025
     darwinConfigurations."MBP2025" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration
-	nix-homebrew.darwinModules.nix-homebrew
-	{
-		nix-homebrew = {
-			 enable = true;
-			enableRosetta = true;
-			user = "hsteinshiromoto";
-		 };
-	}
+      modules = [
+				configuration
+				nix-homebrew.darwinModules.nix-homebrew {
+					nix-homebrew = {
+					  enable = true;
+						enableRosetta = true;
+						user = "hsteinshiromoto";
+					 };
+				}
+				home-manager.darwinModules.home-manager {
+					home-manager.useGlobalPkgs = true;
+					home-manager.useUserPackages = true;
+					home-manager.users.hsteinshiromoto = ./home.nix;
+				}
       ];
     };
   };

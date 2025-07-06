@@ -18,21 +18,28 @@
                 mountpoint = "/boot";
               };
             };
-            root = {
-							end = "-8G";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
-              };
-            };
+						root = {
+							size = "64G";
+							content = {
+								type = "filesystem";
+								format = "ext4";
+								mountpoint = "/";
+							};
+						};
+						home = {
+							size = "100%";
+							content = {
+								type = "filesystem";
+								format = "ext4";
+								mountpoint = "/home";
+							};
+						};
 						swap = {
-              size = "100%";
-              content = {
-                type = "swap";
-                randomEncryption = true;
-              };
-            };
+							size = "4G";
+							content = {
+								type = "swap";
+							};
+						};
 					};
         };
       };
