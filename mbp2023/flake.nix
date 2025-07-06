@@ -67,6 +67,7 @@
 				"spotify"
 				"syncthing"
 				"the-unarchiver"
+				"transmission"
 				"utm"
 				"visual-studio-code"
 				"waterfox"
