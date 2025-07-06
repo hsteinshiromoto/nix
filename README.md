@@ -45,7 +45,33 @@ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 
 #### NixOS
 
-Follow the instructions in this [README.md](servo/README.md).
+1. Clone this repository using the command
+```bash
+git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
+```
+
+2. Navigate to the `~/.config/nix` folder and partition the disk with the command:
+```bash
+make partition
+```
+
+3. Once done, install NixOS with the command
+```bash
+make nixos_install
+```
+and reboot.
+
+4. After reboot login, and run `nmtui` to setup the connections again.
+
+5. Clone this repository again, as per step 1.
+
+6. Run the command
+```bash
+sudo ln -s /home/hsteinshiromoto/.config/nix/servo/configuration.nix /etc/nixos/
+```
+to create a symbolic link to the `configuration.nix` file of this repository.
+
+For more details, follow the instructions in this [README.md](servo/README.md).
 
 #### Nix Package Manager
 
