@@ -27,13 +27,9 @@ darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
 
 ## Run partition the disk using disko
 partition: flake.nix flake.lock servo/disko-config.nix
-	@echo "Partitioning disk with disko"
-
-	@echo "Clonning repository into the folder ~/.config/nix ..."
-	git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
-
-	@echo "Start partitioning with disko"
+	@echo "Partitioning disk with disko ..."
 	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
+	@echo "Done"
 
 ## Install NixOS from flake
 nixos_install:
