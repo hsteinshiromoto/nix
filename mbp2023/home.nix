@@ -6,12 +6,17 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
-	home.file = {
-			"/Users/hsteinshiromoto/.zgenom".source = builtins.fetchGit {
-				url = "https://github.com/jandamm/zgenom";
-				ref = "main"; # Or your desired branch/commit
-		};
-	};
+	# Using home-manager to clone and manage plugins is not the best (see e.g. [1])
+	#
+	# References:
+	#		[1] https://discourse.nixos.org/t/make-home-manager-clone-some-git-repos-for-my-dotfiles/32591
+	#
+	# home.file = {
+	# 		"/Users/hsteinshiromoto/.zgenom".source = builtins.fetchGit {
+	# 			url = "https://github.com/jandamm/zgenom";
+	# 			ref = "main"; # Or your desired branch/commit
+	# 	};
+	# };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
