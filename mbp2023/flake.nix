@@ -29,6 +29,7 @@
 					pkgs.ruff
 					pkgs.starship
 					pkgs.stow
+					pkgs.systemctl-tui
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.tree
