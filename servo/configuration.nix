@@ -147,6 +147,7 @@
     pkg-config # Build essential
     ripgrep
     starship
+		systemctl-tui
     tmux
     uv
     yazi
