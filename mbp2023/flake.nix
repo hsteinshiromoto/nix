@@ -65,7 +65,7 @@
 				"protonvpn"
 				"reader"
 				"spotify"
-				"syncthing"
+				"syncthing-app"
 				"the-unarchiver"
 				"transmission"
 				"utm"
