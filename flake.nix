@@ -22,16 +22,21 @@
 			url =  "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
 		};
+
+		sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix , ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
 
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs {
-      inherit self nixpkgs nixpkgs-unstable home-manager disko;
+      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix;
     };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
