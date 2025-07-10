@@ -146,6 +146,7 @@
     pass
     pkg-config # Build essential
     ripgrep
+		sops
     starship
 		systemctl-tui
     tmux
