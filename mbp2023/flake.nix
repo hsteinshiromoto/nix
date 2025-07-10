@@ -55,7 +55,6 @@
 				"ghostty"
 				"google-chrome"
 				"karabiner-elements"
-				"istat-menus"
 				"maccy"
 				"obsidian"
 				"microsoft-teams"
