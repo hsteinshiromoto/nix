@@ -45,6 +45,9 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+						home-manager.sharedModules = [
+              sops-nix.homeManagerModules.sops
+            ];
             home-manager.users.hsteinshiromoto = ./home.nix;
 					}
         ];
