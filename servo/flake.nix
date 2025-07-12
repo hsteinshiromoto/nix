@@ -40,6 +40,7 @@
           ./configuration.nix
 					disko.nixosModules.disko
 					./disko-config.nix # Do not enable with ./hardware-configuration.nix import in configuration.nix
+					sops-nix.nixosModules.sops
 					home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -62,7 +63,6 @@
           ./custom_iso.nix
           # If your custom_iso.nix imports servo/configuration.nix,
           # pkgsUnstable will now be available to it
-					sops-nix.nixosModules.sops
         ];
       };
 
