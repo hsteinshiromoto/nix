@@ -46,7 +46,7 @@
 			"neovim"
 		];
 		casks = [
-			"bastender"
+			"bartender"
 			"cursor"
 			"docker-desktop"
 			"drawio"
