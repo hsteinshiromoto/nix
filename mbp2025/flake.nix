@@ -46,6 +46,7 @@
 			"neovim"
 		];
 		casks = [
+			"bartender"
 			"cursor"
 			"docker-desktop"
 			"drawio"
@@ -53,7 +54,7 @@
 			"firefox"
 			"ghostty"
 			"google-chrome"
-			"hiddenbar"
+			"maccy"
 			"microsoft-teams"
 			"obsidian"
 			"popclip"

@@ -27,6 +27,7 @@
 					pkgs.pass
 					pkgs.ripgrep
 					pkgs.ruff
+					pkgs.serpl
 					pkgs.starship
 					pkgs.stow
 					pkgs.tmux
