@@ -17,6 +17,7 @@
 					pkgs.fd
 					pkgs.fzf
 					pkgs.git
+					pkgs.git-cliff
 					pkgs.gitflow
 					pkgs.gnupg
 					pkgs.lazygit
@@ -29,6 +30,7 @@
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
+					pkgs.spotify-player
 					pkgs.starship
 					pkgs.stow
 					pkgs.tmux
