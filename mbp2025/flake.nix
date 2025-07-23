@@ -13,6 +13,7 @@
 		pkgs.bat
 		pkgs.btop
 		pkgs.claude-code
+		pkgs.csvlens
 		pkgs.eza
 		pkgs.fd
 		pkgs.fzf
