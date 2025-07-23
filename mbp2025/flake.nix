@@ -29,6 +29,7 @@
 		pkgs.ripgrep
 		pkgs.ruff
 		pkgs.serpl
+		pkgs.spotify-player
 		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
