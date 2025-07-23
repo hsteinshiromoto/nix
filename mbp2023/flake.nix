@@ -73,6 +73,7 @@
 				"transmission"
 				"utm"
 				"visual-studio-code"
+				"vlc"
 				"waterfox"
 				"whatsapp"
 				"yubico-authenticator"
