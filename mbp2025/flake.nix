@@ -55,6 +55,7 @@
 			"drawio"
 			"espanso"
 			"firefox"
+			"figma"
 			"ghostty"
 			"google-chrome"
 			"maccy"
