@@ -12,10 +12,12 @@
 					pkgs.bat
 					pkgs.btop
 					pkgs.claude-code
+					pkgs.dua
 					pkgs.eza
 					pkgs.fd
 					pkgs.fzf
 					pkgs.git
+					pkgs.git-cliff
 					pkgs.gitflow
 					pkgs.gnupg
 					pkgs.lazygit
@@ -28,6 +30,7 @@
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
+					pkgs.spotify-player
 					pkgs.starship
 					pkgs.stow
 					pkgs.tmux
@@ -70,6 +73,7 @@
 				"transmission"
 				"utm"
 				"visual-studio-code"
+				"vlc"
 				"waterfox"
 				"whatsapp"
 				"yubico-authenticator"

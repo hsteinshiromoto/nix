@@ -13,6 +13,7 @@
 		pkgs.bat
 		pkgs.btop
 		pkgs.claude-code
+		pkgs.csvlens
 		pkgs.eza
 		pkgs.fd
 		pkgs.fzf
@@ -28,6 +29,8 @@
 		pkgs.pass
 		pkgs.ripgrep
 		pkgs.ruff
+		pkgs.serpl
+		pkgs.spotify-player
 		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
@@ -52,6 +55,7 @@
 			"drawio"
 			"espanso"
 			"firefox"
+			"figma"
 			"ghostty"
 			"google-chrome"
 			"maccy"
