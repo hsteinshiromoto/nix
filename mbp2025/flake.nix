@@ -24,6 +24,7 @@
 		pkgs.lnav
 		pkgs.maccy
 		pkgs.mkalias
+		pkgs.neovim
 		pkgs.nodejs_24
 		pkgs.ollama
 		pkgs.pass
@@ -46,7 +47,6 @@
 		enable = true;
 		brews = [
 			"mas"
-			"neovim"
 		];
 		casks = [
 			"bartender"
