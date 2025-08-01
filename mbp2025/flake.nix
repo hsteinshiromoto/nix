@@ -24,6 +24,7 @@
 		pkgs.lnav
 		pkgs.maccy
 		pkgs.mkalias
+		pkgs.neovim
 		pkgs.nodejs_24
 		pkgs.ollama
 		pkgs.pass
@@ -46,7 +47,6 @@
 		enable = true;
 		brews = [
 			"mas"
-			"neovim"
 		];
 		casks = [
 			"bartender"
@@ -71,7 +71,7 @@
 		onActivation.upgrade = true;
 		masApps = {
 			"Magnet" = 441258766;
-			"Microsoft 365" = 1450038993;
+			# "Microsoft 365" = 1450038993;
 			"Microsoft Excel" = 462058435;
 			"Microsoft OneNote" = 784801555;
 			"Microsoft Outlook" = 985367838;
