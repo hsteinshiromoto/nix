@@ -16,7 +16,7 @@
 	sops = {
     age.keyFile = "/home/hsteinshiromoto/.config/sops/age/keys.txt"; # must have no password!
 
-    defaultSopsFile = ./secrets.yaml;
+    defaultSopsFile = "/home/hsteinshiromoto/.config/sops/secrets/example.yaml";
     defaultSymlinkPath = "/run/user/1000/secrets";
     defaultSecretsMountPoint = "/run/user/1000/secrets.d";
 
