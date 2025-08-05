@@ -18,26 +18,30 @@
                 mountpoint = "/boot";
               };
             };
-						root = {
-							size = "64G";
+						luks = {
 							content = {
-								type = "filesystem";
-								format = "ext4";
-								mountpoint = "/";
-							};
-						};
-						home = {
-							size = "100%";
-							content = {
-								type = "filesystem";
-								format = "ext4";
-								mountpoint = "/home";
-							};
-						};
-						swap = {
-							size = "4G";
-							content = {
-								type = "swap";
+								root = {
+									size = "64G";
+									content = {
+										type = "filesystem";
+										format = "ext4";
+										mountpoint = "/";
+									};
+								};
+								home = {
+									size = "100%";
+									content = {
+										type = "filesystem";
+										format = "ext4";
+										mountpoint = "/home";
+									};
+								};
+								swap = {
+									size = "4G";
+									content = {
+										type = "swap";
+									};
+								};
 							};
 						};
 					};
