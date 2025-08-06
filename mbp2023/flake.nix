@@ -12,10 +12,12 @@
 					pkgs.bat
 					pkgs.btop
 					pkgs.claude-code
+					pkgs.dua
 					pkgs.eza
 					pkgs.fd
 					pkgs.fzf
 					pkgs.git
+					pkgs.git-cliff
 					pkgs.gitflow
 					pkgs.gnupg
 					pkgs.lazygit
@@ -27,6 +29,8 @@
 					pkgs.pass
 					pkgs.ripgrep
 					pkgs.ruff
+					pkgs.serpl
+					pkgs.spotify-player
 					pkgs.starship
 					pkgs.stow
 					pkgs.tmux
@@ -55,7 +59,6 @@
 				"ghostty"
 				"google-chrome"
 				"karabiner-elements"
-				"istat-menus"
 				"maccy"
 				"obsidian"
 				"microsoft-teams"
@@ -65,11 +68,12 @@
 				"protonvpn"
 				"reader"
 				"spotify"
-				"syncthing"
+				"syncthing-app"
 				"the-unarchiver"
 				"transmission"
 				"utm"
 				"visual-studio-code"
+				"vlc"
 				"waterfox"
 				"whatsapp"
 				"yubico-authenticator"

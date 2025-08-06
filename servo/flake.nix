@@ -1,7 +1,7 @@
 {
   description = "NixOS configuration for servidor";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 
@@ -40,10 +40,14 @@
           ./configuration.nix
 					disko.nixosModules.disko
 					./disko-config.nix # Do not enable with ./hardware-configuration.nix import in configuration.nix
+					sops-nix.nixosModules.sops
 					home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+						home-manager.sharedModules = [
+              sops-nix.homeManagerModules.sops
+            ];
             home-manager.users.hsteinshiromoto = ./home.nix;
 					}
         ];

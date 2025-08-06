@@ -13,6 +13,7 @@
 		pkgs.bat
 		pkgs.btop
 		pkgs.claude-code
+		pkgs.csvlens
 		pkgs.eza
 		pkgs.fd
 		pkgs.fzf
@@ -23,11 +24,14 @@
 		pkgs.lnav
 		pkgs.maccy
 		pkgs.mkalias
+		pkgs.neovim
 		pkgs.nodejs_24
 		pkgs.ollama
 		pkgs.pass
 		pkgs.ripgrep
 		pkgs.ruff
+		pkgs.serpl
+		pkgs.spotify-player
 		pkgs.starship
 		pkgs.stow
 		pkgs.tmux
@@ -43,17 +47,18 @@
 		enable = true;
 		brews = [
 			"mas"
-			"neovim"
 		];
 		casks = [
+			"bartender"
 			"cursor"
 			"docker-desktop"
 			"drawio"
 			"espanso"
 			"firefox"
+			"figma"
 			"ghostty"
 			"google-chrome"
-			"hiddenbar"
+			"maccy"
 			"microsoft-teams"
 			"obsidian"
 			"popclip"
@@ -66,7 +71,7 @@
 		onActivation.upgrade = true;
 		masApps = {
 			"Magnet" = 441258766;
-			"Microsoft 365" = 1450038993;
+			# "Microsoft 365" = 1450038993;
 			"Microsoft Excel" = 462058435;
 			"Microsoft OneNote" = 784801555;
 			"Microsoft Outlook" = 985367838;

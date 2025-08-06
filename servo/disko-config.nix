@@ -18,29 +18,51 @@
                 mountpoint = "/boot";
               };
             };
-						root = {
-							size = "64G";
-							content = {
-								type = "filesystem";
-								format = "ext4";
-								mountpoint = "/";
-							};
-						};
-						home = {
+						luks = {
 							size = "100%";
+							type = "8300";
 							content = {
-								type = "filesystem";
-								format = "ext4";
-								mountpoint = "/home";
-							};
-						};
-						swap = {
-							size = "4G";
-							content = {
-								type = "swap";
+								type = "luks";
+								name = "crypted";
+								settings = {
+									allowDiscards = true;
+								};
+								content = {
+									type = "lvm_pv";
+									vg = "vgpool";
+								};
 							};
 						};
 					};
+        };
+      };
+    };
+    lvm_vg = {
+      vgpool = {
+        type = "lvm_vg";
+        lvs = {
+          root = {
+            size = "64G";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/";
+            };
+          };
+          swap = {
+            size = "4G";
+            content = {
+              type = "swap";
+            };
+          };
+          home = {
+            size = "100%FREE";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/home";
+            };
+          };
         };
       };
     };
