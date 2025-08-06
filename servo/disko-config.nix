@@ -18,29 +18,49 @@
                 mountpoint = "/boot";
               };
             };
-						luks = {
+						root = {
+							size = "64G";
+							type = "8300";
 							content = {
-								root = {
-									size = "64G";
-									content = {
-										type = "filesystem";
-										format = "ext4";
-										mountpoint = "/";
-									};
+								type = "luks";
+								name = "cryptroot";
+								settings = {
+									allowDiscards = true;
 								};
-								home = {
-									size = "100%";
-									content = {
-										type = "filesystem";
-										format = "ext4";
-										mountpoint = "/home";
-									};
+								content = {
+									type = "filesystem";
+									format = "ext4";
+									mountpoint = "/";
 								};
-								swap = {
-									size = "4G";
-									content = {
-										type = "swap";
-									};
+							};
+						};
+						swap = {
+							size = "4G";
+							type = "8200";
+							content = {
+								type = "luks";
+								name = "cryptswap";
+								settings = {
+									allowDiscards = true;
+								};
+								content = {
+									type = "swap";
+								};
+							};
+						};
+						home = {
+							size = "100%";
+							type = "8300";
+							content = {
+								type = "luks";
+								name = "crypthome";
+								settings = {
+									allowDiscards = true;
+								};
+								content = {
+									type = "filesystem";
+									format = "ext4";
+									mountpoint = "/home";
 								};
 							};
 						};
