@@ -40,7 +40,7 @@
     # Open ports in the firewall.
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 8384 22000 55666 ];
+      allowedTCPPorts = [ 22 8384 22000 55666 9000 ];
       allowedUDPPorts = [ 21027 22000 ];
     };
 
@@ -225,6 +225,23 @@
       variant = "";
       };
   };
+
+	systemd.services = {
+		nvimd = {
+			enable = true;
+			description = "Neovim server";
+			after = ["network.target"];
+			wantedBy = ["default.target"];
+
+			serviceConfig = {
+				Type = "simple";
+				ExecStart = "/run/current-system/sw/bin/nvim --headless --listen 0.0.0.0:9000";
+				Restart="always";
+				RestartSec=5;
+				WorkingDirectory="/home/hsteinshiromoto/";
+			};
+		};
+	};
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
