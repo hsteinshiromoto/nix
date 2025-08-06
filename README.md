@@ -54,6 +54,7 @@ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 ```bash
 make partition
 ```
+After finishing this command, a password will be request to encrypt the disk.
 
 3. Once done, install NixOS with the command
 ```bash
