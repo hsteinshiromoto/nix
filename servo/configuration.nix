@@ -40,7 +40,7 @@
     # Open ports in the firewall.
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 8384 22000 55666 ];
+      allowedTCPPorts = [ 22 8384 22000 55666 9000 ];
       allowedUDPPorts = [ 21027 22000 ];
     };
 
