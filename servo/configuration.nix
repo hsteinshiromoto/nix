@@ -238,7 +238,7 @@
 				ExecStart = "/run/current-system/sw/bin/nvim --headless --listen 0.0.0.0:9000";
 				Restart="always";
 				RestartSec=5;
-				WorkingDirectory="/home/hsteinshiromoto/"
+				WorkingDirectory="/home/hsteinshiromoto/";
 			};
 		};
 	};
