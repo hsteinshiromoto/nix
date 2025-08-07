@@ -26,15 +26,17 @@ darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025
 
 ## Run partition the disk using disko
-partition: flake.nix flake.lock servo/disko-config.nix
-	@echo "Partitioning disk with disko ..."
-	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
+partition: flake.nix flake.lock servo/disko-config.nix nas/disko-config.nix
+	$(eval h=servo)
+	@echo "Partitioning host $(h) disk with disko ..."
+	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/$(h)/disko-config.nix
 	@echo "Done"
 
 ## Install NixOS from flake
 nixos_install:
-	@echo "Installing nixos from flake"
-	sudo nixos-install --flake /home/nixos/.config/nix#servidor
+	$(eval h=servo)
+	@echo "Installing nixos in $(h) from flake"
+	sudo nixos-install --flake /home/nixos/.config/nix#$(h)
 	sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 
 ## Rebuild NixOS from flake
