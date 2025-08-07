@@ -62,37 +62,6 @@
         ];
       };
 
-		# ADD THIS NEW CONFIGURATION for the ISO:
-      nixosConfigurations.custom_iso = nixpkgs.lib.nixosSystem {
-        inherit system;
-
-				specialArgs = {
-          inherit pkgsUnstable;
-          inherit inputs;  # if you need other inputs
-        };
-
-        modules = [
-          # ./custom_iso.nix
-          # If your custom_iso.nix imports servo/configuration.nix,
-          # pkgsUnstable will now be available to it
-
-          # Minimal configuration for ISO
-          ({ config, pkgs, ... }: {
-            system.stateVersion = "25.05";
-
-            # ISO-specific boot configuration
-            boot.loader.grub.enable = true;
-            boot.loader.grub.devices = [ "nodev" ];
-
-            # Minimal filesystem for ISO
-            fileSystems."/" = {
-              device = "/dev/disk/by-label/nixos";
-              fsType = "tmpfs";
-            };
-          })
-        ];
-      };
-
       # Expose the installTest for nixos-anywhere VM testing
       checks.${system}.servidor = self.nixosConfigurations.servidor.config.system.build.installTest;
     };
