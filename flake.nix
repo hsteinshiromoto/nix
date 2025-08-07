@@ -39,6 +39,11 @@
       inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix;
     };
 
+		nas-flake = import ./nas/flake.nix;
+    nas-outputs = nas-flake.outputs {
+      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix;
+    };
+
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
       inherit self nix-darwin nix-homebrew home-manager;
@@ -60,7 +65,9 @@
   in
   {
     # Re-export the configurations from each system flake
-    nixosConfigurations = servo-outputs.nixosConfigurations;
+    nixosConfigurations =
+				servo-outputs.nixosConfigurations //
+				nas-outputs;
     darwinConfigurations =
       mbp2023-outputs.darwinConfigurations //
       mba2022-outputs.darwinConfigurations //
