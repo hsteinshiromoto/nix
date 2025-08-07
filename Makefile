@@ -42,8 +42,9 @@ nixos_install:
 ## Rebuild NixOS from flake
 nixos_rebuild: flake.nix flake.lock servo/flake.nix servo/flake.lock servo/hardware-configuration.nix servo/configuration.nix
 	$(eval FLAGS=test)
+	$(eval h=servo)
 	@echo "Running nixos-rebuild with flag ${FLAGS}"
-	sudo nixos-rebuild $(FLAGS) --flake .#servidor --impure
+	sudo nixos-rebuild $(FLAGS) --flake .#$(h) --impure
 
 ## Generate ISO image from NixOS
 nixos_iso: flake.nix flake.lock servo/custom_iso.nix
@@ -51,7 +52,8 @@ nixos_iso: flake.nix flake.lock servo/custom_iso.nix
 
 ## Check whether the configuration and disko-config are valid
 nixos_anywhere:
-	nix run github:nix-community/nixos-anywhere -- --flake .#servidor --vm-test
+	$(eval h=servo)
+	nix run github:nix-community/nixos-anywhere -- --flake .#$(h) --vm-test
 
 # ---
 # Self Documenting Commands
