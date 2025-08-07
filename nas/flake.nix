@@ -11,13 +11,6 @@
         config.allowUnfree = true;
       };
 
-			# The following user definition is required by home-manager [1]
-			# [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
-			users.users.hsteinshiromoto = {
-				name = "hsteinshiromoto";
-				home = "/home/hsteinshiromoto";
-			};
-
       # Import your main configuration with appropriate overlays
       lib = nixpkgs.lib;
     in {
@@ -34,6 +27,27 @@
                 unstable = pkgsUnstable;
               })
             ];
+            
+            # The following user definition is required by home-manager [1]
+            # [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
+            users.users.hsteinshiromoto = {
+              isNormalUser = true;
+              home = "/home/hsteinshiromoto";
+              extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
+            };
+            
+            # Set system.stateVersion
+            system.stateVersion = "25.05";
+            
+            # Minimal boot configuration for flake check
+            boot.loader.grub.enable = true;
+            boot.loader.grub.devices = [ "nodev" ]; # For EFI systems
+            
+            # Minimal filesystem configuration
+            fileSystems."/" = {
+              device = "/dev/disk/by-label/nixos";
+              fsType = "ext4";
+            };
           })
 
           # Include your main configuration
@@ -66,6 +80,21 @@
           # ./custom_iso.nix
           # If your custom_iso.nix imports servo/configuration.nix,
           # pkgsUnstable will now be available to it
+          
+          # Minimal configuration for ISO
+          ({ config, pkgs, ... }: {
+            system.stateVersion = "25.05";
+            
+            # ISO-specific boot configuration
+            boot.loader.grub.enable = true;
+            boot.loader.grub.devices = [ "nodev" ];
+            
+            # Minimal filesystem for ISO
+            fileSystems."/" = {
+              device = "/dev/disk/by-label/nixos";
+              fsType = "tmpfs";
+            };
+          })
         ];
       };
 
