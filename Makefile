@@ -32,14 +32,14 @@ partition: flake.nix flake.lock servo/disko-config.nix nas/disko-config.nix
 	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/$(h)/disko-config.nix
 	@echo "Done"
 
-## Install NixOS from flake
+## Install NixOS from flake. Usage: make nixos_install h="hostname"
 nixos_install:
 	$(eval h=servo)
-	@echo "Installing nixos in $(h) from flake"
+	@echo "Installing NixOS in $(h) from flake"
 	sudo nixos-install --flake /home/nixos/.config/nix#$(h)
 	sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 
-## Rebuild NixOS from flake
+## Rebuild NixOS from flake. Usage: make nixos_rebuild FLAGS="command" h="hostname"
 nixos_rebuild: flake.nix flake.lock servo/flake.nix servo/flake.lock servo/hardware-configuration.nix servo/configuration.nix
 	$(eval FLAGS=test)
 	$(eval h=servo)
@@ -50,7 +50,7 @@ nixos_rebuild: flake.nix flake.lock servo/flake.nix servo/flake.lock servo/hardw
 nixos_iso: flake.nix flake.lock servo/custom_iso.nix
 	nix build --extra-experimental-features "nix-command flakes" .#nixosConfigurations.custom_iso.config.system.build.isoImage
 
-## Check whether the configuration and disko-config are valid
+## Check whether the configuration and disko-config are valid.  Usage: make nixos_anywhere h="hostname"
 nixos_anywhere:
 	$(eval h=servo)
 	nix run github:nix-community/nixos-anywhere -- --flake .#$(h) --vm-test
