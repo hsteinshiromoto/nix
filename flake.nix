@@ -67,7 +67,7 @@
     # Re-export the configurations from each system flake
     nixosConfigurations =
 				servo-outputs.nixosConfigurations //
-				nas-outputs;
+				nas-outputs.nixosConfigurations;
     darwinConfigurations =
       mbp2023-outputs.darwinConfigurations //
       mba2022-outputs.darwinConfigurations //
