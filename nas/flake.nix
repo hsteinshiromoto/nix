@@ -21,7 +21,7 @@
       # Import your main configuration with appropriate overlays
       lib = nixpkgs.lib;
     in {
-      nixosConfigurations.servidor = lib.nixosSystem {
+      nixosConfigurations.nas = lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit pkgsUnstable;
@@ -70,7 +70,7 @@
       };
 
       # Expose the installTest for nixos-anywhere VM testing
-      checks.${system}.servidor = self.nixosConfigurations.servidor.config.system.build.installTest;
+      checks.${system}.nas = self.nixosConfigurations.nas.config.system.build.installTest;
     };
 }
 
