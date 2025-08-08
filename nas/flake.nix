@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration for nas";
+  description = "NixOS configuration for NAS";
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, ... }@inputs:
     let
@@ -10,6 +10,13 @@
         inherit system;
         config.allowUnfree = true;
       };
+
+			# The following user definition is required by home-manager [1]
+			# [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
+			users.users.hsteinshiromoto = {
+				name = "hsteinshiromoto";
+				home = "/home/hsteinshiromoto";
+			};
 
       # Import your main configuration with appropriate overlays
       lib = nixpkgs.lib;
@@ -27,26 +34,10 @@
                 unstable = pkgsUnstable;
               })
             ];
-
-            # The following user definition is required by home-manager [1]
-            # [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
-            users.users.hsteinshiromoto = {
-              isNormalUser = true;
-              home = "/home/hsteinshiromoto";
-              extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
-            };
-
-            # Set system.stateVersion
-            system.stateVersion = "25.05";
-
-            # Minimal boot configuration for flake check
-            boot.loader.grub.enable = true;
-            boot.loader.grub.devices = [ "nodev" ]; # For EFI systems
-
           })
 
           # Include your main configuration
-          # ./configuration.nix
+          ./configuration.nix
 					disko.nixosModules.disko
 					./disko-config.nix # Do not enable with ./hardware-configuration.nix import in configuration.nix
 					sops-nix.nixosModules.sops
@@ -57,8 +48,24 @@
 						home-manager.sharedModules = [
               sops-nix.homeManagerModules.sops
             ];
-            # home-manager.users.hsteinshiromoto = ./home.nix;
+            home-manager.users.hsteinshiromoto = ./home.nix;
 					}
+        ];
+      };
+
+		# ADD THIS NEW CONFIGURATION for the ISO:
+      nixosConfigurations.custom_iso = nixpkgs.lib.nixosSystem {
+        inherit system;
+
+				specialArgs = {
+          inherit pkgsUnstable;
+          inherit inputs;  # if you need other inputs
+        };
+
+        modules = [
+          # ./custom_iso.nix
+          # If your custom_iso.nix imports servo/configuration.nix,
+          # pkgsUnstable will now be available to it
         ];
       };
 
@@ -66,3 +73,4 @@
       checks.${system}.servidor = self.nixosConfigurations.servidor.config.system.build.installTest;
     };
 }
+
