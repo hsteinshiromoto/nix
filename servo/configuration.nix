@@ -96,7 +96,7 @@
 			# To use `authorized_keys` file:
 			# 	1. create the ssh folder under `/var/lib/git-server` (ie `sudo mkdir -p /var/lib/git-server/.ssh`).
 			#		2. Add the `authorized_keys` file to `/var/lib/git-server/.ssh`.
-			#   3. In the server in a regular user, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`
+			#   3. In the server in a regular user, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`. (~ here is the home of the user git, which is /var/lib/git-server)
 			#		4. Set the local repo `origin` with the command `git remote add origin git@<ip>:<repo_slug>.git`
 			# References:
 			# 	[1] https://nixos.wiki/wiki/Git#Serve_Git_repos_via_SSH
