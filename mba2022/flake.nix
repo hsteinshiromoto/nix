@@ -63,7 +63,6 @@
 				"spotify"
 				"syncthing"
 				"the-unarchiver"
-				"utm"
 				"waterfox"
 				"yubico-authenticator"
 			];
