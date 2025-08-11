@@ -80,6 +80,7 @@
 				"Microsoft Powerpoint" = 462062816;
 				"Microsoft Word" = 462054704;
 				"OneDrive" = 823766827;
+				"Proton Authenticator" = 6741758667;
 				"Tailscale" = 1475387142;
 				"TextSniper - OCR, Copy & Paste" = 1528890965;
 				"Theine" = 955848755;
