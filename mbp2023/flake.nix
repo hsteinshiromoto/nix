@@ -93,6 +93,7 @@
 				"Microsoft Word" = 462054704;
 				"OneDrive" = 823766827;
 				"Parcel - Delivery Tracking" = 639968404;
+				"Proton Authenticator" = 6741758667;
 				"SimpleLogin - Email alias" = 1494359858;
 				"Windows App" = 1295203466;
 				"Tailscale" = 1475387142;
