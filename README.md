@@ -78,9 +78,7 @@ For more details, follow the instructions in this [README.md](servo/README.md).
 
 1. Make sure to setup passwordless sudo with the command
 ```bash
-ssh -t hsteinshiromoto@<ip> "sudo chmod 440 /etc/sudoers.d/nixos-anywhere && sudo grep -E
-
-  '^\s*#includedir\s+/etc/sudoers.d' /etc/sudoers || echo '@includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers"
+ssh -t hsteinshiromoto@<ip> "sudo chmod 440 /etc/sudoers.d/nixos-anywhere && sudo grep -E '^\s*#includedir\s+/etc/sudoers.d' /etc/sudoers || echo '@includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers"
 
 ```
 2. Run the command
