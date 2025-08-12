@@ -88,13 +88,11 @@
     };
 		groups.git = {};
     users.git = {
-      isNormalUser = true;
+      isSystemUser = true;
 			group = "git";
 			home = "/var/lib/git-server";
 			createHome = true;
-      description = "Git user";
-      shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
-			# To use `authorized_keys` file:
+			shell = "${pkgs.git}/bin/git-shell";			# To use `authorized_keys` file:
 			# 	1. create the ssh folder under `/var/lib/git-server` (ie `sudo mkdir -p /var/lib/git-server/.ssh`).
 			#		2. Add the `authorized_keys` file to `/var/lib/git-server/.ssh`.
 			#   3. In the server in a regular user, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`. (~ here is the home of the user git, which is /var/lib/git-server)
