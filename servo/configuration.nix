@@ -90,7 +90,7 @@
     users.git = {
       isNormalUser = true;
 			group = "git";
-			home = "/home/git";
+			home = "/var/lib/git-server";
       description = "Git user";
       shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
 			# To use `authorized_keys` file:
