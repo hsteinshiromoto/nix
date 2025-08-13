@@ -6,8 +6,8 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
-	home.packages = with pkgs; [
-    "gemini-cli"
+	home.packages = [
+    pkgs.gemini-cli
   ];
 
 
