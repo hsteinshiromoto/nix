@@ -1,6 +1,10 @@
 .DEFAULT_GOAL := help
 .PHONY: help
 
+## Update flake.lock
+update:
+	nix flake update
+
 # Run Nix-Darwin flakes
 darwin_%: darwin_20$@
 
@@ -14,13 +18,13 @@ darwin_2022: flake.nix flake.lock mba2022/flake.nix
 	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
 
 ## Rebuild nix-darwin mbp2023 flake
-darwin_2023: flake.nix flake.lock mbp2023/flake.nix mbp2023/flake.lock
+darwin_2023: flake.nix flake.lock mbp2023/flake.nix
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
-darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
+darwin_2025: flake.nix flake.lock mbp2025/flake.nix
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025
