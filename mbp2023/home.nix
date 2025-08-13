@@ -7,7 +7,7 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = with pkgs; [
-    gemini-cli
+    "gemini-cli"
   ];
 
 
