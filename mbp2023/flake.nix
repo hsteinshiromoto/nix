@@ -85,7 +85,6 @@
 				"Bitwarden" = 1352778147;
 				"Kindle" = 302584613;
 				"Magnet" = 441258766;
-				"Microsoft 365" = 1450038993;
 				"Microsoft Excel" = 462058435;
 				"Microsoft OneNote" = 784801555;
 				"Microsoft Outlook" = 985367838;
@@ -93,8 +92,8 @@
 				"Microsoft Word" = 462054704;
 				"OneDrive" = 823766827;
 				"Parcel - Delivery Tracking" = 639968404;
-				"Proton Authenticator" = 6741758667;
-				"SimpleLogin - Email alias" = 1494359858;
+				# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
+				# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
 				"Windows App" = 1295203466;
 				"Tailscale" = 1475387142;
 				"TextSniper - OCR, Copy & Paste" = 1528890965;
