@@ -11,10 +11,13 @@
 					pkgs.atuin
 					pkgs.bat
 					pkgs.btop
+					pkgs.calcure
+					pkgs.claude-code
 					pkgs.dua
 					pkgs.eza
 					pkgs.fd
 					pkgs.fzf
+					pkgs.gemini-cli
 					pkgs.git
 					pkgs.git-cliff
 					pkgs.gitflow
