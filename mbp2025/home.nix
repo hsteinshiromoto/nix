@@ -6,6 +6,10 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
+	home.packages = with pkgs; [
+		claude-code
+	];
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
