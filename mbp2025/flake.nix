@@ -49,6 +49,7 @@
 		];
 		casks = [
 			"bartender"
+			"bitwarden"
 			"cursor"
 			"docker-desktop"
 			"drawio"
