@@ -8,6 +8,7 @@
 
 	home.packages = with pkgs; [
 		claude-code
+		gemini-cli
 	];
 
   # This value determines the Home Manager release that your
