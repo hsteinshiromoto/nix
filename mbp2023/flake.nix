@@ -103,6 +103,7 @@
 		};
 
 			nixpkgs.config.allowUnfree = true;
+			nixpkgs.config.allowUnsupportedSystem = true;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
