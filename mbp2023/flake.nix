@@ -24,6 +24,7 @@
 					pkgs.gnupg
 					pkgs.lazygit
 					pkgs.lnav
+					pkgs.logi-options+
 					pkgs.mkalias
 					pkgs.nodejs_24
 					pkgs.ollama
