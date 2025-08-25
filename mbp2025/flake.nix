@@ -19,6 +19,7 @@
 		pkgs.git
 		pkgs.gitflow
 		pkgs.gnupg
+		pkgs.jq
 		pkgs.lazygit
 		pkgs.lnav
 		pkgs.maccy
