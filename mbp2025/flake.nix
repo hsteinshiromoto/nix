@@ -61,6 +61,7 @@
 			"figma"
 			"ghostty"
 			"google-chrome"
+			"karabiner-elements"
 			"maccy"
 			"microsoft-teams"
 			"obsidian"
