@@ -17,6 +17,7 @@
 		pkgs.eza
 		pkgs.fd
 		pkgs.fzf
+		pkgs.gemini-cli
 		pkgs.git
 		pkgs.gitflow
 		pkgs.gnupg
