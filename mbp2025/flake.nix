@@ -57,7 +57,6 @@
 			"bitwarden"
 			"cursor"
 			"docker-desktop"
-			"dopplerhq/cli/doppler"
 			"drawio"
 			"espanso"
 			"firefox"
