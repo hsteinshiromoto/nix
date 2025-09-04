@@ -67,6 +67,7 @@
 			"microsoft-teams"
 			"obsidian"
 			"popclip"
+			"reader"
 			"spotify"
 			"the-unarchiver"
 			"visual-studio-code"
