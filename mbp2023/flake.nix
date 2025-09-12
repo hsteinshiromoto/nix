@@ -63,6 +63,7 @@
 				"karabiner-elements"
 				"maccy"
 				"obsidian"
+				"oversight"
 				"microsoft-teams"
 				"popclip"
 				"proton-drive"
