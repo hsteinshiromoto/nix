@@ -43,6 +43,7 @@
 		pkgs.uv
 		pkgs.yazi
 		pkgs.yq
+		pkgs.yubikey-manager
 		pkgs.zoxide
         ];
 
