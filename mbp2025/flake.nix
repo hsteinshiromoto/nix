@@ -56,6 +56,7 @@
 			"bartender"
 			"bitwarden"
 			"cursor"
+			"dbeaver-community"
 			"docker-desktop"
 			"drawio"
 			"espanso"
