@@ -29,7 +29,7 @@
 					pkgs.ollama
 					pkgs.neovim
 					pkgs.pass
-					pkgs.pcsc-lite
+					pkgs.pcsclite
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
