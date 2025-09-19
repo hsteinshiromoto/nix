@@ -29,6 +29,7 @@
 					pkgs.ollama
 					pkgs.neovim
 					pkgs.pass
+					pkgs.pcsc-lite
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
@@ -124,7 +125,6 @@
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
-			services.pcscd.enable = true;
 
 			# The following user definition is required by home-manager [1]
 			# [1] https://discourse.nixos.org/t/homedirectory-is-note-of-type-path-darwin/57453/6
