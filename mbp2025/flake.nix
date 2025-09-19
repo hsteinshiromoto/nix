@@ -23,6 +23,7 @@
 		pkgs.gitflow
 		pkgs.go
 		pkgs.gnupg
+		pkgs.jira-cli-go
 		pkgs.jq
 		pkgs.lazygit
 		pkgs.lnav
