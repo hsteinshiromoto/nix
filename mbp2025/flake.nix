@@ -22,7 +22,6 @@
 		pkgs.git
 		pkgs.gitflow
 		pkgs.go
-		pkgs.gnupg
 		pkgs.jira-cli-go
 		pkgs.jq
 		pkgs.lazygit
@@ -66,6 +65,7 @@
 			"figma"
 			"ghostty"
 			"google-chrome"
+			"gpg-suite"
 			"karabiner-elements"
 			"maccy"
 			"microsoft-teams"
