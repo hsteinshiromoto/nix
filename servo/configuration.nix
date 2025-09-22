@@ -75,7 +75,7 @@
       isNormalUser = true;
 			shell = pkgs.zsh;
       description = "Humberto STEIN SHIROMOTO";
-      extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
+      extraGroups = [ "networkmanager" "wheel" "docker" "sudo" "pcscd" "plugdev"];
       packages = with pkgs; [
 						atuin
 						pkgsUnstable.claude-code
