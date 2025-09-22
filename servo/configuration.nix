@@ -161,11 +161,13 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs = {
-    gnupg.agent = {
+    programs = {
+      gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
-    };
+				pinentryPackage = pkgs.pinentry-curses;
+      };
+
     zsh = {
       enable = true;
       interactiveShellInit = ''
@@ -222,7 +224,9 @@
     xserver.xkb = {
       layout = "us";
       variant = "";
-      };
+    };
+		udev.packages = with pkgs; [ yubikey-personalization ];
+    pcscd.enable = true;
   };
 
 	systemd.services = {
