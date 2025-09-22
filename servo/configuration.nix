@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			./yubikey.nix
     ];
 
 	nix = {
@@ -156,6 +157,7 @@
     yazi
 		yubikey-personalization  # CLI tools for configuring YubiKey
     yubikey-manager          # Manage YubiKey settings
+		yubikey-agent
     yq
     wget
     zoxide
@@ -233,6 +235,7 @@
     };
 		udev.packages = with pkgs; [ yubikey-personalization ];
     pcscd.enable = true;
+    yubikey-agent.enable = false;
   };
 
 	systemd.services = {
