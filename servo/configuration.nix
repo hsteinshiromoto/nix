@@ -235,7 +235,6 @@
     };
 		udev.packages = with pkgs; [ yubikey-personalization ];
     pcscd.enable = true;
-    yubikey-agent.enable = false;
   };
 
 	systemd.services = {
