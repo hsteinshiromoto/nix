@@ -135,6 +135,7 @@
 		parted
     jetbrains-mono
     lazygit
+		libfido2                 # Support for FIDO2/WebAuthn
     libiconv    # Build essential
     libtool     # Build essential
     networkmanager
@@ -142,7 +143,9 @@
     pkgsUnstable.neovim
     nodejs
 		ntfs3g
+		opensc                   # Smart card support
     pass
+		pcsclite
     pkg-config # Build essential
     ripgrep
 		sops
@@ -151,6 +154,8 @@
     tmux
     uv
     yazi
+		yubikey-personalization  # CLI tools for configuring YubiKey
+    yubikey-manager          # Manage YubiKey settings
     yq
     wget
     zoxide
@@ -158,6 +163,7 @@
   #  wget
   ];
 
+		hardware.gpgSmartcards.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
