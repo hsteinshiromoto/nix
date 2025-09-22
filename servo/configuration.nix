@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			./yubikey.nix
     ];
 
 	nix = {
@@ -75,7 +76,7 @@
       isNormalUser = true;
 			shell = pkgs.zsh;
       description = "Humberto STEIN SHIROMOTO";
-      extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
+      extraGroups = [ "networkmanager" "wheel" "docker" "sudo" "pcscd" "plugdev"];
       packages = with pkgs; [
 						atuin
 						pkgsUnstable.claude-code
@@ -135,6 +136,7 @@
 		parted
     jetbrains-mono
     lazygit
+		libfido2                 # Support for FIDO2/WebAuthn
     libiconv    # Build essential
     libtool     # Build essential
     networkmanager
@@ -142,7 +144,9 @@
     pkgsUnstable.neovim
     nodejs
 		ntfs3g
+		opensc                   # Smart card support
     pass
+		pcsclite
     pkg-config # Build essential
     ripgrep
 		sops
@@ -151,6 +155,9 @@
     tmux
     uv
     yazi
+		yubikey-personalization  # CLI tools for configuring YubiKey
+    yubikey-manager          # Manage YubiKey settings
+		yubikey-agent
     yq
     wget
     zoxide
@@ -158,14 +165,17 @@
   #  wget
   ];
 
+		hardware.gpgSmartcards.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs = {
-    gnupg.agent = {
+    programs = {
+      gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
-    };
+				pinentryPackage = pkgs.pinentry-curses;
+      };
+
     zsh = {
       enable = true;
       interactiveShellInit = ''
@@ -222,7 +232,9 @@
     xserver.xkb = {
       layout = "us";
       variant = "";
-      };
+    };
+		udev.packages = with pkgs; [ yubikey-personalization ];
+    pcscd.enable = true;
   };
 
 	systemd.services = {
