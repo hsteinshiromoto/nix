@@ -153,6 +153,7 @@
     starship
 		systemctl-tui
     tmux
+		usbutils
     uv
     yazi
 		yubikey-personalization  # CLI tools for configuring YubiKey
