@@ -20,6 +20,7 @@
 					pkgs.gemini-cli
 					pkgs.git
 					pkgs.git-cliff
+					pkgs.git-crypt
 					pkgs.gitflow
 					pkgs.gnupg
 					pkgs.lazygit
