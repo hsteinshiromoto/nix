@@ -132,6 +132,11 @@
 			users.users.hsteinshiromoto = {
 				name = "hsteinshiromoto";
 				home = "/Users/hsteinshiromoto";
+					packages = with pkgs; [
+						yaziPlugins.lazygit
+						jqp
+					];
+
 			};
 
       # The platform the configuration will be used on.
