@@ -30,6 +30,7 @@
 					pkgs.ollama
 					pkgs.neovim
 					pkgs.pass
+					pkgs.pass.withExtensions (exts: [ exts.pass-otp ])
 					pkgs.pcsclite
 					pkgs.ripgrep
 					pkgs.ruff
