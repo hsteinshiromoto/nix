@@ -21,7 +21,6 @@
 					pkgs.git
 					pkgs.git-cliff
 					pkgs.git-crypt
-					pkgs.gocryptfs
 					pkgs.gitflow
 					pkgs.lazygit
 					pkgs.lnav
@@ -65,7 +64,6 @@
 				"google-chrome"
 				"karabiner-elements"
 				"maccy"
-        "macfuse"
 				"obsidian"
 				"oversight"
 				"microsoft-teams"
