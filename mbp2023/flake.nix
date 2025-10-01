@@ -50,6 +50,7 @@
 			enable = true;
 			brews = [
 				"mas"
+				"gocryptfs"
 			];
 			casks = [
 				"balenaetcher"
