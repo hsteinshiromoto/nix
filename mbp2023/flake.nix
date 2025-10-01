@@ -22,7 +22,6 @@
 					pkgs.git-cliff
 					pkgs.git-crypt
 					pkgs.gitflow
-					pkgs.gnupg
 					pkgs.lazygit
 					pkgs.lnav
 					pkgs.mkalias
