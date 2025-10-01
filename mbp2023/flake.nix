@@ -21,6 +21,7 @@
 					pkgs.git
 					pkgs.git-cliff
 					pkgs.git-crypt
+					pkgs.gocryptfs
 					pkgs.gitflow
 					pkgs.lazygit
 					pkgs.lnav
@@ -50,7 +51,6 @@
 			enable = true;
 			brews = [
 				"mas"
-				"gocryptfs"
 			];
 			casks = [
 				"balenaetcher"
