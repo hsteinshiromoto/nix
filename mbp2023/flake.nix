@@ -65,6 +65,7 @@
 				"google-chrome"
 				"karabiner-elements"
 				"maccy"
+        "macfuse"
 				"obsidian"
 				"oversight"
 				"microsoft-teams"
