@@ -52,6 +52,7 @@
       homebrew = {
 		enable = true;
 		brews = [
+			"libomp"
 			"mas"
 		];
 		casks = [
