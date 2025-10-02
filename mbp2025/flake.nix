@@ -76,6 +76,7 @@
 			"spotify"
 			"the-unarchiver"
 			"visual-studio-code"
+			"yubico-authenticator"
 		];
 		onActivation.cleanup = "zap";
 		onActivation.autoUpdate = true;
