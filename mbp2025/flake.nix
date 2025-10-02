@@ -14,6 +14,7 @@
 		pkgs.btop
 		pkgs.claude-code
 		pkgs.csvlens
+		pkgs.cursor-cli
 		pkgs.doppler
 		pkgs.eza
 		pkgs.fd
