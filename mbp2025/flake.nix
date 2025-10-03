@@ -23,6 +23,7 @@
 		pkgs.git
 		pkgs.gitflow
 		pkgs.go
+		pkgs.gocryptfs
 		pkgs.jira-cli-go
 		pkgs.jq
 		pkgs.lazygit
@@ -69,6 +70,7 @@
 			"gpg-suite"
 			"karabiner-elements"
 			"maccy"
+			"macfuse"
 			"microsoft-teams"
 			"obsidian"
 			"popclip"
