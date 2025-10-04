@@ -22,6 +22,7 @@
 					pkgs.git-cliff
 					pkgs.git-crypt
 					pkgs.gitflow
+					pkgs.gocryptfs
 					pkgs.lazygit
 					pkgs.lnav
 					pkgs.mkalias
@@ -66,6 +67,7 @@
 				"maccy"
 				"obsidian"
 				"oversight"
+				"macfuse"
 				"microsoft-teams"
 				"popclip"
 				"proton-drive"
