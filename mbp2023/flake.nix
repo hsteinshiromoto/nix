@@ -37,6 +37,7 @@
 					pkgs.spotify-player
 					pkgs.starship
 					pkgs.stow
+					pkgs.texliveFull
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.tree
