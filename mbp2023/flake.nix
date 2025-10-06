@@ -161,7 +161,7 @@
 					}
 					home-manager.darwinModules.home-manager {
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.useUserPackages = false;
             home-manager.users.hsteinshiromoto = ./home.nix;
           }
 				];
