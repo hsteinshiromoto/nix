@@ -222,6 +222,7 @@
     };
     syncthing = {
       enable = true;
+			user = "hsteinshiromoto";
       openDefaultPorts = true;
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
