@@ -31,6 +31,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Structure
 - `mbp2025/` - macOS configuration using nix-darwin
+- `mbp2023/` - macOS configuration using nix-darwin
 - `servo/` - NixOS configuration for a server
 - Root directory contains shared configuration like custom ISO settings
+
+## Troubleshooting
+
+### Home-manager packages not installing on nix-darwin
+
+**Issue:** Packages defined in `home.packages` within home.nix are not being installed when running `darwin-rebuild switch`. Home-manager activates but doesn't create new generations with the packages.
+
+**Symptoms:**
+- `darwin-rebuild switch` shows "Activating home-manager configuration"
+- `which <package>` returns "not found"
+- Package not found in `~/.local/state/nix/profiles/profile/bin/`
+- Home-manager profile generation date is old and hasn't updated
+
+**Root Cause:** Setting `home-manager.useUserPackages = true` in nix-darwin configuration can prevent home-manager from managing its own profile correctly. This setting attempts to integrate home-manager packages into the nix-darwin user packages, but may not work as expected.
+
+**Solution:** Set `home-manager.useUserPackages = false` in the nix-darwin flake configuration:
+
+```nix
+home-manager.darwinModules.home-manager {
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = false;  # Changed from true to false
+  home-manager.users.<username> = ./home.nix;
+}
+```
+
+**Debugging Steps:**
+1. Check if package is in home-manager profile: `ls ~/.local/state/nix/profiles/profile/bin/ | grep <package>`
+2. Check current home-manager generation: `readlink ~/.local/state/nix/profiles/profile`
+3. Check generation timestamps: `/bin/ls -lt ~/.local/state/nix/profiles/`
+4. Verify package exists in nixpkgs: `nix search nixpkgs <package>`
+5. Test package installation: `nix build --no-link --print-out-paths nixpkgs#<package>`
+6. Check home-manager configuration is loaded: Review darwin-rebuild output for "Activating home-manager configuration"
+7. Run darwin-rebuild from repository root (not subdirectory): `sudo darwin-rebuild switch --flake .#<hostname> --impure`
 

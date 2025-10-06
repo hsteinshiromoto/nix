@@ -17,11 +17,11 @@
 					pkgs.eza
 					pkgs.fd
 					pkgs.fzf
-					pkgs.gemini-cli
 					pkgs.git
 					pkgs.git-cliff
 					pkgs.git-crypt
 					pkgs.gitflow
+					pkgs.gocryptfs
 					pkgs.lazygit
 					pkgs.lnav
 					pkgs.mkalias
@@ -36,6 +36,7 @@
 					pkgs.spotify-player
 					pkgs.starship
 					pkgs.stow
+					pkgs.texliveFull
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.tree
@@ -66,6 +67,7 @@
 				"maccy"
 				"obsidian"
 				"oversight"
+				"macfuse"
 				"microsoft-teams"
 				"popclip"
 				"proton-drive"
@@ -159,7 +161,7 @@
 					}
 					home-manager.darwinModules.home-manager {
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.useUserPackages = false;
             home-manager.users.hsteinshiromoto = ./home.nix;
           }
 				];

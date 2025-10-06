@@ -6,6 +6,10 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
+	home.packages = with pkgs; [
+		gemini-cli
+	];
+
 	# Using home-manager to clone and manage plugins is not the best (see e.g. [1])
 	#
 	# References:
