@@ -30,4 +30,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # User packages
+  home.packages = with pkgs; [
+    gemini-cli
+  ];
 }
