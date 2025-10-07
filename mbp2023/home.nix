@@ -7,7 +7,10 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = with pkgs; [
+		claude-code
 		gemini-cli
+		ollama
+		spotify-player
 	];
 
 	# Using home-manager to clone and manage plugins is not the best (see e.g. [1])

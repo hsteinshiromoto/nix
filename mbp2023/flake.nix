@@ -12,7 +12,6 @@
 					pkgs.bat
 					pkgs.btop
 					pkgs.calcure
-					pkgs.claude-code
 					pkgs.dua
 					pkgs.eza
 					pkgs.fd
@@ -26,14 +25,12 @@
 					pkgs.lnav
 					pkgs.mkalias
 					pkgs.nodejs_24
-					pkgs.ollama
 					pkgs.neovim
 					(pkgs.pass.withExtensions (exts: [ exts.pass-otp ]))
 					pkgs.pcsclite
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
-					pkgs.spotify-player
 					pkgs.starship
 					pkgs.stow
 					pkgs.texliveFull
