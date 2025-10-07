@@ -46,6 +46,9 @@
 
 		homebrew = {
 			enable = true;
+			taps = [
+				"gromgit/brewtils"
+			];
 			brews = [
 				"mas"
 				"gromgit/brewtils/taproom"
