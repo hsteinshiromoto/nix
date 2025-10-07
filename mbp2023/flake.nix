@@ -48,6 +48,7 @@
 			enable = true;
 			brews = [
 				"mas"
+				"gromgit/brewtils/taproom"
 			];
 			casks = [
 				"balenaetcher"
