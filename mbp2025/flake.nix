@@ -6,105 +6,97 @@
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-		pkgs.awscli2
-		pkgs.atuin
-		pkgs.bat
-		pkgs.btop
-		pkgs.claude-code
-		pkgs.csvlens
-		pkgs.cursor-cli
-		pkgs.doppler
-		pkgs.eza
-		pkgs.fd
-		pkgs.fzf
-		pkgs.gemini-cli
-		pkgs.git
-		pkgs.gitflow
-		pkgs.go
-		pkgs.jira-cli-go
-		pkgs.jq
-		pkgs.lazygit
-		pkgs.lnav
-		pkgs.maccy
-		pkgs.mkalias
-		pkgs.neovim
-		pkgs.nodejs_24
-		pkgs.ollama
-		pkgs.pass
-		pkgs.ripgrep
-		pkgs.ruff
-		pkgs.serpl
-		pkgs.spotify-player
-		pkgs.starship
-		pkgs.stow
-		pkgs.tmux
-		pkgs.tmuxinator
-		pkgs.uv
-		pkgs.yazi
-		pkgs.yq
-		pkgs.yubikey-manager
-		pkgs.zoxide
-        ];
-
-
-	homebrew = {
-		enable = true;
-		taps = [
-			"gromgit/brewtils"
-		];
-		brews = [
-			"libomp"
-			"mas"
-			"gromgit/brewtils/taproom"
-		];
-		casks = [
-			"bartender"
-			"bitwarden"
-			"cursor"
-			"dbeaver-community"
-			"docker-desktop"
-			"drawio"
-			"espanso"
-			"firefox"
-			"figma"
-			"ghostty"
-			"google-chrome"
-			"gpg-suite"
-			"karabiner-elements"
-			"maccy"
-			"microsoft-teams"
-			"obsidian"
-			"popclip"
-			"proton-pass"
-			"reader"
-			"spotify"
-			"the-unarchiver"
-			"visual-studio-code"
-			"yubico-authenticator"
-		];
-		onActivation.cleanup = "zap";
-		onActivation.autoUpdate = true;
-		onActivation.upgrade = true;
-		masApps = {
-			"Magnet" = 441258766;
-			# "Microsoft 365" = 1450038993;
-			"Microsoft Excel" = 462058435;
-			"Microsoft OneNote" = 784801555;
-			"Microsoft Outlook" = 985367838;
-			"Microsoft Powerpoint" = 462062816;
-			"Microsoft Word" = 462054704;
-			"OneDrive" = 823766827;
-			"Windows App" = 1295203466;
-			"TextSniper - OCR, Copy & Paste" = 1528890965;
-			"Theine" = 955848755;
-
-	        };
-
-	};
+      environment.systemPackages = [
+				pkgs.awscli2
+				pkgs.atuin
+				pkgs.bat
+				pkgs.btop
+				pkgs.csvlens
+				pkgs.cursor-cli
+				pkgs.doppler
+				pkgs.eza
+				pkgs.fd
+				pkgs.fzf
+				pkgs.git
+				pkgs.gitflow
+				pkgs.go
+				pkgs.jira-cli-go
+				pkgs.jq
+				pkgs.lazygit
+				pkgs.lnav
+				pkgs.mkalias
+				pkgs.neovim
+				pkgs.nodejs_24
+				pkgs.ollama
+				pkgs.pass
+				pkgs.ripgrep
+				pkgs.ruff
+				pkgs.serpl
+				pkgs.spotify-player
+				pkgs.starship
+				pkgs.stow
+				pkgs.tmux
+				pkgs.tmuxinator
+				pkgs.uv
+				pkgs.yazi
+				pkgs.yq
+				pkgs.yubikey-manager
+				pkgs.zoxide
+      ];
+			homebrew = {
+				enable = true;
+				taps = [
+					"gromgit/brewtils"
+				];
+				brews = [
+					"libomp"
+					"mas"
+					"gromgit/brewtils/taproom"
+				];
+				casks = [
+					"bartender"
+					"bitwarden"
+					"cursor"
+					"dbeaver-community"
+					"docker-desktop"
+					"drawio"
+					"espanso"
+					"firefox"
+					"figma"
+					"ghostty"
+					"google-chrome"
+					"gpg-suite"
+					"karabiner-elements"
+					"maccy"
+					"microsoft-teams"
+					"obsidian"
+					"popclip"
+					"proton-pass"
+					"reader"
+					"spotify"
+					"the-unarchiver"
+					"visual-studio-code"
+					"yubico-authenticator"
+				];
+				onActivation.cleanup = "zap";
+				onActivation.autoUpdate = true;
+				onActivation.upgrade = true;
+				masApps = {
+					"Magnet" = 441258766;
+					# "Microsoft 365" = 1450038993;
+					"Microsoft Excel" = 462058435;
+					"Microsoft OneNote" = 784801555;
+					"Microsoft Outlook" = 985367838;
+					"Microsoft Powerpoint" = 462062816;
+					"Microsoft Word" = 462054704;
+					"OneDrive" = 823766827;
+					"Windows App" = 1295203466;
+					"TextSniper - OCR, Copy & Paste" = 1528890965;
+					"Theine" = 955848755;
+				};
+			};
       fonts.packages = [
-	pkgs.nerd-fonts.jetbrains-mono
+				pkgs.nerd-fonts.jetbrains-mono
       ];
 
 			nixpkgs.config.allowUnfree = true;
@@ -153,7 +145,7 @@
 				}
 				home-manager.darwinModules.home-manager {
 					home-manager.useGlobalPkgs = true;
-					home-manager.useUserPackages = true;
+					home-manager.useUserPackages = false;
 					home-manager.users.hsteinshiromoto = ./home.nix;
 				}
       ];

@@ -6,8 +6,10 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
-	home.packages = with pkgs; [
-		gemini-cli
+	home.packages = [
+		pkgs.claude-code
+		pkgs.gemini-cli
+		pkgs.maccy
 	];
 
   # This value determines the Home Manager release that your
