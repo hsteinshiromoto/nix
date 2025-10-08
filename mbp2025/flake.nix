@@ -49,11 +49,15 @@
         ];
 
 
-      homebrew = {
+	homebrew = {
 		enable = true;
+		taps = [
+			"gromgit/brewtils"
+		];
 		brews = [
 			"libomp"
 			"mas"
+			"gromgit/brewtils/taproom"
 		];
 		casks = [
 			"bartender"
