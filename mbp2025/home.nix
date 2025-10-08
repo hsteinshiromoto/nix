@@ -9,7 +9,6 @@
 	home.packages = [
 		pkgs.claude-code
 		pkgs.gemini-cli
-		pkgs.maccy
 	];
 
   # This value determines the Home Manager release that your

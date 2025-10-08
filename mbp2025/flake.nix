@@ -12,7 +12,6 @@
 				pkgs.bat
 				pkgs.btop
 				pkgs.csvlens
-				pkgs.cursor-cli
 				pkgs.doppler
 				pkgs.eza
 				pkgs.fd
