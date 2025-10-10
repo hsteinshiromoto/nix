@@ -8,6 +8,7 @@
 
 	home.packages = [
 		pkgs.claude-code
+		pkgs.codex
 		pkgs.gemini-cli
 		pkgs.ollama
 		pkgs.spotify-player
