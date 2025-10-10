@@ -56,6 +56,7 @@
 			casks = [
 				"balenaetcher"
 				"bartender"
+				"bettermouse"
 				"cursor"
 				"discord"
 				"docker-desktop"
