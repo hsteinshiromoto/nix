@@ -50,11 +50,11 @@
 				"gromgit/brewtils"
 			];
 			brews = [
+				"age-plugin-yubikey"
 				"mas"
 				"gromgit/brewtils/taproom"
 			];
 			casks = [
-				"age-plugin-yubikey"
 				"balenaetcher"
 				"bartender"
 				"bettermouse"
