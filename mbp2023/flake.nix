@@ -50,6 +50,7 @@
 				"gromgit/brewtils"
 			];
 			brews = [
+				"age"
 				"age-plugin-yubikey"
 				"mas"
 				"gromgit/brewtils/taproom"
