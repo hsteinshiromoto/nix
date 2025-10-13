@@ -53,6 +53,7 @@
 				"age"
 				"age-plugin-yubikey"
 				"mas"
+				"sops"
 				"gromgit/brewtils/taproom"
 			];
 			casks = [
