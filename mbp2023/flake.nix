@@ -96,7 +96,6 @@
 				"Kindle" = 302584613;
 				"Magnet" = 441258766;
 				"Microsoft Excel" = 462058435;
-				"Microsoft OneNote" = 784801555;
 				"Microsoft Outlook" = 985367838;
 				"Microsoft Powerpoint" = 462062816;
 				"Microsoft Word" = 462054704;
