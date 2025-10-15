@@ -16,21 +16,24 @@
 
 	programs.nushell = {
     enable = true;
-		configFile.force = true;
-		# Or embed configuration directly
-    extraConfig = ''
-      # Example: set prompt
-      let-env PROMPT_COMMAND = { build_prompt }
-
-      # Example: customize completions
-      $env.config = {
-        completions: {
-          case_sensitive: false
-          algorithm: "fuzzy"
-        }
-      }
-    '';
 	};
+
+	xdg.configFile."nu/config.nu" = {
+		text = ''
+			# Example: set prompt
+			let-env PROMPT_COMMAND = { build_prompt }
+
+			# Example: customize completions
+			$env.config = {
+				completions: {
+					case_sensitive: false
+					algorithm: "fuzzy"
+				}
+			}
+		'';
+		force = true;
+	};
+
 
 	# Using home-manager to clone and manage plugins is not the best (see e.g. [1])
 	#
