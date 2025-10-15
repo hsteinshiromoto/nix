@@ -29,14 +29,18 @@
 			}
 		'';
 		force = true;
-		envFile.text = ''
-      # Nushell environment (env.nu)
-      # Example: set an alias
-      alias lg = lazygit
+	};
 
-      # Export environment variables
-      $env.EDITOR = "nvim"
-    '';
+	xdg.configFile."nu/env.nu" = {
+		text = ''
+			# Nushell environment (env.nu)
+			# Example: set an alias
+			alias lg = lazygit
+
+			# Export environment variables
+			$env.EDITOR = "nvim"
+		'';
+		force = true;
 	};
 
 
