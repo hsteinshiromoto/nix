@@ -26,7 +26,6 @@
 				pkgs.mkalias
 				pkgs.neovim
 				pkgs.nodejs_24
-				pkgs.nushell
 				pkgs.ollama
 				pkgs.pass
 				pkgs.ripgrep

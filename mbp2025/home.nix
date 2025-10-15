@@ -11,6 +11,35 @@
 		pkgs.gemini-cli
 	];
 
+	programs.nushell = {
+    enable = true;
+	};
+
+	xdg.configFile."nu/config.nu" = {
+		text = ''
+			# Example: set prompt
+			let-env PROMPT_COMMAND = { build_prompt }
+
+			# Example: customize completions
+			$env.config = {
+				completions: {
+					case_sensitive: false
+					algorithm: "fuzzy"
+				}
+			}
+		'';
+		force = true;
+		envFile.text = ''
+      # Nushell environment (env.nu)
+      # Example: set an alias
+      alias lg = lazygit
+
+      # Export environment variables
+      $env.EDITOR = "nvim"
+    '';
+	};
+
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
