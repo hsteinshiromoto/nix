@@ -16,6 +16,7 @@
 
 	programs.nushell = {
     enable = true;
+		configFile.force = true;
 		# Or embed configuration directly
     extraConfig = ''
       # Example: set prompt
