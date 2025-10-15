@@ -13,40 +13,29 @@
 
 	programs.nushell = {
 		enable = true;
-	};
-
-	programs.starship = {
-		enable = true;
-		enableNushellIntegration = true;
-		enableZshIntegration = true;
-	};
-
-	xdg.configFile."nu/config.nu" = {
-		text = ''
-			# Example: set prompt
-			let-env PROMPT_COMMAND = { build_prompt }
-
-			# Example: customize completions
+		configFile.text = ''
+			# Nushell configuration
 			$env.config = {
 				completions: {
 					case_sensitive: false
 					algorithm: "fuzzy"
 				}
 			}
-		'';
-		force = true;
-	};
 
-	xdg.configFile."nu/env.nu" = {
-		text = ''
-			# Nushell environment (env.nu)
-			# Example: set an alias
+			# Aliases
 			alias lg = lazygit
-
+		'';
+		envFile.text = ''
+			# Nushell environment (env.nu)
 			# Export environment variables
 			$env.EDITOR = "nvim"
 		'';
-		force = true;
+	};
+
+	programs.starship = {
+		enable = true;
+		enableNushellIntegration = true;
+		enableZshIntegration = true;
 	};
 
 
