@@ -26,6 +26,7 @@
 					pkgs.mkalias
 					pkgs.nodejs_24
 					pkgs.neovim
+					pkgs.nushell
 					(pkgs.pass.withExtensions (exts: [ exts.pass-otp ]))
 					pkgs.pcsclite
 					pkgs.ripgrep
@@ -95,7 +96,6 @@
 				"Kindle" = 302584613;
 				"Magnet" = 441258766;
 				"Microsoft Excel" = 462058435;
-				"Microsoft OneNote" = 784801555;
 				"Microsoft Outlook" = 985367838;
 				"Microsoft Powerpoint" = 462062816;
 				"Microsoft Word" = 462054704;
