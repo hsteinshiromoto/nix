@@ -12,7 +12,13 @@
 	];
 
 	programs.nushell = {
-    enable = true;
+		enable = true;
+	};
+
+	programs.starship = {
+		enable = true;
+		enableNushellIntegration = true;
+		enableZshIntegration = true;
 	};
 
 	xdg.configFile."nu/config.nu" = {
