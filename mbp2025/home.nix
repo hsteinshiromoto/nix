@@ -24,6 +24,8 @@
 
 			# Aliases
 			alias lg = lazygit
+			alias get_arn = aws sts get-caller-identity --query Arn --output text
+			alias get_aws_id = aws sts get-caller-identity | from json
 		'';
 		envFile.text = ''
 			# Nushell environment (env.nu)
