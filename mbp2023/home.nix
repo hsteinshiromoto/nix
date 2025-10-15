@@ -14,6 +14,10 @@
 		pkgs.spotify-player
 	];
 
+	programs.nushell = {
+    enable = true;
+	};
+
 	# Using home-manager to clone and manage plugins is not the best (see e.g. [1])
 	#
 	# References:

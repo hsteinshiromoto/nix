@@ -26,7 +26,6 @@
 					pkgs.mkalias
 					pkgs.nodejs_24
 					pkgs.neovim
-					pkgs.nushell
 					(pkgs.pass.withExtensions (exts: [ exts.pass-otp ]))
 					pkgs.pcsclite
 					pkgs.ripgrep
