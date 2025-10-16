@@ -15,6 +15,12 @@
 	];
 
 	programs = {
+		eza = {
+			enable = true;
+			enableNushellIntegration = false;
+			enableZshIntegration = true;
+		};
+
 		nushell = {
 			enable = true;
 			configFile.text = ''

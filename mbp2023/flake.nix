@@ -11,7 +11,6 @@
 					pkgs.btop
 					pkgs.calcure
 					pkgs.dua
-					pkgs.eza
 					pkgs.fd
 					pkgs.fzf
 					pkgs.git
