@@ -38,7 +38,7 @@
 				# Export environment variables
 				$env.EDITOR = "nvim"
 			'';
-		}:
+		};
 	};
 
 	programs.starship = {
