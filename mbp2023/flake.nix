@@ -111,6 +111,12 @@
 
 		};
 
+		nix.gc = {
+			automatic = true;
+			options = "--delete-generations +5";
+			interval = { Weekday = 0; Hour = 2; Minute = 0; };
+		};
+
 			nixpkgs.config.allowUnfree = true;
 			nixpkgs.config.allowUnsupportedSystem = true;
 
