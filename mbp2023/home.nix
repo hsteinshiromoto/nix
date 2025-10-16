@@ -14,24 +14,31 @@
 		pkgs.spotify-player
 	];
 
-	programs.nushell = {
-    enable = true;
-	};
-
-	xdg.configFile."nu/config.nu" = {
-		text = ''
-			# Example: set prompt
-			let-env PROMPT_COMMAND = { build_prompt }
-
-			# Example: customize completions
-			$env.config = {
-				completions: {
-					case_sensitive: false
-					algorithm: "fuzzy"
+	programs = {
+		nushell = {
+			enable = true;
+			configFile.text = ''
+				# Nushell configuration
+				$env.config = {
+					completions: {
+						case_sensitive: false
+						algorithm: "fuzzy"
+					}
 				}
-			}
-		'';
-		force = true;
+
+				# Aliases
+				alias lg = lazygit
+				alias get_arn = aws sts get-caller-identity --query Arn --output text
+				alias cat = bat
+				alias get_aws_id = aws sts get-caller-identity | from json
+			'';
+
+			envFile.text = ''
+				# Nushell environment (env.nu)
+				# Export environment variables
+				$env.EDITOR = "nvim"
+			'';
+		}:
 	};
 
 	programs.starship = {
