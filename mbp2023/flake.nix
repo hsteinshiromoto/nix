@@ -8,8 +8,6 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [
-					pkgs.atuin
-					pkgs.bat
 					pkgs.btop
 					pkgs.calcure
 					pkgs.dua
@@ -31,7 +29,6 @@
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
-					pkgs.starship
 					pkgs.stow
 					pkgs.texliveFull
 					pkgs.tmux

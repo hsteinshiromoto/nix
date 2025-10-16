@@ -34,6 +34,23 @@
 		force = true;
 	};
 
+	programs.starship = {
+		enable = true;
+		enableNushellIntegration = true;
+		enableZshIntegration = true;
+	};
+
+	programs.atuin = {
+		enable = true;
+		enableNushellIntegration = true;
+		enableZshIntegration = true;
+	};
+
+	programs.bat = {
+		enable = true;
+	};
+
+
 
 	# Using home-manager to clone and manage plugins is not the best (see e.g. [1])
 	#
