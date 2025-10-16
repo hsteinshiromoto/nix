@@ -12,6 +12,7 @@
 		pkgs.gemini-cli
 		pkgs.ollama
 		pkgs.spotify-player
+		pkgs.nushellPlugins.highlight
 	];
 
 	programs = {
@@ -31,6 +32,9 @@
 						algorithm: "fuzzy"
 					}
 				}
+
+				# Register nu-plugin-highlight
+				plugin add ${pkgs.nushellPlugins.highlight}/bin/nu_plugin_highlight
 
 				# Aliases
 				alias lg = lazygit
