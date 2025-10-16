@@ -41,81 +41,81 @@
 					pkgs.zoxide
         ];
 
-		homebrew = {
-			enable = true;
-			taps = [
-				"gromgit/brewtils"
-			];
-			brews = [
-				"age"
-				"age-plugin-yubikey"
-				"mas"
-				"sops"
-				"gromgit/brewtils/taproom"
-			];
-			casks = [
-				"balenaetcher"
-				"bartender"
-				"bettermouse"
-				"cursor"
-				"discord"
-				"docker-desktop"
-				"espanso"
-				"firefox"
-				"gpg-suite"
-				"ghostty"
-				"google-chrome"
-				"karabiner-elements"
-				"maccy"
-				"obsidian"
-				"oversight"
-				"macfuse"
-				"microsoft-teams"
-				"popclip"
-				"proton-drive"
-				"proton-pass"
-				"protonvpn"
-				"reader"
-				"spotify"
-				"syncthing-app"
-				"the-unarchiver"
-				"transmission"
-				"utm"
-				"visual-studio-code"
-				"vlc"
-				"waterfox"
-				"whatsapp"
-				"yubico-authenticator"
-			];
-			onActivation.cleanup = "zap";
-			onActivation.autoUpdate = true;
-			onActivation.upgrade = true;
-			masApps = {
-				"Bitwarden" = 1352778147;
-				"Kindle" = 302584613;
-				"Magnet" = 441258766;
-				"Microsoft Excel" = 462058435;
-				"Microsoft Outlook" = 985367838;
-				"Microsoft Powerpoint" = 462062816;
-				"Microsoft Word" = 462054704;
-				"OneDrive" = 823766827;
-				"Parcel - Delivery Tracking" = 639968404;
-				# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
-				# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
-				"Windows App" = 1295203466;
-				"Tailscale" = 1475387142;
-				"TextSniper - OCR, Copy & Paste" = 1528890965;
-				"Theine" = 955848755;
-			#
-			       };
+			homebrew = {
+				enable = true;
+				taps = [
+					"gromgit/brewtils"
+				];
+				brews = [
+					"age"
+					"age-plugin-yubikey"
+					"mas"
+					"sops"
+					"gromgit/brewtils/taproom"
+				];
+				casks = [
+					"balenaetcher"
+					"bartender"
+					"bettermouse"
+					"cursor"
+					"discord"
+					"docker-desktop"
+					"espanso"
+					"firefox"
+					"gpg-suite"
+					"ghostty"
+					"google-chrome"
+					"karabiner-elements"
+					"maccy"
+					"obsidian"
+					"oversight"
+					"macfuse"
+					"microsoft-teams"
+					"popclip"
+					"proton-drive"
+					"proton-pass"
+					"protonvpn"
+					"reader"
+					"spotify"
+					"syncthing-app"
+					"the-unarchiver"
+					"transmission"
+					"utm"
+					"visual-studio-code"
+					"vlc"
+					"waterfox"
+					"whatsapp"
+					"yubico-authenticator"
+				];
+				onActivation.cleanup = "zap";
+				onActivation.autoUpdate = true;
+				onActivation.upgrade = true;
+				masApps = {
+					"Bitwarden" = 1352778147;
+					"Kindle" = 302584613;
+					"Magnet" = 441258766;
+					"Microsoft Excel" = 462058435;
+					"Microsoft Outlook" = 985367838;
+					"Microsoft Powerpoint" = 462062816;
+					"Microsoft Word" = 462054704;
+					"OneDrive" = 823766827;
+					"Parcel - Delivery Tracking" = 639968404;
+					# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
+					# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
+					"Windows App" = 1295203466;
+					"Tailscale" = 1475387142;
+					"TextSniper - OCR, Copy & Paste" = 1528890965;
+					"Theine" = 955848755;
+				#
+							 };
 
-		};
+			};
 
-		nix.gc = {
-			automatic = true;
-			options = "--delete-generations +5";
-			interval = { Weekday = 0; Hour = 2; Minute = 0; };
-		};
+			nix.gc = {
+				automatic = true;
+				options = "--delete-generations +5";
+				interval = { Weekday = 0; Hour = 2; Minute = 0; };
+			};
 
 			nixpkgs.config.allowUnfree = true;
 			nixpkgs.config.allowUnsupportedSystem = true;
