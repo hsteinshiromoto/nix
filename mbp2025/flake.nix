@@ -8,7 +8,6 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
 				pkgs.awscli2
-				pkgs.bat
 				pkgs.btop
 				pkgs.csvlens
 				pkgs.doppler
