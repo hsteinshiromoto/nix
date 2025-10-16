@@ -17,6 +17,7 @@
 	programs = {
 		nushell = {
 			enable = true;
+			force = true;
 			configFile.text = ''
 				# Nushell configuration
 				$env.config = {
