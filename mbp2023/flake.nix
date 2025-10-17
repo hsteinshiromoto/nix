@@ -25,6 +25,7 @@
 					pkgs.neovim
 					(pkgs.pass.withExtensions (exts: [ exts.pass-otp ]))
 					pkgs.pcsclite
+					pkgs.qrencode
 					pkgs.ripgrep
 					pkgs.ruff
 					pkgs.serpl
