@@ -11,7 +11,6 @@
 				pkgs.btop
 				pkgs.csvlens
 				pkgs.doppler
-				pkgs.eza
 				pkgs.fd
 				pkgs.fzf
 				pkgs.git

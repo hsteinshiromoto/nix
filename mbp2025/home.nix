@@ -9,31 +9,43 @@
 	home.packages = [
 		pkgs.claude-code
 		pkgs.gemini-cli
+		pkgs.nushellPlugins.highlight
 	];
 
-	programs.nushell = {
-		enable = true;
-		configFile.text = ''
-			# Nushell configuration
-			$env.config = {
-				completions: {
-					case_sensitive: false
-					algorithm: "fuzzy"
-				},
-				edit_mode: "vi"
-			}
+	programs {
+		eza = {
+			enable = true;
+			enableNushellIntegration = false;
+			enableZshIntegration = true;
+		};
+		nushell = {
+			enable = true;
+			configFile.text = ''
+				# Nushell configuration
+				$env.config = {
+					completions: {
+						case_sensitive: false
+						algorithm: "fuzzy"
+					},
+					edit_mode: "vi";
+					buffer_editor: "vim"
+				}
 
-			# Aliases
-			alias lg = lazygit
-			alias get_arn = aws sts get-caller-identity --query Arn --output text
-			alias cat = bat
-			alias get_aws_id = aws sts get-caller-identity | from json
-		'';
-		envFile.text = ''
-			# Nushell environment (env.nu)
-			# Export environment variables
-			$env.EDITOR = "nvim"
-		'';
+				# Register nu-plugin-highlight
+				plugin add ${pkgs.nushellPlugins.highlight}/bin/nu_plugin_highlight
+
+				# Aliases
+				alias lg = lazygit
+				alias get_arn = aws sts get-caller-identity --query Arn --output text
+				alias cat = bat
+				alias get_aws_id = aws sts get-caller-identity | from json
+			'';
+			envFile.text = ''
+				# Nushell environment (env.nu)
+				# Export environment variables
+				$env.EDITOR = "nvim"
+			'';
+		};
 	};
 
 	programs.starship = {
