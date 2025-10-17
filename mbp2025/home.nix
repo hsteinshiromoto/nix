@@ -12,7 +12,7 @@
 		pkgs.nushellPlugins.highlight
 	];
 
-	programs {
+	programs = {
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;
@@ -27,7 +27,7 @@
 						case_sensitive: false
 						algorithm: "fuzzy"
 					},
-					edit_mode: "vi";
+					edit_mode: "vi",
 					buffer_editor: "vim"
 				}
 
