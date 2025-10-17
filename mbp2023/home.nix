@@ -30,7 +30,8 @@
 					completions: {
 						case_sensitive: false
 						algorithm: "fuzzy"
-					}
+					};
+					buffer_editor: "vim"
 				}
 
 				# Register nu-plugin-highlight
