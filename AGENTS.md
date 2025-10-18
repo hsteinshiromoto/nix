@@ -1,11 +1,11 @@
 # AGENTS.md
 
 ## Build Commands
-- Update flake: `nix flake update`
-- Rebuild NixOS: `sudo nixos-rebuild switch --flake .#servidor --impure`
-- Rebuild Darwin: `sudo darwin-rebuild switch --flake .#MBP2025 --impure`
+- Update flake: `make update`
+- Rebuild NixOS: `make nixos_rebuilt FLAGS="switch"`
+- Rebuild Darwin: `make darwin_X`, where X is either 22, 23 or 25.
 - Test config: `sudo nixos-rebuild test --flake .#servidor --impure`
-- Build ISO: `nix build .#nixosConfigurations.custom_iso.config.system.build.isoImage`
+- Build ISO: `nixos_iso`
 - Validate config: `nix run github:nix-community/nixos-anywhere -- --flake .#servidor --vm-test`
 
 ## Code Style Guidelines
