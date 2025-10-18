@@ -31,6 +31,7 @@
 						case_sensitive: false
 						algorithm: "fuzzy"
 					},
+					edit_mode: "vi",
 					buffer_editor: "vim"
 				}
 
