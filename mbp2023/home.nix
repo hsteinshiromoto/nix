@@ -30,7 +30,7 @@
 					completions: {
 						case_sensitive: false
 						algorithm: "fuzzy"
-					};
+					},
 					buffer_editor: "vim"
 				}
 
