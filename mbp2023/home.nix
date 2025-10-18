@@ -11,6 +11,7 @@
 		pkgs.codex
 		pkgs.gemini-cli
 		pkgs.ollama
+		pkgs.opencode
 		pkgs.spotify-player
 		pkgs.nushellPlugins.highlight
 	];
