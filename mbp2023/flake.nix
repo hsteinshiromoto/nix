@@ -23,6 +23,7 @@
 					pkgs.mkalias
 					pkgs.nodejs_24
 					pkgs.neovim
+					pkgs.nixd
 					(pkgs.pass.withExtensions (exts: [ exts.pass-otp ]))
 					pkgs.pcsclite
 					pkgs.qrencode
