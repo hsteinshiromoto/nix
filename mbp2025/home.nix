@@ -10,7 +10,6 @@
 		pkgs.claude-code
 		pkgs.gemini-cli
 		pkgs.glab
-		pkgs.nushellPlugins.highlight
 	];
 
 	programs = {
@@ -31,9 +30,6 @@
 					edit_mode: "vi",
 					buffer_editor: "vim"
 				}
-
-				# Register nu-plugin-highlight
-				plugin add ${pkgs.nushellPlugins.highlight}/bin/nu_plugin_highlight
 
 				# Aliases
 				alias lg = lazygit
