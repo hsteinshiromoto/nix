@@ -9,6 +9,7 @@
 	home.packages = [
 		pkgs.claude-code
 		pkgs.gemini-cli
+		pkgs.glab
 		pkgs.nushellPlugins.highlight
 	];
 
