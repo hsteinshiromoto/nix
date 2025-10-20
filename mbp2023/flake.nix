@@ -172,6 +172,7 @@
             home-manager.useUserPackages = false;
             home-manager.users.hsteinshiromoto = ./home.nix;
           }
+					../nvim.nix
 				];
     };
   };
