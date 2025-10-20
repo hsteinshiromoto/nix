@@ -27,7 +27,7 @@ darwin_2023: flake.nix flake.lock mbp2023/flake.nix
 darwin_2025: flake.nix flake.lock mbp2025/flake.nix
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
-	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025
+	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
 
 ## Run partition the disk using disko
 partition: flake.nix flake.lock servo/disko-config.nix
