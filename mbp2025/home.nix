@@ -82,23 +82,24 @@
 		# Use sops templates to generate glab-cli config with secrets
 		templates."glab-cli/config.yml" = {
 			content = ''
-				# GitLab CLI configuration
-				hosts:
-				  ${config.sops.placeholder.gitlab_host}:
-				    api_protocol: https
-				    api_host: ${config.sops.placeholder.gitlab_host}
-				    git_protocol: https
-				    # Token is read from GITLAB_TOKEN environment variable (set via sops)
+# GitLab CLI configuration
+hosts:
+  ${config.sops.placeholder.gitlab_host}:
+    api_protocol: https
+    api_host: ${config.sops.placeholder.gitlab_host}
+    git_protocol: https
+    # Token is read from GITLAB_TOKEN environment variable (set via sops)
 
-				# Default GitLab hostname
-				host: ${config.sops.placeholder.gitlab_host}
+# Default GitLab hostname
+host: ${config.sops.placeholder.gitlab_host}
 
-				# Additional global settings
-				editor: nvim
-				browser: open
-				git_protocol: https
-			'';
+# Additional global settings
+editor: nvim
+browser: open
+git_protocol: https
+'';
 			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
+			mode = "0600";
 		};
 	};
 
