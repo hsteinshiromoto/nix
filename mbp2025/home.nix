@@ -7,9 +7,11 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
+		pkgs.age
 		pkgs.claude-code
 		pkgs.gemini-cli
 		pkgs.glab
+		pkgs.sops
 	];
 
 	programs = {
@@ -61,6 +63,41 @@
 		enable = true;
 	};
 
+	# SOPS secrets configuration
+	sops = {
+		age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/secrets.yaml";
+
+		secrets = {
+			gitlab_token = {
+				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_token";
+			};
+		};
+	};
+
+	# GitLab CLI configuration
+	xdg.configFile."glab-cli/config.yml".text = ''
+		# GitLab CLI configuration
+		hosts:
+		  gitlab.2bos.ai:
+		    api_protocol: https
+		    api_host: gitlab.2bos.ai
+		    git_protocol: https
+		    # Token is read from GITLAB_TOKEN environment variable (set via sops)
+
+		# Default GitLab hostname
+		host: gitlab.2bos.ai
+
+		# Additional global settings
+		editor: nvim
+		browser: open
+		git_protocol: https
+	'';
+
+	# Set GITLAB_TOKEN from sops secret
+	home.sessionVariables = {
+		GITLAB_TOKEN = "$(cat ${config.sops.secrets.gitlab_token.path})";
+	};
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

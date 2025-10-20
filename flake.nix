@@ -53,7 +53,7 @@
 
     mbp2025-flake = import ./mbp2025/flake.nix;
     mbp2025-outputs = mbp2025-flake.outputs {
-      inherit self nix-darwin nix-homebrew home-manager;
+      inherit self nix-darwin nix-homebrew home-manager sops-nix;
       nixpkgs = nixpkgs-unstable;
     };
 
