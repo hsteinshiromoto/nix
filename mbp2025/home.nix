@@ -66,7 +66,7 @@
 	# SOPS secrets configuration
 	sops = {
 		age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/secrets.yaml";
+		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
 		# Disable build-time validation to avoid sandbox permission issues on Darwin
 		validateSopsFiles = false;
 
