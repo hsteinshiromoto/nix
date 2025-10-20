@@ -67,36 +67,45 @@
 	sops = {
 		age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/secrets.yaml";
+		# Disable build-time validation to avoid sandbox permission issues on Darwin
+		validateSopsFiles = false;
 
 		secrets = {
 			gitlab_token = {
 				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_token";
 			};
+			gitlab_host = {
+				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
+			};
+		};
+
+		# Use sops templates to generate glab-cli config with secrets
+		templates."glab-cli/config.yml" = {
+			content = ''
+				# GitLab CLI configuration
+				hosts:
+				  ${config.sops.placeholder.gitlab_host}:
+				    api_protocol: https
+				    api_host: ${config.sops.placeholder.gitlab_host}
+				    git_protocol: https
+				    # Token is read from GITLAB_TOKEN environment variable (set via sops)
+
+				# Default GitLab hostname
+				host: ${config.sops.placeholder.gitlab_host}
+
+				# Additional global settings
+				editor: nvim
+				browser: open
+				git_protocol: https
+			'';
+			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
 		};
 	};
 
-	# GitLab CLI configuration
-	xdg.configFile."glab-cli/config.yml".text = ''
-		# GitLab CLI configuration
-		hosts:
-		  gitlab.2bos.ai:
-		    api_protocol: https
-		    api_host: gitlab.2bos.ai
-		    git_protocol: https
-		    # Token is read from GITLAB_TOKEN environment variable (set via sops)
-
-		# Default GitLab hostname
-		host: gitlab.2bos.ai
-
-		# Additional global settings
-		editor: nvim
-		browser: open
-		git_protocol: https
-	'';
-
-	# Set GITLAB_TOKEN from sops secret
+	# Set environment variables from sops secrets
 	home.sessionVariables = {
 		GITLAB_TOKEN = "$(cat ${config.sops.secrets.gitlab_token.path})";
+		GITLAB_HOST = "$(cat ${config.sops.secrets.gitlab_host.path})";
 	};
 
   # This value determines the Home Manager release that your

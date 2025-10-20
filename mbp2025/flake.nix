@@ -93,6 +93,12 @@
 				pkgs.nerd-fonts.jetbrains-mono
       ];
 
+			nix.gc = {
+				automatic = true;
+				options = "--delete-generations +5";
+				interval = { Weekday = 0; Hour = 2; Minute = 0; };
+			};
+
 			nixpkgs.config.allowUnfree = true;
 
       # Necessary for using flakes on this system.
