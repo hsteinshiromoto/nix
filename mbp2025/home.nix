@@ -75,7 +75,11 @@
 
 		ruff = {
 			enable = true;
-			settings = {};
+			settings = {
+				lint = {
+					task-tags = ["INFO" "NOTE" "ALERT" "WARNING"];
+				};
+			};
 		};
 
 		starship = {
