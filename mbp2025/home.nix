@@ -69,6 +69,14 @@
 			enable = true;
 		};
 
+		password-store = {
+			enable = true;
+		};
+
+		ruff = {
+			enable = true;
+		};
+
 		starship = {
 			enable = true;
 			enableNushellIntegration = true;

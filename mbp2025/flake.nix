@@ -24,9 +24,7 @@
 				pkgs.neovim
 				pkgs.nodejs_24
 				pkgs.ollama
-				pkgs.pass
 				pkgs.ripgrep
-				pkgs.ruff
 				pkgs.serpl
 				pkgs.sops
 				pkgs.spotify-player
