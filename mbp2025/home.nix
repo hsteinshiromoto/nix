@@ -1,25 +1,50 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./gitconfig.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
-		pkgs.age
-		pkgs.claude-code
-		pkgs.gemini-cli
+		pkgs.delta
+		pkgs.gitflow
 		pkgs.glab
-		pkgs.sops
 	];
 
 	programs = {
+		atuin = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		awscli = {
+			enable = true;
+		};
+
+		bat = {
+			enable = true;
+		};
+
+		claude-code = {
+			enable = true;
+		};
+
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
 		};
+
+		gemini-cli = {
+			enable = true;
+		};
+
 		nushell = {
 			enable = true;
 			configFile.text = ''
@@ -45,30 +70,60 @@
 				$env.EDITOR = "nvim"
 			'';
 		};
-	};
 
-	programs.starship = {
-		enable = true;
-		enableNushellIntegration = true;
-		enableZshIntegration = true;
-	};
+		opencode = {
+			enable = true;
+		};
 
-	programs.atuin = {
-		enable = true;
-		enableNushellIntegration = true;
-		enableZshIntegration = true;
-	};
+		password-store = {
+			enable = true;
+		};
 
-	programs.bat = {
-		enable = true;
+		ruff = {
+			enable = true;
+			settings = {
+				lint = {
+					task-tags = ["INFO" "NOTE" "ALERT" "WARNING"];
+					extra-standard-library = ["path"];
+					required-imports = ["from __future__ import annotations"];
+				};
+				docstring-code-format = true;
+				future-annotations = true;
+			};
+		};
+
+		starship = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		uv = {
+			enable = true;
+		};
+
+		yazi = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		zoxide = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
 	};
 
 	# SOPS secrets configuration
 	sops = {
-		age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+		# Use GPG for decryption (age key not available)
+		# age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
 		# Disable build-time validation to avoid sandbox permission issues on Darwin
 		validateSopsFiles = false;
+		# Use GPG for decryption
+		gnupg.home = "${config.home.homeDirectory}/.gnupg";
 
 		secrets = {
 			gitlab_token = {
@@ -76,6 +131,10 @@
 			};
 			gitlab_host = {
 				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
+			};
+			git_signingkey = {
+				sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+				path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
 			};
 		};
 
@@ -101,12 +160,23 @@ git_protocol: https
 			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
 			mode = "0600";
 		};
+
+		# Generate gitconfig signing key file with SOPS
+		templates."gitconfig-signingkey" = {
+			content = ''
+[user]
+	signingkey = ${config.sops.placeholder.git_signingkey}
+'';
+			path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
+			mode = "0600";
+		};
 	};
 
-	# Set environment variables from sops secrets
+	# Set environment variables
 	home.sessionVariables = {
-		GITLAB_TOKEN = "$(cat ${config.sops.secrets.gitlab_token.path})";
-		GITLAB_HOST = "$(cat ${config.sops.secrets.gitlab_host.path})";
+		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		# Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
+		# via sops templates above (see templates."glab-cli/config.yml")
 	};
 
   # This value determines the Home Manager release that your

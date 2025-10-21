@@ -1,20 +1,18 @@
 {
   description = "Nix-darwin MBP2025 system flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix ? null, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
-				pkgs.awscli2
+				pkgs.age
 				pkgs.btop
 				pkgs.csvlens
 				pkgs.doppler
 				pkgs.fd
 				pkgs.fzf
-				pkgs.git
-				pkgs.gitflow
 				pkgs.go
 				pkgs.jira-cli-go
 				pkgs.jq
@@ -24,19 +22,15 @@
 				pkgs.neovim
 				pkgs.nodejs_24
 				pkgs.ollama
-				pkgs.pass
 				pkgs.ripgrep
-				pkgs.ruff
 				pkgs.serpl
+				pkgs.sops
 				pkgs.spotify-player
 				pkgs.stow
 				pkgs.tmux
 				pkgs.tmuxinator
-				pkgs.uv
-				pkgs.yazi
 				pkgs.yq
 				pkgs.yubikey-manager
-				pkgs.zoxide
       ];
 			homebrew = {
 				enable = true;
