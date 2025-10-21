@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./gitconfig.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hsteinshiromoto";
@@ -39,27 +43,6 @@
 
 		gemini-cli = {
 			enable = true;
-		};
-
-		git = {
-			enable = true;
-			extraConfig = {
-				# Git-flow configuration
-				gitflow = {
-					branch = {
-						master = "main";
-						develop = "dev";
-					};
-					prefix = {
-						feature = "feature/";
-						bugfix = "bugfix/";
-						release = "release/";
-						hotfix = "hotfix/";
-						support = "support/";
-						versiontag = "v";
-					};
-				};
-			};
 		};
 
 		nushell = {
