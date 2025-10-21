@@ -17,6 +17,10 @@
 			enableZshIntegration = true;
 		};
 
+		awscli = {
+			enable = true;
+		};
+
 		bat = {
 			enable = true;
 		};

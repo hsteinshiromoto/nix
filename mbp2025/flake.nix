@@ -8,7 +8,6 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
 				pkgs.age
-				pkgs.awscli2
 				pkgs.btop
 				pkgs.csvlens
 				pkgs.doppler
