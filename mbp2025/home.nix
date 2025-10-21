@@ -7,6 +7,7 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
+		pkgs.delta
 		pkgs.gitflow
 		pkgs.glab
 	];
@@ -173,6 +174,7 @@ git_protocol: https
 
 	# Set environment variables from sops secrets
 	home.sessionVariables = {
+		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
 		GITLAB_TOKEN = "$(cat ${config.sops.secrets.gitlab_token.path})";
 		GITLAB_HOST = "$(cat ${config.sops.secrets.gitlab_host.path})";
 	};
