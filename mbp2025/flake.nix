@@ -38,7 +38,6 @@
 				pkgs.yazi
 				pkgs.yq
 				pkgs.yubikey-manager
-				pkgs.zoxide
       ];
 			homebrew = {
 				enable = true;

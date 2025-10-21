@@ -67,6 +67,11 @@
 			enableZshIntegration = true;
 		};
 
+		zoxide = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
 	};
 
 	# SOPS secrets configuration
