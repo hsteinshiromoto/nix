@@ -67,6 +67,12 @@
 			enableZshIntegration = true;
 		};
 
+		yazi = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
 		zoxide = {
 			enable = true;
 			enableNushellIntegration = true;
