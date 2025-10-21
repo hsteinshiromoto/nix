@@ -9,6 +9,8 @@
 	home.packages = [
 		pkgs.claude-code
 		pkgs.codex
+		pkgs.delta
+		pkgs.gitflow
 		pkgs.gemini-cli
 		pkgs.ollama
 		pkgs.opencode

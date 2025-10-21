@@ -16,7 +16,6 @@
 					pkgs.git
 					pkgs.git-cliff
 					pkgs.git-crypt
-					pkgs.gitflow
 					pkgs.gocryptfs
 					pkgs.lazygit
 					pkgs.lnav
