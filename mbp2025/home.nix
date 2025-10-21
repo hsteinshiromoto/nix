@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./gitconfig.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hsteinshiromoto";
@@ -39,27 +43,6 @@
 
 		gemini-cli = {
 			enable = true;
-		};
-
-		git = {
-			enable = true;
-			extraConfig = {
-				# Git-flow configuration
-				gitflow = {
-					branch = {
-						master = "main";
-						develop = "dev";
-					};
-					prefix = {
-						feature = "feature/";
-						bugfix = "bugfix/";
-						release = "release/";
-						hotfix = "hotfix/";
-						support = "support/";
-						versiontag = "v";
-					};
-				};
-			};
 		};
 
 		nushell = {
@@ -134,10 +117,13 @@
 
 	# SOPS secrets configuration
 	sops = {
-		age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+		# Use GPG for decryption (age key not available)
+		# age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
 		# Disable build-time validation to avoid sandbox permission issues on Darwin
 		validateSopsFiles = false;
+		# Use GPG for decryption
+		gnupg.home = "${config.home.homeDirectory}/.gnupg";
 
 		secrets = {
 			gitlab_token = {
@@ -145,6 +131,10 @@
 			};
 			gitlab_host = {
 				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
+			};
+			git_signingkey = {
+				sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+				path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
 			};
 		};
 
@@ -170,13 +160,23 @@ git_protocol: https
 			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
 			mode = "0600";
 		};
+
+		# Generate gitconfig signing key file with SOPS
+		templates."gitconfig-signingkey" = {
+			content = ''
+[user]
+	signingkey = ${config.sops.placeholder.git_signingkey}
+'';
+			path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
+			mode = "0600";
+		};
 	};
 
-	# Set environment variables from sops secrets
+	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-		GITLAB_TOKEN = "$(cat ${config.sops.secrets.gitlab_token.path})";
-		GITLAB_HOST = "$(cat ${config.sops.secrets.gitlab_host.path})";
+		# Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
+		# via sops templates above (see templates."glab-cli/config.yml")
 	};
 
   # This value determines the Home Manager release that your
