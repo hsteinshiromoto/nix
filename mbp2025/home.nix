@@ -117,10 +117,13 @@
 
 	# SOPS secrets configuration
 	sops = {
-		age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+		# Use GPG for decryption (age key not available)
+		# age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
 		# Disable build-time validation to avoid sandbox permission issues on Darwin
 		validateSopsFiles = false;
+		# Use GPG for decryption
+		gnupg.home = "${config.home.homeDirectory}/.gnupg";
 
 		secrets = {
 			gitlab_token = {
@@ -128,6 +131,10 @@
 			};
 			gitlab_host = {
 				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
+			};
+			git_signingkey = {
+				sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+				path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
 			};
 		};
 
@@ -151,6 +158,16 @@ browser: open
 git_protocol: https
 '';
 			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
+			mode = "0600";
+		};
+
+		# Generate gitconfig signing key file with SOPS
+		templates."gitconfig-signingkey" = {
+			content = ''
+[user]
+	signingkey = ${config.sops.placeholder.git_signingkey}
+'';
+			path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
 			mode = "0600";
 		};
 	};
