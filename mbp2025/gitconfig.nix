@@ -1,16 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # SOPS configuration for git secrets
-  sops = {
-    secrets = {
-      git_signingkey = {
-        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
-        path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
-      };
-    };
-  };
-
   # Git configuration
   programs.git = {
     enable = true;
@@ -116,22 +106,13 @@
         gff = "git flow feature start";
       };
     };
-  };
 
-  # Use SOPS template to inject signing key into gitconfig
-  sops.templates."gitconfig-signingkey" = {
-    content = ''
-[user]
-	signingkey = ${config.sops.placeholder.git_signingkey}
-'';
-    path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
-    mode = "0600";
+    # Include SOPS-managed signing key configuration
+    includes = [
+      {
+        path = "~/.config/git/config.d/signingkey";
+        condition = null;
+      }
+    ];
   };
-
-  # Ensure git config.d directory structure exists
-  # Git will include files from ~/.config/git/config.d/ if they exist
-  home.file.".config/git/config".text = ''
-[include]
-	path = config.d/signingkey
-'';
 }
