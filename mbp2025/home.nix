@@ -7,7 +7,6 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
-		pkgs.gemini-cli
 		pkgs.glab
 	];
 
@@ -30,6 +29,10 @@
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
+		};
+
+		gemini-cli = {
+			enable = true;
 		};
 
 		nushell = {
