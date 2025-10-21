@@ -31,7 +31,6 @@
 				pkgs.stow
 				pkgs.tmux
 				pkgs.tmuxinator
-				pkgs.uv
 				pkgs.yq
 				pkgs.yubikey-manager
       ];

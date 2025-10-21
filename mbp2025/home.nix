@@ -83,6 +83,10 @@
 			enableZshIntegration = true;
 		};
 
+		uv = {
+			enable = true;
+		};
+
 		yazi = {
 			enable = true;
 			enableNushellIntegration = true;
