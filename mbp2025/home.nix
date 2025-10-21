@@ -75,6 +75,7 @@
 
 		ruff = {
 			enable = true;
+			settings = {};
 		};
 
 		starship = {
