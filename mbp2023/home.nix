@@ -7,21 +7,36 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
-		pkgs.claude-code
 		pkgs.codex
 		pkgs.delta
 		pkgs.gitflow
-		pkgs.gemini-cli
 		pkgs.ollama
-		pkgs.opencode
 		pkgs.spotify-player
 	];
 
 	programs = {
+		atuin = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		bat = {
+			enable = true;
+		};
+
+		claude-code = {
+			enable = true;
+		};
+
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
+		};
+
+		gemini-cli = {
+			enable = true;
 		};
 
 		nushell = {
@@ -49,20 +64,26 @@
 			'';
 		};
 
+		opencode = {
+			enable = true;
+		};
+
 		starship = {
 			enable = true;
 			enableNushellIntegration = true;
 			enableZshIntegration = true;
 		};
 
-		atuin = {
+		yazi = {
 			enable = true;
 			enableNushellIntegration = true;
 			enableZshIntegration = true;
 		};
 
-		bat = {
+		zoxide = {
 			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
 		};
 	};
 
