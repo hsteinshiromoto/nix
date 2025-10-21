@@ -65,6 +65,10 @@
 			'';
 		};
 
+		opencode = {
+			enable = true;
+		};
+
 		starship = {
 			enable = true;
 			enableNushellIntegration = true;
