@@ -8,7 +8,6 @@
 
 	home.packages = [
 		pkgs.age
-		pkgs.claude-code
 		pkgs.gemini-cli
 		pkgs.glab
 		pkgs.sops
@@ -22,7 +21,11 @@
 		};
 
 		bat = {
-		enable = true;
+			enable = true;
+		};
+
+		claude-code = {
+			enable = true
 		};
 
 		eza = {
