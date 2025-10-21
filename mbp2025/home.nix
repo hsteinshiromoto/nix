@@ -25,7 +25,7 @@
 		};
 
 		claude-code = {
-			enable = true
+			enable = true;
 		};
 
 		eza = {
