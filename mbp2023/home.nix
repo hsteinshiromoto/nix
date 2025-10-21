@@ -76,6 +76,14 @@
 	# 	};
 	# };
 
+	# Set environment variables
+	home.sessionVariables = {
+		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		# Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
+		# via sops templates above (see templates."glab-cli/config.yml")
+	};
+
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
