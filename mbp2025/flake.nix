@@ -13,8 +13,6 @@
 				pkgs.doppler
 				pkgs.fd
 				pkgs.fzf
-				pkgs.git
-				pkgs.gitflow
 				pkgs.go
 				pkgs.jira-cli-go
 				pkgs.jq

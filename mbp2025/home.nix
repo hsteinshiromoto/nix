@@ -7,6 +7,7 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
+		pkgs.gitflow
 		pkgs.glab
 	];
 
@@ -37,6 +38,27 @@
 
 		gemini-cli = {
 			enable = true;
+		};
+
+		git = {
+			enable = true;
+			extraConfig = {
+				# Git-flow configuration
+				gitflow = {
+					branch = {
+						master = "main";
+						develop = "dev";
+					};
+					prefix = {
+						feature = "feature/";
+						bugfix = "bugfix/";
+						release = "release/";
+						hotfix = "hotfix/";
+						support = "support/";
+						versiontag = "v";
+					};
+				};
+			};
 		};
 
 		nushell = {
