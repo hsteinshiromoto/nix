@@ -15,11 +15,22 @@
 	];
 
 	programs = {
+		atuin = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		bat = {
+		enable = true;
+		};
+
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
 		};
+
 		nushell = {
 			enable = true;
 			configFile.text = ''
@@ -45,22 +56,13 @@
 				$env.EDITOR = "nvim"
 			'';
 		};
-	};
 
-	programs.starship = {
-		enable = true;
-		enableNushellIntegration = true;
-		enableZshIntegration = true;
-	};
+		starship = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
 
-	programs.atuin = {
-		enable = true;
-		enableNushellIntegration = true;
-		enableZshIntegration = true;
-	};
-
-	programs.bat = {
-		enable = true;
 	};
 
 	# SOPS secrets configuration
