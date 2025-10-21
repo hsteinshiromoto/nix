@@ -155,11 +155,11 @@ git_protocol: https
 		};
 	};
 
-	# Set environment variables from sops secrets
+	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-		GITLAB_TOKEN = "$(cat ${config.sops.secrets.gitlab_token.path})";
-		GITLAB_HOST = "$(cat ${config.sops.secrets.gitlab_host.path})";
+		# Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
+		# via sops templates above (see templates."glab-cli/config.yml")
 	};
 
   # This value determines the Home Manager release that your
