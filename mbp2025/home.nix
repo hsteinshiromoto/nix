@@ -7,10 +7,8 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
-		pkgs.age
 		pkgs.gemini-cli
 		pkgs.glab
-		pkgs.sops
 	];
 
 	programs = {

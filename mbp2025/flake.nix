@@ -7,6 +7,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+				pkgs.age
 				pkgs.awscli2
 				pkgs.btop
 				pkgs.csvlens
@@ -28,6 +29,7 @@
 				pkgs.ripgrep
 				pkgs.ruff
 				pkgs.serpl
+				pkgs.sops
 				pkgs.spotify-player
 				pkgs.stow
 				pkgs.tmux
