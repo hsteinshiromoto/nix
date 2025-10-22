@@ -47,28 +47,6 @@
 
 		nushell = {
 			enable = true;
-			configFile.text = ''
-				# Nushell configuration
-				$env.config = {
-					completions: {
-						case_sensitive: false
-						algorithm: "fuzzy"
-					},
-					edit_mode: "vi",
-					buffer_editor: "vim"
-				}
-
-				# Aliases
-				alias lg = lazygit
-				alias get_arn = aws sts get-caller-identity --query Arn --output text
-				alias cat = bat
-				alias get_aws_id = aws sts get-caller-identity | from json
-			'';
-			envFile.text = ''
-				# Nushell environment (env.nu)
-				# Export environment variables
-				$env.EDITOR = "nvim"
-			'';
 		};
 
 		opencode = {
@@ -171,6 +149,31 @@ git_protocol: https
 			mode = "0600";
 		};
 	};
+
+	# Manually create nushell config files using xdg.configFile
+	xdg.configFile."nushell/config.nu".text = ''
+		# Nushell configuration
+		$env.config = {
+			completions: {
+				case_sensitive: false
+				algorithm: "fuzzy"
+			},
+			edit_mode: "vi",
+			buffer_editor: "vim"
+		}
+
+		# Aliases
+		alias lg = lazygit
+		alias get_arn = aws sts get-caller-identity --query Arn --output text
+		alias cat = bat
+		alias get_aws_id = aws sts get-caller-identity | from json
+	'';
+
+	xdg.configFile."nushell/env.nu".text = ''
+		# Nushell environment (env.nu)
+		# Export environment variables
+		$env.EDITOR = "nvim"
+	'';
 
 	# Set environment variables
 	home.sessionVariables = {
