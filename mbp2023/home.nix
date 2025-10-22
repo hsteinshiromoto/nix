@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../common/gitconfig.nix
+    ../common/nu.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hsteinshiromoto";
@@ -16,43 +21,6 @@
 	];
 
 	programs = {
-		eza = {
-			enable = true;
-			enableNushellIntegration = false;
-			enableZshIntegration = true;
-		};
-
-		nushell = {
-			enable = true;
-			configFile.text = ''
-				# Nushell configuration
-				$env.config = {
-					completions: {
-						case_sensitive: false
-						algorithm: "fuzzy"
-					},
-					edit_mode: "vi",
-					buffer_editor: "vim"
-				}
-
-				# Aliases
-				alias lg = lazygit
-				alias cat = bat
-			'';
-
-			envFile.text = ''
-				# Nushell environment (env.nu)
-				# Export environment variables
-				$env.EDITOR = "nvim"
-			'';
-		};
-
-		starship = {
-			enable = true;
-			enableNushellIntegration = true;
-			enableZshIntegration = true;
-		};
-
 		atuin = {
 			enable = true;
 			enableNushellIntegration = true;
@@ -61,6 +29,30 @@
 
 		bat = {
 			enable = true;
+		};
+
+		eza = {
+			enable = true;
+			enableNushellIntegration = false;
+			enableZshIntegration = true;
+		};
+
+		starship = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		yazi = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		zoxide = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
 		};
 	};
 
@@ -75,6 +67,11 @@
 	# 			ref = "main"; # Or your desired branch/commit
 	# 	};
 	# };
+
+	# Set environment variables
+	home.sessionVariables = {
+		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+	};
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
