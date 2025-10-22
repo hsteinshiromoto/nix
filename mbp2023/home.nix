@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./sops.nix
+    ../common/gitconfig.nix
+    ../common/nu.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hsteinshiromoto";
@@ -21,51 +27,16 @@
 			enableZshIntegration = true;
 		};
 
-		bat = {
+		zoxide = {
 			enable = true;
-		};
-
-		claude-code = {
-			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
 		};
 
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
-		};
-
-		gemini-cli = {
-			enable = true;
-		};
-
-		nushell = {
-			enable = true;
-			configFile.text = ''
-				# Nushell configuration
-				$env.config = {
-					completions: {
-						case_sensitive: false
-						algorithm: "fuzzy"
-					},
-					edit_mode: "vi",
-					buffer_editor: "vim"
-				}
-
-				# Aliases
-				alias lg = lazygit
-				alias cat = bat
-			'';
-
-			envFile.text = ''
-				# Nushell environment (env.nu)
-				# Export environment variables
-				$env.EDITOR = "nvim"
-			'';
-		};
-
-		opencode = {
-			enable = true;
 		};
 
 		starship = {
@@ -102,10 +73,7 @@
 	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-		# Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
-		# via sops templates above (see templates."glab-cli/config.yml")
 	};
-
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -1,7 +1,7 @@
 {
   description = "Nix-darwin MBP2023 System Flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -168,6 +168,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = false;
             home-manager.users.hsteinshiromoto = ./home.nix;
+            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
           }
 					../nvim.nix
 				];
