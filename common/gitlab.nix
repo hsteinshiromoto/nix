@@ -34,7 +34,7 @@ hosts:
     api_protocol: https
     api_host: ${config.sops.placeholder.gitlab_host}
     git_protocol: https
-    # Token is read from GITLAB_TOKEN environment variable (set via sops)
+    token: ${config.sops.placeholder.gitlab_token}
 
 # Default GitLab hostname
 host: ${config.sops.placeholder.gitlab_host}
