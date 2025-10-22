@@ -6,7 +6,8 @@
     enable = true;
 
     userName = "Humberto STEIN SHIROMOTO";
-    userEmail = "humberto.shiromoto@akordi.com";
+    # userEmail is managed via git config file template below
+    # to allow runtime secret injection from SOPS
 
     extraConfig = {
       # User configuration with SOPS-managed signing key
@@ -114,5 +115,30 @@
         condition = null;
       }
     ];
+  };
+
+  # SOPS configuration for git signing key and user email
+  sops = {
+    secrets = {
+      git_signingkey = {
+        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+        path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
+      };
+      user_email = {
+        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+        path = "${config.home.homeDirectory}/.config/sops/secrets/user_email";
+      };
+    };
+
+    # Generate gitconfig user settings file with SOPS
+    templates."gitconfig-signingkey" = {
+      content = ''
+[user]
+	email = ${config.sops.placeholder.user_email}
+	signingkey = ${config.sops.placeholder.git_signingkey}
+'';
+      path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
+      mode = "0600";
+    };
   };
 }

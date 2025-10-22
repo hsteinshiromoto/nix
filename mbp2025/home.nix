@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./gitconfig.nix
+    ../common/gitconfig.nix
+    ../common/gitlab.nix
+    ../common/nu.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -13,7 +15,6 @@
 	home.packages = [
 		pkgs.delta
 		pkgs.gitflow
-		pkgs.glab
 	];
 
 	programs = {
@@ -43,32 +44,6 @@
 
 		gemini-cli = {
 			enable = true;
-		};
-
-		nushell = {
-			enable = true;
-			configFile.text = ''
-				# Nushell configuration
-				$env.config = {
-					completions: {
-						case_sensitive: false
-						algorithm: "fuzzy"
-					},
-					edit_mode: "vi",
-					buffer_editor: "vim"
-				}
-
-				# Aliases
-				alias lg = lazygit
-				alias get_arn = aws sts get-caller-identity --query Arn --output text
-				alias cat = bat
-				alias get_aws_id = aws sts get-caller-identity | from json
-			'';
-			envFile.text = ''
-				# Nushell environment (env.nu)
-				# Export environment variables
-				$env.EDITOR = "nvim"
-			'';
 		};
 
 		opencode = {
@@ -115,68 +90,9 @@
 		};
 	};
 
-	# SOPS secrets configuration
-	sops = {
-		# Use GPG for decryption (age key not available)
-		# age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
-		# Disable build-time validation to avoid sandbox permission issues on Darwin
-		validateSopsFiles = false;
-		# Use GPG for decryption
-		gnupg.home = "${config.home.homeDirectory}/.gnupg";
-
-		secrets = {
-			gitlab_token = {
-				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_token";
-			};
-			gitlab_host = {
-				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
-			};
-			git_signingkey = {
-				sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
-				path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
-			};
-		};
-
-		# Use sops templates to generate glab-cli config with secrets
-		templates."glab-cli/config.yml" = {
-			content = ''
-# GitLab CLI configuration
-hosts:
-  ${config.sops.placeholder.gitlab_host}:
-    api_protocol: https
-    api_host: ${config.sops.placeholder.gitlab_host}
-    git_protocol: https
-    # Token is read from GITLAB_TOKEN environment variable (set via sops)
-
-# Default GitLab hostname
-host: ${config.sops.placeholder.gitlab_host}
-
-# Additional global settings
-editor: nvim
-browser: open
-git_protocol: https
-'';
-			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
-			mode = "0600";
-		};
-
-		# Generate gitconfig signing key file with SOPS
-		templates."gitconfig-signingkey" = {
-			content = ''
-[user]
-	signingkey = ${config.sops.placeholder.git_signingkey}
-'';
-			path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
-			mode = "0600";
-		};
-	};
-
 	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-		# Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
-		# via sops templates above (see templates."glab-cli/config.yml")
 	};
 
   # This value determines the Home Manager release that your
