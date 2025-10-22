@@ -115,4 +115,24 @@
       }
     ];
   };
+
+  # SOPS configuration for git signing key
+  sops = {
+    secrets = {
+      git_signingkey = {
+        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+        path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
+      };
+    };
+
+    # Generate gitconfig signing key file with SOPS
+    templates."gitconfig-signingkey" = {
+      content = ''
+[user]
+	signingkey = ${config.sops.placeholder.git_signingkey}
+'';
+      path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
+      mode = "0600";
+    };
+  };
 }
