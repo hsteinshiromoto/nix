@@ -27,12 +27,6 @@
 			enableZshIntegration = true;
 		};
 
-		zoxide = {
-			enable = true;
-			enableNushellIntegration = true;
-			enableZshIntegration = true;
-		};
-
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;
