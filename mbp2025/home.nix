@@ -107,10 +107,6 @@
 			gitlab_host = {
 				path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
 			};
-			git_signingkey = {
-				sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
-				path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
-			};
 		};
 
 		# Use sops templates to generate glab-cli config with secrets
@@ -133,16 +129,6 @@ browser: open
 git_protocol: https
 '';
 			path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
-			mode = "0600";
-		};
-
-		# Generate gitconfig signing key file with SOPS
-		templates."gitconfig-signingkey" = {
-			content = ''
-[user]
-	signingkey = ${config.sops.placeholder.git_signingkey}
-'';
-			path = "${config.home.homeDirectory}/.config/git/config.d/signingkey";
 			mode = "0600";
 		};
 	};
