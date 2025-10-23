@@ -57,6 +57,10 @@
 			settings = {
 				lint = {
 					task-tags = ["INFO" "NOTE" "ALERT" "WARNING"];
+					isort = {
+						extra-standard-library = ["path"];
+						required-imports = ["from __future__ import annotations"];
+					};
 				};
 				format = {
 					docstring-code-format = true;
