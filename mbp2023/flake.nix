@@ -13,7 +13,6 @@
 					pkgs.dua
 					pkgs.fd
 					pkgs.fzf
-					pkgs.git
 					pkgs.git-cliff
 					pkgs.git-crypt
 					pkgs.gocryptfs
