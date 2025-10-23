@@ -11,10 +11,6 @@
     # Use GPG for decryption (age key not available)
     # age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
     defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
-    # Disable build-time validation to avoid sandbox permission issues on Darwin
-    validateSopsFiles = false;
-    # Use GPG for decryption
-    gnupg.home = "${config.home.homeDirectory}/.gnupg";
 
     secrets = {
       gitlab_token = {
