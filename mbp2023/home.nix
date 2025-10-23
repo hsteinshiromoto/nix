@@ -52,10 +52,6 @@
 			enable = true;
 		};
 
-		password-store = {
-			enable = true;
-		};
-
 		ruff = {
 			enable = true;
 			settings = {
