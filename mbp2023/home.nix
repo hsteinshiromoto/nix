@@ -13,11 +13,10 @@
   home.homeDirectory = "/Users/hsteinshiromoto";
 
 	home.packages = [
-		pkgs.claude-code
 		pkgs.codex
-		pkgs.gemini-cli
+		pkgs.delta
+		pkgs.gitflow
 		pkgs.ollama
-		pkgs.opencode
 		pkgs.spotify-player
 	];
 
@@ -26,10 +25,6 @@
 			enable = true;
 			enableNushellIntegration = true;
 			enableZshIntegration = true;
-		};
-
-		bat = {
-			enable = true;
 		};
 
 		eza = {

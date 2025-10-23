@@ -13,10 +13,8 @@
 					pkgs.dua
 					pkgs.fd
 					pkgs.fzf
-					pkgs.git
 					pkgs.git-cliff
 					pkgs.git-crypt
-					pkgs.gitflow
 					pkgs.gocryptfs
 					pkgs.lazygit
 					pkgs.lnav
@@ -36,10 +34,8 @@
 					pkgs.tmuxinator
 					pkgs.tree
 					pkgs.uv
-					pkgs.yazi
 					pkgs.yq
 					pkgs.yubikey-manager
-					pkgs.zoxide
         ];
 
 			homebrew = {
@@ -173,6 +169,7 @@
             home-manager.users.hsteinshiromoto = ./home.nix;
             home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
           }
+					../nvim.nix
 				];
     };
   };
