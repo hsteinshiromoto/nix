@@ -26,14 +26,12 @@
 					pkgs.pcsclite
 					pkgs.qrencode
 					pkgs.ripgrep
-					pkgs.ruff
 					pkgs.serpl
 					pkgs.stow
 					pkgs.texliveFull
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.tree
-					pkgs.uv
 					pkgs.yq
 					pkgs.yubikey-manager
         ];
