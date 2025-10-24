@@ -93,6 +93,7 @@
 	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		UV_PREBUILT = "1";
 	};
 
   # This value determines the Home Manager release that your
