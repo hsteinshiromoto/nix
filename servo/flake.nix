@@ -1,7 +1,7 @@
 {
   description = "NixOS configuration for servidor";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, commonModules, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 
@@ -50,7 +50,7 @@
             ];
             home-manager.users.hsteinshiromoto = ./home.nix;
 					}
-        ];
+        ] ++ commonModules;
       };
 
 		# ADD THIS NEW CONFIGURATION for the ISO:

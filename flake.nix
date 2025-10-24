@@ -34,14 +34,19 @@
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
 
+    # Common modules shared across all systems
+    commonModules = [
+      ./common/nvim.nix
+    ];
+
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs {
-      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix;
+      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix commonModules;
     };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
-      inherit self nix-darwin nix-homebrew home-manager sops-nix;
+      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules;
       nixpkgs = nixpkgs-unstable;
     };
 
@@ -53,7 +58,7 @@
 
     mbp2025-flake = import ./mbp2025/flake.nix;
     mbp2025-outputs = mbp2025-flake.outputs {
-      inherit self nix-darwin nix-homebrew home-manager sops-nix;
+      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules;
       nixpkgs = nixpkgs-unstable;
     };
 
