@@ -5,13 +5,13 @@
   programs.git = {
     enable = true;
 
-    userName = "Humberto STEIN SHIROMOTO";
+    # Git settings using new Home Manager structure
     # userEmail is managed via git config file template below
     # to allow runtime secret injection from SOPS
-
-    extraConfig = {
+    settings = {
       # User configuration with SOPS-managed signing key
       user = {
+        name = "Humberto STEIN SHIROMOTO";
         # Signing key is managed via git config file template below
         # to allow runtime secret injection
       };
