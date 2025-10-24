@@ -1,7 +1,7 @@
 {
   description = "Nix-darwin MBP2025 system flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, commonModules, commonHomeManagerModules, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -141,9 +141,9 @@
 					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = false;
 					home-manager.users.hsteinshiromoto = ./home.nix;
-					home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
+					home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ] ++ commonHomeManagerModules;
 				}
-      ];
+      ] ++ commonModules;
     };
   };
 }

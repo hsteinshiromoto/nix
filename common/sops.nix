@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # SOPS configuration for MBP2025
+  # SOPS configuration for home-manager
   sops = {
     # Use GPG for decryption
     gnupg.home = "${config.home.homeDirectory}/.gnupg";
