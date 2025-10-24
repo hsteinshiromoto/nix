@@ -1,7 +1,7 @@
 {
   description = "NixOS configuration for servidor";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, commonModules, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, commonModules, commonHomeManagerModules, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 
@@ -47,7 +47,7 @@
             home-manager.useUserPackages = true;
 						home-manager.sharedModules = [
               sops-nix.homeManagerModules.sops
-            ];
+            ] ++ commonHomeManagerModules;
             home-manager.users.hsteinshiromoto = ./home.nix;
 					}
         ] ++ commonModules;

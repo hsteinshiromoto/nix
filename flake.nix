@@ -39,14 +39,19 @@
       ./common/nvim.nix
     ];
 
+    # Common home-manager modules shared across all systems
+    commonHomeManagerModules = [
+      ./common/sops.nix
+    ];
+
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs {
-      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix commonModules;
+      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix commonModules commonHomeManagerModules;
     };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
     mbp2023-outputs = mbp2023-flake.outputs {
-      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules;
+      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules commonHomeManagerModules;
       nixpkgs = nixpkgs-unstable;
     };
 
@@ -58,7 +63,7 @@
 
     mbp2025-flake = import ./mbp2025/flake.nix;
     mbp2025-outputs = mbp2025-flake.outputs {
-      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules;
+      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules commonHomeManagerModules;
       nixpkgs = nixpkgs-unstable;
     };
 

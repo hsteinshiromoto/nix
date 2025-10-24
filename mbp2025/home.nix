@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./sops.nix
     ../common/gitconfig.nix
     ../common/gitlab.nix
     ../common/nu.nix
