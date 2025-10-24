@@ -1,6 +1,10 @@
 .DEFAULT_GOAL := help
 .PHONY: help
 
+## Update flake.lock
+update:
+	nix flake update
+
 # Run Nix-Darwin flakes
 darwin_%: darwin_20$@
 
@@ -8,22 +12,22 @@ darwin_%: darwin_20$@
 nixos_%: nixos_$@
 
 ## Rebuild nix-darwin mba2022 flake
-darwin_2022: flake.nix flake.lock mba2022/flake.nix mba2022/flake.lock
+darwin_2022: flake.nix flake.lock mba2022/flake.nix
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
-	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022
+	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
 
 ## Rebuild nix-darwin mbp2023 flake
-darwin_2023: flake.nix flake.lock mbp2023/flake.nix mbp2023/flake.lock
+darwin_2023: flake.nix flake.lock mbp2023/flake.nix
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
-darwin_2025: flake.nix flake.lock mbp2025/flake.nix mbp2025/flake.lock
+darwin_2025: flake.nix flake.lock mbp2025/flake.nix
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
-	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025
+	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
 
 ## Run partition the disk using disko
 partition: flake.nix flake.lock servo/disko-config.nix

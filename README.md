@@ -6,34 +6,55 @@
 
 ```
 .
-├── bin
-│   ├── docker-nix.conf
-│   ├── install.sh
-│   └── make_iso.sh
-├── CLAUDE.md
-├── custom_iso.nix
-├── flake.lock
-├── flake.nix
+├── bin/                        # Build and installation scripts
+│   ├── docker-nix.conf
+│   ├── install.sh
+│   └── make_iso.sh
+├── common/                     # Shared configuration modules (v3.0+)
+│   ├── gitconfig.nix          # Git configuration with SOPS integration
+│   ├── gitlab.nix             # GitLab CLI configuration
+│   ├── nu.nix                 # Nushell configuration
+│   ├── nvim.nix               # Neovim configuration
+│   └── sops.nix               # SOPS secrets management
+├── mba2022/                    # MacBook Air 2022 configuration
+│   └── flake.nix
+├── mbp2023/                    # MacBook Pro 2023 configuration
+│   ├── flake.nix
+│   └── home.nix               # Home-manager configuration
+├── mbp2025/                    # MacBook Pro 2025 configuration
+│   ├── flake.nix
+│   └── home.nix               # Home-manager configuration
+├── servo/                      # NixOS server configuration
+│   ├── configuration.nix
+│   ├── custom_iso.nix         # Custom ISO build configuration
+│   ├── disko-config.nix       # Disk partitioning configuration
+│   ├── flake.lock
+│   ├── flake.nix
+│   ├── hardware-configuration.nix
+│   ├── home.nix               # Home-manager configuration
+│   ├── README.md
+│   ├── wifi.nix               # WiFi configuration
+│   └── yubikey.nix            # YubiKey configuration
+├── AGENTS.md                   # AI agent usage guidelines
+├── CHANGELOG.md                # Version history and changes
+├── CLAUDE.md                   # Claude Code instructions and troubleshooting
+├── files.md                    # File structure documentation
+├── flake.lock                  # Root flake lock file
+├── flake.nix                   # Root flake configuration
 ├── LICENSE
-├── Makefile
-├── mba2022
-│   └── flake.nix
-├── mbp2023
-│   ├── flake.lock
-│   └── flake.nix
-├── mbp2025
-│   ├── flake.lock
-│   └── flake.nix
-├── nix.conf
-├── README.md
-└── servo
-    ├── configuration.nix
-    ├── disko-config.nix
-    ├── flake.lock
-    ├── flake.nix
-    └── hardware-configuration.nix
+├── Makefile                    # Build automation commands
+├── nix.conf                    # Nix configuration
+├── README.md                   # This file
+└── .tmuxinator.yml            # Tmuxinator project configuration
 
 ```
+
+### Key Directories
+
+- **common/**: Shared configuration modules introduced in v3.0.0 for code reuse across systems
+- **mbp2023/, mbp2025/, mba2022/**: macOS configurations using nix-darwin with home-manager
+- **servo/**: NixOS server configuration with custom ISO, disk partitioning, and hardware-specific settings
+
 ## Instructions
 
 ### 1. Clone this repository in your `XDG_CONFIG_HOME` or `~/.config/nix`:
@@ -78,9 +99,7 @@ For more details, follow the instructions in this [README.md](servo/README.md).
 
 1. Make sure to setup passwordless sudo with the command
 ```bash
-ssh -t hsteinshiromoto@<ip> "sudo chmod 440 /etc/sudoers.d/nixos-anywhere && sudo grep -E
-
-  '^\s*#includedir\s+/etc/sudoers.d' /etc/sudoers || echo '@includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers"
+ssh -t hsteinshiromoto@<ip> "sudo chmod 440 /etc/sudoers.d/nixos-anywhere && sudo grep -E '^\s*#includedir\s+/etc/sudoers.d' /etc/sudoers || echo '@includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers"
 
 ```
 2. Run the command

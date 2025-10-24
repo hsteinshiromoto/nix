@@ -1,13 +1,13 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+# AGENTS.md
 
 ## Build Commands
 
 ### Commom
+
 - Update Nix flake: `make update`
 
 ### Nix Darwin
+
 - Nix Darwin rebuild: `make darwin_X`
 - Build Nix Darwin flake: `darwin-rebuild build --flake ./mbp202X#MBP202X`
 
@@ -19,27 +19,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Test NixOS configuration without switching: `make nixos_rebuild`
 - Print build plan: `nixos-rebuild build --flake .#servidor --show-trace`
 
-## Important Notes
-- `nixos-rebuild test/switch/build` commands do NOT repartition disks on existing systems
-- Disk partitioning configurations (like disko) only apply during fresh NixOS installation
-- To apply partition changes, generate new ISO and reinstall system
-
 ## Code Style Guidelines
 - Use camelCase for variable/attribute names
 - Group related configuration settings together
-- Document complex configuration with comments
-- Separate hardware-specific configuration
-- Organize flakes with clear inputs and outputs structure
+- Place all imports at the top of files
+- Document complex configurations with comments
+- Reference official documentation for non-obvious settings
+- Separate hardware-specific configuration into dedicated files
 - Use descriptive hostnames and system identifiers
-- Place system-specific configurations in dedicated directories
-- Reference official documentation in comments for non-obvious settings
-- For imports, place all imports at the top of files
 - Prefer stable packages unless unstable is explicitly needed
+- Organize flakes with clear inputs/outputs structure
+- Use 2-space indentation for Nix expressions
+
+## Important Notes
+- `nixos-rebuild test/switch/build` commands do NOT repartition disks on existing systems.
+- Disk partitioning configurations (like disko) only apply during fresh NixOS installation.
+- To apply partition changes, generate new ISO and reinstall system.
+- Check what is the host system BEFORE running the first command of a session.
+- You do NOT have access to the server named 'servidor' where NixOS is installed.
 
 ## Repository Structure
 - `mbp2025/` - macOS configuration using nix-darwin
 - `mbp2023/` - macOS configuration using nix-darwin
-- `servo/` - NixOS configuration for a server
+- `servo/` - NixOS configuration for a remote Linux server
 - Root directory contains shared configuration like custom ISO settings
 
 ## Troubleshooting

@@ -1,109 +1,119 @@
 {
   description = "Nix-darwin MBP2023 System Flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, commonModules, commonHomeManagerModules, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [
-					pkgs.atuin
-					pkgs.bat
 					pkgs.btop
-					pkgs.claude-code
+					pkgs.calcure
 					pkgs.dua
-					pkgs.eza
 					pkgs.fd
 					pkgs.fzf
-					pkgs.git
 					pkgs.git-cliff
-					pkgs.gitflow
-					pkgs.gnupg
+					pkgs.git-crypt
+					pkgs.gocryptfs
 					pkgs.lazygit
 					pkgs.lnav
 					pkgs.mkalias
 					pkgs.nodejs_24
-					pkgs.ollama
 					pkgs.neovim
-					pkgs.pass
+					pkgs.nixd
+					(pkgs.pass.withExtensions (exts: [ exts.pass-otp ]))
+					pkgs.pcsclite
+					pkgs.qrencode
 					pkgs.ripgrep
-					pkgs.ruff
 					pkgs.serpl
-					pkgs.spotify-player
-					pkgs.starship
 					pkgs.stow
+					pkgs.texliveFull
 					pkgs.tmux
 					pkgs.tmuxinator
 					pkgs.tree
-					pkgs.uv
-					pkgs.yazi
 					pkgs.yq
-					pkgs.zoxide
+					pkgs.yubikey-manager
         ];
 
-		homebrew = {
-			enable = true;
-			brews = [
-				"mas"
-			];
-			casks = [
-				"balenaetcher"
-				"bartender"
-				"cursor"
-				"discord"
-				"docker-desktop"
-				"espanso"
-				"firefox"
-				"gpg-suite"
-				"ghostty"
-				"google-chrome"
-				"karabiner-elements"
-				"maccy"
-				"obsidian"
-				"microsoft-teams"
-				"popclip"
-				"proton-drive"
-				"proton-pass"
-				"protonvpn"
-				"reader"
-				"spotify"
-				"syncthing-app"
-				"the-unarchiver"
-				"transmission"
-				"utm"
-				"visual-studio-code"
-				"vlc"
-				"waterfox"
-				"whatsapp"
-				"yubico-authenticator"
-			];
-			onActivation.cleanup = "zap";
-			onActivation.autoUpdate = true;
-			onActivation.upgrade = true;
-			masApps = {
-				"Bitwarden" = 1352778147;
-				"Kindle" = 302584613;
-				"Magnet" = 441258766;
-				"Microsoft 365" = 1450038993;
-				"Microsoft Excel" = 462058435;
-				"Microsoft OneNote" = 784801555;
-				"Microsoft Outlook" = 985367838;
-				"Microsoft Powerpoint" = 462062816;
-				"Microsoft Word" = 462054704;
-				"OneDrive" = 823766827;
-				"Parcel - Delivery Tracking" = 639968404;
-				"SimpleLogin - Email alias" = 1494359858;
-				"Windows App" = 1295203466;
-				"Tailscale" = 1475387142;
-				"TextSniper - OCR, Copy & Paste" = 1528890965;
-				"Theine" = 955848755;
-			#
-			       };
+			homebrew = {
+				enable = true;
+				taps = [
+					"gromgit/brewtils"
+				];
+				brews = [
+					"age"
+					"age-plugin-yubikey"
+					"mas"
+					"sops"
+					"gromgit/brewtils/taproom"
+				];
+				casks = [
+					"balenaetcher"
+					"bartender"
+					"bettermouse"
+					"cursor"
+					"discord"
+					"docker-desktop"
+					"espanso"
+					"firefox"
+					"gpg-suite"
+					"ghostty"
+					"google-chrome"
+					"karabiner-elements"
+					"maccy"
+					"obsidian"
+					"oversight"
+					"macfuse"
+					"microsoft-teams"
+					"popclip"
+					"proton-drive"
+					"proton-pass"
+					"protonvpn"
+					"reader"
+					"spotify"
+					"syncthing-app"
+					"the-unarchiver"
+					"transmission"
+					"utm"
+					"visual-studio-code"
+					"vlc"
+					"waterfox"
+					"whatsapp"
+					"yubico-authenticator"
+				];
+				onActivation.cleanup = "zap";
+				onActivation.autoUpdate = true;
+				onActivation.upgrade = true;
+				masApps = {
+					"Bitwarden" = 1352778147;
+					"Kindle" = 302584613;
+					"Magnet" = 441258766;
+					"Microsoft Excel" = 462058435;
+					"Microsoft Outlook" = 985367838;
+					"Microsoft Powerpoint" = 462062816;
+					"Microsoft Word" = 462054704;
+					"OneDrive" = 823766827;
+					"Parcel - Delivery Tracking" = 639968404;
+					# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
+					# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
+					"Windows App" = 1295203466;
+					"Tailscale" = 1475387142;
+					"TextSniper - OCR, Copy & Paste" = 1528890965;
+					"Theine" = 955848755;
+				#
+							 };
 
-		};
+			};
+
+			nix.gc = {
+				automatic = true;
+				options = "--delete-generations +5";
+				interval = { Weekday = 0; Hour = 2; Minute = 0; };
+			};
 
 			nixpkgs.config.allowUnfree = true;
+			nixpkgs.config.allowUnsupportedSystem = true;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -125,6 +135,11 @@
 			users.users.hsteinshiromoto = {
 				name = "hsteinshiromoto";
 				home = "/Users/hsteinshiromoto";
+					packages = with pkgs; [
+						yaziPlugins.lazygit
+						jqp
+					];
+
 			};
 
       # The platform the configuration will be used on.
@@ -148,10 +163,11 @@
 					}
 					home-manager.darwinModules.home-manager {
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.useUserPackages = false;
             home-manager.users.hsteinshiromoto = ./home.nix;
+            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ] ++ commonHomeManagerModules;
           }
-				];
+				] ++ commonModules;
     };
   };
 }

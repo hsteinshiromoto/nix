@@ -8,7 +8,24 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			./yubikey.nix
+			./wifi.nix
     ];
+
+	# SOPS configuration for secrets management
+	sops = {
+		defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;
+		defaultSopsFormat = "yaml";
+		age = {
+			keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
+			generateKey = false;
+		};
+		secrets = {
+			"wifi/ssid" = {};
+			"wifi/password" = {};
+			"ssh/authorized_keys" = {};
+		};
+	};
 
 	nix = {
     package = pkgs.nixVersions.stable;
@@ -75,7 +92,7 @@
       isNormalUser = true;
 			shell = pkgs.zsh;
       description = "Humberto STEIN SHIROMOTO";
-      extraGroups = [ "networkmanager" "wheel" "docker" "sudo"];
+      extraGroups = [ "networkmanager" "wheel" "docker" "sudo" "pcscd" "plugdev"];
       packages = with pkgs; [
 						atuin
 						pkgsUnstable.claude-code
@@ -88,15 +105,14 @@
     };
 		groups.git = {};
     users.git = {
-      isNormalUser = true;
+      isSystemUser = true;
 			group = "git";
-			home = "/home/git";
-      description = "Git user";
-      shell = "${pkgs.git}/bin/git-shell";  # Restricts to git commands only
-			# To use `authorized_keys` file:
+			home = "/var/lib/git-server";
+			createHome = true;
+			shell = "${pkgs.git}/bin/git-shell";			# To use `authorized_keys` file:
 			# 	1. create the ssh folder under `/var/lib/git-server` (ie `sudo mkdir -p /var/lib/git-server/.ssh`).
 			#		2. Add the `authorized_keys` file to `/var/lib/git-server/.ssh`.
-			#   3. In the server, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`
+			#   3. In the server in a regular user, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`. (~ here is the home of the user git, which is /var/lib/git-server)
 			#		4. Set the local repo `origin` with the command `git remote add origin git@<ip>:<repo_slug>.git`
 			# References:
 			# 	[1] https://nixos.wiki/wiki/Git#Serve_Git_repos_via_SSH
@@ -136,6 +152,7 @@
 		parted
     jetbrains-mono
     lazygit
+		libfido2                 # Support for FIDO2/WebAuthn
     libiconv    # Build essential
     libtool     # Build essential
     networkmanager
@@ -143,15 +160,21 @@
     pkgsUnstable.neovim
     nodejs
 		ntfs3g
+		opensc                   # Smart card support
     pass
+		pcsclite
     pkg-config # Build essential
     ripgrep
 		sops
     starship
 		systemctl-tui
     tmux
+		usbutils
     uv
     yazi
+		yubikey-personalization  # CLI tools for configuring YubiKey
+    yubikey-manager          # Manage YubiKey settings
+		yubikey-agent
     yq
     wget
     zoxide
@@ -159,14 +182,16 @@
   #  wget
   ];
 
+		hardware.gpgSmartcards.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs = {
-    gnupg.agent = {
+    programs = {
+      gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
-    };
+      };
+
     zsh = {
       enable = true;
       interactiveShellInit = ''
@@ -213,6 +238,7 @@
     };
     syncthing = {
       enable = true;
+			user = "hsteinshiromoto";
       openDefaultPorts = true;
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
@@ -223,7 +249,9 @@
     xserver.xkb = {
       layout = "us";
       variant = "";
-      };
+    };
+		udev.packages = with pkgs; [ yubikey-personalization ];
+    pcscd.enable = true;
   };
 
 	systemd.services = {

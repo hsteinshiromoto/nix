@@ -1,93 +1,97 @@
 {
   description = "Nix-darwin MBP2025 system flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, commonModules, commonHomeManagerModules, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-		pkgs.awscli2
-		pkgs.atuin
-		pkgs.bat
-		pkgs.btop
-		pkgs.claude-code
-		pkgs.csvlens
-		pkgs.eza
-		pkgs.fd
-		pkgs.fzf
-		pkgs.git
-		pkgs.gitflow
-		pkgs.gnupg
-		pkgs.lazygit
-		pkgs.lnav
-		pkgs.maccy
-		pkgs.mkalias
-		pkgs.neovim
-		pkgs.nodejs_24
-		pkgs.ollama
-		pkgs.pass
-		pkgs.ripgrep
-		pkgs.ruff
-		pkgs.serpl
-		pkgs.spotify-player
-		pkgs.starship
-		pkgs.stow
-		pkgs.tmux
-		pkgs.tmuxinator
-		pkgs.uv
-		pkgs.yazi
-		pkgs.yq
-		pkgs.zoxide
-        ];
-
-
-      homebrew = {
-		enable = true;
-		brews = [
-			"mas"
-		];
-		casks = [
-			"bartender"
-			"cursor"
-			"docker-desktop"
-			"drawio"
-			"espanso"
-			"firefox"
-			"figma"
-			"ghostty"
-			"google-chrome"
-			"maccy"
-			"microsoft-teams"
-			"obsidian"
-			"popclip"
-			"spotify"
-			"the-unarchiver"
-			"visual-studio-code"
-		];
-		onActivation.cleanup = "zap";
-		onActivation.autoUpdate = true;
-		onActivation.upgrade = true;
-		masApps = {
-			"Magnet" = 441258766;
-			# "Microsoft 365" = 1450038993;
-			"Microsoft Excel" = 462058435;
-			"Microsoft OneNote" = 784801555;
-			"Microsoft Outlook" = 985367838;
-			"Microsoft Powerpoint" = 462062816;
-			"Microsoft Word" = 462054704;
-			"OneDrive" = 823766827;
-			"Windows App" = 1295203466;
-			"TextSniper - OCR, Copy & Paste" = 1528890965;
-			"Theine" = 955848755;
-
-	        };
-
-	};
-      fonts.packages = [
-	pkgs.nerd-fonts.jetbrains-mono
+      environment.systemPackages = [
+				pkgs.age
+				pkgs.btop
+				pkgs.csvlens
+				pkgs.doppler
+				pkgs.fd
+				pkgs.fzf
+				pkgs.go
+				pkgs.jira-cli-go
+				pkgs.jq
+				pkgs.lazygit
+				pkgs.lnav
+				pkgs.mkalias
+				pkgs.neovim
+				pkgs.nodejs_24
+				pkgs.ollama
+				pkgs.ripgrep
+				pkgs.serpl
+				pkgs.sops
+				pkgs.spotify-player
+				pkgs.stow
+				pkgs.tmux
+				pkgs.tmuxinator
+				pkgs.yq
+				pkgs.yubikey-manager
       ];
+			homebrew = {
+				enable = true;
+				taps = [
+					"gromgit/brewtils"
+				];
+				brews = [
+					"libomp"
+					"mas"
+					"gromgit/brewtils/taproom"
+				];
+				casks = [
+					"bartender"
+					"bitwarden"
+					"cursor"
+					"dbeaver-community"
+					"docker-desktop"
+					"drawio"
+					"espanso"
+					"firefox"
+					"figma"
+					"ghostty"
+					"google-chrome"
+					"gpg-suite"
+					"karabiner-elements"
+					"maccy"
+					"microsoft-teams"
+					"obsidian"
+					"popclip"
+					"proton-pass"
+					"reader"
+					"spotify"
+					"the-unarchiver"
+					"visual-studio-code"
+					"yubico-authenticator"
+				];
+				onActivation.cleanup = "zap";
+				onActivation.autoUpdate = true;
+				onActivation.upgrade = true;
+				masApps = {
+					"Magnet" = 441258766;
+					# "Microsoft 365" = 1450038993;
+					"Microsoft Excel" = 462058435;
+					"Microsoft OneNote" = 784801555;
+					"Microsoft Outlook" = 985367838;
+					"Microsoft Powerpoint" = 462062816;
+					"Microsoft Word" = 462054704;
+					"OneDrive" = 823766827;
+					"TextSniper - OCR, Copy & Paste" = 1528890965;
+					"Theine" = 955848755;
+				};
+			};
+      fonts.packages = [
+				pkgs.nerd-fonts.jetbrains-mono
+      ];
+
+			nix.gc = {
+				automatic = true;
+				options = "--delete-generations +5";
+				interval = { Weekday = 0; Hour = 2; Minute = 0; };
+			};
 
 			nixpkgs.config.allowUnfree = true;
 
@@ -135,10 +139,11 @@
 				}
 				home-manager.darwinModules.home-manager {
 					home-manager.useGlobalPkgs = true;
-					home-manager.useUserPackages = true;
+					home-manager.useUserPackages = false;
 					home-manager.users.hsteinshiromoto = ./home.nix;
+					home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ] ++ commonHomeManagerModules;
 				}
-      ];
+      ] ++ commonModules;
     };
   };
 }
