@@ -143,6 +143,7 @@
 					home-manager.users.hsteinshiromoto = ./home.nix;
 					home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
 				}
+				../common/nvim.nix
       ];
     };
   };
