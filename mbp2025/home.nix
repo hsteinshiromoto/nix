@@ -94,6 +94,10 @@
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
 		UV_PREBUILT = "1";
+		# Export GitLab secrets to shell environment (mbp2025 only)
+		# The secret files are decrypted by sops-nix at activation time
+		GITLAB_TOKEN = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_token 2>/dev/null || echo '')";
+		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
 	};
 
   # This value determines the Home Manager release that your
