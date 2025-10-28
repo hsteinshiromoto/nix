@@ -15,6 +15,7 @@
 	home.packages = [
 		pkgs.delta
 		pkgs.gitflow
+		pkgs.pyright
 	];
 
 	programs = {
