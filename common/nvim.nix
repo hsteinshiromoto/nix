@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
 		docker-language-server
     lua-language-server
-    marksman
+    markdown-oxide
 		nodePackages_latest.vscode-json-languageserver
 		systemd-language-server
     texlab
