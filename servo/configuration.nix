@@ -246,14 +246,15 @@
 			enable = true;
 			description = "Neovim server";
 			after = ["network.target"];
-			wantedBy = ["default.target"];
+			wantedBy = ["multi-user.target"];
 
 			serviceConfig = {
 				Type = "simple";
+				User = "hsteinshiromoto";
 				ExecStart = "/run/current-system/sw/bin/nvim --headless --listen 0.0.0.0:9000";
-				Restart="always";
-				RestartSec=5;
-				WorkingDirectory="/home/hsteinshiromoto/";
+				Restart = "always";
+				RestartSec = 5;
+				WorkingDirectory = "/home/hsteinshiromoto/";
 			};
 		};
 
