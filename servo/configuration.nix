@@ -251,6 +251,7 @@
 			serviceConfig = {
 				Type = "simple";
 				User = "hsteinshiromoto";
+				Environment = "PATH=/run/current-system/sw/bin:/usr/bin:/bin";
 				ExecStart = "/run/current-system/sw/bin/nvim --headless --listen 0.0.0.0:9000";
 				Restart = "always";
 				RestartSec = 5;
