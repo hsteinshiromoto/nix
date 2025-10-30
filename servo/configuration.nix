@@ -164,6 +164,7 @@
     starship
 		systemctl-tui
     tmux
+		tree-sitter
 		usbutils
     uv
     yazi
