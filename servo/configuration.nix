@@ -19,20 +19,21 @@ in
 		./git-server.nix
     ];
 
-	# SOPS configuration for secrets management - COMMENTED OUT
-	# sops = {
-	# 	defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;
-	# 	defaultSopsFormat = "yaml";
-	# 	age = {
-	# 		keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
-	# 		generateKey = false;
-	# 	};
-	# 	secrets = {
-	# 		"wifi/ssid" = {};
-	# 		"wifi/password" = {};
-	# 		"ssh/authorized_keys" = {};
-	# 	};
-	# };
+	# SOPS configuration for secrets management
+	sops = {
+		# defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;  # Commented out - file not available
+		defaultSopsFormat = "yaml";
+		age = {
+			keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
+			generateKey = false;
+		};
+		# Wifi secrets commented out - wifi.yaml not available
+		# secrets = {
+		# 	"wifi/ssid" = {};
+		# 	"wifi/password" = {};
+		# 	"ssh/authorized_keys" = {};
+		# };
+	};
 
 	nix = {
     package = pkgs.nixVersions.stable;
