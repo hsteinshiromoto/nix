@@ -23,8 +23,8 @@
 		};
 		secrets = {
 			"ssh/authorized_keys" = {
-				mode = "0600";
-				owner = config.users.users.hsteinshiromoto.name;
+				mode = "0644";  # Needs to be readable by sshd
+				# Don't set owner - let it be root owned
 			};
 		};
 	};
@@ -113,8 +113,7 @@
 						stow
 						tmuxinator
 			];
-      # SSH authorized_keys managed by SOPS
-      openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys".path ];
+      # SSH authorized_keys will be managed by systemd service (see below)
     };
   };
 
@@ -281,6 +280,52 @@
 
 				# Optimize store
 				${pkgs.nix}/bin/nix-store --optimize
+			'';
+		};
+
+		# Sync SOPS SSH authorized_keys to user directories
+		sops-ssh-keys-sync = {
+			description = "Sync SOPS SSH authorized_keys to users";
+			wantedBy = [ "multi-user.target" ];
+			after = [ "sops-nix.service" ];
+			wants = [ "sops-nix.service" ];
+
+			serviceConfig = {
+				Type = "oneshot";
+				RemainAfterExit = true;
+				User = "root";
+			};
+
+			script = ''
+				# Wait for SOPS secret to be available
+				SECRET_PATH="${config.sops.secrets."ssh/authorized_keys".path}"
+
+				if [ ! -f "$SECRET_PATH" ]; then
+					echo "ERROR: SOPS secret not found at $SECRET_PATH"
+					exit 1
+				fi
+
+				echo "Syncing SSH authorized_keys from SOPS..."
+
+				# Sync for hsteinshiromoto user
+				HUSER_SSH_DIR="/home/hsteinshiromoto/.ssh"
+				mkdir -p "$HUSER_SSH_DIR"
+				cp "$SECRET_PATH" "$HUSER_SSH_DIR/authorized_keys"
+				chown hsteinshiromoto:users "$HUSER_SSH_DIR/authorized_keys"
+				chmod 600 "$HUSER_SSH_DIR/authorized_keys"
+				chown hsteinshiromoto:users "$HUSER_SSH_DIR"
+				chmod 700 "$HUSER_SSH_DIR"
+
+				# Sync for git user
+				GIT_SSH_DIR="/var/lib/git-server/.ssh"
+				mkdir -p "$GIT_SSH_DIR"
+				cp "$SECRET_PATH" "$GIT_SSH_DIR/authorized_keys"
+				chown git:git "$GIT_SSH_DIR/authorized_keys"
+				chmod 600 "$GIT_SSH_DIR/authorized_keys"
+				chown git:git "$GIT_SSH_DIR"
+				chmod 700 "$GIT_SSH_DIR"
+
+				echo "SSH authorized_keys synced successfully"
 			'';
 		};
 	};
