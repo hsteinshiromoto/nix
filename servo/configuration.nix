@@ -9,21 +9,23 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 			./yubikey.nix
-			./wifi.nix
+			# ./wifi.nix  # Commented out - SOPS wifi.yaml not available
+		./git-server.nix
     ];
 
 	# SOPS configuration for secrets management
 	sops = {
-		defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;
+		defaultSopsFile = /home/hsteinshiromoto/.config/sops/secrets/ssh.yaml;
 		defaultSopsFormat = "yaml";
 		age = {
 			keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
 			generateKey = false;
 		};
 		secrets = {
-			"wifi/ssid" = {};
-			"wifi/password" = {};
-			"ssh/authorized_keys" = {};
+			"authorized_keys" = {  # Direct key, not nested under ssh/
+				mode = "0644";  # Needs to be readable by sshd
+				# Don't set owner - let it be root owned
+			};
 		};
 	};
 
@@ -33,16 +35,28 @@
       experimental-features = nix-command flakes
     '';
 
+		# Manual garbage collection - we'll use a custom service below
 		gc = {
-			automatic = true;
-			dates = "weekly";
-			options = "--delete-older-than +5";
+			automatic = false;
+		};
+
+		# Additional Nix settings for space management
+		settings = {
+			# Automatically optimize store by hardlinking identical files
+			auto-optimise-store = true;
+			# Warn when free space is below 1GB
+			min-free = 1073741824; # 1GB
+			# Keep building until only 512MB free space left
+			max-free = 536870912; # 512MB
 		};
   };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+	# Limit boot menu entries to last 3 generations
+	boot.loader.systemd-boot.configurationLimit = 3;
 
 	system.autoUpgrade = {
 		enable = true;
@@ -99,26 +113,7 @@
 						stow
 						tmuxinator
 			];
-      openssh.authorizedKeys.keys =
-        lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
-          [ (builtins.readFile ./.ssh/authorized_keys) ];
-    };
-		groups.git = {};
-    users.git = {
-      isSystemUser = true;
-			group = "git";
-			home = "/var/lib/git-server";
-			createHome = true;
-			shell = "${pkgs.git}/bin/git-shell";			# To use `authorized_keys` file:
-			# 	1. create the ssh folder under `/var/lib/git-server` (ie `sudo mkdir -p /var/lib/git-server/.ssh`).
-			#		2. Add the `authorized_keys` file to `/var/lib/git-server/.ssh`.
-			#   3. In the server in a regular user, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`. (~ here is the home of the user git, which is /var/lib/git-server)
-			#		4. Set the local repo `origin` with the command `git remote add origin git@<ip>:<repo_slug>.git`
-			# References:
-			# 	[1] https://nixos.wiki/wiki/Git#Serve_Git_repos_via_SSH
-      openssh.authorizedKeys.keys =
-				lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
-          [ (builtins.readFile ./.ssh/authorized_keys) ];
+      # SSH authorized_keys will be managed by systemd service (see below)
     };
   };
 
@@ -224,14 +219,6 @@
 				PasswordAuthentication = false;
 				AcceptEnv = "$TMUX";
       };
-			extraConfig = ''
-      Match user git
-        AllowTcpForwarding no
-        AllowAgentForwarding no
-        PasswordAuthentication no
-        PermitTTY no
-        X11Forwarding no
-    '';
     };
     tailscale = {
       enable = true;
@@ -268,6 +255,87 @@
 				RestartSec=5;
 				WorkingDirectory="/home/hsteinshiromoto/";
 			};
+		};
+
+		# Custom garbage collection service to keep only last 3 generations
+		nixGcKeepLast3 = {
+			description = "Nix garbage collection keeping only last 3 generations";
+			serviceConfig = {
+				Type = "oneshot";
+				User = "root";
+			};
+			script = ''
+				# Delete old system generations, keeping last 3
+				${pkgs.nix}/bin/nix-env --delete-generations +3 --profile /nix/var/nix/profiles/system
+
+				# Delete old user generations, keeping last 3
+				for profile in /nix/var/nix/profiles/per-user/*/profile; do
+					if [ -e "$profile" ]; then
+						${pkgs.nix}/bin/nix-env --delete-generations +3 --profile "$profile"
+					fi
+				done
+
+				# Run garbage collection
+				${pkgs.nix}/bin/nix-collect-garbage
+
+				# Optimize store
+				${pkgs.nix}/bin/nix-store --optimize
+			'';
+		};
+
+		# Sync SOPS SSH authorized_keys to user directories
+		sops-ssh-keys-sync = {
+			description = "Sync SOPS SSH authorized_keys to users";
+			wantedBy = [ "multi-user.target" ];
+			after = [ "sops-nix.service" ];
+			wants = [ "sops-nix.service" ];
+
+			serviceConfig = {
+				Type = "oneshot";
+				RemainAfterExit = true;
+				User = "root";
+			};
+
+			script = ''
+				# Wait for SOPS secret to be available
+				SECRET_PATH="${config.sops.secrets."authorized_keys".path}"
+
+				if [ ! -f "$SECRET_PATH" ]; then
+					echo "ERROR: SOPS secret not found at $SECRET_PATH"
+					exit 1
+				fi
+
+				echo "Syncing SSH authorized_keys from SOPS..."
+
+				# Sync for hsteinshiromoto user
+				HUSER_SSH_DIR="/home/hsteinshiromoto/.ssh"
+				mkdir -p "$HUSER_SSH_DIR"
+				cp "$SECRET_PATH" "$HUSER_SSH_DIR/authorized_keys"
+				chown hsteinshiromoto:users "$HUSER_SSH_DIR/authorized_keys"
+				chmod 600 "$HUSER_SSH_DIR/authorized_keys"
+				chown hsteinshiromoto:users "$HUSER_SSH_DIR"
+				chmod 700 "$HUSER_SSH_DIR"
+
+				# Sync for git user
+				GIT_SSH_DIR="/var/lib/git-server/.ssh"
+				mkdir -p "$GIT_SSH_DIR"
+				cp "$SECRET_PATH" "$GIT_SSH_DIR/authorized_keys"
+				chown git:git "$GIT_SSH_DIR/authorized_keys"
+				chmod 600 "$GIT_SSH_DIR/authorized_keys"
+				chown git:git "$GIT_SSH_DIR"
+				chmod 700 "$GIT_SSH_DIR"
+
+				echo "SSH authorized_keys synced successfully"
+			'';
+		};
+	};
+
+	# Timer to run garbage collection daily
+	systemd.timers.nixGcKeepLast3 = {
+		wantedBy = [ "timers.target" ];
+		timerConfig = {
+			OnCalendar = "daily";
+			Persistent = true;
 		};
 	};
 
