@@ -16,14 +16,14 @@ Your SSH authorized_keys are now managed securely using SOPS (Secrets OPerationS
 On your **server**:
 
 ```bash
-# Create directory
-mkdir -p ~/.config/sops/keys
+# Create directory (using standard SOPS location)
+mkdir -p ~/.config/sops/age
 
 # Generate age key
-age-keygen -o ~/.config/sops/keys/age
+age-keygen -o ~/.config/sops/age/keys.txt
 
 # View your public key
-cat ~/.config/sops/keys/age | grep "# public key:"
+cat ~/.config/sops/age/keys.txt | grep "# public key:"
 ```
 
 **Important**: Save the public key (starts with `age1...`). You'll need it to encrypt secrets.
