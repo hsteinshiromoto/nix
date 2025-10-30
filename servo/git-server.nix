@@ -248,10 +248,8 @@ in {
     createHome = true;
     shell = "${pkgs.git}/bin/git-shell";
 
-    # Load authorized keys from file
-    openssh.authorizedKeys.keys =
-      lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
-        [ (builtins.readFile ./.ssh/authorized_keys) ];
+    # Load authorized keys from hsteinshiromoto user
+    openssh.authorizedKeys.keys = config.users.users.hsteinshiromoto.openssh.authorizedKeys.keys;
   };
 
   # SSH configuration for git user

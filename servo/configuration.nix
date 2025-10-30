@@ -4,6 +4,12 @@
 
 { config, pkgs, pkgsUnstable, lib, ... }:
 
+let
+  # Shared SSH authorized keys for both regular user and git server
+  sharedAuthorizedKeys =
+    lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
+      [ (builtins.readFile ./.ssh/authorized_keys) ];
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -100,9 +106,7 @@
 						stow
 						tmuxinator
 			];
-      openssh.authorizedKeys.keys =
-        lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
-          [ (builtins.readFile ./.ssh/authorized_keys) ];
+      openssh.authorizedKeys.keys = sharedAuthorizedKeys;
     };
   };
 
