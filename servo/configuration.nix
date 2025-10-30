@@ -4,12 +4,6 @@
 
 { config, pkgs, pkgsUnstable, lib, ... }:
 
-let
-  # Shared SSH authorized keys for both regular user and git server
-  sharedAuthorizedKeys =
-    lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
-      [ (builtins.readFile ./.ssh/authorized_keys) ];
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -21,18 +15,18 @@ in
 
 	# SOPS configuration for secrets management
 	sops = {
-		# defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;  # Commented out - file not available
+		defaultSopsFile = /home/hsteinshiromoto/.config/sops/secrets/ssh.yaml;
 		defaultSopsFormat = "yaml";
 		age = {
 			keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
 			generateKey = false;
 		};
-		# Wifi secrets commented out - wifi.yaml not available
-		# secrets = {
-		# 	"wifi/ssid" = {};
-		# 	"wifi/password" = {};
-		# 	"ssh/authorized_keys" = {};
-		# };
+		secrets = {
+			"ssh/authorized_keys" = {
+				mode = "0600";
+				owner = config.users.users.hsteinshiromoto.name;
+			};
+		};
 	};
 
 	nix = {
@@ -119,7 +113,8 @@ in
 						stow
 						tmuxinator
 			];
-      openssh.authorizedKeys.keys = sharedAuthorizedKeys;
+      # SSH authorized_keys managed by SOPS
+      openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys".path ];
     };
   };
 

@@ -248,8 +248,8 @@ in {
     createHome = true;
     shell = "${pkgs.git}/bin/git-shell";
 
-    # Load authorized keys from hsteinshiromoto user
-    openssh.authorizedKeys.keys = config.users.users.hsteinshiromoto.openssh.authorizedKeys.keys;
+    # Load authorized keys from SOPS secret (same as hsteinshiromoto user)
+    openssh.authorizedKeys.keyFiles = [ config.sops.secrets."ssh/authorized_keys".path ];
   };
 
   # SSH configuration for git user
