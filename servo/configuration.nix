@@ -15,24 +15,24 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 			./yubikey.nix
-			./wifi.nix
+			# ./wifi.nix  # Commented out - SOPS wifi.yaml not available
 		./git-server.nix
     ];
 
-	# SOPS configuration for secrets management
-	sops = {
-		defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;
-		defaultSopsFormat = "yaml";
-		age = {
-			keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
-			generateKey = false;
-		};
-		secrets = {
-			"wifi/ssid" = {};
-			"wifi/password" = {};
-			"ssh/authorized_keys" = {};
-		};
-	};
+	# SOPS configuration for secrets management - COMMENTED OUT
+	# sops = {
+	# 	defaultSopsFile = /home/hsteinshiromoto/.config/sops/wifi.yaml;
+	# 	defaultSopsFormat = "yaml";
+	# 	age = {
+	# 		keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
+	# 		generateKey = false;
+	# 	};
+	# 	secrets = {
+	# 		"wifi/ssid" = {};
+	# 		"wifi/password" = {};
+	# 		"ssh/authorized_keys" = {};
+	# 	};
+	# };
 
 	nix = {
     package = pkgs.nixVersions.stable;
