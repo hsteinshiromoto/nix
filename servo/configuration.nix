@@ -40,16 +40,28 @@ in
       experimental-features = nix-command flakes
     '';
 
+		# Manual garbage collection - we'll use a custom service below
 		gc = {
-			automatic = true;
-			dates = "weekly";
-			options = "--delete-older-than +5";
+			automatic = false;
+		};
+
+		# Additional Nix settings for space management
+		settings = {
+			# Automatically optimize store by hardlinking identical files
+			auto-optimise-store = true;
+			# Warn when free space is below 1GB
+			min-free = 1073741824; # 1GB
+			# Keep building until only 512MB free space left
+			max-free = 536870912; # 512MB
 		};
   };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+	# Limit boot menu entries to last 3 generations
+	boot.loader.systemd-boot.configurationLimit = 3;
 
 	system.autoUpgrade = {
 		enable = true;
@@ -248,6 +260,41 @@ in
 				RestartSec=5;
 				WorkingDirectory="/home/hsteinshiromoto/";
 			};
+		};
+
+		# Custom garbage collection service to keep only last 3 generations
+		nixGcKeepLast3 = {
+			description = "Nix garbage collection keeping only last 3 generations";
+			serviceConfig = {
+				Type = "oneshot";
+				User = "root";
+			};
+			script = ''
+				# Delete old system generations, keeping last 3
+				${pkgs.nix}/bin/nix-env --delete-generations +3 --profile /nix/var/nix/profiles/system
+
+				# Delete old user generations, keeping last 3
+				for profile in /nix/var/nix/profiles/per-user/*/profile; do
+					if [ -e "$profile" ]; then
+						${pkgs.nix}/bin/nix-env --delete-generations +3 --profile "$profile"
+					fi
+				done
+
+				# Run garbage collection
+				${pkgs.nix}/bin/nix-collect-garbage
+
+				# Optimize store
+				${pkgs.nix}/bin/nix-store --optimize
+			'';
+		};
+	};
+
+	# Timer to run garbage collection daily
+	systemd.timers.nixGcKeepLast3 = {
+		wantedBy = [ "timers.target" ];
+		timerConfig = {
+			OnCalendar = "daily";
+			Persistent = true;
 		};
 	};
 
