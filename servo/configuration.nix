@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
 			./yubikey.nix
 			./wifi.nix
+		./git-server.nix
     ];
 
 	# SOPS configuration for secrets management
@@ -101,23 +102,6 @@
 			];
       openssh.authorizedKeys.keys =
         lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
-          [ (builtins.readFile ./.ssh/authorized_keys) ];
-    };
-		groups.git = {};
-    users.git = {
-      isSystemUser = true;
-			group = "git";
-			home = "/var/lib/git-server";
-			createHome = true;
-			shell = "${pkgs.git}/bin/git-shell";			# To use `authorized_keys` file:
-			# 	1. create the ssh folder under `/var/lib/git-server` (ie `sudo mkdir -p /var/lib/git-server/.ssh`).
-			#		2. Add the `authorized_keys` file to `/var/lib/git-server/.ssh`.
-			#   3. In the server in a regular user, create a repo with the command `sudo -u git bash -c "git init --bare ~/<repo_slug>.git"`. (~ here is the home of the user git, which is /var/lib/git-server)
-			#		4. Set the local repo `origin` with the command `git remote add origin git@<ip>:<repo_slug>.git`
-			# References:
-			# 	[1] https://nixos.wiki/wiki/Git#Serve_Git_repos_via_SSH
-      openssh.authorizedKeys.keys =
-				lib.optionals (builtins.pathExists (toString ./.ssh/authorized_keys))
           [ (builtins.readFile ./.ssh/authorized_keys) ];
     };
   };
@@ -224,14 +208,6 @@
 				PasswordAuthentication = false;
 				AcceptEnv = "$TMUX";
       };
-			extraConfig = ''
-      Match user git
-        AllowTcpForwarding no
-        AllowAgentForwarding no
-        PasswordAuthentication no
-        PermitTTY no
-        X11Forwarding no
-    '';
     };
     tailscale = {
       enable = true;
