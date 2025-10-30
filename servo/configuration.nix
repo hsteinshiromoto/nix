@@ -22,7 +22,7 @@
 			generateKey = false;
 		};
 		secrets = {
-			"ssh/authorized_keys" = {
+			"authorized_keys" = {  # Direct key, not nested under ssh/
 				mode = "0644";  # Needs to be readable by sshd
 				# Don't set owner - let it be root owned
 			};
@@ -298,7 +298,7 @@
 
 			script = ''
 				# Wait for SOPS secret to be available
-				SECRET_PATH="${config.sops.secrets."ssh/authorized_keys".path}"
+				SECRET_PATH="${config.sops.secrets."authorized_keys".path}"
 
 				if [ ! -f "$SECRET_PATH" ]; then
 					echo "ERROR: SOPS secret not found at $SECRET_PATH"
