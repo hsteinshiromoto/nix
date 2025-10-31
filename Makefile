@@ -12,19 +12,19 @@ darwin_%: darwin_20$@
 nixos_%: nixos_$@
 
 ## Rebuild nix-darwin mba2022 flake
-darwin_2022: flake.nix flake.lock mba2022/flake.nix
+darwin_2022: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
 	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
 
 ## Rebuild nix-darwin mbp2023 flake
-darwin_2023: flake.nix flake.lock mbp2023/flake.nix
+darwin_2023: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
-darwin_2025: flake.nix flake.lock mbp2025/flake.nix
+darwin_2025: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(eval FLAGS=switch)
 	@echo "Running Darwin rebuild with flags ${FLAGS}"
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
@@ -42,7 +42,7 @@ nixos_install:
 	sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 
 ## Rebuild NixOS from flake
-nixos_rebuild: flake.nix flake.lock servo/flake.nix servo/flake.lock servo/hardware-configuration.nix servo/configuration.nix
+nixos_rebuild: flake.nix flake.lock $(shell find servo -type f ! -name "*.md")
 	$(eval FLAGS=test)
 	@echo "Running nixos-rebuild with flag ${FLAGS}"
 	sudo nixos-rebuild $(FLAGS) --flake .#servidor --impure
