@@ -93,6 +93,13 @@
 	#    };
 	#  };
 
+	home.sessionVariables = {
+		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		UV_PREBUILT = "1";
+		# Export GitLab secrets to shell environment (mbp2025 only)
+		# The secret files are decrypted by sops-nix at activation time
+	};
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
