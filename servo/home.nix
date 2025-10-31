@@ -10,6 +10,29 @@
     age
   ];
 
+	programs = {
+		atuin = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		bat = {
+			enable = true;
+		};
+
+		claude-code = {
+			enable = true;
+		};
+
+		eza = {
+			enable = true;
+			enableNushellIntegration = false;
+			enableZshIntegration = true;
+		};
+
+	};
+
 	# Adding sops
 	# References:
 	#		[1] https://zohaib.me/managing-secrets-in-nixos-home-manager-with-sops/

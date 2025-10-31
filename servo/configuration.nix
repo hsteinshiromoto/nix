@@ -108,8 +108,6 @@
       description = "Humberto STEIN SHIROMOTO";
       extraGroups = [ "networkmanager" "wheel" "docker" "sudo" "pcscd" "plugdev"];
       packages = with pkgs; [
-						atuin
-						pkgsUnstable.claude-code
 						stow
 						tmuxinator
 			];
@@ -130,14 +128,12 @@
   environment.systemPackages = with pkgs; [
     autoconf        # Build essential
     automake        # Build essential
-    bat
     btop
     cargo
     curl
 		disko
 		docker-compose
 		exfat
-    eza
     fd
     fzf
     git
