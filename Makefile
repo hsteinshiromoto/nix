@@ -1,9 +1,23 @@
 .DEFAULT_GOAL := help
 .PHONY: help
 
+# Color definitions for logging (similar to nvim-remote.sh)
+GREEN := $(shell tput setaf 2)
+YELLOW := $(shell tput setaf 3)
+RED := $(shell tput setaf 1)
+BOLD := $(shell tput bold)
+RESET := $(shell tput sgr0)
+
+# Logging functions
+log_info = @echo "$(GREEN)[INFO]$(RESET) $(1)"
+log_warning = @echo "$(YELLOW)[WARNING]$(RESET) $(1)"
+log_error = @echo "$(RED)[ERROR]$(RESET) $(1)"
+
 ## Update flake.lock
 update:
+	$(call log_info,Updating flake.lock...)
 	nix flake update
+	$(call log_info,Done)
 
 # Run Nix-Darwin flakes
 darwin_%: darwin_20$@
@@ -14,37 +28,37 @@ nixos_%: nixos_$@
 ## Rebuild nix-darwin mba2022 flake
 darwin_2022: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(eval FLAGS=switch)
-	@echo "Running Darwin rebuild with flags ${FLAGS}"
+	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
 
 ## Rebuild nix-darwin mbp2023 flake
 darwin_2023: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(eval FLAGS=switch)
-	@echo "Running Darwin rebuild with flags ${FLAGS}"
+	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
 darwin_2025: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(eval FLAGS=switch)
-	@echo "Running Darwin rebuild with flags ${FLAGS}"
+	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
 
 ## Run partition the disk using disko
 partition: flake.nix flake.lock servo/disko-config.nix
-	@echo "Partitioning disk with disko ..."
+	$(call log_info,Partitioning disk with disko...)
 	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
-	@echo "Done"
+	$(call log_info,Done)
 
 ## Install NixOS from flake
 nixos_install:
-	@echo "Installing nixos from flake"
+	$(call log_info,Installing NixOS from flake...)
 	sudo nixos-install --flake /home/nixos/.config/nix#servidor
 	sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 
 ## Rebuild NixOS from flake
 nixos_rebuild: flake.nix flake.lock $(shell find servo -type f ! -name "*.md")
 	$(eval FLAGS=test)
-	@echo "Running nixos-rebuild with flag ${FLAGS}"
+	$(call log_info,Running nixos-rebuild with flag $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo nixos-rebuild $(FLAGS) --flake .#servidor --impure
 
 ## Generate ISO image from NixOS
@@ -76,7 +90,7 @@ nixos_anywhere:
 # semicolon; see <http://stackoverflow.com/a/11799865/1968>
 
 help:
-	@echo "$$(tput bold)Available rules:$$(tput sgr0)"
+	@echo "$(BOLD)Available rules:$(RESET)"
 	@echo
 	@sed -n -e "/^## / { \
 		h; \
