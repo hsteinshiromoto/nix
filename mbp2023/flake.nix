@@ -115,6 +115,13 @@
 			nixpkgs.config.allowUnfree = true;
 			nixpkgs.config.allowUnsupportedSystem = true;
 
+			environment.etc."pam.d/sudo_local".text = ''
+				# Sudo: auth account password session
+				auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
+				auth       sufficient     pam_tid.so
+			'';
+
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
