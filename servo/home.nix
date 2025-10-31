@@ -31,6 +31,50 @@
 			enableZshIntegration = true;
 		};
 
+		gemini-cli = {
+			enable = true;
+		};
+
+		opencode = {
+			enable = true;
+		};
+
+		ruff = {
+			enable = true;
+			settings = {
+				lint = {
+					task-tags = ["INFO" "NOTE" "ALERT" "WARNING"];
+					extra-standard-library = ["path"];
+					required-imports = ["from __future__ import annotations"];
+				};
+				docstring-code-format = true;
+				future-annotations = true;
+			};
+		};
+
+		starship = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		uv = {
+			enable = true;
+		};
+
+		yazi = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		zoxide = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+
 	};
 
 	# Adding sops

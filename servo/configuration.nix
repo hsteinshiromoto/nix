@@ -157,19 +157,15 @@
     pkg-config # Build essential
     ripgrep
 		sops
-    starship
 		systemctl-tui
     tmux
 		tree-sitter
 		usbutils
-    uv
-    yazi
 		yubikey-personalization  # CLI tools for configuring YubiKey
     yubikey-manager          # Manage YubiKey settings
 		yubikey-agent
     yq
     wget
-    zoxide
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
