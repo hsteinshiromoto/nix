@@ -137,7 +137,6 @@
     fd
     fzf
     git
-    gitflow
     gcc         # Build essential
     gnumake     # Build essential
 		parted

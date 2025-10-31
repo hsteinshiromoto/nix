@@ -6,8 +6,11 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/home/hsteinshiromoto";
 
-	home.packages = with pkgs; [
-    age
+	home.packages = [
+    pkgs.age
+		pkgs.delta
+		pkgs.gitflow
+		pkgs.pyright
   ];
 
 	programs = {
