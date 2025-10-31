@@ -108,7 +108,7 @@
 
 			nix.gc = {
 				automatic = true;
-				options = "--delete-generations +5";
+				options = "--delete-generations +3";
 				interval = { Weekday = 0; Hour = 2; Minute = 0; };
 			};
 
