@@ -103,6 +103,17 @@
 	# 	};
 	# };
 
+	# Configure SOPS for secrets management
+	sops = {
+		gnupg.home = "${config.home.homeDirectory}/.gnupg";
+		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/mbp2023/authorized_keys.yaml";
+
+		secrets.authorized_keys = {
+			path = "${config.home.homeDirectory}/.ssh/authorized_keys";
+			mode = "0600";
+		};
+	};
+
 	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
