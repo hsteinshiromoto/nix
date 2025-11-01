@@ -108,8 +108,6 @@
       description = "Humberto STEIN SHIROMOTO";
       extraGroups = [ "networkmanager" "wheel" "docker" "sudo" "pcscd" "plugdev"];
       packages = with pkgs; [
-						atuin
-						pkgsUnstable.claude-code
 						stow
 						tmuxinator
 			];
@@ -130,18 +128,15 @@
   environment.systemPackages = with pkgs; [
     autoconf        # Build essential
     automake        # Build essential
-    bat
     btop
     cargo
     curl
 		disko
 		docker-compose
 		exfat
-    eza
     fd
     fzf
     git
-    gitflow
     gcc         # Build essential
     gnumake     # Build essential
 		parted
@@ -161,19 +156,15 @@
     pkg-config # Build essential
     ripgrep
 		sops
-    starship
 		systemctl-tui
     tmux
 		tree-sitter
 		usbutils
-    uv
-    yazi
 		yubikey-personalization  # CLI tools for configuring YubiKey
     yubikey-manager          # Manage YubiKey settings
 		yubikey-agent
     yq
     wget
-    zoxide
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
