@@ -38,6 +38,12 @@
     enable = true;
     enableSSHSupport = true;
     pinentryPackage = pkgs.pinentry-curses;
+    # Additional configuration for SOPS/GPG with Yubikey
+    settings = {
+      allow-loopback-pinentry = true;
+      default-cache-ttl = 600;
+      max-cache-ttl = 7200;
+    };
   };
 
   # Add pcsc-tools for debugging
