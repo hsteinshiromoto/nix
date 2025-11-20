@@ -16,6 +16,8 @@
 		pkgs.gitflow
 		pkgs.ollama
 		pkgs.pyright
+		pkgs.regex-tui
+		pkgs.serie
 		pkgs.spotify-player
 	];
 
