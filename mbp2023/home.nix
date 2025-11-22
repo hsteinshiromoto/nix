@@ -44,6 +44,7 @@
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
+			theme = "tokyonight";
 		};
 
 		gemini-cli = {
