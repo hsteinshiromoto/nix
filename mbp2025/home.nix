@@ -17,6 +17,7 @@
 		pkgs.gitflow
 		pkgs.pyright
 		pkgs.regex-tui
+		pkgs.serie
 	];
 
 	programs = {
