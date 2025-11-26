@@ -79,6 +79,7 @@
 					"Microsoft Powerpoint" = 462062816;
 					"Microsoft Word" = 462054704;
 					"OneDrive" = 823766827;
+					"System Color Picker" = 1545870783;
 					"TextSniper - OCR, Copy & Paste" = 1528890965;
 					"Theine" = 955848755;
 				};
