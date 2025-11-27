@@ -10,7 +10,8 @@
       ./hardware-configuration.nix
 			./yubikey.nix
 			# ./wifi.nix  # Commented out - SOPS wifi.yaml not available
-		./git-server.nix
+			./git-server.nix
+			./home-assistant.nix
     ];
 
 	# SOPS configuration for secrets management
