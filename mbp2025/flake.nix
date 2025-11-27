@@ -21,7 +21,6 @@
 				pkgs.mkalias
 				pkgs.neovim
 				pkgs.nodejs_24
-				pkgs.ollama
 				pkgs.ripgrep
 				pkgs.serpl
 				pkgs.sops
@@ -59,6 +58,7 @@
 					"maccy"
 					"microsoft-teams"
 					"obsidian"
+					"ollama"
 					"popclip"
 					"proton-pass"
 					"reader"

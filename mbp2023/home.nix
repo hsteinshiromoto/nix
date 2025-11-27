@@ -14,7 +14,6 @@
 	home.packages = [
 		pkgs.delta
 		pkgs.gitflow
-		pkgs.ollama
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
