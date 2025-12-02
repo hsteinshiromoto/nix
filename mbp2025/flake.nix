@@ -35,11 +35,13 @@
 				enable = true;
 				taps = [
 					"gromgit/brewtils"
+					"JordanCoin/tap"
 				];
 				brews = [
 					"libomp"
 					"mas"
 					"gromgit/brewtils/taproom"
+					"JordanCoin/tap/codemap"
 				];
 				casks = [
 					"bartender"
