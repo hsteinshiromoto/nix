@@ -28,6 +28,7 @@
 				pkgs.stow
 				pkgs.tmux
 				pkgs.tmuxinator
+				pkgs.tree
 				pkgs.yq
 				pkgs.yubikey-manager
       ];
