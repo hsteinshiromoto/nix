@@ -119,7 +119,20 @@
 	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		TERMINFO_DIRS = "${config.home.homeDirectory}/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo";
 	};
+
+	# Install Ghostty terminfo for tmux compatibility
+	home.activation.installGhosttyTerminfo = config.lib.dag.entryAfter ["writeBoundary"] ''
+		if [ -d "/Applications/Ghostty.app/Contents/Resources/terminfo" ]; then
+			$DRY_RUN_CMD mkdir -p ${config.home.homeDirectory}/.terminfo
+			$DRY_RUN_CMD ${pkgs.ncurses}/bin/infocmp -x xterm-ghostty > /tmp/xterm-ghostty.info 2>/dev/null || true
+			if [ -f /tmp/xterm-ghostty.info ]; then
+				$DRY_RUN_CMD ${pkgs.ncurses}/bin/tic -x -o ${config.home.homeDirectory}/.terminfo /tmp/xterm-ghostty.info 2>/dev/null || true
+				$DRY_RUN_CMD rm -f /tmp/xterm-ghostty.info
+			fi
+		fi
+	'';
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

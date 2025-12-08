@@ -97,11 +97,24 @@
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
 		UV_PREBUILT = "1";
+		TERMINFO_DIRS = "${config.home.homeDirectory}/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo";
 		# Export GitLab secrets to shell environment (mbp2025 only)
 		# The secret files are decrypted by sops-nix at activation time
 		GITLAB_TOKEN = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_token 2>/dev/null || echo '')";
 		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
 	};
+
+	# Install Ghostty terminfo for tmux compatibility
+	home.activation.installGhosttyTerminfo = config.lib.dag.entryAfter ["writeBoundary"] ''
+		if [ -d "/Applications/Ghostty.app/Contents/Resources/terminfo" ]; then
+			$DRY_RUN_CMD mkdir -p ${config.home.homeDirectory}/.terminfo
+			$DRY_RUN_CMD ${pkgs.ncurses}/bin/infocmp -x xterm-ghostty > /tmp/xterm-ghostty.info 2>/dev/null || true
+			if [ -f /tmp/xterm-ghostty.info ]; then
+				$DRY_RUN_CMD ${pkgs.ncurses}/bin/tic -x -o ${config.home.homeDirectory}/.terminfo /tmp/xterm-ghostty.info 2>/dev/null || true
+				$DRY_RUN_CMD rm -f /tmp/xterm-ghostty.info
+			fi
+		fi
+	'';
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
