@@ -60,13 +60,17 @@
 		ruff = {
 			enable = true;
 			settings = {
+				format = {
+					docstring-code-format = true;
+				};
 				lint = {
 					task-tags = ["INFO" "NOTE" "ALERT" "WARNING"];
-					extra-standard-library = ["path"];
-					required-imports = ["from __future__ import annotations"];
+					future-annotations = true;
+					isort = {
+						extra-standard-library = ["path"];
+						required-imports = ["from __future__ import annotations"];
+					};
 				};
-				docstring-code-format = true;
-				future-annotations = true;
 			};
 		};
 
