@@ -123,13 +123,24 @@ in {
 
       if [ -f "$PASSWORD_FILE" ]; then
         echo "Setting Samba password for ${tmUser} from SOPS secret..."
-        # Set Samba password non-interactively
-        (cat "$PASSWORD_FILE"; cat "$PASSWORD_FILE") | \
-          ${pkgs.samba}/bin/smbpasswd -s -a ${tmUser} 2>/dev/null || \
-          echo "Note: Samba password sync completed"
+
+        # Read password and remove any trailing newlines
+        PASSWORD=$(${pkgs.coreutils}/bin/cat "$PASSWORD_FILE" | ${pkgs.coreutils}/bin/tr -d '\n')
+
+        # Set Samba password non-interactively using printf
+        ${pkgs.coreutils}/bin/printf "%s\n%s\n" "$PASSWORD" "$PASSWORD" | \
+          ${pkgs.samba}/bin/smbpasswd -s -a ${tmUser}
+
+        if [ $? -eq 0 ]; then
+          echo "Successfully added Samba user ${tmUser}"
+        else
+          echo "ERROR: Failed to add Samba user ${tmUser}"
+          exit 1
+        fi
       else
         echo "WARNING: SOPS secret for Samba password not found at $PASSWORD_FILE"
         echo "Please create the secret file or run: sudo smbpasswd -a ${tmUser}"
+        exit 1
       fi
     '';
   };
