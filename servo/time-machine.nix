@@ -65,7 +65,8 @@ in {
         "security" = "user";
 
         # Security: restrict to local network and Tailscale
-        "hosts allow" = "192.168.1. 192.168.0. 100.64.0. 127.0.0.1";
+        # Tailscale uses 100.x.x.x range (CGNAT space)
+        "hosts allow" = "192.168.1. 192.168.0. 100. 127.0.0.1";
         "hosts deny" = "0.0.0.0/0";
         "guest account" = "nobody";
         "map to guest" = "bad user";
