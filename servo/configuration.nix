@@ -74,7 +74,10 @@
 
   networking = {
     hostName = "servidor";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;  # Disable WiFi power management to prevent disconnections
+    };
 
     # Open ports in the firewall.
     firewall = {
