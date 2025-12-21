@@ -73,15 +73,22 @@ in {
 
         # Performance optimizations
         "min receivefile size" = "16384";
-        "use sendfile" = "true";
+        "use sendfile" = "false";  # Disabled - can cause issues over Tailscale
         "aio read size" = "16384";
         "aio write size" = "16384";
 
         # Connection stability for Time Machine
-        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE";
+        "socket options" = "TCP_NODELAY SO_KEEPALIVE SO_RCVBUF=524288 SO_SNDBUF=524288";
         "deadtime" = "30";  # Minutes before idle connection is closed
         "keepalive" = "60";  # Send keepalive every 60 seconds
         "max connections" = "10";
+
+        # SMB protocol tuning for network reliability
+        "server min protocol" = "SMB3";
+        "server max protocol" = "SMB3";
+        "strict allocate" = "yes";
+        "read raw" = "no";
+        "write raw" = "no";
 
         # macOS compatibility - VFS modules
         "vfs objects" = "catia fruit streams_xattr";
