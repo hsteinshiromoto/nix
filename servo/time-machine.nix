@@ -77,6 +77,12 @@ in {
         "aio read size" = "16384";
         "aio write size" = "16384";
 
+        # Connection stability for Time Machine
+        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE";
+        "deadtime" = "30";  # Minutes before idle connection is closed
+        "keepalive" = "60";  # Send keepalive every 60 seconds
+        "max connections" = "10";
+
         # macOS compatibility - VFS modules
         "vfs objects" = "catia fruit streams_xattr";
         "fruit:metadata" = "stream";
