@@ -46,9 +46,10 @@
     };
   };
 
-  # Add pcsc-tools for debugging
+  # Add pcsc-tools for debugging and pinentry for GPG
   environment.systemPackages = with pkgs; [
-    pcsc-tools  # Provides pcsc_scan for testing
+    pcsc-tools       # Provides pcsc_scan for testing
+    pinentry-curses  # Required for GPG PIN entry in terminal
   ];
 }
 
