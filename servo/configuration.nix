@@ -295,6 +295,9 @@
 			wantedBy = [ "multi-user.target" ];
 			after = [ "sops-nix.service" ];
 			wants = [ "sops-nix.service" ];
+			# Restart on every nixos-rebuild to pick up new keys
+			restartIfChanged = true;
+			restartTriggers = [ config.sops.secrets."authorized_keys".path ];
 
 			serviceConfig = {
 				Type = "oneshot";
