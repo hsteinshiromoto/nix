@@ -2,7 +2,7 @@
 
 let
   tmUser = "hsteinshiromoto";
-  tmPath = "/home/timemachine";
+  tmPath = "/mnt/timemachine";
 
   tmCheckScript = pkgs.writeScriptBin "tm-check" ''
     #!${pkgs.bash}/bin/bash
@@ -47,10 +47,18 @@ let
   '';
 
 in {
-  # Create Time Machine directory
-  systemd.tmpfiles.rules = [
-    "d ${tmPath} 0750 ${tmUser} users -"
-  ];
+  # LUKS decryption for Time Machine external drive
+  # Prompts for password at boot; add keyFile later for automatic unlock
+  boot.initrd.luks.devices."timemachine-crypt" = {
+    device = "/dev/disk/by-uuid/6bb1b0c8-a3b5-4d09-aa5a-cb52e37cc937";
+  };
+
+  # Mount decrypted Time Machine drive
+  fileSystems.${tmPath} = {
+    device = "/dev/mapper/timemachine-crypt";
+    fsType = "ext4";
+    options = [ "nofail" "x-systemd.device-timeout=10s" ];
+  };
 
   # Samba configuration for Time Machine
   services.samba = {
