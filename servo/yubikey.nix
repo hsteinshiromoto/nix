@@ -45,6 +45,7 @@
       allow-loopback-pinentry = "";
       default-cache-ttl = 600;
       max-cache-ttl = 7200;
+      pinentry-timeout = 300;  # 5 minutes to enter PIN
     };
   };
 
