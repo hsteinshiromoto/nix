@@ -40,7 +40,7 @@
     pinentryPackage = pkgs.pinentry-curses;
     # Additional configuration for SOPS/GPG with Yubikey
     settings = {
-      allow-loopback-pinentry = true;
+      allow-loopback-pinentry = "";
       default-cache-ttl = 600;
       max-cache-ttl = 7200;
     };
