@@ -10,6 +10,7 @@
         [
 					pkgs.btop
 					pkgs.calcure
+					pkgs.cargo
 					pkgs.dua
 					pkgs.fd
 					pkgs.fzf
