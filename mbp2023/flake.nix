@@ -68,6 +68,7 @@
 					"macfuse"
 					"microsoft-teams"
 					"popclip"
+					"productdevbook/tap/portkiller"
 					"proton-drive"
 					"proton-pass"
 					"protonvpn"
