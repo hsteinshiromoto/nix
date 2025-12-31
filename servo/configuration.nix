@@ -19,9 +19,10 @@
 	sops = {
 		defaultSopsFile = /home/hsteinshiromoto/.config/sops/secrets/ssh.yaml;
 		defaultSopsFormat = "yaml";
-		age = {
-			keyFile = "/home/hsteinshiromoto/.config/sops/keys/age";
-			generateKey = false;
+		# Use GPG for decryption instead of age
+		gnupg = {
+			home = "/home/hsteinshiromoto/.gnupg";
+			sshKeyPaths = [];  # Don't derive GPG keys from SSH keys
 		};
 		secrets = {
 			"authorized_keys" = {  # Direct key, not nested under ssh/
@@ -74,7 +75,10 @@
 
   networking = {
     hostName = "servidor";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;  # Disable WiFi power management to prevent disconnections
+    };
 
     # Open ports in the firewall.
     firewall = {
@@ -173,6 +177,7 @@
 		yubikey-agent
     yq
     wget
+		wirelesstools
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
@@ -291,6 +296,9 @@
 			wantedBy = [ "multi-user.target" ];
 			after = [ "sops-nix.service" ];
 			wants = [ "sops-nix.service" ];
+			# Restart on every nixos-rebuild to pick up new keys
+			restartIfChanged = true;
+			restartTriggers = [ config.sops.secrets."authorized_keys".path ];
 
 			serviceConfig = {
 				Type = "oneshot";

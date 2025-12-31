@@ -37,18 +37,22 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
-    # Additional configuration for SOPS/GPG with Yubikey
+    # Use stable path instead of nix store hash (pinentry-curses must be in systemPackages)
+    pinentryPackage = null;
     settings = {
-      allow-loopback-pinentry = true;
+      # Use /run/current-system/sw/bin which is a stable symlink maintained by NixOS
+      pinentry-program = "/run/current-system/sw/bin/pinentry-curses";
+      allow-loopback-pinentry = "";
       default-cache-ttl = 600;
       max-cache-ttl = 7200;
+      pinentry-timeout = 300;  # 5 minutes to enter PIN
     };
   };
 
-  # Add pcsc-tools for debugging
+  # Add pcsc-tools for debugging and pinentry for GPG
   environment.systemPackages = with pkgs; [
-    pcsc-tools  # Provides pcsc_scan for testing
+    pcsc-tools       # Provides pcsc_scan for testing
+    pinentry-curses  # Required for GPG PIN entry in terminal
   ];
 }
 

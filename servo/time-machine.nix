@@ -2,7 +2,7 @@
 
 let
   tmUser = "hsteinshiromoto";
-  tmPath = "/home/timemachine";
+  tmPath = "/mnt/timemachine";
 
   tmCheckScript = pkgs.writeScriptBin "tm-check" ''
     #!${pkgs.bash}/bin/bash
@@ -47,10 +47,18 @@ let
   '';
 
 in {
-  # Create Time Machine directory
-  systemd.tmpfiles.rules = [
-    "d ${tmPath} 0750 ${tmUser} users -"
-  ];
+  # LUKS decryption for Time Machine external drive
+  # Using systemd-cryptsetup (Stage 2) instead of initrd (Stage 1) to allow boot without the drive
+  environment.etc."crypttab".text = ''
+    timemachine-crypt UUID=6bb1b0c8-a3b5-4d09-aa5a-cb52e37cc937 none nofail,timeout=10
+  '';
+
+  # Mount decrypted Time Machine drive
+  fileSystems.${tmPath} = {
+    device = "/dev/mapper/timemachine-crypt";
+    fsType = "ext4";
+    options = [ "nofail" "x-systemd.device-timeout=10s" ];
+  };
 
   # Samba configuration for Time Machine
   services.samba = {
@@ -73,9 +81,22 @@ in {
 
         # Performance optimizations
         "min receivefile size" = "16384";
-        "use sendfile" = "true";
+        "use sendfile" = "false";  # Disabled - can cause issues over Tailscale
         "aio read size" = "16384";
         "aio write size" = "16384";
+
+        # Connection stability for Time Machine
+        "socket options" = "TCP_NODELAY SO_KEEPALIVE SO_RCVBUF=524288 SO_SNDBUF=524288";
+        "deadtime" = "30";  # Minutes before idle connection is closed
+        "keepalive" = "60";  # Send keepalive every 60 seconds
+        "max connections" = "10";
+
+        # SMB protocol tuning for network reliability
+        "server min protocol" = "SMB3";
+        "server max protocol" = "SMB3";
+        "strict allocate" = "yes";
+        "read raw" = "no";
+        "write raw" = "no";
 
         # macOS compatibility - VFS modules
         "vfs objects" = "catia fruit streams_xattr";

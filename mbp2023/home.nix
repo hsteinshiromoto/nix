@@ -44,6 +44,7 @@ in
 		pkgs.serie
 		pkgs.spotify-player
 		iris-cli
+		pkgs.tailscale
 	];
 
 	programs = {
@@ -146,6 +147,45 @@ in
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
 		TERMINFO_DIRS = "${config.home.homeDirectory}/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo";
+	};
+
+	# LaunchAgent for auto-mounting Time Machine Samba share
+	launchd.agents.timemachine-mount = {
+		enable = true;
+		config = {
+			ProgramArguments = [
+				"${pkgs.bash}/bin/bash"
+				"-c"
+				''
+					# Check if already mounted
+					if mount | grep -q 'TimeMachine'; then
+						echo "TimeMachine already mounted"
+						exit 0
+					fi
+
+					# Try to get servidor IP from Tailscale
+					# First try using Tailscale CLI if available
+					if command -v tailscale &> /dev/null; then
+						SERVER_IP=$(tailscale status --json | ${pkgs.jq}/bin/jq -r '.Peer[] | select(.HostName == "servidor") | .TailscaleIPs[0]' 2>/dev/null)
+					fi
+
+					# If tailscale command not found or didn't return IP, try hostname
+					if [ -z "$SERVER_IP" ]; then
+						# Try Tailscale MagicDNS hostname
+						if ping -c 1 -W 1 servidor &> /dev/null; then
+							SERVER_IP="servidor"
+						fi
+					fi
+
+					echo "Attempting to mount TimeMachine from $SERVER_IP"
+					/usr/bin/open "smb://$SERVER_IP/TimeMachine"
+				''
+			];
+			RunAtLoad = true;
+			StartInterval = 3600;  # Check every hour (3600 seconds)
+			StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/timemachine-mount.err.log";
+			StandardOutPath = "${config.home.homeDirectory}/Library/Logs/timemachine-mount.out.log";
+		};
 	};
 
 	# Install Ghostty terminfo for tmux compatibility
