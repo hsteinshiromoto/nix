@@ -9,7 +9,7 @@
 			"Bash(grep:*)",
       "Read(//Users/hsteinshiromoto/Library/Fonts/**)",
       "Read(//Library/Fonts/**)",
-      "Read(//Users/hsteinshiromoto/.config/**)",
+      "Read(//Users/hsteinshiromoto/.config/sops/**)",
       "Read(//Users/hsteinshiromoto/dotfiles/**)",
       "Bash(find:*)"
     ]
