@@ -7,6 +7,11 @@
 3. Boot the usb into the server.
 4. When boot, set connection with `nmtui`.
 
+## Important Notes
+
+1. Never makes NixOS start up to depend on a external disk.
+2. The installation below may fail due to dependencyon sops secrets.
+
 ## Partition the Disk
 
 ### Method 1: Using disko directly (Recommended)
