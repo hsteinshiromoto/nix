@@ -1,5 +1,30 @@
 { config, pkgs, ... }:
 
+let
+  iris-cli = pkgs.rustPlatform.buildRustPackage rec {
+    pname = "iris-cli";
+    version = "1.3.6";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "lordaimer";
+      repo = "iris";
+      rev = "v${version}";
+      hash = "sha256-g42W+XMN9K4yAt9YRCuuYFf3zOoEISXy1M3E5liKhBg=";
+    };
+
+    cargoHash = "sha256-7HyaJDxOv0gs+CujH8FERufaTiv+m2j1go514HC3Jk0=";
+
+    # Tests require filesystem access which is not available in the Nix sandbox
+    doCheck = false;
+
+    meta = with pkgs.lib; {
+      description = "A fast, minimal, config-driven file organizer built with Rust";
+      homepage = "https://github.com/lordaimer/iris";
+      license = licenses.mit;
+      mainProgram = "iris";
+    };
+  };
+in
 {
   imports = [
     ../common/gitconfig.nix
@@ -18,6 +43,7 @@
 		pkgs.regex-tui
 		pkgs.serie
 		pkgs.spotify-player
+		iris-cli
 	];
 
 	programs = {
