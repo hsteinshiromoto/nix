@@ -48,6 +48,7 @@
 					"mas"
 					"sops"
 					"gromgit/brewtils/taproom"
+					"witr"
 				];
 				casks = [
 					"balenaetcher"
