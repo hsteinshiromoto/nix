@@ -168,6 +168,7 @@
     pkg-config # Build essential
     ripgrep
 		sops
+		ssh-to-age
 		systemctl-tui
     tmux
 		tree-sitter

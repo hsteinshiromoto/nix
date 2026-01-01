@@ -26,6 +26,9 @@
 
 		gpg = {
 			enable = true;
+			scdaemonSettings = {
+				disable-ccid = true;  # Use pcscd instead of GPG's internal CCID driver
+			};
 		};
 
 		claude-code = {
