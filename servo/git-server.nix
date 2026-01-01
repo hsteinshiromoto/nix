@@ -92,7 +92,7 @@ let
     fi
 
     echo "Creating repository: $REPO_NAME"
-    sudo -u ${gitUser} ${pkgs.git}/bin/git init --bare "$REPO_PATH"
+    sudo -u ${gitUser} ${pkgs.git}/bin/git init --bare --initial-branch=main "$REPO_PATH"
 
     # Set description if provided
     if [ -n "$DESCRIPTION" ]; then
