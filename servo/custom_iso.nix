@@ -1,34 +1,51 @@
-# custom-iso.nix
-{ config, pkgs, pkgsUnstable, lib, modulesPath, ... }:
+# custom-iso.nix - Minimal ISO for installation (no SOPS dependencies)
+{ config, pkgs, lib, modulesPath, ... }:
 {
   imports = [
-    # Disable manual generation to avoid the optionsDocBook error
-    ({ config, ... }: {
-      documentation.enable = false;
-      documentation.nixos.enable = false;
-    })
-    # Use modulesPath to access installer modules
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
-    # Or for a graphical installer:
-    # (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix")
-
-    # Include channel information
     (modulesPath + "/installer/cd-dvd/channel.nix")
-    ./configuration.nix
   ];
 
-	# Explicitly override any wireless settings from other modules
-  networking.wireless.enable = false;
+  # Disable documentation to speed up build
+  documentation.enable = false;
+  documentation.nixos.enable = false;
 
-  # Ensure NetworkManager is enabled (though this is already in your configuration.nix)
-  networking.networkmanager.enable = true;
-
-	# Enable flakes in the ISO
+  # Enable flakes
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
 
-  # Ensure proper bootloader configuration for manual installation
+  # Network for installation
+  networking.wireless.enable = false;
+  networking.networkmanager.enable = true;
+
+  # Tools needed for installation
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    neovim
+    disko
+    parted
+    curl
+    wget
+    gnupg
+    sops
+    ssh-to-age
+  ];
+
+  # Enable SSH so you can install remotely
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "yes";
+  };
+
+  # Set a known root password for installation (change after install)
+  users.users.root.initialPassword = "nixos";
+
+  # Enable GPG agent for setting up keys during install
+  programs.gnupg.agent.enable = true;
+
+  # Bootloader configuration
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 }
