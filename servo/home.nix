@@ -6,9 +6,86 @@
   home.username = "hsteinshiromoto";
   home.homeDirectory = "/home/hsteinshiromoto";
 
-	home.packages = with pkgs; [
-    age
+	home.packages = [
+    pkgs.age
+		pkgs.delta
+		pkgs.gitflow
+		pkgs.pyright
   ];
+
+	programs = {
+		atuin = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		bat = {
+			enable = true;
+		};
+
+		gpg = {
+			enable = true;
+			scdaemonSettings = {
+				disable-ccid = true;  # Use pcscd instead of GPG's internal CCID driver
+			};
+		};
+
+		claude-code = {
+			enable = true;
+		};
+
+		eza = {
+			enable = true;
+			enableNushellIntegration = false;
+			enableZshIntegration = true;
+		};
+
+		gemini-cli = {
+			enable = true;
+		};
+
+		opencode = {
+			enable = true;
+		};
+
+		ruff = {
+			enable = true;
+			settings = {
+				lint = {
+					task-tags = ["INFO" "NOTE" "ALERT" "WARNING"];
+					extra-standard-library = ["path"];
+					required-imports = ["from __future__ import annotations"];
+				};
+				docstring-code-format = true;
+				future-annotations = true;
+			};
+		};
+
+		starship = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		uv = {
+			enable = true;
+		};
+
+		yazi = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+		zoxide = {
+			enable = true;
+			enableNushellIntegration = true;
+			enableZshIntegration = true;
+		};
+
+
+	};
 
 	# Adding sops
 	# References:
@@ -25,6 +102,18 @@
 	#      path = "${config.sops.defaultSymlinkPath}/openai_api_key";
 	#    };
 	#  };
+
+	home.sessionVariables = {
+		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		UV_PREBUILT = "1";
+		# Export GitLab secrets to shell environment (mbp2025 only)
+		# The secret files are decrypted by sops-nix at activation time
+	};
+
+	# Ensure GPG_TTY is set for SSH sessions
+	programs.zsh.initExtra = ''
+		export GPG_TTY=$(tty)
+	'';
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

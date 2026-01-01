@@ -21,7 +21,6 @@
 				pkgs.mkalias
 				pkgs.neovim
 				pkgs.nodejs_24
-				pkgs.ollama
 				pkgs.ripgrep
 				pkgs.serpl
 				pkgs.sops
@@ -29,6 +28,7 @@
 				pkgs.stow
 				pkgs.tmux
 				pkgs.tmuxinator
+				pkgs.tree
 				pkgs.yq
 				pkgs.yubikey-manager
       ];
@@ -59,6 +59,7 @@
 					"maccy"
 					"microsoft-teams"
 					"obsidian"
+					"ollama"
 					"popclip"
 					"proton-pass"
 					"reader"
@@ -97,6 +98,12 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+			# Enable Touch ID for sudo (works in tmux with pam_reattach)
+		environment.etc."pam.d/sudo_local".text = ''
+			# Sudo: auth account password session
+			auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
+			auth       sufficient     pam_tid.so
+		'';
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;

@@ -128,7 +128,7 @@ in the project root of this repository, where `X` is either `A` or `P`, and `Y` 
 Use `Makefile` commands or run in terminal
 
 ```bash
-sudo nixos-rebuild test --flake .#servidor --impure
+make nixos_rebuild FLAGS=test
 ```
 To switch to a new build, replace the `test` with `switch`.
 
@@ -136,5 +136,115 @@ To switch to a new build, replace the `test` with `switch`.
 
 Use `Makefile` commands of run in terminal
 ```bash
-sudo darwin-rebuild switch --flake .#MBP2025
+make nixos_rebuild FLAGS=switch
 ```
+
+## Neovim Remote Server
+
+The NixOS server (`servo`) runs a headless Neovim server that allows remote UI connections.
+
+### Server Setup
+
+The Neovim server is configured as a systemd service in `servo/configuration.nix`:
+
+- **Service name**: `nvimd.service`
+- **Listen address**: `0.0.0.0:9000`
+- **Auto-start**: Enabled on boot via `multi-user.target`
+
+**Key configuration details:**
+- Port 9000 is opened in the firewall
+- Service runs as user `hsteinshiromoto`
+- PATH includes git and tree-sitter for plugin compatibility
+- Working directory: `/home/hsteinshiromoto/`
+
+### Client Connection
+
+Due to Neovim RPC protocol limitations over direct network connections, an SSH tunnel is required.
+
+#### Using the Helper Script (Recommended)
+
+```bash
+# Connect with default settings (servidor:9000)
+# Uses Tailscale hostname resolution
+bash bin/nvim-remote.sh
+```
+
+```bash
+# Connect using Tailscale hostname
+bash nvim-remote.sh servidor
+```
+
+```bash
+# Connect using IP address
+bash bin/nvim-remote.sh <SERVER_NAME_OR_IP>
+```
+
+```bash
+# Connect to custom server/port
+bash bin/nvim-remote.sh <SERVER_NAME_OR_IP> <PORT>
+```
+
+The script automatically:
+1. Resolves Tailscale hostnames to IP addresses (if applicable)
+2. Creates an SSH tunnel to the server
+3. Connects Neovim client via the tunnel
+4. Cleans up the tunnel when you exit Neovim
+
+**Note:** The script supports both Tailscale hostnames (e.g., `servidor`) and IP addresses. If Tailscale is installed, it will automatically resolve hostnames.
+
+#### Manual Connection
+
+If you prefer manual control:
+
+```bash
+# 1. Start SSH tunnel (runs in background)
+ssh -L 9000:127.0.0.1:9000 <SERVER_NAME_OR_IP> -N -f
+```
+
+```bash
+# 2. Connect to Neovim via the tunnel
+nvim --server 127.0.0.1:9000 --remote-ui
+```
+
+```bash
+# 3. Kill the tunnel when done
+pkill -f "ssh -L 9000:127.0.0.1:9000"
+```
+
+### Server Management
+
+**Check service status:**
+```bash
+sudo systemctl status nvimd
+```
+
+**Restart service:**
+```bash
+sudo systemctl restart nvimd
+```
+
+**View logs:**
+```bash
+sudo journalctl -u nvimd -n 50 --no-pager
+```
+
+**Check if listening:**
+```bash
+sudo ss -tlnp | grep 9000
+```
+
+### Troubleshooting
+
+**Connection refused error:**
+- Ensure the service is running: `sudo systemctl status nvimd`
+- Verify port is listening: `sudo ss -tlnp | grep 9000`
+- Check SSH tunnel is active: `pgrep -f "ssh -L 9000"`
+- Test local connection on server: `nvim --server 127.0.0.1:9000 --remote-send ':echo "test"<CR>'`
+
+**Plugin errors in logs:**
+- The service runs with `-u NONE` to avoid config issues
+- To use custom config, create a minimal server-specific init.lua
+
+**Segmentation fault:**
+- This occurs when trying to use `--remote-ui` over direct TCP (without SSH tunnel)
+- Always use SSH tunneling for remote UI connections

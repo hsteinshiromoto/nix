@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./build-iso-monitor.sh:*)",
+      "Bash(claude doctor:*)",
+      "Read(//Users/hsteinshiromoto/Library/Preferences/**)",
+      "Read(//Users/hsteinshiromoto/Library/**)",
+      "Read(//Users/hsteinshiromoto/Library/Containers/**)"
+			"Bash(grep:*)",
+      "Read(//Users/hsteinshiromoto/Library/Fonts/**)",
+      "Read(//Library/Fonts/**)",
+      "Read(//Users/hsteinshiromoto/.config/sops/**)",
+      "Read(//Users/hsteinshiromoto/dotfiles/**)",
+      "Bash(find:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": false
+}

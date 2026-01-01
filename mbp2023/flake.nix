@@ -10,6 +10,7 @@
         [
 					pkgs.btop
 					pkgs.calcure
+					pkgs.cargo
 					pkgs.dua
 					pkgs.fd
 					pkgs.fzf
@@ -47,6 +48,7 @@
 					"mas"
 					"sops"
 					"gromgit/brewtils/taproom"
+					"witr"
 				];
 				casks = [
 					"balenaetcher"
@@ -63,10 +65,12 @@
 					"karabiner-elements"
 					"maccy"
 					"obsidian"
+					"ollama"
 					"oversight"
 					"macfuse"
 					"microsoft-teams"
 					"popclip"
+					"productdevbook/tap/portkiller"
 					"proton-drive"
 					"proton-pass"
 					"protonvpn"
@@ -108,12 +112,19 @@
 
 			nix.gc = {
 				automatic = true;
-				options = "--delete-generations +5";
+				options = "--delete-generations +3";
 				interval = { Weekday = 0; Hour = 2; Minute = 0; };
 			};
 
 			nixpkgs.config.allowUnfree = true;
 			nixpkgs.config.allowUnsupportedSystem = true;
+
+			environment.etc."pam.d/sudo_local".text = ''
+				# Sudo: auth account password session
+				auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
+				auth       sufficient     pam_tid.so
+			'';
+
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";

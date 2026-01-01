@@ -1,5 +1,30 @@
 { config, pkgs, ... }:
 
+let
+  iris-cli = pkgs.rustPlatform.buildRustPackage rec {
+    pname = "iris-cli";
+    version = "1.3.6";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "lordaimer";
+      repo = "iris";
+      rev = "v${version}";
+      hash = "sha256-g42W+XMN9K4yAt9YRCuuYFf3zOoEISXy1M3E5liKhBg=";
+    };
+
+    cargoHash = "sha256-7HyaJDxOv0gs+CujH8FERufaTiv+m2j1go514HC3Jk0=";
+
+    # Tests require filesystem access which is not available in the Nix sandbox
+    doCheck = false;
+
+    meta = with pkgs.lib; {
+      description = "A fast, minimal, config-driven file organizer built with Rust";
+      homepage = "https://github.com/lordaimer/iris";
+      license = licenses.mit;
+      mainProgram = "iris";
+    };
+  };
+in
 {
   imports = [
     ../common/gitconfig.nix
@@ -14,8 +39,12 @@
 	home.packages = [
 		pkgs.delta
 		pkgs.gitflow
-		pkgs.ollama
+		pkgs.pyright
+		pkgs.regex-tui
+		pkgs.serie
 		pkgs.spotify-player
+		iris-cli
+		pkgs.tailscale
 	];
 
 	programs = {
@@ -41,6 +70,7 @@
 			enable = true;
 			enableNushellIntegration = false;
 			enableZshIntegration = true;
+			theme = "tokyonight";
 		};
 
 		gemini-cli = {
@@ -102,10 +132,73 @@
 	# 	};
 	# };
 
+	# Configure SOPS for secrets management
+	sops = {
+		gnupg.home = "${config.home.homeDirectory}/.gnupg";
+		defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/mbp2023/authorized_keys.yaml";
+
+		secrets.authorized_keys = {
+			path = "${config.home.homeDirectory}/.ssh/authorized_keys";
+			mode = "0600";
+		};
+	};
+
 	# Set environment variables
 	home.sessionVariables = {
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+		TERMINFO_DIRS = "${config.home.homeDirectory}/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo";
 	};
+
+	# LaunchAgent for auto-mounting Time Machine Samba share
+	launchd.agents.timemachine-mount = {
+		enable = true;
+		config = {
+			ProgramArguments = [
+				"${pkgs.bash}/bin/bash"
+				"-c"
+				''
+					# Check if already mounted
+					if mount | grep -q 'TimeMachine'; then
+						echo "TimeMachine already mounted"
+						exit 0
+					fi
+
+					# Try to get servidor IP from Tailscale
+					# First try using Tailscale CLI if available
+					if command -v tailscale &> /dev/null; then
+						SERVER_IP=$(tailscale status --json | ${pkgs.jq}/bin/jq -r '.Peer[] | select(.HostName == "servidor") | .TailscaleIPs[0]' 2>/dev/null)
+					fi
+
+					# If tailscale command not found or didn't return IP, try hostname
+					if [ -z "$SERVER_IP" ]; then
+						# Try Tailscale MagicDNS hostname
+						if ping -c 1 -W 1 servidor &> /dev/null; then
+							SERVER_IP="servidor"
+						fi
+					fi
+
+					echo "Attempting to mount TimeMachine from $SERVER_IP"
+					/usr/bin/open "smb://$SERVER_IP/TimeMachine"
+				''
+			];
+			RunAtLoad = true;
+			StartInterval = 3600;  # Check every hour (3600 seconds)
+			StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/timemachine-mount.err.log";
+			StandardOutPath = "${config.home.homeDirectory}/Library/Logs/timemachine-mount.out.log";
+		};
+	};
+
+	# Install Ghostty terminfo for tmux compatibility
+	home.activation.installGhosttyTerminfo = config.lib.dag.entryAfter ["writeBoundary"] ''
+		if [ -d "/Applications/Ghostty.app/Contents/Resources/terminfo" ]; then
+			$DRY_RUN_CMD mkdir -p ${config.home.homeDirectory}/.terminfo
+			$DRY_RUN_CMD ${pkgs.ncurses}/bin/infocmp -x xterm-ghostty > /tmp/xterm-ghostty.info 2>/dev/null || true
+			if [ -f /tmp/xterm-ghostty.info ]; then
+				$DRY_RUN_CMD ${pkgs.ncurses}/bin/tic -x -o ${config.home.homeDirectory}/.terminfo /tmp/xterm-ghostty.info 2>/dev/null || true
+				$DRY_RUN_CMD rm -f /tmp/xterm-ghostty.info
+			fi
+		fi
+	'';
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
