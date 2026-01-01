@@ -64,6 +64,7 @@
 
         modules = [
           ./custom_iso.nix
+          sops-nix.nixosModules.sops
           # If your custom_iso.nix imports servo/configuration.nix,
           # pkgsUnstable will now be available to it
         ];
