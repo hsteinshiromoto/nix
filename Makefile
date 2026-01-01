@@ -13,9 +13,9 @@ log_info = @echo "$(GREEN)[INFO]$(RESET) $(1)"
 log_warning = @echo "$(YELLOW)[WARNING]$(RESET) $(1)"
 log_error = @echo "$(RED)[ERROR]$(RESET) $(1)"
 
-## Get ISO image via SCP
+## Get ISO image via rsync
 get_iso:
-	scp -LC hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result .
+	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./nixos.iso
 
 ## Update flake.lock
 update:
