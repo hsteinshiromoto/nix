@@ -15,7 +15,7 @@ log_error = @echo "$(RED)[ERROR]$(RESET) $(1)"
 
 ## Get ISO image via rsync
 get_iso:
-	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./nixos.iso
+	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./iso
 
 ## Update flake.lock
 update:
