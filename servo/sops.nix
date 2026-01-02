@@ -7,10 +7,12 @@
   sops = {
     defaultSopsFile = /home/hsteinshiromoto/.config/sops/secrets/ssh.yaml;
     defaultSopsFormat = "yaml";
-    # Use GPG for decryption instead of age
-    gnupg = {
-      home = "/home/hsteinshiromoto/.gnupg";
-      sshKeyPaths = [];  # Don't derive GPG keys from SSH keys
+    # Use age key derived from SSH host key for decryption
+    age = {
+      # Derive age key from SSH host key
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      # No separate age key file needed
+      keyFile = null;
     };
     secrets = {
       "authorized_keys" = {  # Direct key, not nested under ssh/
