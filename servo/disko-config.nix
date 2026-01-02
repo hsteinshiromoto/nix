@@ -7,9 +7,10 @@
 #     - root: 64GB  - System root filesystem
 #     - swap: 4GB   - Swap space
 #     - git:  32GB  - Git server data (/var/lib/git-server)
-#     - home: rest  - User home directories
+#     - home: 130GB - User home directories
 #
-# Minimum disk size required: ~110GB (101GB fixed + some home space)
+# Note: home uses fixed size to ensure all LVs are created (Nix attrsets are unordered)
+# Total disk space required: ~232GB minimum
 {
   disko.devices = {
     disk = {
@@ -75,7 +76,7 @@
             };
           };
           home = {
-            size = "100%FREE";
+            size = "128G"; # Note that the option 100% free has been removed because it was being executed before the git volume. As a consequence, it will consume the whole remaining space without allocating anything to the git volume.
             content = {
               type = "filesystem";
               format = "ext4";
