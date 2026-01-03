@@ -209,7 +209,10 @@
     };
     syncthing = {
       enable = true;
-			user = "hsteinshiromoto";
+      user = "hsteinshiromoto";
+      group = "users";
+      dataDir = "/home/hsteinshiromoto/syncthing";
+      configDir = "/home/hsteinshiromoto/syncthing/.config/syncthing";
       openDefaultPorts = true;
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
