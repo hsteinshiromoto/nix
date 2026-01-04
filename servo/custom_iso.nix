@@ -31,6 +31,8 @@
     gnupg
     sops
     ssh-to-age
+		networkmanager
+    networkmanagerapplet
   ];
 
   # Enable SSH so you can install remotely

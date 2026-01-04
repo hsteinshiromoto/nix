@@ -13,7 +13,7 @@
 			# ./wifi.nix  # Commented out - SOPS wifi.yaml not available
 			./git-server.nix
 			./home-assistant.nix
-			./time-machine.nix
+			./time-machine.nix						# <- Comment out this line to remove dependency on sops
     ];
 
 	nix = {
@@ -48,7 +48,7 @@
 	system.autoUpgrade = {
 		enable = true;
 		allowReboot = true;
-		channel = "https://channels.nixos.org/nixos-25.05";
+		channel = "https://channels.nixos.org/nixos-25.11";
 	};
 
   networking = {
@@ -101,7 +101,7 @@
 						stow
 						tmuxinator
 			];
-      # SSH authorized_keys will be managed by systemd service (see below)
+      # SSH authorized_keys will be managed by systemd service (see sops.nix)
     };
   };
 
@@ -209,7 +209,10 @@
     };
     syncthing = {
       enable = true;
-			user = "hsteinshiromoto";
+      user = "hsteinshiromoto";
+      group = "users";
+      dataDir = "/home/hsteinshiromoto/syncthing";
+      configDir = "/home/hsteinshiromoto/syncthing/.config/syncthing";
       openDefaultPorts = true;
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
@@ -268,55 +271,6 @@
 				${pkgs.nix}/bin/nix-store --optimize
 			'';
 		};
-
-		# Sync SOPS SSH authorized_keys to user directories
-		sops-ssh-keys-sync = {
-			description = "Sync SOPS SSH authorized_keys to users";
-			wantedBy = [ "multi-user.target" ];
-			after = [ "sops-nix.service" ];
-			wants = [ "sops-nix.service" ];
-			# Restart on every nixos-rebuild to pick up new keys
-			restartIfChanged = true;
-			restartTriggers = [ config.sops.secrets."authorized_keys".path ];
-
-			serviceConfig = {
-				Type = "oneshot";
-				RemainAfterExit = true;
-				User = "root";
-			};
-
-			script = ''
-				# Wait for SOPS secret to be available
-				SECRET_PATH="${config.sops.secrets."authorized_keys".path}"
-
-				if [ ! -f "$SECRET_PATH" ]; then
-					echo "ERROR: SOPS secret not found at $SECRET_PATH"
-					exit 1
-				fi
-
-				echo "Syncing SSH authorized_keys from SOPS..."
-
-				# Sync for hsteinshiromoto user
-				HUSER_SSH_DIR="/home/hsteinshiromoto/.ssh"
-				mkdir -p "$HUSER_SSH_DIR"
-				cp "$SECRET_PATH" "$HUSER_SSH_DIR/authorized_keys"
-				chown hsteinshiromoto:users "$HUSER_SSH_DIR/authorized_keys"
-				chmod 600 "$HUSER_SSH_DIR/authorized_keys"
-				chown hsteinshiromoto:users "$HUSER_SSH_DIR"
-				chmod 700 "$HUSER_SSH_DIR"
-
-				# Sync for git user
-				GIT_SSH_DIR="/var/lib/git-server/.ssh"
-				mkdir -p "$GIT_SSH_DIR"
-				cp "$SECRET_PATH" "$GIT_SSH_DIR/authorized_keys"
-				chown git:git "$GIT_SSH_DIR/authorized_keys"
-				chmod 600 "$GIT_SSH_DIR/authorized_keys"
-				chown git:git "$GIT_SSH_DIR"
-				chmod 700 "$GIT_SSH_DIR"
-
-				echo "SSH authorized_keys synced successfully"
-			'';
-		};
 	};
 
 	# Timer to run garbage collection daily
@@ -334,6 +288,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
 }

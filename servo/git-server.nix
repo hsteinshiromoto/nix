@@ -272,7 +272,10 @@ in {
   ];
 
   # Ensure git-shell-commands directory exists with helpful commands
+  # Note: The mount point /var/lib/git-server is created by disko with its own partition
   systemd.tmpfiles.rules = [
+    # Set ownership of the mount point itself (disko creates it as root)
+    "z ${gitHome} 0755 ${gitUser} ${gitUser} -"
     "d ${gitHome}/.ssh 0700 ${gitUser} ${gitUser} -"
     "d ${gitHome}/git-shell-commands 0755 ${gitUser} ${gitUser} -"
     "d ${gitHome}/webhooks 0700 ${gitUser} ${gitUser} -"
