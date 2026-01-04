@@ -5,7 +5,7 @@
 
 {
   sops = {
-    defaultSopsFile = /home/hsteinshiromoto/.config/sops/secrets/ssh.yaml;
+    defaultSopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/authorized_keys.yaml;
     defaultSopsFormat = "yaml";
     # Use age key derived from SSH host key for decryption
     age = {
