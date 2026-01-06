@@ -24,7 +24,7 @@ in {
     extraPackages = with pkgs; [
       intel-media-driver    # VAAPI driver for Broadwell and newer
       intel-vaapi-driver    # VAAPI driver for older Intel GPUs
-      vaapiVdpau            # VDPAU backend for VAAPI
+      libva-vdpau-driver    # VDPAU backend for VAAPI (formerly vaapiVdpau)
       libvdpau-va-gl        # OpenGL/VAAPI backend for VDPAU
     ];
   };
