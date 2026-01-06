@@ -39,6 +39,6 @@ in {
   fileSystems.${mediaPath} = {
     device = "/dev/mapper/media-crypt";
     fsType = "ext4";
-    options = [ "nofail" "x-systemd.device-timeout=10s" ];
+    options = [ "nofail" "x-systemd.device-timeout=10s" "x-systemd.requires=media-crypt-unlock.service" "x-systemd.after=media-crypt-unlock.service" ];
   };
 }
