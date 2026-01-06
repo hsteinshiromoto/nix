@@ -5,7 +5,7 @@
       "Bash(claude doctor:*)",
       "Read(//Users/hsteinshiromoto/Library/Preferences/**)",
       "Read(//Users/hsteinshiromoto/Library/**)",
-      "Read(//Users/hsteinshiromoto/Library/Containers/**)"
+      "Read(//Users/hsteinshiromoto/Library/Containers/**)",
 			"Bash(grep:*)",
       "Read(//Users/hsteinshiromoto/Library/Fonts/**)",
       "Read(//Library/Fonts/**)",
