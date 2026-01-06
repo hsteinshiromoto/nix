@@ -11,12 +11,13 @@ in {
   systemd.services.media-crypt-unlock = {
     description = "Unlock media LUKS volume";
     wantedBy = [ "multi-user.target" ];
-    after = [ "sops-nix.service" ];
+    after = [ "sops-nix.service" "systemd-udev-settle.service" ];
     wants = [ "sops-nix.service" ];
+    requires = [ "systemd-udev-settle.service" ];
     before = [ "local-fs.target" ];
 
     unitConfig = {
-      # Only run if the drive is connected
+      # Only run if the drive is connected (checked after udev settles)
       ConditionPathExists = "/dev/disk/by-uuid/${luksUuid}";
     };
 
