@@ -25,6 +25,12 @@
         mode = "0600";
         owner = "root";
       };
+      "media_luks_key" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/media.yaml;
+        key = "luks_key";
+        mode = "0400";
+        owner = "root";
+      };
     };
   };
 
