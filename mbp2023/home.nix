@@ -38,6 +38,7 @@ in
 
 	home.packages = [
 		pkgs.delta
+		pkgs.ffmpeg-headless
 		pkgs.gitflow
 		pkgs.pyright
 		pkgs.regex-tui
