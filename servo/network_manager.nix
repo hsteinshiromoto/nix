@@ -6,31 +6,50 @@
     description = "Setup NetworkManager WiFi connection with SOPS secrets";
     wantedBy = [ "multi-user.target" ];
     after = [ "NetworkManager.service" ];
-    
+
     script = ''
       # Wait for SOPS secrets to be decrypted
-      while [ ! -f ${config.sops.secrets."wifi/ssid".path} ] || [ ! -f ${config.sops.secrets."wifi/password".path} ]; do
+      while [ ! -f ${config.sops.secrets."wifi/main/ssid".path} ] || [ ! -f ${config.sops.secrets."wifi/main/password".path} ]; do
         echo "Waiting for SOPS secrets to be available..."
         sleep 2
       done
 
       # Read the secrets
-      SSID=$(cat ${config.sops.secrets."wifi/ssid".path})
-      PSK=$(cat ${config.sops.secrets."wifi/password".path})
+      MAIN_SSID=$(cat ${config.sops.secrets."wifi/main/ssid".path})
+      MAIN_PSK=$(cat ${config.sops.secrets."wifi/main/password".path})
+			ALT_SSID=$(cat ${config.sops.secrets."wifi/alternative/ssid".path})
+      ALT_PSK=$(cat ${config.sops.secrets."wifi/alternative/password".path})
 
       # Create NetworkManager connection
-      ${pkgs.networkmanager}/bin/nmcli connection delete "home-wifi" 2>/dev/null || true
-      
+
+
+			# Create NetworkManager connection
+      ${pkgs.networkmanager}/bin/nmcli connection delete "alternative" 2>/dev/null || true
+
       ${pkgs.networkmanager}/bin/nmcli connection add \
         type wifi \
-        con-name "home-wifi" \
-        ssid "$SSID" \
+        con-name "alternative" \
+        ssid "$ALT_SSID" \
         wifi-sec.key-mgmt wpa-psk \
-        wifi-sec.psk "$PSK" \
+        wifi-sec.psk "$ALT_PSK" \
+        connection.autoconnect true \
+        connection.autoconnect-priority 1
+
+			echo "WiFi connection 'alternative' configured successfully"
+
+			${pkgs.networkmanager}/bin/nmcli connection delete "main" 2>/dev/null || true
+
+      ${pkgs.networkmanager}/bin/nmcli connection add \
+        type wifi \
+        con-name "main" \
+        ssid "$MAIN_SSID" \
+        wifi-sec.key-mgmt wpa-psk \
+        wifi-sec.psk "$MAIN_PSK" \
         connection.autoconnect true \
         connection.autoconnect-priority 10
 
-      echo "WiFi connection 'home-wifi' configured successfully"
+      echo "WiFi connection 'main' configured successfully"
+
     '';
 
     serviceConfig = {
