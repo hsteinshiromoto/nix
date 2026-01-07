@@ -6,12 +6,13 @@
       "Read(//Users/hsteinshiromoto/Library/Preferences/**)",
       "Read(//Users/hsteinshiromoto/Library/**)",
       "Read(//Users/hsteinshiromoto/Library/Containers/**)",
-			"Bash(grep:*)",
+      "Bash(grep:*)",
       "Read(//Users/hsteinshiromoto/Library/Fonts/**)",
       "Read(//Library/Fonts/**)",
       "Read(//Users/hsteinshiromoto/.config/sops/**)",
       "Read(//Users/hsteinshiromoto/dotfiles/**)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:wiki.nixos.org)"
     ]
   },
   "enableAllProjectMcpServers": false
