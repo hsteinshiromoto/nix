@@ -31,6 +31,26 @@
         mode = "0400";
         owner = "root";
       };
+      "wifi/main/ssid" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/network_manager.yaml;
+        mode = "0400";
+        owner = "root";
+      };
+      "wifi/main/password" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/network_manager.yaml;
+        mode = "0400";
+        owner = "root";
+      };
+      "wifi/alternative/ssid" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/network_manager.yaml;
+        mode = "0400";
+        owner = "root";
+      };
+      "wifi/alternative/password" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/network_manager.yaml;
+        mode = "0400";
+        owner = "root";
+      };
     };
   };
 

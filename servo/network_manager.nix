@@ -5,11 +5,15 @@
   systemd.services.nm-setup-wifi = {
     description = "Setup NetworkManager WiFi connection with SOPS secrets";
     wantedBy = [ "multi-user.target" ];
-    after = [ "NetworkManager.service" ];
+    after = [ "NetworkManager.service" "sops-nix.service" ];
+    wants = [ "sops-nix.service" ];
 
     script = ''
       # Wait for SOPS secrets to be decrypted
-      while [ ! -f ${config.sops.secrets."wifi/main/ssid".path} ] || [ ! -f ${config.sops.secrets."wifi/main/password".path} ]; do
+      while [ ! -f ${config.sops.secrets."wifi/main/ssid".path} ] || \
+            [ ! -f ${config.sops.secrets."wifi/main/password".path} ] || \
+            [ ! -f ${config.sops.secrets."wifi/alternative/ssid".path} ] || \
+            [ ! -f ${config.sops.secrets."wifi/alternative/password".path} ]; do
         echo "Waiting for SOPS secrets to be available..."
         sleep 2
       done
