@@ -74,6 +74,10 @@ nixos_iso: flake.nix flake.lock servo/custom_iso.nix
 nixos_anywhere:
 	nix run github:nix-community/nixos-anywhere -- --flake .#servidor --vm-test
 
+## Enroll TPM2
+nixos_tpm:
+	sudo systemd-cryptenroll --tpm2-device=auto /dev/disk/by-partlabel/disk-main-luks
+
 # ---
 # Self Documenting Commands
 # ---

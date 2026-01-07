@@ -47,6 +47,19 @@
 	# Limit boot menu entries to last 3 generations
 	boot.loader.systemd-boot.configurationLimit = 3;
 
+	# LUKS disk encryption with TPM2 support
+	# Enroll TPM2 key with: sudo systemd-cryptenroll --tpm2-device=auto /dev/sda2
+	# Passphrase remains as fallback if TPM fails
+	boot.initrd = {
+		systemd.enable = true;  # Required for TPM2 unlock
+		availableKernelModules = [ "tpm_tis" "tpm_crb" ];  # TPM2 kernel modules
+		luks.devices."crypted" = {
+			device = "/dev/disk/by-partlabel/disk-main-luks";
+			crypttabExtraOpts = [ "tpm2-device=auto" ];
+			allowDiscards = true;  # Enable TRIM for SSD
+		};
+	};
+
 	system.autoUpgrade = {
 		enable = true;
 		allowReboot = true;
