@@ -139,7 +139,8 @@ sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 ```bash
 make nixos_tmp
 ```
-This will require to enter the passphrase.
+This will require to enter the passphrase to enroll TPM2.
+- After kernel/initrd updates, if TPM unlock fails, re-enroll using `sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto /dev/sda2`.
 
 5. Applicable if installed from flake: clone the repository again and create a symbolic link for the `servo/configuration.nix` file:
 ```bash
