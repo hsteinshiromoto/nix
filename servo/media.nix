@@ -14,7 +14,6 @@ in {
     after = [ "sops-nix.service" "systemd-udev-settle.service" ];
     wants = [ "sops-nix.service" ];
     requires = [ "systemd-udev-settle.service" ];
-    before = [ "local-fs.target" ];
 
     unitConfig = {
       # Only run if the drive is connected (checked after udev settles)
