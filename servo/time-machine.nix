@@ -47,15 +47,9 @@ let
   '';
 
 in {
-  # LUKS decryption for Time Machine external drive
-  # Using systemd-cryptsetup (Stage 2) instead of initrd (Stage 1) to allow boot without the drive
-  environment.etc."crypttab".text = ''
-    timemachine-crypt UUID=6bb1b0c8-a3b5-4d09-aa5a-cb52e37cc937 none nofail,timeout=10
-  '';
-
-  # Mount decrypted Time Machine drive
+  # Mount Time Machine external drive (sdc3)
   fileSystems.${tmPath} = {
-    device = "/dev/mapper/timemachine-crypt";
+    device = "/dev/disk/by-uuid/ce0b63f5-8b2e-457a-849b-85be2cf45754";
     fsType = "ext4";
     options = [ "nofail" "x-systemd.device-timeout=10s" ];
   };

@@ -121,11 +121,11 @@
   sops = {
     secrets = {
       git_signingkey = {
-        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/common/gitconfig.yaml";
         path = "${config.home.homeDirectory}/.config/sops/secrets/git_signingkey";
       };
       user_email = {
-        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/common/gitconfig.yaml";
         path = "${config.home.homeDirectory}/.config/sops/secrets/user_email";
       };
     };

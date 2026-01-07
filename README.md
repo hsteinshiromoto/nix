@@ -2,6 +2,10 @@
 ![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 # Nix Flakes Repository
 
+## Releases
+
+Starting from v3.1.0, all releases will be based on a timestamp with the format `YYYY-[W]WW`.
+
 ## Repository Structure
 
 ```
@@ -30,10 +34,18 @@
 │   ├── disko-config.nix       # Disk partitioning configuration
 │   ├── flake.lock
 │   ├── flake.nix
+│   ├── git-server.nix         # Git server configuration
+│   ├── GIT_SERVER.md          # Git server setup documentation
 │   ├── hardware-configuration.nix
+│   ├── home-assistant.nix     # Home Assistant configuration
 │   ├── home.nix               # Home-manager configuration
+│   ├── jellyfin.nix           # Jellyfin media server configuration
+│   ├── media.md.gpg           # Encrypted media drive setup docs
+│   ├── media.nix              # Media drive configuration
+│   ├── network_manager.nix    # Network manager configuration
 │   ├── README.md
-│   ├── wifi.nix               # WiFi configuration
+│   ├── sops.nix               # SOPS secrets configuration
+│   ├── time-machine.nix       # Time Machine backup configuration
 │   └── yubikey.nix            # YubiKey configuration
 ├── AGENTS.md                   # AI agent usage guidelines
 ├── CHANGELOG.md                # Version history and changes
@@ -53,7 +65,7 @@
 
 - **common/**: Shared configuration modules introduced in v3.0.0 for code reuse across systems
 - **mbp2023/, mbp2025/, mba2022/**: macOS configurations using nix-darwin with home-manager
-- **servo/**: NixOS server configuration with custom ISO, disk partitioning, and hardware-specific settings
+- **servo/**: NixOS server configuration with custom ISO, disk partitioning, TPM2 support, Jellyfin media server, Time Machine backups, and hardware-specific settings
 
 ## Instructions
 

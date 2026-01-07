@@ -13,6 +13,10 @@ log_info = @echo "$(GREEN)[INFO]$(RESET) $(1)"
 log_warning = @echo "$(YELLOW)[WARNING]$(RESET) $(1)"
 log_error = @echo "$(RED)[ERROR]$(RESET) $(1)"
 
+## Get ISO image via rsync
+get_iso:
+	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./iso
+
 ## Update flake.lock
 update:
 	$(call log_info,Updating flake.lock...)
@@ -43,10 +47,11 @@ darwin_2025: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
 
-## Run partition the disk using disko
+## Run partition the disk using disko. Usage (for repartition the disk): make partition FLAGS=disko
 partition: flake.nix flake.lock servo/disko-config.nix
+	$(eval FLAGS=mount)
 	$(call log_info,Partitioning disk with disko...)
-	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
+	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode $(FLAGS) /home/nixos/.config/nix/servo/disko-config.nix
 	$(call log_info,Done)
 
 ## Install NixOS from flake
@@ -68,6 +73,10 @@ nixos_iso: flake.nix flake.lock servo/custom_iso.nix
 ## Check whether the configuration and disko-config are valid
 nixos_anywhere:
 	nix run github:nix-community/nixos-anywhere -- --flake .#servidor --vm-test
+
+## Enroll TPM2
+nixos_tpm:
+	sudo systemd-cryptenroll --tpm2-device=auto /dev/disk/by-partlabel/disk-main-luks
 
 # ---
 # Self Documenting Commands
