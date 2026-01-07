@@ -22,7 +22,7 @@ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 cd ~/.config/nix
 ```
 
-2. Use disko to create the partitions:
+2. Use disko to create the partitions and erase all existing ones.
 ```bash
 sudo nix run github:nix-community/disko -- --mode zap_create_mount /home/nixos/.config/nix/servo/disko-config.nix
 ```
@@ -135,7 +135,13 @@ sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
 
 3. Reboot with `# reboot`.
 
-4. Applicable if installed from flake: clone the repository again and create a symbolic link for the `servo/configuration.nix` file:
+4. Create filekey to autoboot without requiring passphrase at every boot. Login to NixOS and run
+```bash
+make nixos_tmp
+```
+This will require to enter the passphrase.
+
+5. Applicable if installed from flake: clone the repository again and create a symbolic link for the `servo/configuration.nix` file:
 ```bash
 sudo ln -s /home/hsteinshiromoto/.config/nix/servo/configuration.nix /etc/nixos/
 ```
