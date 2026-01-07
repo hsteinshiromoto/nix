@@ -5,6 +5,81 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-01-07
+
+### Features
+
+#### TPM2 Support
+- Added TPM2 (Trusted Platform Module) support for secure boot
+- Configured TPM2 enrollment for LUKS disk encryption
+- Added `nixos_tpm` Makefile target for TPM enrollment
+- Added documentation for TPM2 key creation and troubleshooting
+
+#### Media Server (Jellyfin)
+- Added Jellyfin media server configuration (`servo/jellyfin.nix`)
+- Configured hardware acceleration with VDPAU driver
+- Added ffmpeg-headless to mbp2023 for video processing
+
+#### Media Drive Management
+- Added encrypted media drive support (`servo/media.nix`)
+- Configured auto-unlock and auto-mount at boot using systemd
+- Added condition to unlock only after udev has finished
+- Added encrypted documentation (`servo/media.md.gpg`) for setup instructions
+
+#### Network Manager Improvements
+- Renamed `wifi.nix` to `network_manager.nix` for better clarity
+- Added support for main and alternative network connections
+- Integrated network manager into custom ISO configuration
+
+#### Git Server Enhancements
+- Configured disko partition for git server storage
+- Fixed git partition space allocation issues
+- Added network manager support to custom ISO
+
+### Bug Fixes
+
+- Fixed media drive automount issue
+- Fixed missing TPM configuration in configuration.nix
+- Fixed VDPAU driver bug for hardware video acceleration
+- Fixed Syncthing missing `dataDir` configuration
+- Fixed `age_derived_key` location in SOPS configuration
+- Fixed Time Machine UUID configuration
+
+### Configuration Changes
+
+#### SOPS Updates
+- Added SOPS dependencies in `servo/sops.nix`
+- Moved SSH authorized keys SOPS dependency to sops.nix
+- Updated dependencies for gitconfig.yaml from SOPS repository
+- Updated SOPS file dependencies due to repository restructure
+
+#### NixOS (servo)
+- Updated NixOS version in configuration.nix
+- Propagated network manager changes to configuration.nix
+- Consolidated SOPS configuration in dedicated module
+
+#### Build & Deployment
+- Added `get_iso` Makefile target to retrieve ISO via rsync/scp
+- Added `FLAGS` argument to partition target
+- Changed ISO transfer method from scp to rsync for better performance
+- Added `nixos_tpm` target for TPM enrollment
+
+### Dependencies
+
+- Updated flake.lock (multiple updates throughout the release)
+- Merged tag '25.11' into dev branch
+
+### Removals
+
+- Removed `servo/wifi.nix` (renamed to `network_manager.nix`)
+
+### Statistics
+
+- **Files Changed**: 17 files with 339 insertions and 143 deletions
+- **Date Range**: 2025-11-01 to 2026-01-07
+
+---
+
 ## [3.0.0] - 2025-10-24
 
 ### Major Changes
@@ -213,4 +288,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See git history for changes prior to v3.0.0.
 
+[3.1.0]: https://github.com/hsteinshiromoto/nix/compare/v3.0.0...release/2026-W02
 [3.0.0]: https://github.com/hsteinshiromoto/nix/compare/main...release/v3.0.0
