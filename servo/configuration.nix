@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
 			./sops.nix                    # <- Comment out this line to remove dependency on sops
 			./yubikey.nix
-			# ./network_manager.nix  # Commented out - SOPS wifi.yaml at servidor/wifi.yaml
+			./network_manager.nix         # <- Comment out this line to remove dependency on sops
 			./git-server.nix
 			./home-assistant.nix
 			./time-machine.nix						# <- Comment out this line to remove dependency on sops
