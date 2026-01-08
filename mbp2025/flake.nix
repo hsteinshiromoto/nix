@@ -9,6 +9,7 @@
       environment.systemPackages = [
 				pkgs.age
 				pkgs.btop
+				pkgs.cargo
 				pkgs.csvlens
 				pkgs.doppler
 				pkgs.fd
