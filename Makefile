@@ -50,7 +50,7 @@ darwin_2025: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
 ## Run partition the disk using disko. Usage (for repartition the disk): make partition FLAGS=disko
 partition: flake.nix flake.lock servo/disko-config.nix
 	$(eval FLAGS=mount)
-	$(call log_info,Partitioning disk with disko...)
+	$(call log_info,Partitioning disk with disko with flag $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	cd ~/.config/nix && sudo nix run github:nix-community/disko -- --mode $(FLAGS) /home/nixos/.config/nix/servo/disko-config.nix
 	$(call log_info,Done)
 
