@@ -79,7 +79,6 @@
 					"syncthing-app"
 					"the-unarchiver"
 					"transmission"
-					"utm"
 					"visual-studio-code"
 					"vlc"
 					"waterfox"
