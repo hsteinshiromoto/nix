@@ -44,6 +44,7 @@
 					"mas"
 					"gromgit/brewtils/taproom"
 					"huseyinbabal/tap/taws"
+					"witr"
 				];
 				casks = [
 					"bartender"
@@ -64,6 +65,7 @@
 					"obsidian"
 					"ollama"
 					"popclip"
+					"productdevbook/tap/portkiller"
 					"proton-pass"
 					"reader"
 					"spotify"
