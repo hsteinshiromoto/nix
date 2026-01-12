@@ -37,11 +37,13 @@
 				enable = true;
 				taps = [
 					"gromgit/brewtils"
+					"huseyinbabal/tap"
 				];
 				brews = [
 					"libomp"
 					"mas"
 					"gromgit/brewtils/taproom"
+					"huseyinbabal/tap/taws"
 				];
 				casks = [
 					"bartender"
