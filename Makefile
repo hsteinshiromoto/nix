@@ -31,19 +31,19 @@ nixos_%: nixos_$@
 
 ## Rebuild nix-darwin mba2022 flake
 darwin_2022: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
-	$(eval FLAGS=switch)
+	$(eval FLAGS=build)
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
 
 ## Rebuild nix-darwin mbp2023 flake
 darwin_2023: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
-	$(eval FLAGS=switch)
+	$(eval FLAGS=build)
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
 darwin_2025: flake.nix flake.lock $(shell find servo -type f -name "*.nix")
-	$(eval FLAGS=switch)
+	$(eval FLAGS=build)
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
 	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
 
