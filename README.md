@@ -65,7 +65,7 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 
 - **common/**: Shared configuration modules introduced in v3.0.0 for code reuse across systems
 - **mbp2023/, mbp2025/, mba2022/**: macOS configurations using nix-darwin with home-manager
-- **servo/**: NixOS server configuration with custom ISO, disk partitioning, TPM2 support, Jellyfin media server, Time Machine backups, and hardware-specific settings
+- **servo/**: NixOS remote server configuration with custom ISO, disk partitioning, TPM2 support, Jellyfin media server, Time Machine backups, and hardware-specific settings
 
 ## Instructions
 
