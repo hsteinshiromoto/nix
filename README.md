@@ -78,34 +78,7 @@ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 
 #### NixOS
 
-1. Clone this repository using the command
-```bash
-git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
-```
-
-2. Navigate to the `~/.config/nix` folder and partition the disk with the command:
-```bash
-make partition
-```
-After finishing this command, a password will be request to encrypt the disk.
-
-3. Once done, install NixOS with the command
-```bash
-make nixos_install
-```
-and reboot.
-
-4. After reboot login, and run `nmtui` to setup the connections again.
-
-5. Clone this repository again, as per step 1.
-
-6. Run the command
-```bash
-sudo ln -s /home/hsteinshiromoto/.config/nix/servo/configuration.nix /etc/nixos/
-```
-to create a symbolic link to the `configuration.nix` file of this repository.
-
-For more details, follow the instructions in this [README.md](servo/README.md).
+Follow the instructions in this [README.md](servo/README.md).
 
 ##### Using Nixos Anywhere
 
@@ -148,14 +121,16 @@ To switch to a new build, replace the `test` with `switch`.
 
 Use `Makefile` commands of run in terminal
 ```bash
-make nixos_rebuild FLAGS=switch
+make darwin_X FLAGS=build
 ```
+where `X` corresponds to either `2022`, `2023` or `2025` each one of the MacOS hosts. To switch to a new build, replace the `build` with `switch`.
+
 
 ## Neovim Remote Server
 
 The NixOS server (`servo`) runs a headless Neovim server that allows remote UI connections.
 
-### Server Setup
+### Neovim Server Setup
 
 The Neovim server is configured as a systemd service in `servo/configuration.nix`:
 
