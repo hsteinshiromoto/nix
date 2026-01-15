@@ -12,7 +12,8 @@
       "Read(//Users/hsteinshiromoto/.config/sops/**)",
       "Read(//Users/hsteinshiromoto/dotfiles/**)",
       "Bash(find:*)",
-      "WebFetch(domain:wiki.nixos.org)"
+      "WebFetch(domain:wiki.nixos.org)",
+      "Bash(cat:*)"
     ]
   },
   "enableAllProjectMcpServers": false
