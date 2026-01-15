@@ -108,6 +108,21 @@
 		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
 	};
 
+	# Configure SOPS to use GPG instead of age
+	sops.gnupg.home = "${config.home.homeDirectory}/.gnupg";
+
+	# Override sops paths for gitconfig (mbp2025 uses different path than common config)
+	sops.secrets.git_signingkey.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+	sops.secrets.user_email.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+
+	# Workaround for sops-nix PATH bug on macOS
+	# The launchd service sets PATH="" which breaks getconf lookup
+	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents"] ''
+		if [ -x /nix/var/nix/profiles/per-user/${config.home.username}/profile/bin/sops-nix-user ]; then
+			$DRY_RUN_CMD PATH="/usr/bin:/bin:$PATH" /nix/var/nix/profiles/per-user/${config.home.username}/profile/bin/sops-nix-user 2>/dev/null || true
+		fi
+	'';
+
 	# Install Ghostty terminfo for tmux compatibility
 	home.activation.installGhosttyTerminfo = config.lib.dag.entryAfter ["writeBoundary"] ''
 		if [ -d "/Applications/Ghostty.app/Contents/Resources/terminfo" ]; then
