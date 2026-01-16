@@ -205,3 +205,9 @@ For future reference, after updating SSH keys in SOPS and deploying to servidor,
 sudo systemctl restart sops-ssh-keys-sync
 ```
 
+A full rebuild, because the update of the ssh keys is only triggered, when a new switch (path change) is done, not when file content changes. This is because of the condition
+```nix
+restartTriggers = [ config.sops.secrets."authorized_keys".path ];
+```
+which triggers a restart when the path changes (e.g., `/run/secrets/authorized_keys → /run/secrets/something_else`), but not when the content of the secret changes.
+
