@@ -7,14 +7,14 @@
 3. Boot the usb into the server.
 4. When boot, set connection with `nmtui`.
 
-## Important Notes
+### Important Notes
 
 1. Never makes NixOS start up to depend on a external disk.
 2. The installation below may fail due to dependencyon sops secrets.
 
-## Partition the Disk
+### Partition the Disk
 
-### Method 1: Using disko directly (Recommended)
+#### Method 1: Using disko directly (Recommended)
 
 1. Clone the repository (if not already available):
 ```bash
@@ -31,7 +31,7 @@ his command will:
 - Create the partitions according to your disko config
 - Mount them at `/mnt` and `/mnt/boot`
 
-### Method 2: Using Parted
+#### Method 2: Using Parted
 
 1. Set the partition UEFI (GPT)
     a. Create a GPT partition table.
@@ -86,16 +86,16 @@ his command will:
 # nano /mnt/etc/nixos/configuration.nix
 ```
 
-## Install NixOS
+### Install NixOS
 
-### Method 1. From Flake (Recommended)
+#### Method 1. From Flake (Recommended)
 
 Install NixOS using your flake:
 ```bash
 sudo nixos-install --flake '~/.config/nix#servidor
 ```
 
-### Method 2. From Scratch
+#### Method 2. From Scratch
 
 1. If using the generated configuration to start. You have to enable network manager **before** installing NixOS. In the `configuration.nix`, make that the following line is left uncommented:
 
@@ -119,7 +119,7 @@ $ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 sudo nixos-install --flake '~/.config/nix#servidor'
 ```
 
-## Finalizing
+### Finalizing
 
 1. As the last step, nixos-install will ask you to set the password for the root user, e.g.
 ```bash
@@ -147,7 +147,7 @@ This will require to enter the passphrase to enroll TPM2.
 sudo ln -s /home/hsteinshiromoto/.config/nix/servo/configuration.nix /etc/nixos/
 ```
 
-## Upgrade with the command
+### Upgrade with the command
 
 ```bash
 # nixos-rebuild switch --flake .#servidor --upgrade
@@ -185,5 +185,23 @@ sudo dd if=result of=/dev/rdiskX bs=4m status=progress  # macOS
 
 ```bash
 sudo dd if=result of=/dev/sdX bs=4M status=progress     # Linux
+```
+
+## Troubleshoot
+
+### Checking Whether SOPS Secrets Have Been Decrypted
+
+Search for the corresponding secret (eg the "filename.yaml") in the folder `/run/secrets/filename`
+
+### Syncing SSH with systemctl
+
+If `sops-ssh-keys-sync` service does not re-run after the SOPS secrets were updated. The service only triggers automatically during nixos-rebuild switch, not when the SOPS file content changes.
+
+For future reference, after updating SSH keys in SOPS and deploying to servidor, you need to either:
+
+1. Run a full rebuild: `make nixos_rebuild FLAGS=switch`
+2. Or manually restart the sync service:
+```bash
+sudo systemctl restart sops-ssh-keys-sync
 ```
 
