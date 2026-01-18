@@ -16,6 +16,8 @@
       # Bluetooth support
       "bluetooth"
       "bluetooth_le_tracker"
+      # Philips Hue integration
+      "hue"
     ];
     extraPackages = python3Packages: with python3Packages; [
       bleak
