@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+	security.acme = {
+		acceptTerms = true;
+		defaults.email = "hsteinshiromoto@iusevimbtw.com";
+	};
+
 	services = {
 		home-assistant = {
 			enable = true;
