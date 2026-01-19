@@ -68,6 +68,7 @@
 
   networking = {
     hostName = "servidor";
+		nameservers = [ "8.8.8.8" "1.1.1.1" ];
     networkmanager = {
       enable = true;
       wifi.powersave = false;  # Disable WiFi power management to prevent disconnections
@@ -217,6 +218,10 @@
 
   # Enable the OpenSSH daemon.
   services = {
+		resolved = {
+			enable = true;
+			fallbackDns = [ "8.8.8.8" "1.1.1.1" ];
+		};
     openssh = {
       enable = true;
       ports = [ 22 ];
