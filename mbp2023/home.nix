@@ -78,10 +78,6 @@ in
 			enable = true;
 		};
 
-		opencode = {
-			enable = true;
-		};
-
 		ruff = {
 			enable = true;
 			settings = {
