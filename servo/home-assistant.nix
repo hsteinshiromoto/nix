@@ -30,6 +30,9 @@
 			config = {
 				# Includes dependencies for a basic setup
 				# https://www.home-assistant.io/integrations/default_config/
+				homeassistant = {
+					external_url = "https://servidor/home_assistant";
+				};
 				server_host = "::1";
 				trusted_proxies = [ "::1" ];
 				use_x_forwarded_for = true;
@@ -46,8 +49,8 @@
 				extraConfig = ''
 					proxy_buffering off;
 				'';
-				locations."/" = {
-					proxyPass = "http://[::1]:8123";
+				locations."/home_assistant/" = {
+					proxyPass = "http://[::1]:8123/";
 					proxyWebsockets = true;
 				};
 			};
