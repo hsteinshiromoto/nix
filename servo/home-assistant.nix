@@ -26,6 +26,7 @@
 		config = {
 			# Includes dependencies for a basic setup
 			# https://www.home-assistant.io/integrations/default_config/
+			default_config = {};
 			http = {
 				server_host = "0.0.0.0";  # Listen on all interfaces
 				server_port = 8123;
