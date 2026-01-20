@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-	security.acme = {
-		acceptTerms = true;
-		defaults.email = "hsteinshiromoto@iusevimbtw.com";
+	# Ensure nginx starts after self-signed certificates are generated
+	systemd.services.nginx = {
+		after = [ "nginxSelfSignedCert.service" ];
+		wants = [ "nginxSelfSignedCert.service" ];
 	};
 
 	services = {
@@ -40,7 +41,8 @@
 			recommendedProxySettings = true;
 			virtualHosts."servidor" = {
 				forceSSL = true;
-				enableACME = true;
+				sslCertificate = "/var/lib/nginx/certs/servidor.crt";
+				sslCertificateKey = "/var/lib/nginx/certs/servidor.key";
 				extraConfig = ''
 					proxy_buffering off;
 				'';

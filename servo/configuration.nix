@@ -255,6 +255,38 @@
   };
 
 	systemd.services = {
+		# Generate self-signed SSL certificates for nginx
+		nginxSelfSignedCert = {
+			description = "Generate self-signed SSL certificates for nginx";
+			wantedBy = [ "multi-user.target" ];
+			before = [ "nginx.service" ];
+			serviceConfig = {
+				Type = "oneshot";
+				RemainAfterExit = true;
+			};
+			script = ''
+				CERT_DIR="/var/lib/nginx/certs"
+				CERT_FILE="$CERT_DIR/servidor.crt"
+				KEY_FILE="$CERT_DIR/servidor.key"
+
+				mkdir -p "$CERT_DIR"
+
+				# Only generate if certs don't exist or are expiring within 30 days
+				if [ ! -f "$CERT_FILE" ] || [ ! -f "$KEY_FILE" ] || \
+				   ! ${pkgs.openssl}/bin/openssl x509 -checkend 2592000 -noout -in "$CERT_FILE" 2>/dev/null; then
+					${pkgs.openssl}/bin/openssl req -x509 -nodes -days 365 \
+						-newkey rsa:2048 \
+						-keyout "$KEY_FILE" \
+						-out "$CERT_FILE" \
+						-subj "/CN=servidor/O=Home Assistant/C=AU" \
+						-addext "subjectAltName=DNS:servidor,DNS:localhost,IP:127.0.0.1"
+					chown nginx:nginx "$CERT_FILE" "$KEY_FILE"
+					chmod 640 "$KEY_FILE"
+					chmod 644 "$CERT_FILE"
+				fi
+			'';
+		};
+
 		nvimd = {
 			enable = true;
 			description = "Neovim server";
