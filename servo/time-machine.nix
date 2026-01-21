@@ -120,7 +120,7 @@ in {
         "vfs objects" = "catia fruit streams_xattr";
       };
 
-      "MBP2023" = {
+      "mb" = {
         "path" = "/mnt/mb";
         "valid users" = tmUser;
         "public" = "no";
