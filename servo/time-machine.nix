@@ -119,6 +119,21 @@ in {
         "fruit:time machine max size" = "500G";
         "vfs objects" = "catia fruit streams_xattr";
       };
+
+      "mb" = {
+        "path" = "/mnt/mb";
+        "valid users" = tmUser;
+        "public" = "no";
+        "writeable" = "yes";
+        "force user" = tmUser;
+        "force group" = "users";
+        "create mask" = "0600";
+        "directory mask" = "0700";
+
+        # macOS compatibility settings
+        "vfs objects" = "catia fruit streams_xattr";
+        "fruit:aapl" = "yes";
+      };
     };
   };
 
