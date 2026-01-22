@@ -60,6 +60,7 @@
 					"google-chrome"
 					"gpg-suite"
 					"karabiner-elements"
+					"linearmouse"
 					"maccy"
 					"microsoft-teams"
 					"obsidian"
