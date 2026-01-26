@@ -10,6 +10,8 @@ in {
     enable = true;
     # Open firewall for web interface (port 8096)
     openFirewall = true;
+    # Declarative settings via nixos-jellyfin flake
+    settings.system.BaseUrl = "/jellyfin";
   };
 
   # Add jellyfin user to the media group for access to media files

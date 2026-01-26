@@ -1,7 +1,7 @@
 {
   description = "NixOS configuration for servidor";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, commonModules, commonHomeManagerModules, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, sops-nix, nixos-jellyfin, commonModules, commonHomeManagerModules, ... }@inputs:
     let
       system = "x86_64-linux"; # Adjust if you're using a different architecture
 
@@ -38,6 +38,7 @@
 
           # Include your main configuration
           ./configuration.nix
+					nixos-jellyfin.nixosModules.default
 					disko.nixosModules.disko
 					./disko-config.nix # Do not enable with ./hardware-configuration.nix import in configuration.nix
 					sops-nix.nixosModules.sops

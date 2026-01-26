@@ -16,6 +16,7 @@
 			./time-machine.nix						# <- Comment out this line to remove dependency on sops
 			./media.nix                   # <- Comment out this line to remove dependency on sops
 			./mb.nix                      # <- Comment out this line to remove dependency on sops
+			./nginx.nix
 			./jellyfin.nix
     ];
 
