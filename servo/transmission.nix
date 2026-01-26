@@ -21,6 +21,8 @@ in {
       rpc-bind-address = "0.0.0.0";
       rpc-whitelist-enabled = true;
       rpc-whitelist = "127.0.0.1,100.*.*.*";
+      rpc-host-whitelist-enabled = true;
+      rpc-host-whitelist = "servidor,localhost";
     };
   };
 
