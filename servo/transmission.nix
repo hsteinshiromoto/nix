@@ -29,4 +29,13 @@ in {
   # Ensure transmission starts after media drive is mounted
   systemd.services.transmission.after = [ "mnt-media.mount" ];
   systemd.services.transmission.requires = [ "mnt-media.mount" ];
+
+  # Nginx reverse proxy location for Transmission
+  services.nginx.virtualHosts."servidor".locations."/transmission" = {
+    proxyPass = "http://127.0.0.1:9091";
+    proxyWebsockets = true;
+    extraConfig = ''
+      proxy_buffering off;
+    '';
+  };
 }
