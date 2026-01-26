@@ -13,7 +13,10 @@
       "Read(//Users/hsteinshiromoto/dotfiles/**)",
       "Bash(find:*)",
       "WebFetch(domain:wiki.nixos.org)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch"
     ]
   },
   "enableAllProjectMcpServers": false
