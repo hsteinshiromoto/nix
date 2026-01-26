@@ -18,6 +18,7 @@
 			./mb.nix                      # <- Comment out this line to remove dependency on sops
 			./nginx.nix
 			./jellyfin.nix
+			./transmission.nix
     ];
 
 	nix = {
