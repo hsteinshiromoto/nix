@@ -27,9 +27,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix , ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix, ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";

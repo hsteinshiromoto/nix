@@ -44,4 +44,15 @@ in {
     after = [ "mnt-media.mount" ];
     wants = [ "mnt-media.mount" ];
   };
+
+  # Nginx reverse proxy location for Jellyfin
+  # IMPORTANT: After deployment, configure Jellyfin's Base URL in dashboard:
+  # Settings > Networking > Base URL = /jellyfin
+  services.nginx.virtualHosts."servidor".locations."/jellyfin" = {
+    proxyPass = "http://127.0.0.1:8096";
+    proxyWebsockets = true;
+    extraConfig = ''
+      proxy_buffering off;
+    '';
+  };
 }
