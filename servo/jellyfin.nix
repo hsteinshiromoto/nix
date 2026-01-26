@@ -10,8 +10,6 @@ in {
     enable = true;
     # Open firewall for web interface (port 8096)
     openFirewall = true;
-    # Declarative settings via nixos-jellyfin flake
-    settings.system.BaseUrl = "/jellyfin";
   };
 
   # Add jellyfin user to the media group for access to media files
@@ -48,7 +46,8 @@ in {
   };
 
   # Nginx reverse proxy location for Jellyfin
-  # BaseUrl is configured declaratively above via nixos-jellyfin flake
+  # IMPORTANT: After deployment, configure Jellyfin's Base URL in dashboard:
+  # Settings > Networking > Base URL = /jellyfin
   services.nginx.virtualHosts."servidor".locations."/jellyfin" = {
     proxyPass = "http://127.0.0.1:8096";
     proxyWebsockets = true;

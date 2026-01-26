@@ -28,13 +28,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-jellyfin = {
-      url = "github:matt1432/nixos-jellyfin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix, nixos-jellyfin, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix, ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
@@ -51,7 +47,7 @@
 
     servo-flake = import ./servo/flake.nix;
     servo-outputs = servo-flake.outputs {
-      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix nixos-jellyfin commonModules commonHomeManagerModules;
+      inherit self nixpkgs nixpkgs-unstable home-manager disko sops-nix commonModules commonHomeManagerModules;
     };
 
     mbp2023-flake = import ./mbp2023/flake.nix;
