@@ -20,7 +20,7 @@ in {
       incomplete-dir = "${downloadDir}/.incomplete";
       rpc-bind-address = "0.0.0.0";
       rpc-whitelist-enabled = true;
-      rpc-whitelist = "127.0.0.1,100.64.*.*";
+      rpc-whitelist = "127.0.0.1,100.*.*.*";
     };
   };
 
