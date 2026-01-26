@@ -44,4 +44,14 @@ in {
     after = [ "mnt-media.mount" ];
     wants = [ "mnt-media.mount" ];
   };
+
+  # Nginx reverse proxy location for Jellyfin
+  # BaseUrl is configured declaratively above via nixos-jellyfin flake
+  services.nginx.virtualHosts."servidor".locations."/jellyfin" = {
+    proxyPass = "http://127.0.0.1:8096";
+    proxyWebsockets = true;
+    extraConfig = ''
+      proxy_buffering off;
+    '';
+  };
 }
