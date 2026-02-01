@@ -16,6 +16,7 @@
 		pkgs.delta
 		pkgs.gitflow
 		pkgs.jnv
+		pkgs.just
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
