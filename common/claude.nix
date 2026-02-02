@@ -18,7 +18,7 @@
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "AWS_REGION": "ap-southeast-2",
     "AWS_PROFILE": "sandbox",
-    "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-southeast-2::foundation-model/anthropic.claude-opus-4-5-20251101-v1:0",
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-southeast-2:058264223017:inference-profile/global.anthropic.claude-opus-4-5-20251101-v1:0",
     "ANTHROPIC_SMALL_FAST_MODEL": "arn:aws:bedrock:ap-southeast-2::foundation-model/anthropic.claude-haiku-4-5-20251001-v1:0",
     "AWS_BEARER_TOKEN_BEDROCK": "${config.sops.placeholder.AWS_BEARER_TOKEN_BEDROCK}"
   },
