@@ -4,6 +4,7 @@
   imports = [
     ../common/gitconfig.nix
     ../common/gitlab.nix
+    ../common/claude.nix
     ../common/nu.nix
   ];
 
@@ -16,6 +17,7 @@
 		pkgs.delta
 		pkgs.gitflow
 		pkgs.jnv
+		pkgs.just
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
@@ -115,12 +117,13 @@
 	# Override sops paths for gitconfig (mbp2025 uses different path than common config)
 	sops.secrets.git_signingkey.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
 	sops.secrets.user_email.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
-
 	# Workaround for sops-nix PATH bug on macOS
 	# The launchd service sets PATH="" which breaks getconf lookup
-	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents"] ''
-		if [ -x /nix/var/nix/profiles/per-user/${config.home.username}/profile/bin/sops-nix-user ]; then
-			$DRY_RUN_CMD PATH="/usr/bin:/bin:$PATH" /nix/var/nix/profiles/per-user/${config.home.username}/profile/bin/sops-nix-user 2>/dev/null || true
+	# Extract binary path dynamically from the launchd plist
+	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "sops-nix"] ''
+		SOPS_NIX_BIN=$(grep -A1 "<key>Program</key>" ~/Library/LaunchAgents/org.nix-community.home.sops-nix.plist 2>/dev/null | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/')
+		if [ -x "$SOPS_NIX_BIN" ]; then
+			PATH="/usr/bin:/bin:/usr/sbin:/sbin" SOPS_GPG_EXEC="/usr/local/MacGPG2/bin/gpg" "$SOPS_NIX_BIN" || true
 		fi
 	'';
 
