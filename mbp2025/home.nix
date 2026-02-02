@@ -4,6 +4,7 @@
   imports = [
     ../common/gitconfig.nix
     ../common/gitlab.nix
+    ../common/claude.nix
     ../common/nu.nix
   ];
 
@@ -108,7 +109,6 @@
 		# The secret files are decrypted by sops-nix at activation time
 		GITLAB_TOKEN = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_token 2>/dev/null || echo '')";
 		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
-		AWS_BEARER_TOKEN_BEDROCK = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/bedrock 2>/dev/null || echo '')";
 	};
 
 	# Configure SOPS to use GPG instead of age
@@ -117,11 +117,6 @@
 	# Override sops paths for gitconfig (mbp2025 uses different path than common config)
 	sops.secrets.git_signingkey.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
 	sops.secrets.user_email.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
-	sops.secrets.AWS_BEARER_TOKEN_BEDROCK = {
-		sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/bedrock.yaml";
-		path = "${config.home.homeDirectory}/.config/sops/secrets/bedrock";
-	};
-
 	# Workaround for sops-nix PATH bug on macOS
 	# The launchd service sets PATH="" which breaks getconf lookup
 	# Extract binary path dynamically from the launchd plist
