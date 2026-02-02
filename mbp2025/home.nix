@@ -108,6 +108,7 @@
 		# The secret files are decrypted by sops-nix at activation time
 		GITLAB_TOKEN = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_token 2>/dev/null || echo '')";
 		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
+		AWS_BEARER_TOKEN_BEDROCK = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/bedrock 2>/dev/null || echo '')";
 	};
 
 	# Configure SOPS to use GPG instead of age
@@ -116,12 +117,18 @@
 	# Override sops paths for gitconfig (mbp2025 uses different path than common config)
 	sops.secrets.git_signingkey.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
 	sops.secrets.user_email.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+	sops.secrets.AWS_BEARER_TOKEN_BEDROCK = {
+		sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/bedrock.yaml";
+		path = "${config.home.homeDirectory}/.config/sops/secrets/bedrock";
+	};
 
 	# Workaround for sops-nix PATH bug on macOS
 	# The launchd service sets PATH="" which breaks getconf lookup
+	# Extract binary path dynamically from the launchd plist
 	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents"] ''
-		if [ -x /nix/var/nix/profiles/per-user/${config.home.username}/profile/bin/sops-nix-user ]; then
-			$DRY_RUN_CMD PATH="/usr/bin:/bin:$PATH" /nix/var/nix/profiles/per-user/${config.home.username}/profile/bin/sops-nix-user 2>/dev/null || true
+		SOPS_NIX_BIN=$(grep -A1 "<key>Program</key>" ~/Library/LaunchAgents/org.nix-community.home.sops-nix.plist 2>/dev/null | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/')
+		if [ -x "$SOPS_NIX_BIN" ]; then
+			$DRY_RUN_CMD PATH="/usr/bin:/bin:$PATH" "$SOPS_NIX_BIN" 2>/dev/null || true
 		fi
 	'';
 
