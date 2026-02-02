@@ -120,7 +120,7 @@
 	# Workaround for sops-nix PATH bug on macOS
 	# The launchd service sets PATH="" which breaks getconf lookup
 	# Extract binary path dynamically from the launchd plist
-	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents"] ''
+	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "sops-nix"] ''
 		SOPS_NIX_BIN=$(grep -A1 "<key>Program</key>" ~/Library/LaunchAgents/org.nix-community.home.sops-nix.plist 2>/dev/null | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/')
 		if [ -x "$SOPS_NIX_BIN" ]; then
 			$DRY_RUN_CMD PATH="/usr/bin:/bin:$PATH" "$SOPS_NIX_BIN" 2>/dev/null || true
