@@ -7,7 +7,7 @@
 let
   backupPath = "/mnt/backup";
   # TODO: Replace with actual UUID from: sudo blkid /dev/sdX
-  luksUuid = "PLACEHOLDER-UUID-REPLACE-ME";
+  luksUuid = "a7aef982-a144-4080-bae4-f3f2af9ce906";
 in {
   # SOPS secrets for backup
   sops.secrets = {
@@ -61,6 +61,27 @@ in {
       "x-systemd.requires=backup-crypt-unlock.service"
       "x-systemd.after=backup-crypt-unlock.service"
     ];
+  };
+
+  # Auto-initialize borg repository if it doesn't exist
+  systemd.services.borg-repo-init = {
+    description = "Initialize borg backup repository";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "mnt-backup.mount" "sops-nix.service" ];
+    requires = [ "mnt-backup.mount" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+
+    script = ''
+      if [ ! -d "${backupPath}/borg" ]; then
+        BORG_PASSPHRASE=$(cat ${config.sops.secrets.backup_borg_passphrase.path})
+        export BORG_PASSPHRASE
+        ${pkgs.borgbackup}/bin/borg init --encryption=repokey-blake2 ${backupPath}/borg
+      fi
+    '';
   };
 
   # Borgbackup configuration
