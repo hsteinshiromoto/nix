@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, sqlit, ... }:
 
 {
   imports = [
@@ -21,6 +21,7 @@
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
+		sqlit.packages.aarch64-darwin.default
 	];
 
 	programs = {

@@ -13,6 +13,11 @@ log_info = @echo "$(GREEN)[INFO]$(RESET) $(1)"
 log_warning = @echo "$(YELLOW)[WARNING]$(RESET) $(1)"
 log_error = @echo "$(RED)[ERROR]$(RESET) $(1)"
 
+## Test Flake Build in Darwin
+test_darwin:
+	$(call log_info,Running test for Darwin host test $(BOLD)$(YELLOW)$(H)$(RESET)...)
+	nix build .#darwinConfigurations.$(H).system --dry-run 2>&1
+
 ## Get ISO image via rsync
 get_iso:
 	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./iso
