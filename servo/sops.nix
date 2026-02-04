@@ -63,6 +63,11 @@
         mode = "0400";
         owner = "root";
       };
+      "protonvpn/credentials" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/servo/secrets/protonvpn.yaml;
+        mode = "0400";
+        owner = "root";
+      };
     };
   };
 
