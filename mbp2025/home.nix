@@ -6,6 +6,7 @@
     ../common/gitlab.nix
     ../common/claude.nix
     ../common/nu.nix
+    ./aws.nix
   ];
 
   # Home Manager needs a bit of information about you and the
