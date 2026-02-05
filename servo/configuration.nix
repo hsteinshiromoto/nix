@@ -162,6 +162,7 @@
     nodejs
 		ntfs3g
 		opensc                   # Smart card support
+		openresolv
     pass
 		pcsclite
     pkg-config # Build essential
