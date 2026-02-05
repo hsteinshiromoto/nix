@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help
+.PHONY: help mba2022 mbp2023 mbp2025
 
 # Color definitions for logging (similar to nvim-remote.sh)
 GREEN := $(shell tput setaf 2)
@@ -28,29 +28,12 @@ update:
 	nix flake update
 	$(call log_info,Done)
 
-# Run Nix-Darwin flakes
-darwin_%: darwin_20$@
-
-# Run NixOS flakes
-nixos_%: nixos_$@
-
-## Rebuild nix-darwin mba2022 flake
-darwin_2022: flake.nix flake.lock $(shell find mba2022 -type f -name "*.nix")
+## Rebuild nix-darwin using hostname directly
+mba2022 mbp2023 mbp2025:
 	$(eval FLAGS=build)
-	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
-
-## Rebuild nix-darwin mbp2023 flake
-darwin_2023: flake.nix flake.lock $(shell find mbp2023 -type f -name "*.nix")
-	$(eval FLAGS=build)
-	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
-
-## Rebuild nix-darwin mbp2025 flake
-darwin_2025: flake.nix flake.lock $(shell find mbp2025 -type f -name "*.nix")
-	$(eval FLAGS=build)
-	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
+	$(call log_info,Running Darwin $(BOLD)"$@"$(RESET) rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
+	sudo darwin-rebuild $(FLAGS) --flake .#$@ --impure
+	$(call log_info,Done)
 
 ## Run partition the disk using disko. Usage (for repartition the disk): make partition FLAGS=disko
 partition: flake.nix flake.lock servo/disko-config.nix

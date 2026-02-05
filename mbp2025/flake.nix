@@ -1,5 +1,5 @@
 {
-  description = "Nix-darwin MBP2025 system flake";
+  description = "Nix-darwin mbp2025 system flake";
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, sqlit, commonModules, commonHomeManagerModules, ... }:
   let
@@ -139,8 +139,8 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MBP2025
-    darwinConfigurations."MBP2025" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#mbp2025
+    darwinConfigurations."mbp2025" = nix-darwin.lib.darwinSystem {
       modules = [
 				configuration
 				nix-homebrew.darwinModules.nix-homebrew {

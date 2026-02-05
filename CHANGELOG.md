@@ -183,7 +183,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added YubiKey configuration module (`servo/yubikey.nix`)
 - User group management improvements
 
-#### Nix-Darwin (MBP2023, MBP2025)
+#### Nix-Darwin (mbp2023, mbp2025)
 - Garbage collection configured to keep only 5 builds
 - Home-manager integration fixes
 - Improved XDG_CONFIG_HOME handling
