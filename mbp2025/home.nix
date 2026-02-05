@@ -123,10 +123,11 @@
 	# The launchd service sets PATH="" which breaks getconf lookup
 	# Extract binary path dynamically from the launchd plist
 	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "sops-nix"] ''
-		SOPS_NIX_BIN=$(grep -A1 "<key>Program</key>" ~/Library/LaunchAgents/org.nix-community.home.sops-nix.plist 2>/dev/null | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/')
+		SOPS_NIX_BIN=$(grep -A1 "<key>Program</key>" ~/Library/LaunchAgents/org.nix-community.home.sops-nix.plist 2>/dev/null | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/' || true)
 		if [ -x "$SOPS_NIX_BIN" ]; then
 			PATH="/usr/bin:/bin:/usr/sbin:/sbin" SOPS_GPG_EXEC="/usr/local/MacGPG2/bin/gpg" "$SOPS_NIX_BIN" || true
 		fi
+		true
 	'';
 
 	# Install Ghostty terminfo for tmux compatibility
