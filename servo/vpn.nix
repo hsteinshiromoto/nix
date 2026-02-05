@@ -20,7 +20,7 @@
       authUserPass = {
         username = config.sops.secrets."vpn_username".path;
       };
-      autoStart = false;
+      autoStart = true;
     };
   };
 }
