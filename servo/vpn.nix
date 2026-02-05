@@ -12,6 +12,13 @@
     owner = "root";
   };
 
+  sops.secrets."vpn_password" = {
+    sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/vpn.yaml;
+    key = "password";
+    mode = "0400";
+    owner = "root";
+  };
+
   services.openvpn.servers = {
     protonvpn = {
       config = ''
@@ -19,6 +26,7 @@
       '';
       authUserPass = {
         username = config.sops.secrets."vpn_username".path;
+        password = config.sops.secrets."vpn_password".path;
       };
       autoStart = true;
     };
