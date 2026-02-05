@@ -28,12 +28,6 @@ update:
 	nix flake update
 	$(call log_info,Done)
 
-# Run Nix-Darwin flakes
-darwin_%: darwin_20$@
-
-# Run NixOS flakes
-nixos_%: nixos_$@
-
 ## Rebuild nix-darwin using hostname directly
 mba2022 mbp2023 mbp2025:
 	$(eval FLAGS=build)
