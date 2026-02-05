@@ -38,6 +38,7 @@
 				taps = [
 					"gromgit/brewtils"
 					"huseyinbabal/tap"
+					"productdevbook/tap"
 				];
 				brews = [
 					"libomp"
