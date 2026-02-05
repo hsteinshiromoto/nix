@@ -166,7 +166,6 @@
     pass
 		pcsclite
     pkg-config # Build essential
-		pkgsUnstable.proton-vpn-cli
 		pkgsUnstable.proton-pass-cli
     ripgrep
 		sops
