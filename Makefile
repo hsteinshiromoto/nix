@@ -38,19 +38,19 @@ nixos_%: nixos_$@
 darwin_2022: flake.nix flake.lock $(shell find mba2022 -type f -name "*.nix")
 	$(eval FLAGS=build)
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#MBA2022 --impure
+	sudo darwin-rebuild $(FLAGS) --flake .#mba2022 --impure
 
 ## Rebuild nix-darwin mbp2023 flake
 darwin_2023: flake.nix flake.lock $(shell find mbp2023 -type f -name "*.nix")
 	$(eval FLAGS=build)
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#MBP2023 --impure
+	sudo darwin-rebuild $(FLAGS) --flake .#mbp2023 --impure
 
 ## Rebuild nix-darwin mbp2025 flake
 darwin_2025: flake.nix flake.lock $(shell find mbp2025 -type f -name "*.nix")
 	$(eval FLAGS=build)
 	$(call log_info,Running Darwin rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#MBP2025 --impure
+	sudo darwin-rebuild $(FLAGS) --flake .#mbp2025 --impure
 
 ## Run partition the disk using disko. Usage (for repartition the disk): make partition FLAGS=disko
 partition: flake.nix flake.lock servo/disko-config.nix
