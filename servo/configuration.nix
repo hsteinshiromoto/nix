@@ -166,6 +166,7 @@
     pass
 		pcsclite
     pkg-config # Build essential
+		proton-vpn-cli
     ripgrep
 		sops
 		ssh-to-age
