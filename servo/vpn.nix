@@ -19,10 +19,20 @@
     owner = "root";
   };
 
+  environment.etc."openvpn/update-resolv-conf" = {
+    source = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh";
+    };
+    mode = "0755";
+  };
+
   services.openvpn.servers = {
     protonvpn = {
       config = ''
         config /home/hsteinshiromoto/.vpn/protonvpn-config.ovpn
+        script-security 2
+        up /etc/openvpn/update-resolv-conf
+        down /etc/openvpn/update-resolv-conf
       '';
       authUserPass = {
         username = config.sops.secrets."vpn_username".path;
