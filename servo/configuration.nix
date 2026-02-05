@@ -20,7 +20,6 @@
 			./jellyfin.nix
 			./transmission.nix
 			./backup.nix                  # <- Comment out this line to remove dependency on sops
-			# ./protonvpn.nix               # <- Comment out this line to remove dependency on sops
     ];
 
 	nix = {
