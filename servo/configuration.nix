@@ -19,6 +19,7 @@
 			./nginx.nix
 			./jellyfin.nix
 			./transmission.nix
+			./vpn.nix
 			./backup.nix                  # <- Comment out this line to remove dependency on sops
     ];
 
@@ -161,7 +162,6 @@
     nodejs
 		ntfs3g
 		opensc                   # Smart card support
-		openvpn                  # VPN client for ProtonVPN
     pass
 		pcsclite
     pkg-config # Build essential
@@ -239,17 +239,6 @@
     tailscale = {
       enable = true;
     };
-		openvpn.servers = {
-				protonvpn = {
-					config = ''
-						config /home/hsteinshiromoto/.vpn/protonvpn-config.ovpn
-					'';
-				# Path to the credentials file
-				authUserPass = {
-					username = "/etc/nixos/protonvpn.auth";
-				};
-      autoStart = false; # Set to true to start on boot			};
-		};
     syncthing = {
       enable = true;
       user = "hsteinshiromoto";
