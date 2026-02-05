@@ -3,11 +3,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Install OpenVPN package
-  environment.systemPackages = with pkgs; [
-    openvpn
-  ];
-
   # OpenVPN client configuration for ProtonVPN
   services.openvpn.servers.protonvpn = {
     config = ''
