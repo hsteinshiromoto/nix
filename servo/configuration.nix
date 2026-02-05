@@ -162,6 +162,7 @@
     nodejs
 		ntfs3g
 		opensc                   # Smart card support
+		openvpn                  # VPN client for ProtonVPN
     pass
 		pcsclite
     pkg-config # Build essential

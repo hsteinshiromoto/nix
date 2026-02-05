@@ -34,10 +34,6 @@
                 unstable = pkgsUnstable;
               })
             ];
-            # System packages
-            environment.systemPackages = with pkgs; [
-              openvpn
-            ];
           })
 
           # Include your main configuration
