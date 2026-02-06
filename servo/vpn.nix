@@ -26,19 +26,43 @@
     mode = "0755";
   };
 
+  # Create credentials file from SOPS secrets
+  systemd.services.openvpn-protonvpn-credentials = {
+    description = "Create OpenVPN ProtonVPN credentials file";
+    wantedBy = [ "multi-user.target" ];
+    before = [ "openvpn-protonvpn.service" ];
+    after = [ "sops-nix.service" ];
+    wants = [ "sops-nix.service" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+
+    script = ''
+      mkdir -p /etc/openvpn
+      cat ${config.sops.secrets."vpn_username".path} > /etc/openvpn/protonvpn-auth.txt
+      cat ${config.sops.secrets."vpn_password".path} >> /etc/openvpn/protonvpn-auth.txt
+      chmod 400 /etc/openvpn/protonvpn-auth.txt
+    '';
+  };
+
   services.openvpn.servers = {
     protonvpn = {
       config = ''
         config /home/hsteinshiromoto/.vpn/protonvpn-config.ovpn
+        auth-user-pass /etc/openvpn/protonvpn-auth.txt
         script-security 2
         up /etc/openvpn/update-resolv-conf
         down /etc/openvpn/update-resolv-conf
       '';
-      authUserPass = {
-        username = config.sops.secrets."vpn_username".path;
-        password = config.sops.secrets."vpn_password".path;
-      };
       autoStart = true;
     };
+  };
+
+  # Ensure openvpn waits for credentials
+  systemd.services.openvpn-protonvpn = {
+    after = [ "openvpn-protonvpn-credentials.service" ];
+    requires = [ "openvpn-protonvpn-credentials.service" ];
   };
 }
