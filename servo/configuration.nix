@@ -19,6 +19,7 @@
 			./nginx.nix
 			./jellyfin.nix
 			./transmission.nix
+			./vpn.nix
 			./backup.nix                  # <- Comment out this line to remove dependency on sops
     ];
 
@@ -161,9 +162,11 @@
     nodejs
 		ntfs3g
 		opensc                   # Smart card support
+		openresolv
     pass
 		pcsclite
     pkg-config # Build essential
+		pkgsUnstable.proton-pass-cli
     ripgrep
 		sops
 		ssh-to-age
