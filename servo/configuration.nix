@@ -195,6 +195,15 @@
   # started in user sessions.
   # programs.mtr.enable = true;
     programs = {
+      # Enable nix-ld for running dynamically linked executables (e.g., uv, Python binaries)
+      nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+          stdenv.cc.cc
+          zlib
+        ];
+      };
+
       gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
