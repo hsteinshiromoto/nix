@@ -26,13 +26,14 @@
     mode = "0755";
   };
 
-  # Create credentials file from SOPS secrets
+  # Create credentials file from SOPS secrets and fix .ovpn file
   systemd.services.openvpn-protonvpn-credentials = {
     description = "Create OpenVPN ProtonVPN credentials file";
     wantedBy = [ "multi-user.target" ];
     before = [ "openvpn-protonvpn.service" ];
     after = [ "sops-nix.service" ];
     wants = [ "sops-nix.service" ];
+    path = [ pkgs.gnused ];
 
     serviceConfig = {
       Type = "oneshot";
@@ -40,10 +41,17 @@
     };
 
     script = ''
+      # Create credentials file
       mkdir -p /etc/openvpn
       cat ${config.sops.secrets."vpn_username".path} > /etc/openvpn/protonvpn-auth.txt
       cat ${config.sops.secrets."vpn_password".path} >> /etc/openvpn/protonvpn-auth.txt
       chmod 400 /etc/openvpn/protonvpn-auth.txt
+
+      # Comment out bare auth-user-pass in .ovpn to prevent interactive prompt
+      OVPN_FILE="/home/hsteinshiromoto/.vpn/protonvpn-config.ovpn"
+      if [ -f "$OVPN_FILE" ]; then
+        sed -i 's/^auth-user-pass$/# auth-user-pass/' "$OVPN_FILE"
+      fi
     '';
   };
 
