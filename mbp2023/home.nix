@@ -40,6 +40,7 @@ in
 		pkgs.delta
 		pkgs.ffmpeg-headless
 		pkgs.gitflow
+		pkgs.hledger
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
