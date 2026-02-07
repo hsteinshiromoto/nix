@@ -41,6 +41,7 @@
 				enable = true;
 				taps = [
 					"gromgit/brewtils"
+					"productdevbook/tap"
 				];
 				brews = [
 					"age"
