@@ -100,7 +100,6 @@
 					"Parcel - Delivery Tracking" = 639968404;
 					# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
 					# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
-					"Windows App" = 1295203466;
 					"Tailscale" = 1475387142;
 					"TextSniper - OCR, Copy & Paste" = 1528890965;
 					"Theine" = 955848755;
