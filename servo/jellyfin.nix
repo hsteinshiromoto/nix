@@ -64,6 +64,15 @@ in {
     jellyfin-ffmpeg       # FFmpeg build optimized for Jellyfin
   ];
 
+  # Symlinks from default Jellyfin library paths to actual media locations
+  # This allows Jellyfin's default library configuration to find media
+  systemd.tmpfiles.rules = [
+    "d /var/lib/jellyfin/root/default 0755 jellyfin jellyfin -"
+    "L+ /var/lib/jellyfin/root/default/Movies - - - - /mnt/media/movies"
+    "L+ /var/lib/jellyfin/root/default/TV - - - - /mnt/media/tv"
+    "L+ /var/lib/jellyfin/root/default/Music - - - - /mnt/media/music"
+  ];
+
   # Ensure Jellyfin service starts after media drive is mounted
   systemd.services.jellyfin = {
     after = [ "mnt-media.mount" ];
