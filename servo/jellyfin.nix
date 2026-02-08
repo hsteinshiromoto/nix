@@ -5,6 +5,7 @@
 
 let
   mediaPath = "/mnt/media";
+  mediaDirs = [ "/mnt/media/tv" "/mnt/media/movies" "/mnt/media/music" ];
 in {
   services.jellyfin = {
     enable = true;
@@ -12,9 +13,33 @@ in {
     openFirewall = true;
   };
 
-  # Add jellyfin user to the media group for access to media files
+  # Create media group for shared access to media files
+  users.groups.media = {};
+
+  # Add jellyfin user to groups for media access and hardware acceleration
   users.users.jellyfin = {
-    extraGroups = [ "video" "render" ];
+    extraGroups = [ "video" "render" "media" ];
+  };
+
+  # Set media directory permissions after mount
+  systemd.services.jellyfin-media-permissions = {
+    description = "Set media directory permissions for Jellyfin";
+    after = [ "mnt-media.mount" ];
+    requires = [ "mnt-media.mount" ];
+    before = [ "jellyfin.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      for dir in ${lib.concatStringsSep " " mediaDirs}; do
+        if [ -d "$dir" ]; then
+          ${pkgs.coreutils}/bin/chgrp -R media "$dir"
+          ${pkgs.coreutils}/bin/chmod -R g+rX "$dir"
+        fi
+      done
+    '';
   };
 
   # Intel hardware acceleration (VAAPI)
@@ -37,6 +62,15 @@ in {
   # Jellyfin-related packages
   environment.systemPackages = with pkgs; [
     jellyfin-ffmpeg       # FFmpeg build optimized for Jellyfin
+  ];
+
+  # Symlinks from default Jellyfin library paths to actual media locations
+  # This allows Jellyfin's default library configuration to find media
+  systemd.tmpfiles.rules = [
+    "d /var/lib/jellyfin/root/default 0755 jellyfin jellyfin -"
+    "L+ /var/lib/jellyfin/root/default/Movies - - - - /mnt/media/movies"
+    "L+ /var/lib/jellyfin/root/default/TV - - - - /mnt/media/tv"
+    "L+ /var/lib/jellyfin/root/default/Music - - - - /mnt/media/music"
   ];
 
   # Ensure Jellyfin service starts after media drive is mounted
