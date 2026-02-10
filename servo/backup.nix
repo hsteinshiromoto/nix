@@ -92,6 +92,8 @@ in {
       "/var/tmp"
       "/var/lib/docker"
       "/var/log/journal"
+      "/var/lib/jellyfin/cache"
+      "/var/lib/jellyfin/data/transcodes"
       "**/.cache"
       "**/node_modules"
       "**/__pycache__"
