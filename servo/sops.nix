@@ -63,6 +63,12 @@
         mode = "0400";
         owner = "root";
       };
+      "tailscale_auth_key" = {
+        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/tailscale.yaml;
+        key = "tailscale_auth_key";
+        mode = "0400";
+        owner = "root";
+      };
     };
   };
 
