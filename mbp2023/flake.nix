@@ -76,6 +76,7 @@
 					"proton-pass"
 					"protonvpn"
 					"reader"
+					"signal"
 					"spotify"
 					"syncthing-app"
 					"the-unarchiver"
