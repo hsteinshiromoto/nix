@@ -65,7 +65,7 @@
 					"maccy"
 					"microsoft-teams"
 					"obsidian"
-					"ollama"
+					"ollama-app"
 					"popclip"
 					"productdevbook/tap/portkiller"
 					"proton-pass"
