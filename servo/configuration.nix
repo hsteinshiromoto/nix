@@ -82,6 +82,8 @@
     # Open ports in the firewall.
     firewall = {
       enable = true;
+      checkReversePath = "loose";  # Required for Tailscale, especially with VPN
+      trustedInterfaces = [ "tailscale0" ];  # Trust Tailscale interface
       allowedTCPPorts = [ 22 8384 22000 55666 9000 ];
       allowedUDPPorts = [ 21027 22000 ];
     };
@@ -272,6 +274,12 @@
   };
 
 	systemd.services = {
+		# Ensure auto-upgrade waits for VPN/network to be fully online before downloading
+		nixos-upgrade = {
+			after = [ "network-online.target" "openvpn-protonvpn.service" ];
+			wants = [ "network-online.target" ];
+		};
+
 		nvimd = {
 			enable = true;
 			description = "Neovim server";
