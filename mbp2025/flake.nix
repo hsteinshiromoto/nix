@@ -70,6 +70,7 @@
 					"productdevbook/tap/portkiller"
 					"proton-pass"
 					"reader"
+					"signal"
 					"spotify"
 					"the-unarchiver"
 					"visual-studio-code"
