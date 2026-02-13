@@ -70,7 +70,8 @@
 
   # Ensure openvpn waits for credentials
   systemd.services.openvpn-protonvpn = {
-    after = [ "openvpn-protonvpn-credentials.service" ];
+    after = [ "openvpn-protonvpn-credentials.service" "tailscaled.service" ];
     requires = [ "openvpn-protonvpn-credentials.service" ];
+    wants = [ "tailscaled.service" ];  # Ensure Tailscale connects before VPN takes over routing
   };
 }
