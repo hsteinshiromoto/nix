@@ -274,6 +274,12 @@
   };
 
 	systemd.services = {
+		# Ensure auto-upgrade waits for VPN/network to be fully online before downloading
+		nixos-upgrade = {
+			after = [ "network-online.target" "openvpn-protonvpn.service" ];
+			wants = [ "network-online.target" ];
+		};
+
 		nvimd = {
 			enable = true;
 			description = "Neovim server";
