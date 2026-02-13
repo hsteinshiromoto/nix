@@ -41,6 +41,7 @@ in
 		pkgs.ffmpeg-headless
 		pkgs.gitflow
 		pkgs.hledger
+		pkgs.opencode
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
