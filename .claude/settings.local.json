@@ -16,7 +16,9 @@
       "Bash(cat:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix log:*)",
+      "Bash(ls:*)"
     ]
   },
   "enableAllProjectMcpServers": false
