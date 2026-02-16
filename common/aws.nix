@@ -1,7 +1,8 @@
+{ hostDir }:
 { config, pkgs, ... }:
 
 let
-  awsSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/mbp2025/aws.yaml";
+  awsSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostDir}/aws.yaml";
 in
 {
   sops = {

@@ -6,7 +6,7 @@
     ../common/gitlab.nix
     ../common/claude.nix
     ../common/nu.nix
-    ./aws.nix
+    (import ../common/aws.nix { hostDir = "mbp2025"; })
   ];
 
   # Home Manager needs a bit of information about you and the
