@@ -29,7 +29,7 @@ in
   imports = [
     ../common/gitconfig.nix
     ../common/nu.nix
-    (import ../common/aws.nix { hostDir = "mbp2023"; })
+    ../common/aws.nix
   ];
 
   # Home Manager needs a bit of information about you and the
