@@ -126,6 +126,38 @@ make darwin_X FLAGS=build
 where `X` corresponds to either `2022`, `2023` or `2025` each one of the MacOS hosts. To switch to a new build, replace the `build` with `switch`.
 
 
+## Encrypted Journal Files
+
+Files under `journal/` are encrypted in git using [git-crypt](https://github.com/AGWA/git-crypt). They appear as plaintext in the working tree but are stored as ciphertext in git objects and on the remote.
+
+### Unlocking after a fresh clone
+
+Requires the GPG private key (`CA81F56B4A7B6269`) to be available (e.g., YubiKey plugged in):
+
+```bash
+git clone git@github.com:hsteinshiromoto/nix.git
+cd nix
+git-crypt unlock
+```
+
+### Checking encryption status
+
+```bash
+git-crypt status
+```
+
+Files marked `encrypted` are protected; all others remain plaintext.
+
+### Locking the repository
+
+To re-encrypt the working tree files (e.g., before lending the machine):
+
+```bash
+git-crypt lock
+```
+
+This replaces plaintext journal files with ciphertext in the working tree. Run `git-crypt unlock` to restore them.
+
 ## Neovim Remote Server
 
 The NixOS server (`servo`) runs a headless Neovim server that allows remote UI connections.
