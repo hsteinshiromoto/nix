@@ -14,6 +14,7 @@
 				pkgs.doppler
 				pkgs.fd
 				pkgs.fzf
+				pkgs.git-crypt
 				pkgs.go
 				pkgs.jira-cli-go
 				pkgs.jq
