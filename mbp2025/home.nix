@@ -19,6 +19,7 @@
 		pkgs.gitflow
 		pkgs.jnv
 		pkgs.just
+		pkgs.opencode
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
