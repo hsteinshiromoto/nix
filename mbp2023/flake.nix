@@ -66,7 +66,7 @@
 					"karabiner-elements"
 					"maccy"
 					"obsidian"
-					"ollama"
+					"ollama-app"
 					"oversight"
 					"macfuse"
 					"microsoft-teams"
