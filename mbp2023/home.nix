@@ -43,7 +43,6 @@ in
 		pkgs.gitflow
 		pkgs.hledger
 		pkgs.lua
-		pkgs.opencode
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
