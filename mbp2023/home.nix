@@ -49,11 +49,10 @@ in
 		pkgs.serie
 		pkgs.spotify-player
 		iris-cli
-		pkgs.tailscale
 	];
 
 	programs = {
-				atuin = {
+			atuin = {
 			enable = true;
 			enableNushellIntegration = true;
 			enableZshIntegration = true;
@@ -79,6 +78,10 @@ in
 		};
 
 		gemini-cli = {
+			enable = true;
+		};
+
+		opencode = {
 			enable = true;
 		};
 
