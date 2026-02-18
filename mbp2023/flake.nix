@@ -55,6 +55,7 @@
 					"balenaetcher"
 					"bartender"
 					"bettermouse"
+					"bitwarden"
 					"cursor"
 					"discord"
 					"docker-desktop"
@@ -69,7 +70,11 @@
 					"ollama-app"
 					"oversight"
 					"macfuse"
+					"microsoft-excel"
+					"microsoft-outlook"
+					"microsoft-powerpoint"
 					"microsoft-teams"
+					"microsoft-word"
 					"popclip"
 					"productdevbook/tap/portkiller"
 					"proton-drive"
@@ -91,14 +96,14 @@
 				onActivation.autoUpdate = true;
 				onActivation.upgrade = true;
 				masApps = {
-					"Bitwarden" = 1352778147;
+					# "Bitwarden" = 1352778147;
 					"Kindle" = 302584613;
 					"Magnet" = 441258766;
-					"Microsoft Excel" = 462058435;
-					"Microsoft Outlook" = 985367838;
-					"Microsoft Powerpoint" = 462062816;
-					"Microsoft Word" = 462054704;
-					"OneDrive" = 823766827;
+					# "Microsoft Excel" = 462058435;
+					# "Microsoft Outlook" = 985367838;
+					# "Microsoft Powerpoint" = 462062816;
+					# "Microsoft Word" = 462054704;
+					# "OneDrive" = 823766827;
 					"Parcel - Delivery Tracking" = 639968404;
 					# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
 					# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
