@@ -15,7 +15,7 @@
       content = ''
 {
   "env": {
-		"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "AWS_REGION": "ap-southeast-2",
     "AWS_PROFILE": "sandbox",
