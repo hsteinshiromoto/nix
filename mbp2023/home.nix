@@ -27,6 +27,7 @@ let
 in
 {
   imports = [
+		../common/claude.nix
     ../common/gitconfig.nix
     ../common/nu.nix
     ../common/aws.nix
