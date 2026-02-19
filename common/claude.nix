@@ -5,8 +5,8 @@
   sops = {
     secrets = {
       AWS_BEARER_TOKEN_BEDROCK = {
-        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/bedrock.yaml";
-        path = "${config.home.homeDirectory}/.config/sops/secrets/bedrock";
+        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/common/bedrock.yaml";
+        path = "${config.home.homeDirectory}/.config/sops/secrets/common/bedrock";
       };
     };
 
@@ -48,6 +48,6 @@
 
   # Set environment variable for shell access
   home.sessionVariables = {
-    AWS_BEARER_TOKEN_BEDROCK = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/bedrock 2>/dev/null || echo '')";
+    AWS_BEARER_TOKEN_BEDROCK = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/common/bedrock 2>/dev/null || echo '')";
   };
 }
