@@ -3,7 +3,7 @@
 # Examples:
 #   just decrypt_disk xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 #   just decrypt_disk xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx mb-crypt /run/secrets/mb_luks_key
-decrypt_disk id name="mb-crypt" key_file="":
+decrypt_disk id="833822db-34a3-424d-bc6e-c1895058ccc6" name="mb-crypt" key_file="":
     #!/usr/bin/env bash
     if [ -n "{{key_file}}" ]; then
         sudo cryptsetup open --key-file "{{key_file}}" "/dev/disk/by-uuid/{{id}}" "{{name}}"
