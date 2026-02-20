@@ -121,7 +121,7 @@ To switch to a new build, replace the `test` with `switch`.
 
 Use `Makefile` commands of run in terminal
 ```bash
-make darwin_X FLAGS=build
+make mbpX FLAGS=build
 ```
 where `X` corresponds to either `2022`, `2023` or `2025` each one of the MacOS hosts. To switch to a new build, replace the `build` with `switch`.
 
