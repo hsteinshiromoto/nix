@@ -31,7 +31,13 @@
     gnupg
     sops
     ssh-to-age
-		networkmanager
+
+    # Build tools for running Makefile and compilation
+    gnumake
+    gcc
+    pkg-config
+
+    networkmanager
     networkmanagerapplet
   ];
 
