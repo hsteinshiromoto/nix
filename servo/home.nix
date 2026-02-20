@@ -10,6 +10,7 @@
     pkgs.age
 		pkgs.delta
 		pkgs.gitflow
+		pkgs.just
 		pkgs.pyright
   ];
 

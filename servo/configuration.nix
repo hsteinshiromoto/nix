@@ -15,7 +15,7 @@
 			./home-assistant.nix
 			./time-machine.nix						# <- Comment out this line to remove dependency on sops
 			./media.nix                   # <- Comment out this line to remove dependency on sops
-			./mb.nix                      # <- Comment out this line to remove dependency on sops
+			# ./mb.nix                    # <- Comment out this line to remove dependency on sops
 			./nginx.nix
 			./jellyfin.nix
 			./transmission.nix
@@ -272,6 +272,11 @@
 		udev.packages = with pkgs; [ yubikey-personalization ];
     pcscd.enable = true;
   };
+
+	# Ensure /mnt/mb directory exists for Samba share even when drive is not mounted
+	systemd.tmpfiles.rules = [
+		"d /mnt/mb 0755 root root -"
+	];
 
 	systemd.services = {
 		# Ensure auto-upgrade waits for VPN/network to be fully online before downloading
