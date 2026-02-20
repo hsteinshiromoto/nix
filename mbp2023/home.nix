@@ -27,7 +27,7 @@ let
 in
 {
   imports = [
-		../common/claude.nix
+		(import ../common/claude.nix { hostname = "mbp2023"; })
     ../common/gitconfig.nix
     ../common/nu.nix
     ../common/aws.nix

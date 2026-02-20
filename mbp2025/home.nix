@@ -4,7 +4,7 @@
   imports = [
     ../common/gitconfig.nix
     ../common/gitlab.nix
-    ../common/claude.nix
+    (import ../common/claude.nix { hostname = "mbp2025"; })
     ../common/nu.nix
     ../common/aws.nix
   ];

@@ -1,12 +1,19 @@
+{ hostname }:
+
 { config, pkgs, ... }:
 
+let
+  # Host-specific sops secret paths (dendritic pattern)
+  bedrockSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/bedrock.yaml";
+  bedrockSecretPath = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/bedrock";
+in
 {
   # SOPS secrets configuration for Claude Code
   sops = {
     secrets = {
       AWS_BEARER_TOKEN_BEDROCK = {
-        sopsFile = "${config.home.homeDirectory}/.config/sops/secrets/common/bedrock.yaml";
-        path = "${config.home.homeDirectory}/.config/sops/secrets/common/bedrock";
+        sopsFile = bedrockSopsFile;
+        path = bedrockSecretPath;
       };
     };
 
@@ -48,6 +55,6 @@
 
   # Set environment variable for shell access
   home.sessionVariables = {
-    AWS_BEARER_TOKEN_BEDROCK = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/common/bedrock 2>/dev/null || echo '')";
+    AWS_BEARER_TOKEN_BEDROCK = "$(cat ${bedrockSecretPath} 2>/dev/null || echo '')";
   };
 }
