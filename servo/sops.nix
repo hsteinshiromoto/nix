@@ -31,18 +31,6 @@
         mode = "0400";
         owner = "root";
       };
-      "mb_luks_key" = {
-        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/mb.yaml;
-        key = "luks_key";
-        mode = "0400";
-        owner = "root";
-      };
-      "mb_sdb2_uuid" = {
-        sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/mb.yaml;
-        key = "sdb2_uuid";
-        mode = "0400";
-        owner = "root";
-      };
       "wifi/main/ssid" = {
         sopsFile = /home/hsteinshiromoto/.config/sops/secrets/servidor/network_manager.yaml;
         mode = "0400";
