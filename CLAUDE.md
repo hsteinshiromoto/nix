@@ -20,6 +20,10 @@ Use the `README.md` file as a context before start any change.
 
 Refer to `README.md`.
 
+## Instructions
+
+1. Read the `Makefile` and use its targets to test and build the changes. Make sure to use the correct target depending on the host.
+
 ## Troubleshooting
 
 ### Home-manager packages not installing on nix-darwin
