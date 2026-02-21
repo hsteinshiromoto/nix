@@ -18,7 +18,14 @@
       "WebFetch(domain:github.com)",
       "WebSearch",
       "Bash(git -C /Users/hsteinshiromoto/Projects/nix log:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix show main:CHANGELOG.md)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix branch:*)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix tag -l)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix status)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix diff CHANGELOG.md)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix diff main...HEAD --stat)",
+      "Bash(echo:*)"
     ]
   },
   "enableAllProjectMcpServers": false
