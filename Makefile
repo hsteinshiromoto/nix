@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help mba2022 mbp2023 mbp2025
+.PHONY: help build
 
 # Color definitions for logging (similar to nvim-remote.sh)
 GREEN := $(shell tput setaf 2)
@@ -28,12 +28,26 @@ update:
 	nix flake update
 	$(call log_info,Done)
 
-## Rebuild nix-darwin using hostname directly
-mba2022 mbp2023 mbp2025:
-	$(eval FLAGS=build)
-	$(call log_info,Running Darwin $(BOLD)"$@"$(RESET) rebuild with flags $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo darwin-rebuild $(FLAGS) --flake .#$@ --impure
-	$(call log_info,Done)
+## Rebuild a host. Usage: make build HOST=mbp2025 FLAGS=switch
+build:
+	@case "$(HOST)" in \
+		mba2022|mbp2023|mbp2025) \
+			flags="$(or $(FLAGS),build)"; \
+			echo "$(GREEN)[INFO]$(RESET) Running Darwin rebuild for $(BOLD)$(YELLOW)$(HOST)$(RESET) with flags $(BOLD)$(YELLOW)$${flags}$(RESET)..."; \
+			sudo darwin-rebuild $${flags} --flake .#$(HOST) --impure; \
+			echo "$(GREEN)[INFO]$(RESET) Done"; \
+			;; \
+		servidor) \
+			flags="$(or $(FLAGS),test)"; \
+			echo "$(GREEN)[INFO]$(RESET) Running NixOS rebuild for $(BOLD)$(YELLOW)$(HOST)$(RESET) with flags $(BOLD)$(YELLOW)$${flags}$(RESET)..."; \
+			sudo nixos-rebuild $${flags} --flake .#$(HOST) --impure; \
+			echo "$(GREEN)[INFO]$(RESET) Done"; \
+			;; \
+		*) \
+			echo "$(RED)[ERROR]$(RESET) Unknown or missing HOST='$(HOST)'. Valid hosts: mba2022, mbp2023, mbp2025, servidor"; \
+			exit 1; \
+			;; \
+	esac
 
 ## Run partition the disk using disko. Usage (for repartition the disk): make partition FLAGS=disko
 partition: flake.nix flake.lock servo/disko-config.nix
@@ -47,12 +61,6 @@ nixos_install:
 	$(call log_info,Installing NixOS from flake...)
 	sudo nixos-install --flake /home/nixos/.config/nix#servidor
 	sudo nixos-enter --root /mnt -c 'passwd hsteinshiromoto'
-
-## Rebuild NixOS from flake
-nixos_rebuild: flake.nix flake.lock $(shell find servo -type f ! -name "*.md")
-	$(eval FLAGS=test)
-	$(call log_info,Running nixos-rebuild with flag $(BOLD)$(YELLOW)$(FLAGS)$(RESET)...)
-	sudo nixos-rebuild $(FLAGS) --flake .#servidor --impure
 
 ## Generate ISO image from NixOS
 nixos_iso: flake.nix flake.lock servo/custom_iso.nix
