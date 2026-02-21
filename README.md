@@ -13,13 +13,19 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 ├── bin/                        # Build and installation scripts
 │   ├── docker-nix.conf
 │   ├── install.sh
-│   └── make_iso.sh
+│   ├── make_iso.sh
+│   └── nvim-remote.sh         # Neovim remote connection helper
 ├── common/                     # Shared configuration modules (v3.0+)
+│   ├── aws.nix                # AWS configuration with SOPS integration
+│   ├── claude.nix             # Claude Code settings with SOPS secrets
 │   ├── gitconfig.nix          # Git configuration with SOPS integration
 │   ├── gitlab.nix             # GitLab CLI configuration
 │   ├── nu.nix                 # Nushell configuration
 │   ├── nvim.nix               # Neovim configuration
 │   └── sops.nix               # SOPS secrets management
+├── journal/                    # Encrypted journal files (git-crypt)
+│   ├── YYYY-MM-DD.md          # Daily change logs
+│   └── summary.md             # Cumulative summary
 ├── mba2022/                    # MacBook Air 2022 configuration
 │   └── flake.nix
 ├── mbp2023/                    # MacBook Pro 2023 configuration
@@ -29,6 +35,8 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 │   ├── flake.nix
 │   └── home.nix               # Home-manager configuration
 ├── servo/                      # NixOS server configuration
+│   ├── backup.md              # Backup setup instructions
+│   ├── backup.nix             # BorgBackup configuration
 │   ├── configuration.nix
 │   ├── custom_iso.nix         # Custom ISO build configuration
 │   ├── disko-config.nix       # Disk partitioning configuration
@@ -40,19 +48,23 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 │   ├── home-assistant.nix     # Home Assistant configuration
 │   ├── home.nix               # Home-manager configuration
 │   ├── jellyfin.nix           # Jellyfin media server configuration
+│   ├── mb.nix                 # LUKS encrypted drive configuration
 │   ├── media.md.gpg           # Encrypted media drive setup docs
 │   ├── media.nix              # Media drive configuration
 │   ├── network_manager.nix    # Network manager configuration
+│   ├── nginx.nix              # Nginx reverse proxy configuration
 │   ├── README.md
 │   ├── sops.nix               # SOPS secrets configuration
 │   ├── time-machine.nix       # Time Machine backup configuration
+│   ├── transmission.nix       # Transmission torrent client
+│   ├── vpn.nix                # ProtonVPN OpenVPN configuration
 │   └── yubikey.nix            # YubiKey configuration
-├── AGENTS.md                   # AI agent usage guidelines
 ├── CHANGELOG.md                # Version history and changes
 ├── CLAUDE.md                   # Claude Code instructions and troubleshooting
 ├── files.md                    # File structure documentation
 ├── flake.lock                  # Root flake lock file
 ├── flake.nix                   # Root flake configuration
+├── justfile                    # Manual LUKS drive management targets
 ├── LICENSE
 ├── Makefile                    # Build automation commands
 ├── nix.conf                    # Nix configuration
@@ -65,11 +77,12 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 
 - **common/**: Shared configuration modules introduced in v3.0.0 for code reuse across systems
 - **mbp2023/, mbp2025/, mba2022/**: macOS configurations using nix-darwin with home-manager
-- **servo/**: NixOS server configuration with custom ISO, disk partitioning, TPM2 support, Jellyfin media server, Time Machine backups, and hardware-specific settings
+- **journal/**: Encrypted daily change logs and cumulative summary, managed with git-crypt
+- **servo/**: NixOS remote server configuration.
 
 ## Instructions
 
-### 1. Clone this repository in your `XDG_CONFIG_HOME` or `~/.config/nix`:
+### 1. Clone this repository in your `$XDG_CONFIG_HOME` or `~/.config/nix`:
 ```bash
 git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 ```
@@ -78,34 +91,7 @@ git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 
 #### NixOS
 
-1. Clone this repository using the command
-```bash
-git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
-```
-
-2. Navigate to the `~/.config/nix` folder and partition the disk with the command:
-```bash
-make partition
-```
-After finishing this command, a password will be request to encrypt the disk.
-
-3. Once done, install NixOS with the command
-```bash
-make nixos_install
-```
-and reboot.
-
-4. After reboot login, and run `nmtui` to setup the connections again.
-
-5. Clone this repository again, as per step 1.
-
-6. Run the command
-```bash
-sudo ln -s /home/hsteinshiromoto/.config/nix/servo/configuration.nix /etc/nixos/
-```
-to create a symbolic link to the `configuration.nix` file of this repository.
-
-For more details, follow the instructions in this [README.md](servo/README.md).
+Follow the instructions in this [README.md](servo/README.md).
 
 ##### Using Nixos Anywhere
 
@@ -148,14 +134,48 @@ To switch to a new build, replace the `test` with `switch`.
 
 Use `Makefile` commands of run in terminal
 ```bash
-make nixos_rebuild FLAGS=switch
+make mbpX FLAGS=build
 ```
+where `X` corresponds to either `2022`, `2023` or `2025` each one of the MacOS hosts. To switch to a new build, replace the `build` with `switch`.
+
+
+## Encrypted Journal Files
+
+Files under `journal/` are encrypted in git using [git-crypt](https://github.com/AGWA/git-crypt). They appear as plaintext in the working tree but are stored as ciphertext in git objects and on the remote.
+
+### Unlocking after a fresh clone
+
+Requires the GPG private key (`CA81F56B4A7B6269`) to be available (e.g., YubiKey plugged in):
+
+```bash
+git clone git@github.com:hsteinshiromoto/nix.git
+cd nix
+git-crypt unlock
+```
+
+### Checking encryption status
+
+```bash
+git-crypt status
+```
+
+Files marked `encrypted` are protected; all others remain plaintext.
+
+### Locking the repository
+
+To re-encrypt the working tree files (e.g., before lending the machine):
+
+```bash
+git-crypt lock
+```
+
+This replaces plaintext journal files with ciphertext in the working tree. Run `git-crypt unlock` to restore them.
 
 ## Neovim Remote Server
 
 The NixOS server (`servo`) runs a headless Neovim server that allows remote UI connections.
 
-### Server Setup
+### Neovim Server Setup
 
 The Neovim server is configured as a systemd service in `servo/configuration.nix`:
 

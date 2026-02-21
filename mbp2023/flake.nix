@@ -1,5 +1,5 @@
 {
-  description = "Nix-darwin MBP2023 System Flake";
+  description = "Nix-darwin mbp2023 System Flake";
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, commonModules, commonHomeManagerModules, ... }:
   let
@@ -41,6 +41,7 @@
 				enable = true;
 				taps = [
 					"gromgit/brewtils"
+					"productdevbook/tap"
 				];
 				brews = [
 					"age"
@@ -54,6 +55,7 @@
 					"balenaetcher"
 					"bartender"
 					"bettermouse"
+					"bitwarden"
 					"cursor"
 					"discord"
 					"docker-desktop"
@@ -65,21 +67,25 @@
 					"karabiner-elements"
 					"maccy"
 					"obsidian"
-					"ollama"
+					"ollama-app"
 					"oversight"
 					"macfuse"
+					"microsoft-excel"
+					"microsoft-outlook"
+					"microsoft-powerpoint"
 					"microsoft-teams"
+					"microsoft-word"
 					"popclip"
 					"productdevbook/tap/portkiller"
 					"proton-drive"
 					"proton-pass"
 					"protonvpn"
 					"reader"
+					"signal"
 					"spotify"
 					"syncthing-app"
 					"the-unarchiver"
 					"transmission"
-					"utm"
 					"visual-studio-code"
 					"vlc"
 					"waterfox"
@@ -90,18 +96,17 @@
 				onActivation.autoUpdate = true;
 				onActivation.upgrade = true;
 				masApps = {
-					"Bitwarden" = 1352778147;
+					# "Bitwarden" = 1352778147;
 					"Kindle" = 302584613;
 					"Magnet" = 441258766;
-					"Microsoft Excel" = 462058435;
-					"Microsoft Outlook" = 985367838;
-					"Microsoft Powerpoint" = 462062816;
-					"Microsoft Word" = 462054704;
-					"OneDrive" = 823766827;
+					# "Microsoft Excel" = 462058435;
+					# "Microsoft Outlook" = 985367838;
+					# "Microsoft Powerpoint" = 462062816;
+					# "Microsoft Word" = 462054704;
+					# "OneDrive" = 823766827;
 					"Parcel - Delivery Tracking" = 639968404;
 					# "Proton Authenticator" = 6741758667; Does not exist as a MacOS App
 					# "SimpleLogin - Email alias" = 1494359858; Does not exist as a MacOS App
-					"Windows App" = 1295203466;
 					"Tailscale" = 1475387142;
 					"TextSniper - OCR, Copy & Paste" = 1528890965;
 					"Theine" = 955848755;
@@ -160,7 +165,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."MBP2023" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."mbp2023" = nix-darwin.lib.darwinSystem {
 
       modules = [
 					configuration

@@ -1,46 +1,28 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Build Commands
-
-### Commom
-- Update Nix flake: `make update`
-
-### Nix Darwin
-- Nix Darwin rebuild: `make darwin_X`
-- Build Nix Darwin flake: `darwin-rebuild build --flake ./mbp202X#MBP202X`
-
-### NixOS
-
-- Build custom ISO: `make nixos_iso`
-- Rebuild NixOS: `make nixos_rebuilt FLAGS="switch"`
-- Build NixOS without switching: `nixos-rebuild build --flake .#servidor`
-- Test NixOS configuration without switching: `make nixos_rebuild`
-- Print build plan: `nixos-rebuild build --flake .#servidor --show-trace`
-
-## Important Notes
-- `nixos-rebuild test/switch/build` commands do NOT repartition disks on existing systems
-- Disk partitioning configurations (like disko) only apply during fresh NixOS installation
-- To apply partition changes, generate new ISO and reinstall system
+Use the `README.md` file as a context before start any change.
 
 ## Code Style Guidelines
+
 - Use camelCase for variable/attribute names
 - Group related configuration settings together
 - Document complex configuration with comments
 - Separate hardware-specific configuration
 - Organize flakes with clear inputs and outputs structure
-- Use descriptive hostnames and system identifiers
-- Place system-specific configurations in dedicated directories
-- Reference official documentation in comments for non-obvious settings
+- Use descriptive hostnames, system identifiers, and variable names
+- Place host-specific configurations in dedicated directories
+- Reference official documentation in comments where possible
 - For imports, place all imports at the top of files
 - Prefer stable packages unless unstable is explicitly needed
+- Only implement mouting of external drivers in first phase of the bootloarder when explicitely requested.
 
 ## Repository Structure
-- `mbp2025/` - macOS configuration using nix-darwin
-- `mbp2023/` - macOS configuration using nix-darwin
-- `servo/` - NixOS configuration for a server
-- Root directory contains shared configuration like custom ISO settings
+
+Refer to `README.md`.
+
+## Instructions
+
+1. Read the `Makefile` and use its targets to test and build the changes. Make sure to use the correct target depending on the host.
 
 ## Troubleshooting
 

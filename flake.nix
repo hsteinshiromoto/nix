@@ -27,9 +27,15 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+		sqlit = {
+			url = "github:Maxteabag/sqlit";
+			inputs.nixpkgs.follows = "nixpkgs-unstable";
+		};
+
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix , ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-darwin, nix-homebrew, home-manager, disko, sops-nix, sqlit, ... }@inputs:
   let
     darwinSystem = "aarch64-darwin";
     linuxSystem = "x86_64-linux";
@@ -63,7 +69,7 @@
 
     mbp2025-flake = import ./mbp2025/flake.nix;
     mbp2025-outputs = mbp2025-flake.outputs {
-      inherit self nix-darwin nix-homebrew home-manager sops-nix commonModules commonHomeManagerModules;
+      inherit self nix-darwin nix-homebrew home-manager sops-nix sqlit commonModules commonHomeManagerModules;
       nixpkgs = nixpkgs-unstable;
     };
 

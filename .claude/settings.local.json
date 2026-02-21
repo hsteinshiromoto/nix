@@ -12,7 +12,20 @@
       "Read(//Users/hsteinshiromoto/.config/sops/**)",
       "Read(//Users/hsteinshiromoto/dotfiles/**)",
       "Bash(find:*)",
-      "WebFetch(domain:wiki.nixos.org)"
+      "WebFetch(domain:wiki.nixos.org)",
+      "Bash(cat:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix log:*)",
+      "Bash(ls:*)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix show main:CHANGELOG.md)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix branch:*)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix tag -l)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix status)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix diff CHANGELOG.md)",
+      "Bash(git -C /Users/hsteinshiromoto/Projects/nix diff main...HEAD --stat)",
+      "Bash(echo:*)"
     ]
   },
   "enableAllProjectMcpServers": false

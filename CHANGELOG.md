@@ -2,8 +2,147 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+Starting after v3.1.0, releases use a calendar-week identifier with the format `YYYY-[W]WW`.
+
+## [2026-W08] - 2026-02-20
+
+### Features
+
+#### VPN (ProtonVPN)
+- Added ProtonVPN OpenVPN configuration for servo (`servo/vpn.nix`)
+- Integrated SOPS for VPN credential management
+- Moved OpenVPN settings from `configuration.nix` to dedicated `vpn.nix` module
+- Added DNS resolve script (`update-resolv-conf.sh`) for VPN connectivity
+- Added auto-start for VPN service
+- Added openresolv for DNS resolution during VPN
+
+#### Backup (BorgBackup)
+- Added BorgBackup configuration for servo
+- Configured automatic borg service startup
+- Added backup instructions documentation
+- Excluded jellyfin cache and transcodes from backup
+
+#### Transmission Torrent Client
+- Added Transmission torrent client to servo
+- Configured Transmission with nginx reverse proxy
+- Added RPC host whitelists for secure access
+
+#### Nginx Reverse Proxy
+- Added `servo/nginx.nix` for centralized reverse proxy configuration
+- Configured Jellyfin with nginx reverse proxy
+- Added nixos-jellyfin to replace `services.jellyfin` module
+- Configured nginx for Home Assistant with self-signed SSL certificates
+
+#### Home Assistant Enhancements
+- Enabled Bluetooth support in Home Assistant
+- Added Bluetooth settings to NixOS configuration
+- Added Philips Hue integration with Home Assistant
+- Removed nginx subpath routing (not supported); reverted to direct access on port 8123
+
+#### Media Drive (mb.nix)
+- Added `servo/mb.nix` for LUKS-encrypted drive mounting at `/mnt/mb`
+- Configured Samba share exposure from mbp2023 to mb
+- Replaced auto-decrypt/mount with manual justfile targets (decrypt_disk, mount_disk, unmount_disk)
+
+#### AWS Configuration
+- Added `common/aws.nix` for SOPS-managed AWS configuration using dendritic pattern
+- Simplified AWS config to write directly to `~/.aws` with sops-nix workaround
+
+#### Claude Code Integration
+- Added `common/claude.nix` for Claude Code settings with SOPS secrets
+- Applied dendritic pattern: parameterized hostname for host-specific bedrock secret paths
+- Upgraded claude settings to use Opus 4.6
+
+#### Encrypted Journal
+- Added git-crypt encryption for journal files (GPG key `CA81F56B4A7B6269`)
+- Added git-crypt usage instructions to README
+- Added git-crypt collaborator
+
+#### Build & Makefile Improvements
+- Simplified Makefile targets
+- Renamed darwinConfigurations hostnames to lowercase
+- Added `test_darwin` target in Makefile
+- Improved Makefile documentation
+- Added build packages (gnumake, gcc, pkg-config) to `servo/custom_iso.nix`
+- Set default command to build test without switching
+
+### Bug Fixes
+
+- Fixed nixos-upgrade DNS failure during VPN startup
+- Fixed Tailscale/ProtonVPN conflict with `checkReversePath = "loose"`, `trustedInterfaces`, and service ordering
+- Fixed jellyfin permissions: added symlinks to libraries and media group
+- Fixed `runSopsNix` activation script error
+- Fixed sops-nix PATH and GPG workaround for macOS
+- Fixed sops-nix `AWS_BEARER_TOKEN_BEDROCK` secret decryption
+- Fixed homebrew tap issue
+- Fixed darwin launch service issue
+- Fixed password/username format issues in VPN credentials
+- Moved from masapps to homebrew casks to resolve installation issues
+- Renamed ollama to ollama-app
+
+### Configuration Changes
+
+#### SOPS Updates
+- Updated `servo/sops.nix` as mb SOPS is no longer available
+- Changed bedrock secrets location
+- Added default id value for SOPS configuration
+
+#### NixOS (servo)
+- Enabled nix-ld
+- Added authkey to Tailscale
+- Configured firewall for Tailscale/VPN coexistence
+- Added `just` to `servo/home.nix` for manual drive management
+
+#### Nix-Darwin (mbp2023, mbp2025)
+- Imported `claude.nix` into mbp2023
+- Added linearmouse cask to mb configuration
+
+### Package Additions
+
+#### mbp2025
+- witr, portkiller (brew packages)
+- taws (via custom tap)
+- cargo
+- opencode CLI
+- git-crypt
+- Signal
+- sqlite
+- jnv
+
+#### mbp2023
+- hledger
+- Signal
+- lua, lua-language-server
+
+#### servo
+- proton-pass-cli
+- openresolv
+
+### Dependencies
+
+- Updated `flake.lock` (multiple updates throughout the release)
+
+### Removals
+
+- Removed Windows app
+- Removed automatic decrypt/mount of `/mnt/mb` (replaced with manual justfile targets)
+- Removed redundant packages and unused code
+
+### Documentation
+
+- Updated `CLAUDE.md` with deploy command and improved instructions
+- Updated `README.md` with git-crypt usage, encrypted journal section
+- Added backup instructions for servo
+- Improved Makefile documentation
+- Added sanity_check and deploy commands to Claude skills
+
+### Statistics
+
+- **Files Changed**: 45 files with 1,009 insertions and 249 deletions
+- **Date Range**: 2026-01-07 to 2026-02-20
+
+---
 
 ## [3.1.0] - 2026-01-07
 
@@ -183,7 +322,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added YubiKey configuration module (`servo/yubikey.nix`)
 - User group management improvements
 
-#### Nix-Darwin (MBP2023, MBP2025)
+#### Nix-Darwin (mbp2023, mbp2025)
 - Garbage collection configured to keep only 5 builds
 - Home-manager integration fixes
 - Improved XDG_CONFIG_HOME handling
@@ -288,5 +427,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See git history for changes prior to v3.0.0.
 
+[2026-W08]: https://github.com/hsteinshiromoto/nix/compare/2026-W02...release/2026-W08
 [3.1.0]: https://github.com/hsteinshiromoto/nix/compare/v3.0.0...release/2026-W02
 [3.0.0]: https://github.com/hsteinshiromoto/nix/compare/main...release/v3.0.0

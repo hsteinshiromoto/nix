@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, sqlit, ... }:
 
 {
   imports = [
     ../common/gitconfig.nix
     ../common/gitlab.nix
+    (import ../common/claude.nix { hostname = "mbp2025"; })
     ../common/nu.nix
+    ../common/aws.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -15,9 +17,13 @@
 	home.packages = [
 		pkgs.delta
 		pkgs.gitflow
+		pkgs.jnv
+		pkgs.just
+		pkgs.opencode
 		pkgs.pyright
 		pkgs.regex-tui
 		pkgs.serie
+		sqlit.packages.aarch64-darwin.default
 	];
 
 	programs = {
@@ -107,6 +113,23 @@
 		GITLAB_TOKEN = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_token 2>/dev/null || echo '')";
 		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
 	};
+
+	# Configure SOPS to use GPG instead of age
+	sops.gnupg.home = "${config.home.homeDirectory}/.gnupg";
+
+	# Override sops paths for gitconfig (mbp2025 uses different path than common config)
+	sops.secrets.git_signingkey.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+	sops.secrets.user_email.sopsFile = pkgs.lib.mkForce "${config.home.homeDirectory}/.config/sops/secrets/gitconfig.yaml";
+	# Workaround for sops-nix PATH bug on macOS
+	# The launchd service sets PATH="" which breaks getconf lookup
+	# Extract binary path dynamically from the launchd plist
+	home.activation.runSopsNix = config.lib.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "sops-nix"] ''
+		SOPS_NIX_BIN=$(grep -A1 "<key>Program</key>" ~/Library/LaunchAgents/org.nix-community.home.sops-nix.plist 2>/dev/null | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/' || true)
+		if [ -x "$SOPS_NIX_BIN" ]; then
+			PATH="/usr/bin:/bin:/usr/sbin:/sbin" SOPS_GPG_EXEC="/usr/local/MacGPG2/bin/gpg" "$SOPS_NIX_BIN" || true
+		fi
+		true
+	'';
 
 	# Install Ghostty terminfo for tmux compatibility
 	home.activation.installGhosttyTerminfo = config.lib.dag.entryAfter ["writeBoundary"] ''

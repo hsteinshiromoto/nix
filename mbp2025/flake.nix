@@ -1,7 +1,7 @@
 {
-  description = "Nix-darwin MBP2025 system flake";
+  description = "Nix-darwin mbp2025 system flake";
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, commonModules, commonHomeManagerModules, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, sops-nix, sqlit, commonModules, commonHomeManagerModules, ... }:
   let
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -9,10 +9,12 @@
       environment.systemPackages = [
 				pkgs.age
 				pkgs.btop
+				pkgs.cargo
 				pkgs.csvlens
 				pkgs.doppler
 				pkgs.fd
 				pkgs.fzf
+				pkgs.git-crypt
 				pkgs.go
 				pkgs.jira-cli-go
 				pkgs.jq
@@ -36,11 +38,15 @@
 				enable = true;
 				taps = [
 					"gromgit/brewtils"
+					"huseyinbabal/tap"
+					"productdevbook/tap"
 				];
 				brews = [
 					"libomp"
 					"mas"
 					"gromgit/brewtils/taproom"
+					"huseyinbabal/tap/taws"
+					"witr"
 				];
 				casks = [
 					"bartender"
@@ -56,13 +62,16 @@
 					"google-chrome"
 					"gpg-suite"
 					"karabiner-elements"
+					"linearmouse"
 					"maccy"
 					"microsoft-teams"
 					"obsidian"
-					"ollama"
+					"ollama-app"
 					"popclip"
+					"productdevbook/tap/portkiller"
 					"proton-pass"
 					"reader"
+					"signal"
 					"spotify"
 					"the-unarchiver"
 					"visual-studio-code"
@@ -133,8 +142,8 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MBP2025
-    darwinConfigurations."MBP2025" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#mbp2025
+    darwinConfigurations."mbp2025" = nix-darwin.lib.darwinSystem {
       modules = [
 				configuration
 				nix-homebrew.darwinModules.nix-homebrew {
@@ -147,6 +156,7 @@
 				home-manager.darwinModules.home-manager {
 					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = false;
+					home-manager.extraSpecialArgs = { inherit sqlit; };
 					home-manager.users.hsteinshiromoto = ./home.nix;
 					home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ] ++ commonHomeManagerModules;
 				}

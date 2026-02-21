@@ -10,12 +10,17 @@
       ./hardware-configuration.nix
 			./sops.nix                    # <- Comment out this line to remove dependency on sops
 			./yubikey.nix
-			# ./network_manager.nix  # Commented out - SOPS wifi.yaml at servidor/wifi.yaml
+			./network_manager.nix         # <- Comment out this line to remove dependency on sops
 			./git-server.nix
 			./home-assistant.nix
 			./time-machine.nix						# <- Comment out this line to remove dependency on sops
 			./media.nix                   # <- Comment out this line to remove dependency on sops
+			# ./mb.nix                    # <- Comment out this line to remove dependency on sops
+			./nginx.nix
 			./jellyfin.nix
+			./transmission.nix
+			./vpn.nix
+			./backup.nix                  # <- Comment out this line to remove dependency on sops
     ];
 
 	nix = {
@@ -68,6 +73,7 @@
 
   networking = {
     hostName = "servidor";
+		nameservers = [ "8.8.8.8" "1.1.1.1" ];
     networkmanager = {
       enable = true;
       wifi.powersave = false;  # Disable WiFi power management to prevent disconnections
@@ -76,6 +82,8 @@
     # Open ports in the firewall.
     firewall = {
       enable = true;
+      checkReversePath = "loose";  # Required for Tailscale, especially with VPN
+      trustedInterfaces = [ "tailscale0" ];  # Trust Tailscale interface
       allowedTCPPorts = [ 22 8384 22000 55666 9000 ];
       allowedUDPPorts = [ 21027 22000 ];
     };
@@ -156,9 +164,11 @@
     nodejs
 		ntfs3g
 		opensc                   # Smart card support
+		openresolv
     pass
 		pcsclite
     pkg-config # Build essential
+		pkgsUnstable.proton-pass-cli
     ripgrep
 		sops
 		ssh-to-age
@@ -177,10 +187,25 @@
   ];
 
 		hardware.gpgSmartcards.enable = true;
+
+	# Bluetooth support for Intel 9460/9560
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = true;
+	};
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
     programs = {
+      # Enable nix-ld for running dynamically linked executables (e.g., uv, Python binaries)
+      nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+          stdenv.cc.cc
+          zlib
+        ];
+      };
+
       gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
@@ -211,6 +236,10 @@
 
   # Enable the OpenSSH daemon.
   services = {
+		resolved = {
+			enable = true;
+			fallbackDns = [ "8.8.8.8" "1.1.1.1" ];
+		};
     openssh = {
       enable = true;
       ports = [ 22 ];
@@ -221,6 +250,7 @@
     };
     tailscale = {
       enable = true;
+      authKeyFile = config.sops.secrets."tailscale_auth_key".path;
     };
     syncthing = {
       enable = true;
@@ -243,7 +273,18 @@
     pcscd.enable = true;
   };
 
+	# Ensure /mnt/mb directory exists for Samba share even when drive is not mounted
+	systemd.tmpfiles.rules = [
+		"d /mnt/mb 0755 root root -"
+	];
+
 	systemd.services = {
+		# Ensure auto-upgrade waits for VPN/network to be fully online before downloading
+		nixos-upgrade = {
+			after = [ "network-online.target" "openvpn-protonvpn.service" ];
+			wants = [ "network-online.target" ];
+		};
+
 		nvimd = {
 			enable = true;
 			description = "Neovim server";
