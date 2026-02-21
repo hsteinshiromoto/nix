@@ -121,22 +121,13 @@ in the project root of this repository, where `X` is either `A` or `P`, and `Y` 
 
 ### 3. Rebuilding a flake version
 
-#### NixOS
-
-Use `Makefile` commands or run in terminal
+Use the unified `build` target:
 
 ```bash
-make nixos_rebuild FLAGS=test
+make build HOST=<hostname> FLAGS=<flag>
 ```
-To switch to a new build, replace the `test` with `switch`.
 
-#### Darwin
-
-Use `Makefile` commands of run in terminal
-```bash
-make mbpX FLAGS=build
-```
-where `X` corresponds to either `2022`, `2023` or `2025` each one of the MacOS hosts. To switch to a new build, replace the `build` with `switch`.
+where `<hostname>` is one of `mba2022`, `mbp2023`, `mbp2025` (Darwin) or `servidor` (NixOS), and `<flag>` is `build`, `test`, or `switch`. If `FLAGS` is omitted, it defaults to `build` for Darwin and `test` for NixOS.
 
 
 ## Encrypted Journal Files
