@@ -129,6 +129,14 @@ make build HOST=<hostname> FLAGS=<flag>
 
 where `<hostname>` is one of `mba2022`, `mbp2023`, `mbp2025` (Darwin) or `servidor` (NixOS), and `<flag>` is `build`, `test`, or `switch`. If `FLAGS` is omitted, it defaults to `build` for Darwin and `test` for NixOS.
 
+### 4. Testing a configuration (dry-run)
+
+```bash
+make test HOST=<hostname>
+```
+
+This syntax-checks all `.nix` files for the host and its dependencies, then runs a dry-run build to verify the configuration evaluates correctly without actually building or switching.
+
 
 ## Encrypted Journal Files
 
