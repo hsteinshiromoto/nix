@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help build
+.PHONY: help build test
 
 # Color definitions for logging (similar to nvim-remote.sh)
 GREEN := $(shell tput setaf 2)
@@ -13,17 +13,31 @@ log_info = @echo "$(GREEN)[INFO]$(RESET) $(1)"
 log_warning = @echo "$(YELLOW)[WARNING]$(RESET) $(1)"
 log_error = @echo "$(RED)[ERROR]$(RESET) $(1)"
 
-## Test Flake Build in Darwin
-test_darwin:
-	$(call log_info,Running test for Darwin host test $(BOLD)$(YELLOW)$(H)$(RESET)...)
-	nix build .#darwinConfigurations.$(H).system --dry-run 2>&1
+## Test a host configuration. Usage: make test HOST=mbp2025
+test:
+	@host_dir=""; flake_attr=""; \
+	case "$(HOST)" in \
+		mba2022|mbp2023|mbp2025) host_dir="$(HOST)"; flake_attr="darwinConfigurations.$(HOST).system";; \
+		servidor) host_dir="servo"; flake_attr="nixosConfigurations.$(HOST).config.system.build.toplevel";; \
+		*) echo "$(RED)[ERROR]$(RESET) Unknown or missing HOST='$(HOST)'. Valid hosts: mba2022, mbp2023, mbp2025, servidor"; exit 1;; \
+	esac; \
+	echo "$(GREEN)[INFO]$(RESET) Syntax-checking .nix files for $(BOLD)$(YELLOW)$(HOST)$(RESET)..."; \
+	for f in $${host_dir}/*.nix common/*.nix flake.nix; do \
+		if [ -f "$$f" ]; then \
+			nix-instantiate --parse "$$f" > /dev/null || { echo "$(RED)[ERROR]$(RESET) Syntax error in $$f"; exit 1; }; \
+		fi; \
+	done; \
+	echo "$(GREEN)[INFO]$(RESET) Syntax check passed"; \
+	echo "$(GREEN)[INFO]$(RESET) Running dry-run build for $(BOLD)$(YELLOW)$(HOST)$(RESET)..."; \
+	nix build ".#$${flake_attr}" --dry-run 2>&1; \
+	echo "$(GREEN)[INFO]$(RESET) Done"
 
 ## Get ISO image via rsync
 get_iso:
 	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./iso
 
 ## Update flake.lock
-update:
+update: flake.lock
 	$(call log_info,Updating flake.lock...)
 	nix flake update
 	$(call log_info,Done)

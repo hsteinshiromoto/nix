@@ -87,7 +87,7 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 git clone https://github.com/hsteinshiromoto/nix ~/.config/nix
 ```
 
-### 2. Install NixOS or Nix package manager
+### 2. Install NixOS or Nix(-Darwin) package manager
 
 #### NixOS
 
@@ -126,9 +126,16 @@ Use the unified `build` target:
 ```bash
 make build HOST=<hostname> FLAGS=<flag>
 ```
+where `<hostname>` is one of `mba2022`, `mbp2023`, `mbp2025` (Darwin) or `servidor` (NixOS), and `<flag>` is `build`, `test`, or `switch`. If `FLAGS` is omitted, it defaults to
+- `build` for Darwin.
+- `test` for NixOS.
 
-where `<hostname>` is one of `mba2022`, `mbp2023`, `mbp2025` (Darwin) or `servidor` (NixOS), and `<flag>` is `build`, `test`, or `switch`. If `FLAGS` is omitted, it defaults to `build` for Darwin and `test` for NixOS.
+### 4. Testing a configuration (dry-run)
 
+```bash
+make test HOST=<hostname>
+```
+This syntax-checks all `.nix` files for the host and its dependencies, then runs a dry-run build to verify the configuration evaluates correctly without actually building or switching.
 
 ## Encrypted Journal Files
 
