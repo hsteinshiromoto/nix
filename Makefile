@@ -37,7 +37,7 @@ get_iso:
 	rsync -avzL hsteinshiromoto@servidor:/home/hsteinshiromoto/.config/nix/result ./iso
 
 ## Update flake.lock
-update:
+update: flake.lock
 	$(call log_info,Updating flake.lock...)
 	nix flake update
 	$(call log_info,Done)
