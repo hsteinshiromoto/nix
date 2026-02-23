@@ -66,7 +66,7 @@
 					"google-chrome"
 					"karabiner-elements"
 					"maccy"
-					"obsidian"
+					{ name = "obsidian"; greedy = true; }
 					"ollama-app"
 					"oversight"
 					"macfuse"
