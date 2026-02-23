@@ -6,6 +6,44 @@ let
   # Host-specific sops secret paths (dendritic pattern)
   bedrockSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/bedrock.yaml";
   bedrockSecretPath = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/bedrock";
+
+  # MCP servers configuration (conditional per host)
+  # - github: all hosts that import claude.nix
+  # - atlassian: mbp2025 only
+  # - gitlab: mbp2025 and mbp2023
+  mcpServers =
+    {
+      github = {
+        command = "npx";
+        args = ["-y" "@modelcontextprotocol/server-github"];
+        env = {
+          GITHUB_PERSONAL_ACCESS_TOKEN = "<your-github-pat>";
+        };
+      };
+			mcp-obsidian = {
+				command= "uvx";
+				args =  [
+					"mcp-obsidian"
+				];
+				env = {
+					OBSIDIAN_API_KEY = "<your_api_key_here>";
+					OBSIDIAN_HOST = "<your_obsidian_host>";
+					OBSIDIAN_PORT = "<your_obsidian_port>";
+				};
+			};
+    }
+    // (if hostname == "mbp2025" then {
+      atlassian = {
+        type = "http";
+        url = "https://mcp.atlassian.com/v1/mcp";
+      };
+    } else {})
+    // (if builtins.elem hostname ["mbp2025" "mbp2023"] then {
+      gitlab = {
+        type = "http";
+        url = "https://gitlab.2bos.ai/api/v4/mcp";
+      };
+    } else {});
 in
 {
   # SOPS secrets configuration for Claude Code
@@ -45,22 +83,17 @@ in
       "Bash(find:*)"
     ],
     "deny": []
-  },
-  "mcpServers": {
-    "atlassian": {
-      "type": "http",
-      "url": "https://mcp.atlassian.com/v1/mcp"
-    },
-    "gitlab": {
-      "type": "http",
-      "url": "https://gitlab.2bos.ai/api/v4/mcp"
-    }
   }
 }
 '';
       path = "${config.home.homeDirectory}/.claude/settings.json";
       mode = "0600";
     };
+  };
+
+  # MCP servers configuration written to ~/.mcp.json (Claude Code user-level MCP config)
+  home.file.".mcp.json" = {
+    text = builtins.toJSON { mcpServers = mcpServers; };
   };
 
   # Set environment variable for shell access
