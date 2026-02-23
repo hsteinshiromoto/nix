@@ -17,6 +17,17 @@ let
         type = "http";
         url = "https://api.githubcopilot.com/mcp/";
       };
+			mcp-obsidian = {
+				command= "uvx";
+				args =  [
+					"mcp-obsidian"
+				];
+				env = {
+					OBSIDIAN_API_KEY = "<your_api_key_here>";
+					OBSIDIAN_HOST = "<your_obsidian_host>";
+					OBSIDIAN_PORT = "<your_obsidian_port>";
+				};
+			};
     }
     // (if hostname == "mbp2025" then {
       atlassian = {
