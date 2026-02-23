@@ -80,13 +80,17 @@ in
       "Bash(find:*)"
     ],
     "deny": []
-  },
-  "mcpServers": ${builtins.toJSON mcpServers}
+  }
 }
 '';
       path = "${config.home.homeDirectory}/.claude/settings.json";
       mode = "0600";
     };
+  };
+
+  # MCP servers configuration written to ~/.mcp.json (Claude Code user-level MCP config)
+  home.file.".mcp.json" = {
+    text = builtins.toJSON { mcpServers = mcpServers; };
   };
 
   # Set environment variable for shell access
