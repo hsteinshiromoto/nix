@@ -45,6 +45,16 @@ in
       "Bash(find:*)"
     ],
     "deny": []
+  },
+  "mcpServers": {
+    "atlassian": {
+      "type": "http",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    },
+    "gitlab": {
+      "type": "http",
+      "url": "https://gitlab.2bos.ai/api/v4/mcp"
+    }
   }
 }
 '';
