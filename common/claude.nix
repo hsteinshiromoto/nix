@@ -14,8 +14,11 @@ let
   mcpServers =
     {
       github = {
-        type = "http";
-        url = "https://api.githubcopilot.com/mcp/";
+        command = "npx";
+        args = ["-y" "@modelcontextprotocol/server-github"];
+        env = {
+          GITHUB_PERSONAL_ACCESS_TOKEN = "<your-github-pat>";
+        };
       };
 			mcp-obsidian = {
 				command= "uvx";
