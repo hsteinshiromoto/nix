@@ -6,6 +6,30 @@ let
   # Host-specific sops secret paths (dendritic pattern)
   bedrockSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/bedrock.yaml";
   bedrockSecretPath = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/bedrock";
+
+  # MCP servers configuration (conditional per host)
+  # - github: all hosts that import claude.nix
+  # - atlassian: mbp2025 only
+  # - gitlab: mbp2025 and mbp2023
+  mcpServers =
+    {
+      github = {
+        type = "http";
+        url = "https://api.githubcopilot.com/mcp/";
+      };
+    }
+    // (if hostname == "mbp2025" then {
+      atlassian = {
+        type = "http";
+        url = "https://mcp.atlassian.com/v1/mcp";
+      };
+    } else {})
+    // (if builtins.elem hostname ["mbp2025" "mbp2023"] then {
+      gitlab = {
+        type = "http";
+        url = "https://gitlab.2bos.ai/api/v4/mcp";
+      };
+    } else {});
 in
 {
   # SOPS secrets configuration for Claude Code
@@ -46,16 +70,7 @@ in
     ],
     "deny": []
   },
-  "mcpServers": {
-    "atlassian": {
-      "type": "http",
-      "url": "https://mcp.atlassian.com/v1/mcp"
-    },
-    "gitlab": {
-      "type": "http",
-      "url": "https://gitlab.2bos.ai/api/v4/mcp"
-    }
-  }
+  "mcpServers": ${builtins.toJSON mcpServers}
 }
 '';
       path = "${config.home.homeDirectory}/.claude/settings.json";
