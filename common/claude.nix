@@ -43,6 +43,12 @@ let
         type = "http";
         url = "https://gitlab.2bos.ai/api/v4/mcp";
       };
+    } else {})
+    // (if builtins.elem hostname ["mbp2023" "servidor"] then {
+      hledger-mcp = {
+        command = "npx";
+        args = ["-y" "@iiatlas/hledger-mcp" "--read-only" "${config.home.homeDirectory}/hledger/master.journal"];
+      };
     } else {});
 in
 {
