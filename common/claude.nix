@@ -47,7 +47,7 @@ let
     // (if builtins.elem hostname ["mbp2023" "servidor"] then {
       hledger-mcp = {
         command = "npx";
-        args = ["-y" "@iiatlas/hledger-mcp" "--read-only" "${config.home.homeDirectory}/hledger/master.journal"];
+        args = ["-y" "@iiatlas/hledger-mcp" "--read-only" "${config.home.homeDirectory}/hledger/main.journal"];
       };
     } else {});
 in
