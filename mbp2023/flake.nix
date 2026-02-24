@@ -56,6 +56,7 @@
 					"bartender"
 					"bettermouse"
 					"bitwarden"
+					"calendr"
 					"cursor"
 					"discord"
 					"docker-desktop"
