@@ -79,9 +79,9 @@
 					"microsoft-word"
 					"popclip"
 					"productdevbook/tap/portkiller"
-					"proton-drive"
-					"proton-pass"
-					"protonvpn"
+					{name = "proton-drive"; greedy = true;}
+					{name = "proton-pass"; greedy = true;}
+					{name = "protonvpn"; greedy = true;}
 					"reader"
 					"signal"
 					"spotify"
