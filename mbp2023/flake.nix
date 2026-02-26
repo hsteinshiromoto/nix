@@ -46,6 +46,7 @@
 				brews = [
 					"age"
 					"age-plugin-yubikey"
+					"git-filter-repo"
 					"mas"
 					"sops"
 					"gromgit/brewtils/taproom"
