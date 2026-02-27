@@ -21,6 +21,13 @@ let
           OBSIDIAN_PORT = "<your_obsidian_port>";
         };
       };
+      "readwise-reader" = {
+        command = "node";
+        args = ["/path/to/your/reader_readwise_mcp/dist/index.js"];
+        env = {
+          READWISE_TOKEN = "your_readwise_access_token_here";
+        };
+      };
     } else {})
     // (if hostname == "mbp2025" then {
       atlassian = {
