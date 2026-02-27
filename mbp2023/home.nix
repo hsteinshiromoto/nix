@@ -68,6 +68,10 @@ in
 			enable = true;
 		};
 
+		claude-code = {
+			enable = true;
+		};
+
 		eza = {
 			enable = true;
 			enableNushellIntegration = false;

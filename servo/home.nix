@@ -28,6 +28,10 @@
 			enable = true;
 		};
 
+		claude-code = {
+			enable = true;
+		};
+
 		gpg = {
 			enable = true;
 			scdaemonSettings = {

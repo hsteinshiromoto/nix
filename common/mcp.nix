@@ -69,12 +69,7 @@ let
 
   mcpJsonContent = builtins.toJSON { mcpServers = mcpServers; };
 in
-{
-  # MCP client configuration
-  programs.claude-code = {
-    enable = true;
-  };
-}
+{}
 // (if useSecretBackedMcp then {
   sops = {
     secrets = {
