@@ -14,6 +14,20 @@
 		pkgs.pyright
   ];
 
+  # MCP servers for Claude Code (servidor-specific, avoids SOPS dependency from common/claude.nix)
+  # hledger-mcp mirrors definition in common/claude.nix; duplicated to avoid importing claude.nix
+  # NOTE: If common/claude.nix is ever imported here, remove this block to avoid duplicate .mcp.json
+  home.file.".mcp.json" = {
+    text = builtins.toJSON {
+      mcpServers = {
+        hledger-mcp = {
+          command = "npx";
+          args = ["-y" "@iiatlas/hledger-mcp" "--read-only" "${config.home.homeDirectory}/hledger/master.journal"];
+        };
+      };
+    };
+  };
+
 	programs = {
 		atuin = {
 			enable = true;

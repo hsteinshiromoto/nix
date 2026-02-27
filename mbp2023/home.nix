@@ -43,6 +43,7 @@ in
 		pkgs.ffmpeg-headless
 		pkgs.gitflow
 		pkgs.hledger
+		pkgs.just
 		pkgs.lua
 		pkgs.pyright
 		pkgs.regex-tui
