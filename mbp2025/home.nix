@@ -5,6 +5,7 @@
     ../common/gitconfig.nix
     ../common/gitlab.nix
     (import ../common/claude.nix { hostname = "mbp2025"; })
+    (import ../common/mcp.nix { hostname = "mbp2025"; })
     ../common/nu.nix
     ../common/aws.nix
   ];
@@ -38,10 +39,6 @@
 		};
 
 		bat = {
-			enable = true;
-		};
-
-		claude-code = {
 			enable = true;
 		};
 
