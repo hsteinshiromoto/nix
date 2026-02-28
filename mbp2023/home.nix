@@ -47,6 +47,7 @@ in
 		pkgs.just
 		pkgs.lua
 		pkgs.pyright
+		pkgs.proton-pass-cli
 		pkgs.regex-tui
 		pkgs.serie
 		pkgs.spotify-player
