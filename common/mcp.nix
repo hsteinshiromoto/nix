@@ -54,12 +54,6 @@ let
         url = "https://mcp.atlassian.com/v1/mcp";
       };
     } else {})
-    // (if builtins.elem hostname ["mbp2023" "mbp2025"] then {
-      gitlab = {
-        type = "http";
-        url = "https://gitlab.akordi.com/api/v4/mcp";
-      };
-    } else {})
     // (if hostname == "mbp2023" then {
       hledger-mcp = {
         command = "npx";
