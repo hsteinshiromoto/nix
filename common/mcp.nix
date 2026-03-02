@@ -57,7 +57,7 @@ let
     // (if builtins.elem hostname ["mbp2023" "mbp2025"] then {
       gitlab = {
         type = "http";
-        url = "https://gitlab.2bos.ai/api/v4/mcp";
+        url = "https://gitlab.akordi.com/api/v4/mcp";
       };
     } else {})
     // (if hostname == "mbp2023" then {
