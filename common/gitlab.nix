@@ -1,5 +1,12 @@
+{ hostname }:
+
 { config, pkgs, ... }:
 
+let
+  # Host-specific sops secret path (dendritic pattern)
+  gitlabSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/gitlab.yaml";
+  gitlabSshKeyPath = "${config.home.homeDirectory}/.ssh/gitlab_ssh";
+in
 {
   # GitLab CLI package
   home.packages = [
@@ -8,16 +15,11 @@
 
   # SOPS secrets configuration for GitLab
   sops = {
-    # Use GPG for decryption (age key not available)
-    # age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-    defaultSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/gitlab.yaml";
-
     secrets = {
-      gitlab_token = {
-        path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_token";
-      };
-      gitlab_host = {
-        path = "${config.home.homeDirectory}/.config/sops/secrets/gitlab_host";
+      gitlab_ssh = {
+        sopsFile = gitlabSopsFile;
+        path = gitlabSshKeyPath;
+        mode = "0600";
       };
     };
 
@@ -26,28 +28,22 @@
       content = ''
 # GitLab CLI configuration
 hosts:
-  ${config.sops.placeholder.gitlab_host}:
+  gitlab.akordi.com:
     api_protocol: https
-    api_host: ${config.sops.placeholder.gitlab_host}
-    git_protocol: https
-    token: ${config.sops.placeholder.gitlab_token}
+    api_host: gitlab.akordi.com
+    git_protocol: ssh
+    token: ""
 
 # Default GitLab hostname
-host: ${config.sops.placeholder.gitlab_host}
+host: gitlab.akordi.com
 
 # Additional global settings
 editor: nvim
 browser: open
-git_protocol: https
+git_protocol: ssh
 '';
       path = "${config.home.homeDirectory}/.config/glab-cli/config.yml";
       mode = "0600";
     };
-  };
-
-  # Set environment variables
-  home.sessionVariables = {
-    # Note: GITLAB_TOKEN and GITLAB_HOST are managed by glab-cli config
-    # via sops templates above (see templates."glab-cli/config.yml")
   };
 }

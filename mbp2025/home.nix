@@ -3,7 +3,7 @@
 {
   imports = [
     ../common/gitconfig.nix
-    ../common/gitlab.nix
+    (import ../common/gitlab.nix { hostname = "mbp2025"; })
     (import ../common/claude.nix { hostname = "mbp2025"; })
     (import ../common/mcp.nix { hostname = "mbp2025"; })
     ../common/nu.nix
@@ -109,10 +109,6 @@
 		XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
 		UV_PREBUILT = "1";
 		TERMINFO_DIRS = "${config.home.homeDirectory}/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo";
-		# Export GitLab secrets to shell environment (mbp2025 only)
-		# The secret files are decrypted by sops-nix at activation time
-		GITLAB_TOKEN = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_token 2>/dev/null || echo '')";
-		GITLAB_HOST = "$(cat ${config.home.homeDirectory}/.config/sops/secrets/gitlab_host 2>/dev/null || echo '')";
 	};
 
 	# Configure SOPS to use GPG instead of age

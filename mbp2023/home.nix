@@ -29,6 +29,7 @@ in
   imports = [
 		(import ../common/claude.nix { hostname = "mbp2023"; })
     (import ../common/mcp.nix { hostname = "mbp2023"; })
+    (import ../common/gitlab.nix { hostname = "mbp2023"; })
     ../common/gitconfig.nix
     ../common/nu.nix
     ../common/aws.nix
