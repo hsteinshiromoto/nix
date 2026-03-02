@@ -30,7 +30,7 @@ in
 hosts:
   gitlab.akordi.com:
     api_protocol: https
-    api_host: gitlab.akordi.com
+    api_host: www.gitlab.com
     git_protocol: ssh
     token: ""
 
