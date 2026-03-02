@@ -32,7 +32,10 @@ in
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "serena@claude-plugins-official": true,
+    "gitlab@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true
   },
   "awsAuthRefresh": "aws sso login --profile sandbox",
   "permissions": {
