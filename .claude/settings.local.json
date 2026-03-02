@@ -1,8 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(./build-iso-monitor.sh:*)",
-      "Bash(claude doctor:*)",
       "Read(//Users/hsteinshiromoto/Library/Preferences/**)",
       "Read(//Users/hsteinshiromoto/Library/**)",
       "Read(//Users/hsteinshiromoto/Library/Containers/**)",
@@ -17,22 +15,22 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
       "WebSearch",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix log:*)",
       "Bash(ls:*)",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix show main:CHANGELOG.md)",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix branch:*)",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix tag -l)",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix status)",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix diff CHANGELOG.md)",
-      "Bash(git -C /Users/hsteinshiromoto/Projects/nix diff main...HEAD --stat)",
+      "Bash(git -C ~/Projects/nix *)",
       "Bash(echo:*)",
-      "Bash(make test:*)"
+      "Bash(make test:*)",
+      "mcp__plugin_serena_serena__read_file",
+      "mcp__plugin_serena_serena__list_dir",
+      "mcp__plugin_serena_serena__find_file",
+      "mcp__plugin_serena_serena__search_for_pattern",
+      "Bash(git -C ~/.config/nix *)"
     ]
   },
-  "enableAllProjectMcpServers": false,
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "github",
-    "gitlab"
+    "gitlab",
+    "atlassian"
   ],
   "disabledMcpjsonServers": [
     "mcp-obsidian"
