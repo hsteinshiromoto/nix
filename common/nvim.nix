@@ -5,6 +5,7 @@
 		docker-language-server
     lua-language-server
     markdown-oxide
+    nixd
 		nodePackages_latest.vscode-json-languageserver
 		systemd-language-server
     texlab
