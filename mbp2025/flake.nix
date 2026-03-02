@@ -65,7 +65,13 @@
 					"linearmouse"
 					{ name = "obsidian"; greedy = true; }
 					"maccy"
-					"microsoft-teams"
+					"microsoft-excel"
+				"microsoft-onenote"
+				"microsoft-outlook"
+				"microsoft-powerpoint"
+				"microsoft-teams"
+				"microsoft-word"
+				"onedrive"
 					"ollama-app"
 					"popclip"
 					"productdevbook/tap/portkiller"
@@ -82,13 +88,6 @@
 				onActivation.upgrade = true;
 				masApps = {
 					"Magnet" = 441258766;
-					# "Microsoft 365" = 1450038993;
-					"Microsoft Excel" = 462058435;
-					"Microsoft OneNote" = 784801555;
-					"Microsoft Outlook" = 985367838;
-					"Microsoft Powerpoint" = 462062816;
-					"Microsoft Word" = 462054704;
-					"OneDrive" = 823766827;
 					"TextSniper - OCR, Copy & Paste" = 1528890965;
 					"Theine" = 955848755;
 				};
