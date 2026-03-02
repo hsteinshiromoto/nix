@@ -63,13 +63,13 @@
 					"gpg-suite"
 					"karabiner-elements"
 					"linearmouse"
+					{ name = "obsidian"; greedy = true; }
 					"maccy"
 					"microsoft-teams"
-					"obsidian"
 					"ollama-app"
 					"popclip"
 					"productdevbook/tap/portkiller"
-					"proton-pass"
+					{name = "proton-pass"; greedy = true;}
 					"reader"
 					"signal"
 					"spotify"
