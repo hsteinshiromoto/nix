@@ -73,8 +73,8 @@ let
     env = {
       ANTHROPIC_MODEL = "claude-opus-4-6";
       ANTHROPIC_SMALL_FAST_MODEL = "claude-haiku-4-5";
+      DISABLE_PROMPT_CACHING = "1";
       CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
-      CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1";
     };
     enabledPlugins = enabledPluginsAttr;
     permissions = permissionsAttr;
