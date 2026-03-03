@@ -58,8 +58,8 @@ in
 {
 	"$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-		"ANTHROPIC_BASE_URL": "${config.sops.placeholder.AWS_BEARER_TOKEN_BEDROCK}",
-    "ANTHROPIC_AUTH_TOKEN": "sk-their-virtual-key-here",
+		"ANTHROPIC_BASE_URL": "https://litellm.sandbox-01.2bos.ai",
+    "ANTHROPIC_AUTH_TOKEN": "${config.sops.placeholder.AWS_BEARER_TOKEN_BEDROCK}",
     "DISABLE_PROMPT_CACHING": "1",
     "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1"
   },
