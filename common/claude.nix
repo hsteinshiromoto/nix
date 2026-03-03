@@ -56,6 +56,7 @@ in
     templates."claude/settings.json" = {
       content = ''
 {
+	"$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
 		"ANTHROPIC_BASE_URL": "${config.sops.placeholder.AWS_BEARER_TOKEN_BEDROCK}",
     "ANTHROPIC_AUTH_TOKEN": "sk-their-virtual-key-here",
