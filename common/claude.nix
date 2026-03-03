@@ -60,8 +60,8 @@ let
       "Bash(grep:*)"
       "Read(//Users/hsteinshiromoto/Library/Fonts/**)"
       "Read(//Library/Fonts/**)"
-      "Read(//Users/hsteinshiromoto/.config/nix/**)"
-      "Read(//Users/hsteinshiromoto/dotfiles/**)"
+      "Read(~/.config/nix/**)"
+      "Read(~/dotfiles/**)"
       "Bash(find:*)"
     ];
     deny = [];
@@ -109,6 +109,7 @@ in
   # Auth handled via `claude login` (browser OAuth)
   home.file.".claude/settings.json" = {
     text = personalSettingsJson;
+    force = true;
   };
 } else {
   # Corporate account: SOPS secrets + templates (existing behavior)
