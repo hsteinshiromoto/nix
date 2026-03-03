@@ -1,4 +1,4 @@
-{ hostname }:
+{ hostname, usePersonalAccount ? false }:
 
 { config, pkgs, ... }:
 
@@ -30,7 +30,7 @@ let
     "code-review"
   ];
 
-  # Build the enabledPlugins JSON fragment
+  # Build the enabledPlugins JSON fragment (for corporate sops template)
   officialEntries = builtins.map (name:
     ''"${name}@claude-plugins-official": true''
   ) officialPlugins;
@@ -41,9 +41,77 @@ let
 
   allPluginEntries = officialEntries ++ communityEntries;
   enabledPluginsJson = builtins.concatStringsSep ",\n    " allPluginEntries;
+
+  # Build enabledPlugins as a Nix attrset (for personal builtins.toJSON)
+  enabledPluginsAttr = builtins.listToAttrs (
+    (builtins.map (name: {
+      name = "${name}@claude-plugins-official";
+      value = true;
+    }) officialPlugins)
+    ++ (builtins.map (p: {
+      name = "${p.name}@${p.marketplace}";
+      value = true;
+    }) communityPlugins)
+  );
+
+  # Shared permissions
+  permissionsAttr = {
+    allow = [
+      "Bash(grep:*)"
+      "Read(//Users/hsteinshiromoto/Library/Fonts/**)"
+      "Read(//Library/Fonts/**)"
+      "Read(//Users/hsteinshiromoto/.config/nix/**)"
+      "Read(//Users/hsteinshiromoto/dotfiles/**)"
+      "Bash(find:*)"
+    ];
+    deny = [];
+  };
+
+  # Personal account settings (plain JSON, no secrets)
+  personalSettingsJson = builtins.toJSON {
+    "$schema" = "https://json.schemastore.org/claude-code-settings.json";
+    env = {
+      ANTHROPIC_MODEL = "claude-opus-4-6";
+      ANTHROPIC_SMALL_FAST_MODEL = "claude-haiku-4-5";
+      CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+      CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1";
+    };
+    enabledPlugins = enabledPluginsAttr;
+    permissions = permissionsAttr;
+  };
+
 in
+# --- Common config (plugins activation, shared across both paths) ---
 {
-  # SOPS secrets configuration for Claude Code
+  # Declarative Claude Code plugin management
+  # Installs community marketplace plugins on every home-manager activation.
+  # Runs after sops-nix so that ~/.claude/settings.json exists.
+  # Network failures are absorbed (|| true) to avoid breaking the rebuild.
+  home.activation.installClaudePlugins = config.lib.dag.entryAfter
+    (["writeBoundary"] ++ (if usePersonalAccount then [] else ["sops-nix"])) ''
+    CLAUDE_BIN="${config.home.homeDirectory}/.local/state/nix/profiles/profile/bin/claude"
+    if [ -x "$CLAUDE_BIN" ]; then
+      echo "Installing Claude Code community plugins..."
+      ${builtins.concatStringsSep "\n      " (builtins.map (p:
+        "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin marketplace add ${p.repo} || true"
+      ) communityPlugins)}
+      ${builtins.concatStringsSep "\n      " (builtins.map (p:
+        "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin install ${p.name}@${p.marketplace} || true"
+      ) communityPlugins)}
+    else
+      echo "Claude CLI not found at $CLAUDE_BIN, skipping plugin installation"
+    fi
+  '';
+}
+# --- Conditional config: corporate vs personal ---
+// (if usePersonalAccount then {
+  # Personal account: plain file, no SOPS secrets needed
+  # Auth handled via `claude login` (browser OAuth)
+  home.file.".claude/settings.json" = {
+    text = personalSettingsJson;
+  };
+} else {
+  # Corporate account: SOPS secrets + templates (existing behavior)
   sops = {
     secrets = {
       AWS_BEARER_TOKEN_BEDROCK = {
@@ -92,23 +160,4 @@ in
   home.sessionVariables = {
     AWS_BEARER_TOKEN_BEDROCK = "$(cat ${bedrockSecretPath} 2>/dev/null || echo '')";
   };
-
-  # Declarative Claude Code plugin management
-  # Installs community marketplace plugins on every home-manager activation.
-  # Runs after sops-nix so that ~/.claude/settings.json exists.
-  # Network failures are absorbed (|| true) to avoid breaking the rebuild.
-  home.activation.installClaudePlugins = config.lib.dag.entryAfter ["writeBoundary" "sops-nix"] ''
-    CLAUDE_BIN="${config.home.homeDirectory}/.local/state/nix/profiles/profile/bin/claude"
-    if [ -x "$CLAUDE_BIN" ]; then
-      echo "Installing Claude Code community plugins..."
-      ${builtins.concatStringsSep "\n      " (builtins.map (p:
-        "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin marketplace add ${p.repo} || true"
-      ) communityPlugins)}
-      ${builtins.concatStringsSep "\n      " (builtins.map (p:
-        "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin install ${p.name}@${p.marketplace} || true"
-      ) communityPlugins)}
-    else
-      echo "Claude CLI not found at $CLAUDE_BIN, skipping plugin installation"
-    fi
-  '';
-}
+})

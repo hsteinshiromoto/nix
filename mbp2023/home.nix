@@ -27,7 +27,7 @@ let
 in
 {
   imports = [
-		(import ../common/claude.nix { hostname = "mbp2023"; })
+		(import ../common/claude.nix { hostname = "mbp2023"; usePersonalAccount = true; })
     (import ../common/mcp.nix { hostname = "mbp2023"; })
     (import ../common/gitlab.nix { hostname = "mbp2023"; })
     ../common/gitconfig.nix
