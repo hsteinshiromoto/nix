@@ -35,7 +35,7 @@ hosts:
     token: ""
 
 # Default GitLab hostname
-host: gitlab.akordi.com
+host: www.gitlab.com
 
 # Additional global settings
 editor: nvim
