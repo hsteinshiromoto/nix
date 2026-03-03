@@ -23,13 +23,17 @@
       "mcp__plugin_serena_serena__list_dir",
       "mcp__plugin_serena_serena__find_file",
       "mcp__plugin_serena_serena__search_for_pattern",
-      "Bash(git -C ~/.config/nix *)"
+      "Bash(git -C ~/.config/nix *)",
+      "Bash(claude plugin marketplace:*)",
+      "Bash(claude plugin:*)",
+      "Bash(glab *)",
+      "Bash(curl:*)",
+      "Bash(glab mr view:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "github",
-    "gitlab",
     "atlassian"
   ],
   "disabledMcpjsonServers": [
