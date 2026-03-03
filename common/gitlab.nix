@@ -5,7 +5,6 @@
 let
   # Host-specific sops secret path (dendritic pattern)
   gitlabSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/gitlab.yaml";
-  gitlabSshKeyPath = "${config.home.homeDirectory}/.ssh/gitlab_ssh";
 in
 {
   # GitLab CLI package
@@ -16,11 +15,6 @@ in
   # SOPS secrets configuration for GitLab
   sops = {
     secrets = {
-      gitlab_ssh = {
-        sopsFile = gitlabSopsFile;
-        path = gitlabSshKeyPath;
-        mode = "0600";
-      };
       gitlab_token = {
         sopsFile = gitlabSopsFile;
       };
