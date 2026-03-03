@@ -21,6 +21,12 @@ in
         path = gitlabSshKeyPath;
         mode = "0600";
       };
+      gitlab_token = {
+        sopsFile = gitlabSopsFile;
+      };
+      gitlab_host = {
+        sopsFile = gitlabSopsFile;
+      };
     };
 
     # Use sops templates to generate glab-cli config with secrets
@@ -28,14 +34,14 @@ in
       content = ''
 # GitLab CLI configuration
 hosts:
-  gitlab.akordi.com:
+  ${config.sops.placeholder.gitlab_host}:
     api_protocol: https
-    api_host: www.gitlab.com
+    api_host: ${config.sops.placeholder.gitlab_host}
     git_protocol: ssh
-    token: ""
+    token: ${config.sops.placeholder.gitlab_token}
 
 # Default GitLab hostname
-host: www.gitlab.com
+host: ${config.sops.placeholder.gitlab_host}
 
 # Additional global settings
 editor: nvim
