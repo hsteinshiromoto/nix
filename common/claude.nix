@@ -57,13 +57,10 @@ in
       content = ''
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_CODE_USE_BEDROCK": "1",
-    "AWS_REGION": "ap-southeast-2",
-    "AWS_PROFILE": "sandbox",
-    "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-southeast-2:058264223017:inference-profile/global.anthropic.claude-opus-4-6-v1",
-    "ANTHROPIC_SMALL_FAST_MODEL": "arn:aws:bedrock:ap-southeast-2:058264223017:inference-profile/au.anthropic.claude-haiku-4-5-20251001-v1:0",
-    "AWS_BEARER_TOKEN_BEDROCK": "${config.sops.placeholder.AWS_BEARER_TOKEN_BEDROCK}"
+		"ANTHROPIC_BASE_URL": "${config.sops.placeholder.AWS_BEARER_TOKEN_BEDROCK}",
+    "ANTHROPIC_AUTH_TOKEN": "sk-their-virtual-key-here",
+    "DISABLE_PROMPT_CACHING": "1",
+    "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1"
   },
   "enabledPlugins": {
     ${enabledPluginsJson}
