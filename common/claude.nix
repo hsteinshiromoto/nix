@@ -136,6 +136,7 @@ lib.mkMerge [
     SKILLS_DIR="${config.home.homeDirectory}/.claude/skills"
     GIT_BIN="${pkgs.git}/bin/git"
     PROFILE_BIN="${config.home.homeDirectory}/.local/state/nix/profiles/profile/bin"
+    UV_BIN="${pkgs.uv}/bin"
     if [ -d "$SKILLS_DIR" ]; then
       echo "Installing Claude Code local skills..."
       ${builtins.concatStringsSep "\n      " (builtins.map (s:
@@ -145,7 +146,7 @@ lib.mkMerge [
         else
           $DRY_RUN_CMD "$GIT_BIN" -C "${skillDir}" pull || true
         fi
-        ( cd "${skillDir}" && PATH="$PROFILE_BIN:$PATH" $DRY_RUN_CMD ${s.setupScript} ) || true''
+        ( cd "${skillDir}" && export PATH="$UV_BIN:$PROFILE_BIN:$PATH" && $DRY_RUN_CMD ${s.setupScript} ) || true''
       ) localSkills)}
     else
       echo "Skills directory $SKILLS_DIR not found, skipping skill installation"
