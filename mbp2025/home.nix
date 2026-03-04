@@ -4,7 +4,7 @@
   imports = [
     ../common/gitconfig.nix
     (import ../common/gitlab.nix { hostname = "mbp2025"; })
-    (import ../common/claude.nix { hostname = "mbp2025"; })
+    (import ../common/claude.nix { hostname = "mbp2025"; usePersonalAccount = true;})
     (import ../common/mcp.nix { hostname = "mbp2025"; })
     ../common/nu.nix
     ../common/aws.nix
