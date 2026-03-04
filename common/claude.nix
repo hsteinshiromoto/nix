@@ -108,10 +108,19 @@ lib.mkMerge [
   home.activation.installClaudePlugins = config.lib.dag.entryAfter
     (["writeBoundary"] ++ (if usePersonalAccount then [] else ["sops-nix"])) ''
     CLAUDE_BIN="${config.home.homeDirectory}/.local/state/nix/profiles/profile/bin/claude"
+    GIT_BIN="${pkgs.git}/bin/git"
+    MARKETPLACE_DIR="${config.home.homeDirectory}/.claude/marketplaces"
     if [ -x "$CLAUDE_BIN" ]; then
       echo "Registering Claude Code community marketplaces..."
+      $DRY_RUN_CMD mkdir -p "$MARKETPLACE_DIR"
       ${builtins.concatStringsSep "\n      " (builtins.map (p:
-        "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin marketplace add ${p.repo} || true"
+        let marketplaceDir = "$MARKETPLACE_DIR/${p.marketplace}"; in
+        ''if [ ! -d "${marketplaceDir}" ]; then
+          $DRY_RUN_CMD "$GIT_BIN" clone "https://github.com/${p.repo}.git" "${marketplaceDir}" || true
+        else
+          $DRY_RUN_CMD "$GIT_BIN" -C "${marketplaceDir}" pull || true
+        fi
+        $DRY_RUN_CMD "$CLAUDE_BIN" plugin marketplace add "${marketplaceDir}" || true''
       ) communityPlugins)}
     else
       echo "Claude CLI not found at $CLAUDE_BIN, skipping marketplace registration"
