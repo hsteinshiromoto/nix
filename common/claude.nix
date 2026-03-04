@@ -1,6 +1,6 @@
 { hostname, usePersonalAccount ? false }:
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   # Host-specific sops secret paths (dendritic pattern)
@@ -94,25 +94,27 @@ let
   };
 
 in
-# --- Common config (plugins activation, shared across both paths) ---
-{
+# --- Merge common + conditional blocks via the module system ---
+lib.mkMerge [
+  # --- Common config (plugins activation, shared across both paths) ---
+  {
   # Declarative Claude Code plugin management
   # Installs community marketplace plugins on every home-manager activation.
   # Runs after sops-nix so that ~/.claude/settings.json exists.
   # Network failures are absorbed (|| true) to avoid breaking the rebuild.
+  # Registers community marketplaces so the CLI knows where to find them.
+  # The actual enabledPlugins config is managed declaratively via settings.json,
+  # so `plugin install` is not needed (and would fail on the Nix store symlink).
   home.activation.installClaudePlugins = config.lib.dag.entryAfter
     (["writeBoundary"] ++ (if usePersonalAccount then [] else ["sops-nix"])) ''
     CLAUDE_BIN="${config.home.homeDirectory}/.local/state/nix/profiles/profile/bin/claude"
     if [ -x "$CLAUDE_BIN" ]; then
-      echo "Installing Claude Code community plugins..."
+      echo "Registering Claude Code community marketplaces..."
       ${builtins.concatStringsSep "\n      " (builtins.map (p:
         "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin marketplace add ${p.repo} || true"
       ) communityPlugins)}
-      ${builtins.concatStringsSep "\n      " (builtins.map (p:
-        "$DRY_RUN_CMD \"$CLAUDE_BIN\" plugin install ${p.name}@${p.marketplace} || true"
-      ) communityPlugins)}
     else
-      echo "Claude CLI not found at $CLAUDE_BIN, skipping plugin installation"
+      echo "Claude CLI not found at $CLAUDE_BIN, skipping marketplace registration"
     fi
   '';
 
@@ -140,9 +142,9 @@ in
       echo "Skills directory $SKILLS_DIR not found, skipping skill installation"
     fi
   '';
-}
-# --- Conditional config: corporate vs personal ---
-// (if usePersonalAccount then {
+  }
+  # --- Conditional config: corporate vs personal ---
+  (if usePersonalAccount then {
   # Personal account: plain file, no SOPS secrets needed
   # Auth handled via `claude login` (browser OAuth)
   home.file.".claude/settings.json" = {
@@ -199,4 +201,5 @@ in
   home.sessionVariables = {
     AWS_BEARER_TOKEN_BEDROCK = "$(cat ${bedrockSecretPath} 2>/dev/null || echo '')";
   };
-})
+  })
+]
