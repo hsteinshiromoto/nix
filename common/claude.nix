@@ -20,6 +20,19 @@ let
     }
   ];
 
+  # Local skills cloned from Git repositories into ~/.claude/skills/
+  # Each entry: { name, repo, setupScript }
+  #   name        = directory name under ~/.claude/skills/
+  #   repo        = HTTPS clone URL
+  #   setupScript = shell commands to run after clone/pull (cwd = skill dir)
+  localSkills = [
+    {
+      name = "excalidraw-diagram";
+      repo = "https://github.com/coleam00/excalidraw-diagram-skill.git";
+      setupScript = "cd references && uv sync && uv run playwright install chromium";
+    }
+  ];
+
   # Official plugins (registered via the built-in marketplace)
   # These need only enabledPlugins config; no CLI install needed
   officialPlugins = [
@@ -100,6 +113,31 @@ in
       ) communityPlugins)}
     else
       echo "Claude CLI not found at $CLAUDE_BIN, skipping plugin installation"
+    fi
+  '';
+
+  # Declarative Claude Code local skill management
+  # Clones skill repos into ~/.claude/skills/ and runs setup scripts.
+  # Clone-once, pull-later strategy for idempotency.
+  # Network failures are absorbed (|| true) to avoid breaking the rebuild.
+  home.activation.installClaudeSkills = config.lib.dag.entryAfter
+    (["writeBoundary"] ++ (if usePersonalAccount then [] else ["sops-nix"])) ''
+    SKILLS_DIR="${config.home.homeDirectory}/.claude/skills"
+    GIT_BIN="${pkgs.git}/bin/git"
+    PROFILE_BIN="${config.home.homeDirectory}/.local/state/nix/profiles/profile/bin"
+    if [ -d "$SKILLS_DIR" ]; then
+      echo "Installing Claude Code local skills..."
+      ${builtins.concatStringsSep "\n      " (builtins.map (s:
+        let skillDir = "$SKILLS_DIR/${s.name}"; in
+        ''if [ ! -d "${skillDir}" ]; then
+          $DRY_RUN_CMD "$GIT_BIN" clone "${s.repo}" "${skillDir}" || true
+        else
+          $DRY_RUN_CMD "$GIT_BIN" -C "${skillDir}" pull || true
+        fi
+        ( cd "${skillDir}" && PATH="$PROFILE_BIN:$PATH" $DRY_RUN_CMD ${s.setupScript} ) || true''
+      ) localSkills)}
+    else
+      echo "Skills directory $SKILLS_DIR not found, skipping skill installation"
     fi
   '';
 }
