@@ -18,7 +18,7 @@ Starting from v3.1.0, all releases will be based on a timestamp with the format 
 ├── common/                     # Shared configuration modules (v3.0+)
 │   ├── aws.nix                # AWS configuration with SOPS integration
 │   ├── claude.nix             # Claude Code settings with SOPS secrets
-│   ├── gitconfig.nix          # Git configuration with SOPS integration
+│   ├── git.nix                # Git configuration with SOPS integration and hooks
 │   ├── gitlab.nix             # GitLab CLI configuration
 │   ├── nu.nix                 # Nushell configuration
 │   ├── nvim.nix               # Neovim configuration
