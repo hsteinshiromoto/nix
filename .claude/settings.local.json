@@ -28,7 +28,9 @@
       "Bash(claude plugin:*)",
       "Bash(glab *)",
       "Bash(curl:*)",
-      "Bash(glab mr view:*)"
+      "Bash(glab:*)",
+      "Bash(git log:*)",
+      "Bash(git config:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
