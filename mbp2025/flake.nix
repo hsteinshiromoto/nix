@@ -51,6 +51,7 @@
 				casks = [
 					"bartender"
 					"bitwarden"
+					"calendr"
 					"cursor"
 					"dbeaver-community"
 					"docker-desktop"
