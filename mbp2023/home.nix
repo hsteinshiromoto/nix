@@ -30,7 +30,7 @@ in
 		(import ../common/claude.nix { hostname = "mbp2023"; usePersonalAccount = true; })
     (import ../common/mcp.nix { hostname = "mbp2023"; })
     (import ../common/gitlab.nix { hostname = "mbp2023"; })
-    ../common/gitconfig.nix
+    (import ../common/git.nix { hostname = "mbp2023"; })
     ../common/nu.nix
     ../common/aws.nix
   ];
