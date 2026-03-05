@@ -62,6 +62,7 @@
 					"discord"
 					"docker-desktop"
 					"espanso"
+					"excalidrawz"
 					"firefox"
 					"gpg-suite"
 					"ghostty"
