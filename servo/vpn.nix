@@ -68,10 +68,10 @@
     };
   };
 
-  # Ensure openvpn waits for credentials
+  # Ensure openvpn waits for credentials and Tailscale authentication
   systemd.services.openvpn-protonvpn = {
-    after = [ "openvpn-protonvpn-credentials.service" "tailscaled.service" ];
+    after = [ "openvpn-protonvpn-credentials.service" "tailscale-auto-auth.service" ];
     requires = [ "openvpn-protonvpn-credentials.service" ];
-    wants = [ "tailscaled.service" ];  # Ensure Tailscale connects before VPN takes over routing
+    wants = [ "tailscale-auto-auth.service" ];  # Ensure Tailscale is authenticated before VPN takes over routing
   };
 }
