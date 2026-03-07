@@ -3,10 +3,13 @@
 { config, pkgs, ... }:
 
 let
+  hostsWithGitlab = ["mbp2025"];
+  useGitlab = builtins.elem hostname hostsWithGitlab;
+
   # Host-specific sops secret path (dendritic pattern)
   gitlabSopsFile = "${config.home.homeDirectory}/.config/sops/secrets/${hostname}/gitlab.yaml";
 in
-{
+if useGitlab then {
   # GitLab CLI package
   home.packages = [
     pkgs.glab
@@ -46,4 +49,4 @@ git_protocol: ssh
       mode = "0600";
     };
   };
-}
+} else {}
