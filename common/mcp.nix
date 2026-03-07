@@ -48,6 +48,12 @@ let
         };
       };
     } else {})
+    // (if useSecretBackedMcp then {
+      mcp-neovim-server = {
+        command = "npx";
+        args = ["-y" "mcp-neovim-server"];
+      };
+    } else {})
     // (if hostname == "mbp2025" then {
       atlassian = {
         type = "http";
