@@ -21,6 +21,7 @@
 			./transmission.nix
 			./vpn.nix
 			./backup.nix                  # <- Comment out this line to remove dependency on sops
+			../common/tailscale.nix       # Tailscale VPN configuration with auto-auth
     ];
 
 	nix = {
@@ -247,10 +248,6 @@
 				PasswordAuthentication = false;
 				AcceptEnv = "$TMUX";
       };
-    };
-    tailscale = {
-      enable = true;
-      authKeyFile = config.sops.secrets."tailscale_auth_key".path;
     };
     syncthing = {
       enable = true;
